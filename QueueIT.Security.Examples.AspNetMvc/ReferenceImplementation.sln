@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueIT.Security.Examples.AspNetMvc", "QueueIT.Security.Examples.AspNetMvc.csproj", "{2CDDE36C-6E91-4726-80BA-BA6DE0779295}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", "{263AE19D-1A31-4153-B145-D9F16AB96AAB}"
+	ProjectSection(SolutionItems) = preProject
+		packages\QueueIT.Security.dll = packages\QueueIT.Security.dll
+		packages\QueueIT.Security.Mvc.dll = packages\QueueIT.Security.Mvc.dll
+		packages\QueueIT.Security.Mvc.pdb = packages\QueueIT.Security.Mvc.pdb
+		packages\QueueIT.Security.Mvc.xml = packages\QueueIT.Security.Mvc.xml
+		packages\QueueIT.Security.pdb = packages\QueueIT.Security.pdb
+		packages\QueueIT.Security.xml = packages\QueueIT.Security.xml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs2010.queue-it.net:4433/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = QueueIT.Security.Examples.AspNetMvc.csproj
+		SccLocalPath1 = .
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2CDDE36C-6E91-4726-80BA-BA6DE0779295}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CDDE36C-6E91-4726-80BA-BA6DE0779295}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CDDE36C-6E91-4726-80BA-BA6DE0779295}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CDDE36C-6E91-4726-80BA-BA6DE0779295}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

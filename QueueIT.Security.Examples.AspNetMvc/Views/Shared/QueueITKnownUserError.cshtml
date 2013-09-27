@@ -1,0 +1,25 @@
+﻿@model QueueIT.Security.Mvc.KnownUserErrorModel
+
+@{
+    ViewBag.Title = "Known User Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>There was an error validating the known user token in the request.</h2>
+            </hgroup>
+            <p>
+                To learn more about configuring queues, please contact Queue-it.
+            </p>
+        </div>
+    </section>
+}
+
+    <div>An error occured.</div>
+    <div>
+        <a href="/">Back To Home</a>
+    </div>

@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "A simple configuration of a queue.";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>Configuration of queues.</h2>
+            </hgroup>
+            <p>
+                To learn more about configuring queues, please contact Queue-it.
+            </p>
+        </div>
+    </section>
+}
+
+    <h3>Setting up the queue:</h3>
+    <ol class="round">
+        <li class="one">
+            <h5>Add configuration section to web config</h5>
+            This example uses the queue with id &#39;default&#39; from the web config file. The 
+            entry contains the minimum required attributes.</li>
+        <li class="two">
+            <h5>Add Action Filter to controllers</h5>
+            The minimum code required to set up the queue is to add the SessionValidationAttribute attribute to your controllers. 
+            You may also add the action filter to the global filter list in global.asax.</li>
+        <li class="three">
+            <h5>Add the SessionValidation HTML helper </h5>
+            Add the HtmlHelper.SessionValidation() method to the buttom of all pages which runs 
+            the validation code. You may place the method on specific pages or use master 
+            pages (it must only be included once on each page). In this example you will 
+            find the method in the shared Layout.chtml file.</li>
+    </ol>

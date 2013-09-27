@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueIT.Security.Examples.Webforms", "QueueIT.Security.Examples.Webforms.csproj", "{B45F9847-6503-4142-A50A-42F23561E9E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", "{9CC83F35-8C6C-4EA9-AE0A-31735AE54791}"
+	ProjectSection(SolutionItems) = preProject
+		packages\QueueIT.Security.dll = packages\QueueIT.Security.dll
+		packages\QueueIT.Security.pdb = packages\QueueIT.Security.pdb
+		packages\QueueIT.Security.xml = packages\QueueIT.Security.xml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs2010.queue-it.net:4433/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = QueueIT.Security.Examples.Webforms.csproj
+		SccLocalPath1 = .
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B45F9847-6503-4142-A50A-42F23561E9E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B45F9847-6503-4142-A50A-42F23561E9E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B45F9847-6503-4142-A50A-42F23561E9E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B45F9847-6503-4142-A50A-42F23561E9E8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

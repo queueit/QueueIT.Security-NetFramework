@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "Advanced Queue Configuration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>Configuration of queues.</h2>
+            </hgroup>
+            <p>
+                To learn more about configuring queues, please contact Queue-it.
+            </p>
+        </div>
+    </section>
+}
+
+    <h3>Setting up the queue:</h3>
+    <ol class="round">
+        <li class="one">
+            <h5>Add configuration section to web config</h5>
+            This example uses the queue with id &#39;advanced&#39; from the web config file. The 
+            entry contains a domain alias which is used when users are redirected to the 
+            queue as well as a landing page (split page) allowing users to choose if the 
+            want to be redirected to the queue.</li>
+        <li class="two">
+            <h5>Add Action Filter to controllers or write a custom action filter</h5>
+            An overload of the SessionValidationAttribute attribute allows you to specify 
+            the queue name in the attribute. You may also inherit from the SessionValidationAttribute
+            and override virtual methods to gain full control of the validation flow. This example 
+            overrides the OnValidated method to persist the queue id details.
+            You may also add the action filter to the global filter list in global.asax.</li>
+    </ol>

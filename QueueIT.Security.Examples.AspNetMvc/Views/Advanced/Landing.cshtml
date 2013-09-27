@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Queue Landing Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>Split page.</h2>
+            </hgroup>
+            <p>
+                To learn more about configuring queues, please contact Queue-it.
+            </p>
+        </div>
+    </section>
+}
+
+        <a href="Default.aspx">Back To Home</a> <a href="@ViewBag.QueueUrl">Go to queue</a>

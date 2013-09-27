@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Code Only Queue Configuration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>Configuration of queues.</h2>
+            </hgroup>
+            <p>
+                To learn more about configuring queues, please contact Queue-it.
+            </p>
+        </div>
+    </section>
+}
+
+
+    <h3>Setting up the queue:</h3>
+    <ol class="round">
+        <li class="one">
+            <h5>Add configuration using code</h5>
+            All configuration that is supported using the configuration section is also 
+            supported in code. In this example it is configured in the static constructor of 
+            &#39;CodeOnly.aspx.cs&#39; for readability. You could also place it in the 
+            Application_Start method in the global.asax file.</li>
+        <li class="two">
+            <h5>Add Action Filter to controllers or write a custom action filter</h5>
+            An overload of the SessionValidationAttribute attribute allows you to specify Customer 
+            and Event ID in the attribute. You may also inherit from the SessionValidationAttribute
+            and override virtual methods to gain full control of the validation flow (e.g. 
+            if you need to get the Customer and Event ID from a database then override the 
+            ValidateRequest method and call the SessionValidationController.ValidateRequest method).
+            You may also add the action filter to the global filter list in global.asax.</li>
+    </ol>

@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Link";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>Configuration of queues.</h2>
+            </hgroup>
+            <p>
+                To learn more about configuring queues, please contact Queue-it.
+            </p>
+        </div>
+    </section>
+}
+
+    <h3>Setting up the queue:</h3>
+    <ol class="round">
+        <li class="one">
+            <h5>Add Known User Attribute</h5>
+            Add Known User attribute to the controller action. The the action Target of controller Link 
+            contains code to extract and persist information about a queue number.</li>
+    </ol>
