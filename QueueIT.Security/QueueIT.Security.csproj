@@ -86,6 +86,8 @@
     <Compile Include="AcceptedConfirmedResult.cs" />
     <Compile Include="Configuration\QueueCollection.cs" />
     <Compile Include="Configuration\QueueSection.cs" />
+    <Compile Include="Configuration\RepositorySettingsCollection.cs" />
+    <Compile Include="Configuration\RepositorySettingSection.cs" />
     <Compile Include="Configuration\SettingsSection.cs" />
     <Compile Include="CookieValidateResultRepository.cs" />
     <Compile Include="ExpiredValidationException.cs" />

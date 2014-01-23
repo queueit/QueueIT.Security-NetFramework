@@ -2,6 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using QueueIT.Security.Configuration;
 
 namespace QueueIT.Security
 {
@@ -10,6 +11,37 @@ namespace QueueIT.Security
     /// </summary>
     public class CookieValidateResultRepository : ValidateResultRepositoryBase
     {
+        private static string CookieDomain;
+
+        static CookieValidateResultRepository()
+        {
+            LoadConfiguration();
+        }
+
+        private static void LoadConfiguration()
+        {
+            SettingsSection settings = SettingsSection.GetSection();
+            if (settings != null && settings.RepositorySettings != null)
+            {
+                CookieDomain = GetValue("CookieDomain", settings.RepositorySettings);
+            }
+        }
+
+        /// <summary>
+        /// Configures the CookieValidateResultRepository. This method will override any previous calls and configuration in config files.
+        /// </summary>
+        /// <param name="cookieDomain">The domain name of the cookie scope</param>
+        public static void Configure(string cookieDomain = null)
+        {
+            if (cookieDomain != null)
+                CookieDomain = cookieDomain;
+        }
+
+        internal static void Clear()
+        {
+            CookieDomain = null;
+        }
+
         public override IValidateResult GetValidationResult(IQueue queue)
         {
             try
@@ -75,6 +107,7 @@ namespace QueueIT.Security
                 validationCookie.Values["Hash"] = hash;
 
                 validationCookie.HttpOnly = true;
+                validationCookie.Domain = CookieDomain;
 
                 HttpContext.Current.Response.Cookies.Add(validationCookie);
             }

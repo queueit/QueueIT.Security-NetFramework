@@ -8,12 +8,12 @@ namespace QueueIT.Security
     /// Controller class which enables simple implementation of the QueueIT.Security functionality
     /// </summary>
     /// <remarks>
-    /// View members for additional information and examples
+    /// View members for additional information and examplesno
     /// </remarks>
     public static class SessionValidationController
     {
         private static TimeSpan _defaultTicketExpiration;
-        private static IValidateResultRepository _defaultValidationResultRepository = new SessionValidateResultRepository();
+        private static readonly IValidateResultRepository _defaultValidationResultRepository = new CookieValidateResultRepository();
         private static Func<IValidateResultRepository> _validationResultProviderFactory = () => _defaultValidationResultRepository;
 
         static SessionValidationController()

@@ -1,3 +1,5 @@
+using QueueIT.Security.Configuration;
+
 namespace QueueIT.Security
 {
     public abstract class ValidateResultRepositoryBase : IValidateResultRepository
@@ -11,5 +13,16 @@ namespace QueueIT.Security
 
         public abstract IValidateResult GetValidationResult(IQueue queue);
         public abstract void SetValidationResult(IQueue queue, IValidateResult validationResult);
+
+        protected static string GetValue(string name, RepositorySettingsCollection repositorySettings)
+        {
+            foreach (RepositorySettingSection repositorySetting in repositorySettings)
+            {
+                if (repositorySetting.Name == name)
+                    return repositorySetting.Value;
+            }
+
+            return null;
+        }
     }
 }

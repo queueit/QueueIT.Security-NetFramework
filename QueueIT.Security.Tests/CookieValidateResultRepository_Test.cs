@@ -22,6 +22,8 @@ namespace QueueIT.Security.Tests
             this._request = new HttpRequest("test.aspx", "http://test.com/test.aspx", null);
             this._response = new HttpResponse(new StringWriter());
             HttpContext.Current = new HttpContext(this._request, this._response);
+
+            CookieValidateResultRepository.Clear();
         }
 
         [TestMethod]
@@ -152,6 +154,7 @@ namespace QueueIT.Security.Tests
             this._queue.Stub(queue => queue.CustomerId).Return(expectedCustomerId);
             this._queue.Stub(queue => queue.EventId).Return(expectedEventId);
 
+            CookieValidateResultRepository.Configure(null);
             KnownUserFactory.Configure(secretKey);
 
             CookieValidateResultRepository repository = new CookieValidateResultRepository();
@@ -162,12 +165,44 @@ namespace QueueIT.Security.Tests
 
             Assert.AreEqual(1, this._response.Cookies.Count);
             Assert.AreEqual(expectedCookieName, this._response.Cookies[0].Name);
+            Assert.IsNull(this._response.Cookies[0].Domain);
             Assert.IsTrue(this._response.Cookies[0].HttpOnly);
             Assert.AreEqual(expectedQueueId.ToString(), this._response.Cookies[0]["QueueId"]);
             Assert.AreEqual(expectedSecondsSince1970.ToString(), this._response.Cookies[0]["TimeStamp"]);
             Assert.AreEqual(expectedRedirectType.ToString(), this._response.Cookies[0]["RedirectType"]);
             Assert.AreEqual(expectedPlaceInQueue, Hashing.DecryptPlaceInQueue(this._response.Cookies[0]["PlaceInQueue"]));
             Assert.AreEqual(expectedHash, this._response.Cookies[0]["Hash"]);
+        }
+
+        [TestMethod]
+        public void CookieValidateResultRepository_SetValidationResult_CookieDomain_Test()
+        {
+            string secretKey = "acb";
+
+            string expectedCookieDomain = ".mydomain.com";
+
+            this._knownUser.Stub(knownUser => knownUser.CustomerId).Return("CustomerId");
+            this._knownUser.Stub(knownUser => knownUser.EventId).Return("EventId");
+            this._knownUser.Stub(knownUser => knownUser.QueueId).Return(Guid.NewGuid());
+            this._knownUser.Stub(knownUser => knownUser.OriginalUrl).Return(new Uri("http://original.url/"));
+            this._knownUser.Stub(knownUser => knownUser.PlaceInQueue).Return(5486);
+            this._knownUser.Stub(knownUser => knownUser.RedirectType).Return(RedirectType.Queue);
+            this._knownUser.Stub(knownUser => knownUser.TimeStamp).Return(DateTime.UtcNow);
+
+            this._queue.Stub(queue => queue.CustomerId).Return("CustomerId");
+            this._queue.Stub(queue => queue.EventId).Return("EventId");
+
+            CookieValidateResultRepository.Configure(expectedCookieDomain);
+            KnownUserFactory.Configure(secretKey);
+
+            CookieValidateResultRepository repository = new CookieValidateResultRepository();
+
+            AcceptedConfirmedResult result = new AcceptedConfirmedResult(this._queue, this._knownUser, true);
+
+            repository.SetValidationResult(this._queue, result);
+
+            Assert.AreEqual(1, this._response.Cookies.Count);
+            Assert.AreEqual(expectedCookieDomain, this._response.Cookies[0].Domain);
         }
 
         [TestMethod]

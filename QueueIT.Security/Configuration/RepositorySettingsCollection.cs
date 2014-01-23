@@ -4,10 +4,10 @@ using System.Linq;
 
 namespace QueueIT.Security.Configuration
 {
-    [ConfigurationCollection(typeof(QueueSection), CollectionType = ConfigurationElementCollectionType.BasicMapAlternate)]
-    public class QueueCollection : ConfigurationElementCollection
+    [ConfigurationCollection(typeof(RepositorySettingSection), CollectionType = ConfigurationElementCollectionType.BasicMapAlternate)]
+    public class RepositorySettingsCollection : ConfigurationElementCollection
     {
-        private const string ItemPropertyName = "queue";
+        private const string ItemPropertyName = "setting";
 
         public override ConfigurationElementCollectionType CollectionType
         {
@@ -26,27 +26,12 @@ namespace QueueIT.Security.Configuration
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((QueueSection)element).Name;
+            return ((RepositorySettingSection)element).Name;
         }
 
         protected override ConfigurationElement CreateNewElement()
         {
-            return new QueueSection();
-        }
-
-        public override bool IsReadOnly()
-        {
-            return false;
-        }
-
-        public void Add(QueueSection section)
-        {
-            this.BaseAdd(section);
-        }
-
-        public IEnumerable<QueueSection> GetGeneric()
-        {
-            return this.Cast<object>().Select(section => section as QueueSection);
+            return new RepositorySettingSection();
         }
     }
 }

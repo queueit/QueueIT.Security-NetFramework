@@ -55,6 +55,13 @@ namespace QueueIT.Security.Configuration
             set { base["queues"] = value; }
         }
 
+        [ConfigurationProperty("repositorySettings", IsRequired = false, IsKey = false, IsDefaultCollection = true)]
+        public RepositorySettingsCollection RepositorySettings
+        {
+            get { return ((RepositorySettingsCollection)(base["repositorySettings"])); }
+            set { base["repositorySettings"] = value; }
+        }
+
         public static SettingsSection GetSection()
         {
             return ConfigurationManager.GetSection(ConfigurationSectionName) as SettingsSection;
