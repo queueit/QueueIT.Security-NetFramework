@@ -231,6 +231,69 @@ namespace QueueIT.Security.Tests
         }
 
         [TestMethod]
+        public void KnownUserFactory_VerifyMd5HashTest_KnownUserException_ValidatedUrl_Test()
+        {
+            //Arrange
+            Guid expectedQueueID = Guid.NewGuid();
+            int expectedPlaceInqueue = 7810;
+            string placeInQueueEncrypted = Hashing.EncryptPlaceInQueue(expectedPlaceInqueue);
+            long unixTimestamp = Hashing.GetTimestamp();
+
+            string urlNoHash = "http://q.queue-it.net/inqueue.aspx?c=mpro&e=hashingtest&q=" + expectedQueueID +
+                "&p=" + placeInQueueEncrypted + "&ts=" + unixTimestamp + "&h=";
+
+            string hash = "f83ab33400a630043591196134a01c01"; //invalid
+            string querystring = "c=mpro&e=hashingtest&q=" + expectedQueueID + "&p=" + placeInQueueEncrypted + "&ts=" + unixTimestamp + "&h=" + hash;
+            string url = urlNoHash + hash;
+
+            HttpRequest httpRequest = new HttpRequest("inqueue.aspx", url, querystring);
+            HttpContext.Current = new HttpContext(httpRequest, new HttpResponse(null));
+
+            try
+            {
+                //Act
+                KnownUserFactory.VerifyMd5Hash(SharedSecreteEventKey);
+            }
+            catch (KnownUserException ex)
+            {
+                Assert.AreEqual(url, ex.ValidatedUrl.AbsoluteUri);
+            }
+        }
+
+        [TestMethod]
+        public void KnownUserFactory_VerifyMd5HashTest_KnownUserException_OriginalUrl_Test()
+        {
+            //Arrange
+            Guid expectedQueueID = Guid.NewGuid();
+            int expectedPlaceInqueue = 7810;
+            string placeInQueueEncrypted = Hashing.EncryptPlaceInQueue(expectedPlaceInqueue);
+            long unixTimestamp = Hashing.GetTimestamp();
+
+            string expectedOriginalUrl = "http://q.queue-it.net/inqueue.aspx";
+            string urlNoHash = expectedOriginalUrl + "?c=mpro&e=hashingtest&q=" + expectedQueueID +
+                "&p=" + placeInQueueEncrypted + "&ts=" + unixTimestamp + "&h=";
+
+            string hash = "f83ab33400a630043591196134a01c01"; //invalid
+            string querystring = "c=mpro&e=hashingtest&q=" + expectedQueueID + "&p=" + placeInQueueEncrypted + "&ts=" + unixTimestamp + "&h=" + hash;
+            string url = urlNoHash + hash;
+
+            HttpRequest httpRequest = new HttpRequest("inqueue.aspx", url, querystring);
+            HttpContext.Current = new HttpContext(httpRequest, new HttpResponse(null));
+
+            try
+            {
+                //Act
+                KnownUserFactory.VerifyMd5Hash(SharedSecreteEventKey);
+
+                Assert.Fail("Must throw exception");
+            }
+            catch (KnownUserException ex)
+            {
+                Assert.AreEqual(expectedOriginalUrl, ex.OriginalUrl.AbsoluteUri);
+            }
+        }
+
+        [TestMethod]
         public void KnownUserFactory_VerifyMd5Hash_EmptyQueueId_Test()
         {
             string sharedSecreteEventKey = "9d919dfb-00e2-4919-8695-469f5ebc91f7930edb9f-2339-4deb-864e-5f26269691b6";

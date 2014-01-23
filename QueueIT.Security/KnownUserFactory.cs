@@ -182,6 +182,7 @@ namespace QueueIT.Security
                     "The Secret Key cannot be null. Invoke KnownUserFactory. Configure or add configuration in config file.");
 
             Uri originalUrl = urlProvider.GetOriginalUrl(querystringPrefix);
+            Uri validateUrl = urlProvider.GetUrl();
 
             try
             {
@@ -218,14 +219,10 @@ namespace QueueIT.Security
 
                 return new Md5KnownUser(queueId.Value, placeInQueue.Value, timeStamp.Value, customerId, eventId, redirectType, originalUrl);
             }
-            catch (InvalidKnownUserHashException ex)
+            catch (KnownUserException ex)
             {
                 ex.OriginalUrl = originalUrl;
-                throw;
-            }
-            catch(InvalidKnownUserUrlException ex)
-            {
-                ex.OriginalUrl = originalUrl;
+                ex.ValidatedUrl = validateUrl;
                 throw;
             }
         }
