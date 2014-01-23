@@ -37,6 +37,9 @@
                 domainAlias="queue-example.ticketania.com" 
                 landingPage="/Advanced/Landing"/>
         </queues>
+        <repositorySettings>
+            <setting name="CookieDomain" value=".ticketania.com" />
+        </repositorySettings>
     </queueit.security>
 <configuration>
 ]]>

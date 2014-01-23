@@ -8,7 +8,18 @@ namespace QueueIT.Security
     /// Controller class which enables simple implementation of the QueueIT.Security functionality
     /// </summary>
     /// <remarks>
-    /// View members for additional information and examplesno
+    /// The SessionValidationController will by default add a session cookie when users have been through the queue to store data. 
+    /// The cookie will only be in scope of the domain of the request (e.g. www.ticketania.com). 
+    /// Please add the 'CookieDomain' setting, as shown in the examples (see ValidateRequest() members), if your website uses multiple subdomains.
+    /// <br/><br/>
+    /// There is also an option for using the standard ASP.NET Session state to store data using the SessionValidationController.Configure() method. 
+    /// Please note that session state must be replicated between servers in a webfarm. See http://msdn.microsoft.com/library/ms178586.aspx
+    /// <code>
+    /// <![CDATA[
+    /// SessionValidationController.Configure(validationResultProviderFactory: () => new SessionValidateResultRepository());
+    /// ]]>
+    /// </code>
+    /// View members for additional information and examples
     /// </remarks>
     public static class SessionValidationController
     {
@@ -118,6 +129,9 @@ namespace QueueIT.Security
         ///       <queues>
         ///          <queue name="default" customerId="ticketania" eventId="simple"/>
         ///       </queues>
+        ///       <repositorySettings>
+        ///           <setting name="CookieDomain" value=".ticketania.com" />
+        ///       </repositorySettings>
         ///    </queueit.security>
         /// </configuration>
         /// ]]>
@@ -311,6 +325,9 @@ namespace QueueIT.Security
         ///       <queues>
         ///          <queue name="advanced" customerId="ticketania" eventId="advanced"/>
         ///       </queues>
+        ///       <repositorySettings>
+        ///           <setting name="CookieDomain" value=".ticketania.com" />
+        ///       </repositorySettings>
         ///    </queueit.security>
         /// </configuration>
         /// ]]>
@@ -494,6 +511,10 @@ namespace QueueIT.Security
         /// <example>
         /// Source Code;
         /// <code language="cs">
+        /// // Setting cookie domain to allow multiple subdomains in your application 
+        /// // May be placed in global.asax
+        /// CookieValidateResultRepository.Configure(cookieDomain: ".ticketania.com");
+        /// 
         /// try
         /// {
         ///     IValidateResult result = SessionValidationController.ValidateRequest("ticketania", "codeonly");
