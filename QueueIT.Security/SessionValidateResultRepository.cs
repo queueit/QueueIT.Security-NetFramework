@@ -1,19 +1,49 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 
 namespace QueueIT.Security
 {
-    internal class SessionValidateResultRepository : ValidateResultRepositoryBase
+    public class SessionValidateResultRepository : ValidateResultRepositoryBase
     {
         public override IValidateResult GetValidationResult(IQueue queue)
         {
             var key = GenerateKey(queue.CustomerId, queue.EventId);
-            return HttpContext.Current.Session[key] as IValidateResult;
+            SessionStateModel model = HttpContext.Current.Session[key] as SessionStateModel;
+
+            if (model == null)
+                return null;
+
+            return new AcceptedConfirmedResult(
+                queue, 
+                new Md5KnownUser(
+                    model.QueueId,
+                    model.PlaceInQueue,
+                    model.TimeStamp,
+                    queue.CustomerId,
+                    queue.EventId,
+                    model.RedirectType,
+                    new Uri(model.OriginalUri)), 
+                false);
         }
 
         public override void SetValidationResult(IQueue queue, IValidateResult validationResult)
         {
-            var key = GenerateKey(queue.CustomerId, queue.EventId);
-            HttpContext.Current.Session[key] = validationResult;
+            AcceptedConfirmedResult acceptedResult = validationResult as AcceptedConfirmedResult;
+
+            if (acceptedResult != null)
+            {
+
+                var key = GenerateKey(queue.CustomerId, queue.EventId);
+                SessionStateModel model = new SessionStateModel()
+                {
+                    QueueId = acceptedResult.KnownUser.QueueId,
+                    OriginalUri = acceptedResult.KnownUser.OriginalUrl.AbsoluteUri,
+                    PlaceInQueue = acceptedResult.KnownUser.PlaceInQueue,
+                    TimeStamp = acceptedResult.KnownUser.TimeStamp,
+                    RedirectType = acceptedResult.KnownUser.RedirectType
+                };
+                HttpContext.Current.Session[key] = model;
+            }
         }
     }
 }

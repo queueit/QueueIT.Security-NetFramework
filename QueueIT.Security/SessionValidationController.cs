@@ -19,6 +19,8 @@ namespace QueueIT.Security
     /// SessionValidationController.Configure(validationResultProviderFactory: () => new SessionValidateResultRepository());
     /// ]]>
     /// </code>
+    /// A thrid option is to implement a new validation result provider by implementing the IValidateResultRepository repository.
+    /// <br/><br/>
     /// View members for additional information and examples
     /// </remarks>
     public static class SessionValidationController

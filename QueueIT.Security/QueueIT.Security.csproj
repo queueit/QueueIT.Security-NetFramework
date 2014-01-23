@@ -97,6 +97,7 @@
     <Compile Include="KnownUserValidationException.cs" />
     <Compile Include="EnqueueResult.cs" />
     <Compile Include="RedirectType.cs" />
+    <Compile Include="SessionStateModel.cs" />
     <Compile Include="SessionValidationController.cs" />
     <Compile Include="Hashing.cs" />
     <Compile Include="HttpRequestBaseExtensions.cs" />
