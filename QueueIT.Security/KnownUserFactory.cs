@@ -13,7 +13,10 @@ namespace QueueIT.Security
     /// </remarks>
     public static class KnownUserFactory
     {
-        private static string _defaultSecretKey;
+        /// <summary>
+        /// The secret key used for hashing and encryption
+        /// </summary>
+        public static string SecretKey { get; private set; }
         private static string _defaultQuerystringPrefix;
         private static Func<IKnownUserUrlProvider> _defaultUrlProviderFactory;
 
@@ -29,7 +32,7 @@ namespace QueueIT.Security
             SettingsSection settings = SettingsSection.GetSection();
             if (settings != null)
             {
-                _defaultSecretKey = settings.SecretKey;
+                SecretKey = settings.SecretKey;
                 _defaultQuerystringPrefix = settings.QueryStringPrefix;
             }
         }
@@ -51,7 +54,7 @@ namespace QueueIT.Security
             string querystringPrefix = null)
         {
             if (secretKey != null)
-                _defaultSecretKey = secretKey;
+                SecretKey = secretKey;
             if (urlProviderFactory != null)
                 _defaultUrlProviderFactory = urlProviderFactory;
             if (querystringPrefix != null)
@@ -165,7 +168,7 @@ namespace QueueIT.Security
             string querystringPrefix = null)
         {
             if (string.IsNullOrEmpty(secretKey))
-                secretKey = _defaultSecretKey;
+                secretKey = SecretKey;
 
             if (string.IsNullOrEmpty(querystringPrefix))
                 querystringPrefix = _defaultQuerystringPrefix;
@@ -269,7 +272,7 @@ namespace QueueIT.Security
         internal static void Reset(bool loadConfiguration)
         {
             _defaultQuerystringPrefix = null;
-            _defaultSecretKey = null;
+            SecretKey = null;
             _defaultUrlProviderFactory = () => new DefaultKnownUserUrlProvider();
 
             if (loadConfiguration)

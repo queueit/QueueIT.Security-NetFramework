@@ -172,9 +172,12 @@ namespace QueueIT.Security
         /// Generates a UNIX timestpam from UTC Now
         /// </summary>
         /// <returns>Seconds since 1970</returns>
-        public static long GetTimestamp()
+        public static long GetTimestamp(DateTime? dateStamp = null)
         {
-            TimeSpan TimeSpanSince1970 = DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, 0));
+            if (!dateStamp.HasValue)
+                dateStamp = DateTime.UtcNow;
+
+            TimeSpan TimeSpanSince1970 = dateStamp.Value.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, 0));
             double SecondsSince1970 = TimeSpanSince1970.TotalSeconds;
 
             return (long)SecondsSince1970;

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="07a2cc3b-ea76-43fd-bdd9-9197f6999c57" revisionNumber="1">
+  <developerConceptualDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>Queues may be configured using an ini file in order to simplify the implementation or using the API</para>
+    </introduction>
+    
+
+    <section address="configurationsection">
+      <title>Using Configuration Section</title>
+      <content>
+        <para>
+          The ini file must be named 'queueit.ini' and be placed in the DOCUMENT_ROOT folder.
+        </para>
+        <code language="none">
+          <![CDATA[
+[settings]
+secretKey = a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7
+queryStringPrefix = 
+ticketExpiration = 180
+
+[default]
+customerId = ticketania
+eventId = simple
+includeTargetUrl = true
+
+[advanced]
+customerId = ticketania
+eventId = advanced
+includeTargetUrl = true
+domainAlias = queue-example.ticketania.com
+landingPage = /advancedlanding.php
+useSsl = false
+          ]]>
+        </code>
+
+      </content>
+    </section>
+    <section address="code">
+      <title>Using API</title>
+      <content>
+        <para>
+          Configuration may also be done in code using the static configure methods of the classes
+          <codeEntityReference>T:QueueIT.Security.QueueFactory</codeEntityReference>,
+          <codeEntityReference>T:QueueIT.Security.KnownUserFactory</codeEntityReference> and
+          <codeEntityReference>T:QueueIT.Security.SessionValidationController</codeEntityReference>
+        </para>
+        <code language="none">
+          KnownUserFactory::configure('a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7', null, 'pre');
+          SessionValidationController::configure(180);
+        </code>
+      </content>
+    </section>
+    <relatedTopics></relatedTopics>
+  </developerConceptualDocument>
+</topic>

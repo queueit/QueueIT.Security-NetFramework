@@ -6,7 +6,7 @@ namespace QueueIT.Security
     {
         internal Md5KnownUser(
             Guid queueId, 
-            int placeInQueue, 
+            int? placeInQueue, 
             DateTime timeStamp, 
             string customerId, 
             string eventId, 

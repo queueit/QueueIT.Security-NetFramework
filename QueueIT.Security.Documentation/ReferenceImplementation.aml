@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="9269961f-84a9-4f6d-a63e-100becdbd51a" revisionNumber="1">
+  <developerConceptualDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>The following reference implementations are provided</para>
+    </introduction>
+    <section address="webforms">
+      <title>ASP.NET Web Forms</title>
+      <content>
+        <para>
+            <externalLink>
+                <linkText>Download ASP.NET Web Forms Reference Implementation</linkText>
+                <linkAlternateText>Download ASP.NET Web Forms Reference Implementation</linkAlternateText>
+                <linkUri>https://github.com/queueit/QueueIT.Security-NetFramework/tree/master/QueueIT.Security.Examples.Webforms</linkUri>
+            </externalLink>
+        </para>
+      </content>
+    </section>
+      <section address="mvc">
+          <title>ASP.NET MVC</title>
+          <content>
+              <para>
+                  <externalLink>
+                      <linkText>Download ASP.NET MVC Reference Implementation</linkText>
+                      <linkAlternateText>Download ASP.NET MVC Reference Implementation</linkAlternateText>
+                      <linkUri>https://github.com/queueit/QueueIT.Security-NetFramework/tree/master/QueueIT.Security.Examples.AspNetMvc</linkUri>
+                  </externalLink>
+              </para>
+          </content>
+      </section>
+    <section address="php">
+      <title>PHP</title>
+      <content>
+        <para>
+          <externalLink>
+            <linkText>Download PHP Reference Implementation</linkText>
+            <linkAlternateText>Download PHP Reference Implementation</linkAlternateText>
+            <linkUri>../Samples/QueueIT.Security.Examples.Php.zip</linkUri>
+          </externalLink>
+        </para>
+      </content>
+    </section>
+    <section address="java">
+      <title>Java EE</title>
+      <content>
+        <para>
+          <externalLink>
+            <linkText>Download Java EE Reference Implementation</linkText>
+            <linkAlternateText>Download Java EE Reference Implementation</linkAlternateText>
+            <linkUri>../Samples/QueueIT.Security.Examples.Java.zip</linkUri>
+          </externalLink>
+        </para>
+      </content>
+    </section>
+
+    <relatedTopics>
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

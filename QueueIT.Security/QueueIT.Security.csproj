@@ -87,6 +87,7 @@
     <Compile Include="Configuration\QueueCollection.cs" />
     <Compile Include="Configuration\QueueSection.cs" />
     <Compile Include="Configuration\SettingsSection.cs" />
+    <Compile Include="CookieValidateResultRepository.cs" />
     <Compile Include="ExpiredValidationException.cs" />
     <Compile Include="IValidateResult.cs" />
     <Compile Include="IValidateResultRepository.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="SessionValidationException.cs" />
     <Compile Include="SessionValidateResultRepository.cs" />
     <Compile Include="ValidateResultBase.cs" />
+    <Compile Include="ValidateResultRepositoryBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -135,17 +137,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /R /Y "$(TargetDir)"*.* "$(SolutionDir)QueueIT.Security.Examples.Webforms\packages\"
-cd $(SolutionDir)
-
-rmdir /S /Q QueueIT.Security.Documentation\samples
-mkdir QueueIT.Security.Documentation\samples
-$(SolutionDir)ExternalReferences\zip\zip.exe -r -q QueueIT.Security.Documentation\samples\QueueIT.Security.Examples.AspNetMvc.zip QueueIT.Security.Examples.AspNetMvc
-$(SolutionDir)ExternalReferences\zip\zip.exe -r -q QueueIT.Security.Documentation\samples\QueueIT.Security.Examples.Webforms.zip QueueIT.Security.Examples.Webforms
-
-$(SolutionDir)ExternalReferences\zip\zip.exe -r -q QueueIT.Security.Documentation\samples\QueueIT.Security.Examples.Php.zip QueueIT.Security.Examples.Php  -x QueueIT.Security.Examples.Php\.settings\* QueueIT.Security.Examples.Php\.buildpath QueueIT.Security.Examples.Php\.project
-$(SolutionDir)ExternalReferences\zip\zip.exe -r -q QueueIT.Security.Documentation\samples\QueueIT.Security.Examples.Php.zip "QueueIT.Security PHP"  -x "QueueIT.Security PHP\.settings\*" "QueueIT.Security PHP\.buildpath" "QueueIT.Security PHP\.project"
-
-$(SolutionDir)ExternalReferences\zip\zip.exe -r -q QueueIT.Security.Documentation\samples\QueueIT.Security.Examples.Java.zip QueueIT.Security.Examples.Java</PostBuildEvent>
+cd $(SolutionDir)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="f439359a-4f2d-4a71-9f66-5c77a7d04b89" revisionNumber="1">
+  <developerConceptualDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>Queues may be configured using a configuration section in web.config in order to simplify the implementation or using the API</para>
+    </introduction>
+
+    <section address="configurationsection">
+      <title>Using Configuration Section</title>
+      <content>
+        <para>
+            
+        </para>
+          <code language="xml">
+            <![CDATA[
+<configuration>
+    <configSections>
+        <section name="queueit.security" type="QueueIT.Security.Configuration.SettingsSection, QueueIT.Security"/>
+    </configSections>
+    <queueit.security 
+        secretKey="a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7"
+        queryStringPrefix="pre" 
+        ticketExpiration="00:03:00">
+        <queues>
+            <queue 
+                name="default" 
+                customerId="ticketania" 
+                eventId="simple" />
+            <queue 
+                name="advanced" 
+                customerId="ticketania" 
+                eventId="advanced" 
+                includeTargetUrl="true" 
+                domainAlias="queue-example.ticketania.com" 
+                landingPage="/Advanced/Landing"/>
+        </queues>
+    </queueit.security>
+<configuration>
+]]>
+              </code>
+          
+      </content>
+    </section>
+      <section address="code">
+          <title>Using API</title>
+          <content>
+              <para>
+                  Configuration may also be done in code using the static Configure methods of the classes 
+                  <codeEntityReference>T:QueueIT.Security.QueueFactory</codeEntityReference>, 
+                  <codeEntityReference>T:QueueIT.Security.KnownUserFactory</codeEntityReference> and
+                  <codeEntityReference>T:QueueIT.Security.SessionValidationController</codeEntityReference>
+              </para>
+              <code language="cs">
+KnownUserFactory.Configure(
+    sharedEventKey = "a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7",
+    querystringPrefix = "pre");
+SessionValidationController.Configure(
+    ticketExpiration = TimeSpan.FromMinutes(3));
+              </code>
+          </content>
+      </section>
+
+    <relatedTopics>
+    </relatedTopics>
+
+  </developerConceptualDocument>
+</topic>

@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="c8dfb74b-fae8-4d37-b6df-860519d7438d" revisionNumber="1">
+  <developerConceptualDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>Queues may be configured using properties files in order to simplify the implementation or using the API</para>
+    </introduction>
+    <section address="filter">
+      <title>Adding JSP Servlet Filter</title>
+      <content>
+        <para>
+          In order for the Known User implementation to access the request URL a JSP Servlet Filter must be configured in the web.xml file.
+        </para>
+        <code language="xml">
+          <![CDATA[
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	 version="3.0">
+    <filter>
+	    <filter-name>RequestContext</filter-name>
+	    <filter-class>net.queueit.security.RequestContextFilter</filter-class>
+    </filter>
+    <filter-mapping>
+    	<filter-name>RequestContext</filter-name>
+	      <url-pattern>/*</url-pattern>
+    </filter-mapping>
+</web-app>          
+          ]]>
+        </code>
+      </content>
+    </section>
+    <section address="configurationsection">
+      <title>Using Properties Files</title>
+      <content>
+        <para>
+          The main properties file must be named 'queueit.properties' and be placed in a CLASSPATH folder.
+        </para>
+        <code language="none">
+          <![CDATA[
+secretKey = a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7
+queryStringPrefix = 
+ticketExpiration = 180
+          ]]>
+        </code>
+        <para>
+          Each queue is configured using a separate properties file named 'queueit-[queuename].properties' (e.g. queueit-advanced.properties).
+        </para>
+        <code language="none">
+          <![CDATA[
+customerId = ticketania
+eventId = advanced
+includeTargetUrl = true
+domainAlias = queue-example.ticketania.com
+landingPage = QueueIT.Security.Examples.Java/advancedlanding.jsp
+useSsl = false
+          ]]>
+        </code>
+      </content>
+    </section>
+    <section address="code">
+      <title>Using API</title>
+      <content>
+        <para>
+          Configuration may also be done in code using the static configure methods of the classes
+          <codeEntityReference>T:QueueIT.Security.QueueFactory</codeEntityReference>,
+          <codeEntityReference>T:QueueIT.Security.KnownUserFactory</codeEntityReference> and
+          <codeEntityReference>T:QueueIT.Security.SessionValidationController</codeEntityReference>
+        </para>
+        <code language="none">
+          KnownUserFactory.configure('a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7', null, 'pre');
+          SessionValidationController.configure(180);
+        </code>
+      </content>
+    </section>
+    <relatedTopics></relatedTopics>
+  </developerConceptualDocument>
+</topic>

@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <!-- The configuration and platform will be used to determine which
+         assemblies to include from solution and project documentation
+         sources -->
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>6e4be90c-3b77-4c98-89c7-4e3c35ee8d29</ProjectGuid>
+    <SHFBSchemaVersion>1.9.5.0</SHFBSchemaVersion>
+    <!-- AssemblyName, Name, and RootNamespace are not used by SHFB but Visual
+         Studio adds them anyway -->
+    <AssemblyName>QueueIT.Security.Documentation</AssemblyName>
+    <RootNamespace>QueueIT.Security.Documentation</RootNamespace>
+    <Name>QueueIT.Security.Documentation</Name>
+    <!-- SHFB properties -->
+    <OutputPath>.\Help\</OutputPath>
+    <HtmlHelpName>QueueIT.Security.Documentation</HtmlHelpName>
+    <Language>en-US</Language>
+    <ApiFilter>
+      <Filter entryType="Namespace" fullName="QueueIT.Security" isExposed="True">
+        <Filter entryType="Class" fullName="QueueIT.Security.Hashing" filterName="Hashing" isExposed="False" />
+        <Filter entryType="Class" fullName="QueueIT.Security.HttpRequestBaseExtensions" filterName="HttpRequestBaseExtensions" isExposed="False" />
+        <Filter entryType="Class" fullName="QueueIT.Security.HttpRequestExtensions" filterName="HttpRequestExtensions" isExposed="False" />
+      </Filter>
+      <Filter entryType="Namespace" fullName="QueueIT.Security.Configuration" isExposed="False" />
+    </ApiFilter>
+    <ComponentConfigurations />
+    <DocumentationSources>
+      <DocumentationSource sourceFile="..\QueueIT.Security\QueueIT.Security.csproj" />
+      <DocumentationSource sourceFile="..\QueueIT.Security.Mvc\QueueIT.Security.Mvc.csproj" />
+    </DocumentationSources>
+    <HelpAttributes />
+    <NamespaceSummaries>
+      <NamespaceSummaryItem name="QueueIT.Security.Configuration" isDocumented="False" />
+    </NamespaceSummaries>
+    <PlugInConfigurations>
+    </PlugInConfigurations>
+    <BuildLogFile />
+    <HtmlHelp1xCompilerPath />
+    <HtmlHelp2xCompilerPath />
+    <SandcastlePath />
+    <WorkingPath />
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <BuildAssemblerVerbosity>OnlyWarningsAndErrors</BuildAssemblerVerbosity>
+    <HelpFileFormat>Website</HelpFileFormat>
+    <IndentHtml>False</IndentHtml>
+    <FrameworkVersion>.NET Framework 3.5</FrameworkVersion>
+    <KeepLogFile>True</KeepLogFile>
+    <DisableCodeBlockComponent>False</DisableCodeBlockComponent>
+    <CppCommentsFixup>False</CppCommentsFixup>
+    <CleanIntermediates>True</CleanIntermediates>
+    <SyntaxFilters>CSharp</SyntaxFilters>
+    <SdkLinkTarget>Blank</SdkLinkTarget>
+    <RootNamespaceContainer>False</RootNamespaceContainer>
+    <PresentationStyle>VS2010</PresentationStyle>
+    <Preliminary>False</Preliminary>
+    <NamingMethod>Guid</NamingMethod>
+    <HelpTitle>QueueIT.Security Documentation</HelpTitle>
+    <ContentPlacement>AboveNamespaces</ContentPlacement>
+    <WebsiteSdkLinkType>None</WebsiteSdkLinkType>
+    <HtmlSdkLinkType>None</HtmlSdkLinkType>
+    <IncludeFavorites>False</IncludeFavorites>
+    <BinaryTOC>True</BinaryTOC>
+    <HelpFileVersion>1.0.0.0</HelpFileVersion>
+    <PlugInNamespaces>ms.vsipcc+, ms.vsexpresscc+</PlugInNamespaces>
+    <CollectionTocStyle>Hierarchical</CollectionTocStyle>
+    <MSHelp2SdkLinkType>None</MSHelp2SdkLinkType>
+    <IncludeStopWordList>True</IncludeStopWordList>
+    <RootNamespaceTitle>
+    </RootNamespaceTitle>
+    <FeedbackEMailAddress>support%40queue-it.net</FeedbackEMailAddress>
+    <CopyrightText>2013 - Queue-it</CopyrightText>
+    <ProjectSummary>
+    </ProjectSummary>
+    <VisibleItems>InheritedMembers, Protected</VisibleItems>
+    <CatalogName>VisualStudio11</CatalogName>
+    <TocParentId>-1</TocParentId>
+    <TocParentVersion>100</TocParentVersion>
+    <TopicVersion>100</TopicVersion>
+    <TocOrder>-1</TocOrder>
+    <MSHelpViewerSdkLinkType>None</MSHelpViewerSdkLinkType>
+    <CatalogVersion>100</CatalogVersion>
+    <CatalogProductId>VS</CatalogProductId>
+    <FeedbackEMailLinkText>Queue-it</FeedbackEMailLinkText>
+    <MissingTags>Summary, Parameter, Returns, AutoDocumentCtors, TypeParameter, AutoDocumentDispose</MissingTags>
+  </PropertyGroup>
+  <!-- There are no properties for these groups.  AnyCPU needs to appear in
+       order for Visual Studio to perform the build.  The others are optional
+       common platform types that may appear. -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Win32' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Win32' ">
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="ConfigurationJava.aml" />
+    <None Include="ConfigurationNetFramework.aml" />
+    <None Include="ConfigurationPhp.aml" />
+    <None Include="ImplementingJava.aml" />
+    <None Include="ImplementingMvc.aml" />
+    <None Include="ImplementingPhp.aml" />
+    <None Include="ImplementingWebForms.aml" />
+    <None Include="ReferenceImplementation.aml" />
+    <None Include="Welcome.aml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ContentLayout Include="ContentLayout.content" />
+  </ItemGroup>
+  <!-- Import the SHFB build targets -->
+  <Import Project="$(SHFBROOT)\SandcastleHelpFileBuilder.targets" />
+</Project>

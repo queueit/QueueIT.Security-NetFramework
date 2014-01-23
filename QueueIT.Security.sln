@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueIT.Security", "QueueIT.Security\QueueIT.Security.csproj", "{E1FF303A-698E-41A5-9101-78177E7B03E6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueIT.Security.Examples.AspNetMvc", "QueueIT.Security.Examples.AspNetMvc\QueueIT.Security.Examples.AspNetMvc.csproj", "{2CDDE36C-6E91-4726-80BA-BA6DE0779295}"
@@ -8,6 +10,16 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueIT.Security.Examples.Webforms", "QueueIT.Security.Examples.Webforms\QueueIT.Security.Examples.Webforms.csproj", "{B45F9847-6503-4142-A50A-42F23561E9E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueIT.Security.Mvc", "QueueIT.Security.Mvc\QueueIT.Security.Mvc.csproj", "{6F852BBF-386B-42F5-AB37-529FC0EAE7DD}"
+EndProject
+Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "QueueIT.Security.Documentation", "QueueIT.Security.Documentation\QueueIT.Security.Documentation.shfbproj", "{6E4BE90C-3B77-4C98-89C7-4E3C35EE8D29}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExternalReferences", "ExternalReferences", "{0F50129F-248C-4B6C-99A7-82CE85E8A656}"
+	ProjectSection(SolutionItems) = preProject
+		ExternalReferences\Rhino.Mocks.dll = ExternalReferences\Rhino.Mocks.dll
+		ExternalReferences\System.Web.Mvc.dll = ExternalReferences\System.Web.Mvc.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueIT.Security.Tests", "QueueIT.Security.Tests\QueueIT.Security.Tests.csproj", "{95CC062E-B14E-4396-B054-6E35E5A60CD7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +43,14 @@ Global
 		{6F852BBF-386B-42F5-AB37-529FC0EAE7DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F852BBF-386B-42F5-AB37-529FC0EAE7DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F852BBF-386B-42F5-AB37-529FC0EAE7DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E4BE90C-3B77-4C98-89C7-4E3C35EE8D29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E4BE90C-3B77-4C98-89C7-4E3C35EE8D29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E4BE90C-3B77-4C98-89C7-4E3C35EE8D29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E4BE90C-3B77-4C98-89C7-4E3C35EE8D29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95CC062E-B14E-4396-B054-6E35E5A60CD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95CC062E-B14E-4396-B054-6E35E5A60CD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95CC062E-B14E-4396-B054-6E35E5A60CD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95CC062E-B14E-4396-B054-6E35E5A60CD7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
