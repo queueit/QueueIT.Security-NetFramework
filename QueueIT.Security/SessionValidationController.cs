@@ -16,7 +16,18 @@ namespace QueueIT.Security
     /// Please note that session state must be replicated between servers in a webfarm. See http://msdn.microsoft.com/library/ms178586.aspx
     /// <code>
     /// <![CDATA[
+    /// //.Net Framework
     /// SessionValidationController.Configure(validationResultProviderFactory: () => new SessionValidateResultRepository());
+    /// ]]>
+    /// </code>
+    /// <code>
+    /// <![CDATA[
+    /// //Java EE
+    /// SessionValidationController.Configure(null, new Callable<IValidateResultRepository>() {
+    ///     public IValidateResultRepository call() {
+    ///         return new SessionValidateResultRepository();
+    ///     }
+    /// });
     /// ]]>
     /// </code>
     /// A thrid option is to implement a new validation result provider by implementing the IValidateResultRepository repository.
