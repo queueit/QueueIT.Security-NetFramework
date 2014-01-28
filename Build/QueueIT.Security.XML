@@ -1,0 +1,1767 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QueueIT.Security</name>
+    </assembly>
+    <members>
+        <member name="T:QueueIT.Security.AcceptedConfirmedResult">
+            <summary>
+            Validation result when it is confirmed that the user has been through the queue
+            </summary>
+        </member>
+        <member name="T:QueueIT.Security.ValidateResultBase">
+            <summary>
+            Base class for validation results
+            </summary>
+            <seealso cref="T:QueueIT.Security.AcceptedConfirmedResult"/>
+            <seealso cref="T:QueueIT.Security.EnqueueResult"/>
+        </member>
+        <member name="T:QueueIT.Security.IValidateResult">
+            <summary>
+            Represents a request validation result
+            </summary>
+            <seealso cref="T:QueueIT.Security.AcceptedConfirmedResult"/>
+            <seealso cref="T:QueueIT.Security.EnqueueResult"/>
+        </member>
+        <member name="P:QueueIT.Security.IValidateResult.Queue">
+            <summary>
+            The queue of the validation request
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.ValidateResultBase.Queue">
+            <summary>
+            The queue of the request validation
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.AcceptedConfirmedResult.KnownUser">
+            <summary>
+            Known User details of the user
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.AcceptedConfirmedResult.IsInitialValidationRequest">
+            <summary>
+            If true this current request has validated the user. Otherwise it is a cached result.
+            </summary>
+        </member>
+        <member name="T:QueueIT.Security.CookieValidateResultRepository">
+            <summary>
+            A repository to store user session state which stores the validation result in a http cookie. 
+            </summary>
+        </member>
+        <member name="T:QueueIT.Security.IValidateResultRepository">
+            <summary>
+            A repository to store user session state. This can be implemented if ASP.NET Sessions is unavailable. 
+            </summary>
+        </member>
+        <member name="M:QueueIT.Security.IValidateResultRepository.GetValidationResult(QueueIT.Security.IQueue)">
+            <summary>
+            Gets the validation result of a user from the session
+            </summary>
+            <param name="queue">The queue of the validation result</param>
+            <returns>The validation result of the user session if any. 
+            Must return null if the users has not previously been validated.</returns>
+        </member>
+        <member name="M:QueueIT.Security.IValidateResultRepository.SetValidationResult(QueueIT.Security.IQueue,QueueIT.Security.IValidateResult)">
+            <summary>
+            Sets the validation result of a user on the session
+            </summary>
+            <param name="queue">The queue of the validation result</param>
+            <param name="validationResult">The validation result of the user</param>
+        </member>
+        <member name="M:QueueIT.Security.CookieValidateResultRepository.Configure(System.String)">
+            <summary>
+            Configures the CookieValidateResultRepository. This method will override any previous calls and configuration in config files.
+            </summary>
+            <param name="cookieDomain">The domain name of the cookie scope</param>
+        </member>
+        <member name="T:QueueIT.Security.ExpiredValidationException">
+            <summary>
+            Thrown if the Known User request URL is expired
+            </summary>
+        </member>
+        <member name="T:QueueIT.Security.SessionValidationException">
+            <summary>
+            Thrown if the session validation fails
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.SessionValidationException.Queue">
+            <summary>
+            The queue of the Known User request
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.ExpiredValidationException.KnownUser">
+            <summary>
+            The expired known User request
+            </summary>
+        </member>
+        <member name="T:QueueIT.Security.KnownUserException">
+            <summary>
+            Exception thrown if the Known User validation failed
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.KnownUserException.OriginalUrl">
+            <summary>
+            The URL the user was redirected to without known user parameters
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.KnownUserException.ValidatedUrl">
+            <summary>
+            The URL the user was redirected to with known user parameters and which has been used for known user validation
+            </summary>
+        </member>
+        <member name="T:QueueIT.Security.KnownUserValidationException">
+            <summary>
+            Exception thrown if the Known User validation failed
+            </summary>
+        </member>
+        <member name="T:QueueIT.Security.EnqueueResult">
+            <summary>
+            Validation result when the user should be enqueued at Queue-it 
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.EnqueueResult.RedirectUrl">
+            <summary>
+            URL to redirect user to
+            </summary>
+        </member>
+        <member name="T:QueueIT.Security.RedirectType">
+            <summary>
+            The way a user has been redirected to the target URL
+            </summary>
+        </member>
+        <member name="F:QueueIT.Security.RedirectType.Unknown">
+            <summary>
+            Unable to determine the redirect type
+            </summary>
+        </member>
+        <member name="F:QueueIT.Security.RedirectType.Queue">
+            <summary>
+            User has been redirected to the target URL by the queue
+            </summary>
+        </member>
+        <member name="F:QueueIT.Security.RedirectType.Safetynet">
+            <summary>
+            User has been redirected to the target URL by the SafetyNet
+            </summary>
+        </member>
+        <member name="F:QueueIT.Security.RedirectType.AfterEvent">
+            <summary>
+            User has been redirected to the target URL after the event has ended
+            </summary>
+        </member>
+        <member name="F:QueueIT.Security.RedirectType.Disabled">
+            <summary>
+            User has been redirected to the target URL while the queue was disabled
+            </summary>
+        </member>
+        <member name="F:QueueIT.Security.RedirectType.DirectLink">
+            <summary>
+            User has been redirected to the target URL using a direct link and has not been through the queue
+            </summary>
+        </member>
+        <member name="T:QueueIT.Security.SessionValidationController">
+            <summary>
+            Controller class which enables simple implementation of the QueueIT.Security functionality
+            </summary>
+            <remarks>
+            The SessionValidationController will by default add a session cookie when users have been through the queue to store data. 
+            The cookie will only be in scope of the domain of the request (e.g. www.ticketania.com). 
+            Please add the 'CookieDomain' setting, as shown in the examples (see ValidateRequest() members), if your website uses multiple subdomains.
+            <br/><br/>
+            There is also an option for using the standard ASP.NET Session state to store data using the SessionValidationController.Configure() method. 
+            Please note that session state must be replicated between servers in a webfarm. See http://msdn.microsoft.com/library/ms178586.aspx
+            <code>
+            <![CDATA[
+            //.Net Framework
+            SessionValidationController.Configure(validationResultProviderFactory: () => new SessionValidateResultRepository());
+            ]]>
+            </code>
+            <code>
+            <![CDATA[
+            //Java EE
+            SessionValidationController.Configure(null, new Callable<IValidateResultRepository>() {
+                public IValidateResultRepository call() {
+                    return new SessionValidateResultRepository();
+                }
+            });
+            ]]>
+            </code>
+            A thrid option is to implement a new validation result provider by implementing the IValidateResultRepository repository.
+            <br/><br/>
+            View members for additional information and examples
+            </remarks>
+        </member>
+        <member name="M:QueueIT.Security.SessionValidationController.Configure(System.TimeSpan,System.Func{QueueIT.Security.IValidateResultRepository})">
+            <summary>
+            Configures the SessionValidationController. This method will override any previous calls and coniguration in config files.
+            </summary>
+            <param name="ticketExpiration">The time Known User request urls are valid after they have been issued. Default is 3 minutes.</param>
+            <param name="validationResultProviderFactory">
+            Factory for creating a repository for storing user validation state. 
+            The default implementation uses the built-in sessions.
+            </param>
+        </member>
+        <member name="M:QueueIT.Security.SessionValidationController.ValidateRequest(System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.Globalization.CultureInfo,System.String)">
+             <summary>
+             Validates the request based on the default queue defined by configuration 
+             This method requires a queue with then name 'default' to be configured in the application config file
+             </summary>
+             <param name="includeTargetUrl">
+             If true the user will be redirected to the current page when the user is through the queue
+             </param>
+             <param name="sslEnabled">
+             If true the queue uses SSL
+             </param>
+             <param name="domainAlias">
+             An optional domain of the queue
+             </param>
+             <param name="language">
+             The language of the queue if different from default
+             </param>
+             <param name="layoutName">
+             The layout of the queue if different from default
+             </param>
+             <exception cref="T:QueueIT.Security.ExpiredValidationException">The Known User request URL has expired</exception>
+             <exception cref="T:QueueIT.Security.KnownUserValidationException">The Known User request URL is invalid or has been tampered with</exception>
+             <returns>The validation result</returns>
+             <example>
+             <code language="cs">
+             try
+             {
+                 IValidateResult result = SessionValidationController.ValidateRequest();
+            
+                 // Check if user must be enqueued
+                 if (result is EnqueueResult)
+                 {
+                     Response.Redirect((result as EnqueueResult).RedirectUrl.AbsoluteUri);
+                 }
+            
+                 // Check if user has been through the queue (will be invoked for every page request after the user has been validated)
+                 if (result is AcceptedConfirmedResult)
+                 {
+                     AcceptedConfirmedResult confirmedResult = result as AcceptedConfirmedResult;
+            
+                     if (!confirmedResult.IsInitialValidationRequest)
+                         return; // data has already been persisted
+            
+                     PersistModel model = new PersistModel(
+                         confirmedResult.Queue.CustomerId, 
+                         confirmedResult.Queue.EventId, 
+                         confirmedResult.KnownUser.QueueId,
+                         confirmedResult.KnownUser.PlaceInQueue,
+                         confirmedResult.KnownUser.TimeStamp);
+            
+                     model.Persist();
+                 }
+             }
+             catch (ExpiredValidationException ex)
+             {
+                 // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
+                 Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.KnownUser.OriginalUrl.AbsoluteUri));
+             }
+             catch (KnownUserValidationException ex)
+             {
+                 // The known user url or hash is not valid - Show error page and use GetCancelUrl to get user back in the queue
+                 Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.OriginalUrl.AbsoluteUri));
+             }        
+             </code>
+             Configuration:
+             <code>
+             <![CDATA[
+             <configuration>
+                <configSections>
+                   <section name="queueit.security" type="QueueIT.Security.Configuration.SettingsSection, QueueIT.Security"/>
+                </configSections>
+                <queueit.security 
+                   secretKey="a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7">
+                   <queues>
+                      <queue name="default" customerId="ticketania" eventId="simple"/>
+                   </queues>
+                   <repositorySettings>
+                       <setting name="CookieDomain" value=".ticketania.com" />
+                   </repositorySettings>
+                </queueit.security>
+             </configuration>
+             ]]>
+             </code>
+             </example>
+             <example>
+             PHP Example
+             <code language="none">
+             <![CDATA[
+             <?php
+             	require_once('../QueueIT.Security PHP/SessionValidationController.php');
+             		
+             	use QueueIT\Security\SessionValidationController, 
+             		QueueIT\Security\ExpiredValidationException, 
+             		QueueIT\Security\KnownUserValidationException,
+             		QueueIT\Security\EnqueueResult;
+             
+             	try
+             	{
+             		$result = SessionValidationController::validateRequestFromConfiguration();
+             		
+             		// Check if user must be enqueued
+             		if ($result instanceof EnqueueResult)
+             		{
+             			header('Location: ' . $result->getRedirectUrl());
+             		}
+             	}
+             	catch (ExpiredValidationException $ex)
+             	{
+             		// Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
+             		header('Location: error.php?queuename=default&t=' . urlencode($ex->getKnownUser()->getOriginalUrl()));
+             	}
+             	catch (KnownUserValidationException $ex)
+             	{
+             		// Known user is invalid - Show error page and use GetCancelUrl to get user back in the queue
+             		header('Location: error.php?queuename=default&t=' + urlencode($ex->previous->getOriginalUrl()));
+             	}
+             ?>
+             ]]>
+             </code>
+             Configuration:
+             <code>
+             <![CDATA[
+             [settings]
+             secretKey = a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7
+             
+             [default]
+             customerId = ticketania
+             eventId = simple
+             ]]>
+             </code>
+             </example>
+             <example>
+             Java EE Example
+             <code language="none">
+             <![CDATA[
+                 try
+                 {
+                     IValidateResult result = SessionValidationController.validateRequest();
+             
+                     // Check if user must be enqueued
+                     if (result instanceof EnqueueResult)
+                     {
+                         response.sendRedirect(((EnqueueResult)result).getRedirectUrl().toString());
+                         return;
+                     }
+                 }
+                 catch (ExpiredValidationException ex)
+                 {
+                     // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
+                     response.sendRedirect("error.jsp?queuename=default&t=" + ex.getKnownUser().getOriginalUrl());
+                     return;
+                 }
+                 catch (KnownUserValidationException ex)
+                 {
+                     // Known user is invalid - Show error page and use GetCancelUrl to get user back in the queue
+                     response.sendRedirect("error.jsp?queuename=default&t=" + ((KnownUserException)ex.getCause()).getOriginalUrl());
+                     return;
+                 }
+             ]]>
+             </code>
+             Configuration queueit.properties:
+             <code>
+             <![CDATA[
+             secretKey = a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7
+             ]]>
+             </code>
+             Configuration queueit-default.properties:
+             <code>
+             <![CDATA[
+             customerId = ticketania
+             eventId = simple
+             ]]>
+             </code>
+             </example>
+        </member>
+        <member name="M:QueueIT.Security.SessionValidationController.ValidateRequest(System.Uri,System.Nullable{System.Boolean},System.String,System.Globalization.CultureInfo,System.String)">
+             <summary>
+             Validates the request based on the default queue defined by configuration 
+             This method requires a queue with then name 'default' to be configured in the application config file
+             </summary>
+             <param name="targetUrl">
+             The URL the user will be redirected to when the user is through the queue
+             </param>
+             <param name="sslEnabled">
+             If true the queue uses SSL
+             </param>
+             <param name="domainAlias">
+             An optional domain of the queue
+             </param>
+             <param name="language">
+             The language of the queue if different from default
+             </param>
+             <param name="layoutName">
+             The layout of the queue if different from default
+             </param>
+             <exception cref="T:QueueIT.Security.ExpiredValidationException">The Known User request URL has expired</exception>
+             <exception cref="T:QueueIT.Security.KnownUserValidationException">The Known User request URL is invalid or has been tampered with</exception>
+             <returns>The validation result</returns>
+             <example>
+             <code language="cs">
+             try
+             {
+                 IValidateResult result = SessionValidationController.ValidateRequest(new URI("http://queue-it.com"));
+            
+                 // Check if user must be enqueued
+                 if (result is EnqueueResult)
+                 {
+                     Response.Redirect((result as EnqueueResult).RedirectUrl.AbsoluteUri);
+                 }
+            
+                 // Check if user has been through the queue (will be invoked for every page request after the user has been validated)
+                 if (result is AcceptedConfirmedResult)
+                 {
+                     AcceptedConfirmedResult confirmedResult = result as AcceptedConfirmedResult;
+            
+                     if (!confirmedResult.IsInitialValidationRequest)
+                         return; // data has already been persisted
+            
+                     PersistModel model = new PersistModel(
+                         confirmedResult.Queue.CustomerId, 
+                         confirmedResult.Queue.EventId, 
+                         confirmedResult.KnownUser.QueueId,
+                         confirmedResult.KnownUser.PlaceInQueue,
+                         confirmedResult.KnownUser.TimeStamp);
+            
+                     model.Persist();
+                 }
+             }
+             catch (ExpiredValidationException ex)
+             {
+                 // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
+                 Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.KnownUser.OriginalUrl.AbsoluteUri));
+             }
+             catch (KnownUserValidationException ex)
+             {
+                 // The known user url or hash is not valid - Show error page and use GetCancelUrl to get user back in the queue
+                 Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.OriginalUrl.AbsoluteUri));
+             }        
+             </code>
+             Configuration:
+             <code>
+             <![CDATA[
+             <configuration>
+                <configSections>
+                   <section name="queueit.security" type="QueueIT.Security.Configuration.SettingsSection, QueueIT.Security"/>
+                </configSections>
+                <queueit.security 
+                   secretKey="a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7">
+                   <queues>
+                      <queue name="default" customerId="ticketania" eventId="simple"/>
+                   </queues>
+                   <repositorySettings>
+                       <setting name="CookieDomain" value=".ticketania.com" />
+                   </repositorySettings>
+                </queueit.security>
+             </configuration>
+             ]]>
+             </code>
+             </example>
+             <example>
+             PHP Example
+             <code language="none">
+             <![CDATA[
+             <?php
+             	require_once('../QueueIT.Security PHP/SessionValidationController.php');
+             		
+             	use QueueIT\Security\SessionValidationController, 
+             		QueueIT\Security\ExpiredValidationException, 
+             		QueueIT\Security\KnownUserValidationException,
+             		QueueIT\Security\EnqueueResult;
+             
+             	try
+             	{
+             		$result = SessionValidationController::validateRequestFromConfiguration("default", "http://queue-it.com");
+             		
+             		// Check if user must be enqueued
+             		if ($result instanceof EnqueueResult)
+             		{
+             			header('Location: ' . $result->getRedirectUrl());
+             		}
+             	}
+             	catch (ExpiredValidationException $ex)
+             	{
+             		// Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
+             		header('Location: error.php?queuename=default&t=' . urlencode($ex->getKnownUser()->getOriginalUrl()));
+             	}
+             	catch (KnownUserValidationException $ex)
+             	{
+             		// Known user is invalid - Show error page and use GetCancelUrl to get user back in the queue
+             		header('Location: error.php?queuename=default&t=' + urlencode($ex->previous->getOriginalUrl()));
+             	}
+             ?>
+             ]]>
+             </code>
+             Configuration:
+             <code>
+             <![CDATA[
+             [settings]
+             secretKey = a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7
+             
+             [default]
+             customerId = ticketania
+             eventId = simple
+             ]]>
+             </code>
+             </example>
+             <example>
+             Java EE Example
+             <code language="none">
+             <![CDATA[
+                 try
+                 {
+                     IValidateResult result = SessionValidationController.validateRequest(URI.create("http://queue-it.com"));
+             
+                     // Check if user must be enqueued
+                     if (result instanceof EnqueueResult)
+                     {
+                         response.sendRedirect(((EnqueueResult)result).getRedirectUrl().toString());
+                         return;
+                     }
+                 }
+                 catch (ExpiredValidationException ex)
+                 {
+                     // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
+                     response.sendRedirect("error.jsp?queuename=default&t=" + ex.getKnownUser().getOriginalUrl());
+                     return;
+                 }
+                 catch (KnownUserValidationException ex)
+                 {
+                     // Known user is invalid - Show error page and use GetCancelUrl to get user back in the queue
+                     response.sendRedirect("error.jsp?queuename=default&t=" + ((KnownUserException)ex.getCause()).getOriginalUrl());
+                     return;
+                 }
+             ]]>
+             </code>
+             Configuration queueit.properties:
+             <code>
+             <![CDATA[
+             secretKey = a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7
+             ]]>
+             </code>
+             Configuration queueit-default.properties:
+             <code>
+             <![CDATA[
+             customerId = ticketania
+             eventId = simple
+             ]]>
+             </code>
+             </example>
+        </member>
+        <member name="M:QueueIT.Security.SessionValidationController.ValidateRequest(System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.Globalization.CultureInfo,System.String)">
+             <summary>
+             Validates the request based on a queue defined by configuration  
+             This method requires a queue to be configured in the application config file with the name provided in queueName
+             </summary>
+             <param name="queueName">The name of the queue as defined in the configuration file</param>
+             <param name="includeTargetUrl">
+             If true the user will be redirected to the current page when the user is through the queue
+             </param>
+             <param name="sslEnabled">
+             If true the queue uses SSL
+             </param>
+             <param name="domainAlias">
+             An optional domain of the queue
+             </param>
+             <param name="language">
+             The language of the queue if different from default
+             </param>
+             <param name="layoutName">
+             The layout of the queue if different from default
+             </param>
+             <exception cref="T:QueueIT.Security.ExpiredValidationException">The Known User request URL has expired</exception>
+             <exception cref="T:QueueIT.Security.KnownUserValidationException">The Known User request URL is invalid or has been tampered with</exception>
+             <returns>The validation result</returns>
+             <example>
+             Source Code;
+             <code language="cs">
+             try
+             {
+                 IValidateResult result = SessionValidationController.ValidateRequest("advanced");
+            
+                 // Check if user must be enqueued
+                 if (result is EnqueueResult)
+                 {
+                     Response.Redirect((result as EnqueueResult).RedirectUrl.AbsoluteUri);
+                 }
+            
+                 // Check if user has been through the queue (will be invoked for every page request after the user has been validated)
+                 if (result is AcceptedConfirmedResult)
+                 {
+                     AcceptedConfirmedResult confirmedResult = result as AcceptedConfirmedResult;
+            
+                     if (!confirmedResult.IsInitialValidationRequest)
+                         return; // data has already been persisted
+            
+                     PersistModel model = new PersistModel(
+                         confirmedResult.Queue.CustomerId, 
+                         confirmedResult.Queue.EventId, 
+                         confirmedResult.KnownUser.QueueId,
+                         confirmedResult.KnownUser.PlaceInQueue,
+                         confirmedResult.KnownUser.TimeStamp);
+            
+                     model.Persist();
+                 }
+             }
+             catch (ExpiredValidationException ex)
+             {
+                 // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
+                 Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.KnownUser.OriginalUrl.AbsoluteUri));
+             }
+             catch (KnownUserValidationException ex)
+             {
+                 // The known user url or hash is not valid - Show error page and use GetCancelUrl to get user back in the queue
+                 Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.OriginalUrl.AbsoluteUri));
+             }        
+             </code>
+             
+             Configuration:
+             <code language="config">
+             <![CDATA[
+             <configuration>
+                <configSections>
+                   <section name="queueit.security" type="QueueIT.Security.Configuration.SettingsSection, QueueIT.Security"/>
+                </configSections>
+                <queueit.security 
+                   secretKey="a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7">
+                   <queues>
+                      <queue name="advanced" customerId="ticketania" eventId="advanced"/>
+                   </queues>
+                   <repositorySettings>
+                       <setting name="CookieDomain" value=".ticketania.com" />
+                   </repositorySettings>
+                </queueit.security>
+             </configuration>
+             ]]>
+             </code>
+             </example>
+             <example>
+             PHP Example
+             <code language="none">
+             <![CDATA[
+             <?php
+             	require_once('../QueueIT.Security PHP/SessionValidationController.php');
+             		
+             	use QueueIT\Security\SessionValidationController, 
+             		QueueIT\Security\ExpiredValidationException, 
+             		QueueIT\Security\KnownUserValidationException,
+             		QueueIT\Security\EnqueueResult;
+             
+             	try
+             	{
+             		$result = SessionValidationController::validateRequestFromConfiguration('advanced');
+             		
+             		// Check if user must be enqueued
+             		if ($result instanceof EnqueueResult)
+             		{
+             			header('Location: ' . $result->getRedirectUrl());
+             		}
+             		
+             		// Check if user has been through the queue (will be invoked for every page request after the user has been validated)
+             		if ($result instanceof AcceptedConfirmedResult)
+             		{		
+             			if ($result->isInitialValidationRequest())
+             			{
+             				$model = array(
+             					'CustomerId' => $result->getQueue()->getCustomerId(),
+             					'EventId' => $result->getQueue()->getEventId(),
+             					'QueueId' => $result->getKnownUser()->getQueueId(),
+             					'PlaceInQueue' => $result->getKnownUser()->getPlaceInQueue(),
+             					'TimeStamp' => $result->getKnownUser()->getTimeStamp());
+             			}
+             		}  
+             	}
+             	catch (ExpiredValidationException $ex)
+             	{
+             		// Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
+             		header('Location: error.php?queuename=default&t=' . urlencode($ex->getKnownUser()->getOriginalUrl()));
+             	}
+             	catch (KnownUserValidationException $ex)
+             	{
+             		// Known user is invalid - Show error page and use GetCancelUrl to get user back in the queue
+             		header('Location: error.php?queuename=default&t=' + urlencode($ex->previous->getOriginalUrl()));
+             	}        
+             ?>
+             ]]>
+             </code>
+             Configuration:
+             <code>
+             <![CDATA[
+             [settings]
+             secretKey = a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7
+             
+             [advanced]
+             customerId = ticketania
+             eventId = advanced
+             includeTargetUrl = true
+             domainAlias = queue-example.ticketania.com
+             landingPage = http://www.mysplitpage.com/
+             useSsl = false
+             ]]>
+             </code>
+             </example>
+             <example>
+             Java EE Example
+             <code language="none">
+             <![CDATA[
+                 try
+                 {
+                         IValidateResult result = SessionValidationController.validateRequest("advanced");
+             
+                         // Check if user must be enqueued
+                         if (result instanceof EnqueueResult)
+                         {
+                             response.sendRedirect(((EnqueueResult)result).getRedirectUrl().toString());
+                             return;
+                         }
+             
+                         // Check if user has been through the queue (will be invoked for every page request after the user has been validated)
+                         if (result instanceof AcceptedConfirmedResult)
+                         {
+                             AcceptedConfirmedResult accepted = (AcceptedConfirmedResult)result;
+                                 if (accepted.isInitialValidationRequest())
+                                 {
+                                     Object[] model = new Object[] {
+                                                 accepted.getQueue().getCustomerId(),
+                                                 accepted.getQueue().getEventId(),
+                                                 accepted.getKnownUser().getQueueId(),
+                                                 accepted.getKnownUser().getPlaceInQueue(),
+                                                 accepted.getKnownUser().getTimeStamp()
+                                     };
+                                 }
+                         }
+                 }
+                 catch (ExpiredValidationException ex)
+                 {
+                     // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
+                     response.sendRedirect("error.jsp?queuename=advanced&t=" + ex.getKnownUser().getOriginalUrl());
+                     return;
+                 }
+                 catch (KnownUserValidationException ex)
+                 {
+                     // Known user is invalid - Show error page and use GetCancelUrl to get user back in the queue
+                     response.sendRedirect("error.jsp?queuename=advanced&t=" + ((KnownUserException)ex.getCause()).getOriginalUrl());
+                     return;
+                 }
+             ]]>
+             </code>
+             Configuration queueit.properties:
+             <code>
+             <![CDATA[
+             secretKey = a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7
+             ]]>
+             </code>
+             Configuration queueit-default.properties:
+             <code>
+             <![CDATA[
+             customerId = ticketania
+             eventId = advanced
+             includeTargetUrl = true
+             domainAlias = queue-example.ticketania.com
+             landingPage = QueueIT.Security.Examples.Java/advancedlanding.jsp
+             useSsl = false
+             ]]>
+             </code>
+             </example>        
+        </member>
+        <member name="M:QueueIT.Security.SessionValidationController.ValidateRequest(System.String,System.Uri,System.Nullable{System.Boolean},System.String,System.Globalization.CultureInfo,System.String)">
+             <summary>
+             Validates the request based on a queue defined by configuration  
+             This method requires a queue to be configured in the application config file with the name provided in queueName
+             </summary>
+             <param name="queueName">The name of the queue as defined in the configuration file</param>
+             <param name="targetUrl">
+             The URL the user will be redirected to when the user is through the queue
+             </param>
+             <param name="sslEnabled">
+             If true the queue uses SSL
+             </param>
+             <param name="domainAlias">
+             An optional domain of the queue
+             </param>
+             <param name="language">
+             The language of the queue if different from default
+             </param>
+             <param name="layoutName">
+             The layout of the queue if different from default
+             </param>
+             <exception cref="T:QueueIT.Security.ExpiredValidationException">The Known User request URL has expired</exception>
+             <exception cref="T:QueueIT.Security.KnownUserValidationException">The Known User request URL is invalid or has been tampered with</exception>
+             <returns>The validation result</returns>
+             <example>
+             Source Code;
+             <code language="cs">
+             try
+             {
+                 IValidateResult result = SessionValidationController.ValidateRequest("advanced", new Uri("http://queue-it.com"));
+            
+                 // Check if user must be enqueued
+                 if (result is EnqueueResult)
+                 {
+                     Response.Redirect((result as EnqueueResult).RedirectUrl.AbsoluteUri);
+                 }
+            
+                 // Check if user has been through the queue (will be invoked for every page request after the user has been validated)
+                 if (result is AcceptedConfirmedResult)
+                 {
+                     AcceptedConfirmedResult confirmedResult = result as AcceptedConfirmedResult;
+            
+                     if (!confirmedResult.IsInitialValidationRequest)
+                         return; // data has already been persisted
+            
+                     PersistModel model = new PersistModel(
+                         confirmedResult.Queue.CustomerId, 
+                         confirmedResult.Queue.EventId, 
+                         confirmedResult.KnownUser.QueueId,
+                         confirmedResult.KnownUser.PlaceInQueue,
+                         confirmedResult.KnownUser.TimeStamp);
+            
+                     model.Persist();
+                 }
+             }
+             catch (ExpiredValidationException ex)
+             {
+                 // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
+                 Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.KnownUser.OriginalUrl.AbsoluteUri));
+             }
+             catch (KnownUserValidationException ex)
+             {
+                 // The known user url or hash is not valid - Show error page and use GetCancelUrl to get user back in the queue
+                 Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.OriginalUrl.AbsoluteUri));
+             }        
+             </code>
+             
+             Configuration:
+             <code language="config">
+             <![CDATA[
+             <configuration>
+                <configSections>
+                   <section name="queueit.security" type="QueueIT.Security.Configuration.SettingsSection, QueueIT.Security"/>
+                </configSections>
+                <queueit.security 
+                   secretKey="a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7">
+                   <queues>
+                      <queue name="advanced" customerId="ticketania" eventId="advanced"/>
+                   </queues>
+                   <repositorySettings>
+                       <setting name="CookieDomain" value=".ticketania.com" />
+                   </repositorySettings>
+                </queueit.security>
+             </configuration>
+             ]]>
+             </code>
+             </example>
+             <example>
+             PHP Example
+             <code language="none">
+             <![CDATA[
+             <?php
+             	require_once('../QueueIT.Security PHP/SessionValidationController.php');
+             		
+             	use QueueIT\Security\SessionValidationController, 
+             		QueueIT\Security\ExpiredValidationException, 
+             		QueueIT\Security\KnownUserValidationException,
+             		QueueIT\Security\EnqueueResult;
+             
+             	try
+             	{
+             		$result = SessionValidationController::validateRequestFromConfiguration('advanced', "http://queue-it.com");
+             		
+             		// Check if user must be enqueued
+             		if ($result instanceof EnqueueResult)
+             		{
+             			header('Location: ' . $result->getRedirectUrl());
+             		}
+             		
+             		// Check if user has been through the queue (will be invoked for every page request after the user has been validated)
+             		if ($result instanceof AcceptedConfirmedResult)
+             		{		
+             			if ($result->isInitialValidationRequest())
+             			{
+             				$model = array(
+             					'CustomerId' => $result->getQueue()->getCustomerId(),
+             					'EventId' => $result->getQueue()->getEventId(),
+             					'QueueId' => $result->getKnownUser()->getQueueId(),
+             					'PlaceInQueue' => $result->getKnownUser()->getPlaceInQueue(),
+             					'TimeStamp' => $result->getKnownUser()->getTimeStamp());
+             			}
+             		}  
+             	}
+             	catch (ExpiredValidationException $ex)
+             	{
+             		// Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
+             		header('Location: error.php?queuename=default&t=' . urlencode($ex->getKnownUser()->getOriginalUrl()));
+             	}
+             	catch (KnownUserValidationException $ex)
+             	{
+             		// Known user is invalid - Show error page and use GetCancelUrl to get user back in the queue
+             		header('Location: error.php?queuename=default&t=' + urlencode($ex->previous->getOriginalUrl()));
+             	}        
+             ?>
+             ]]>
+             </code>
+             Configuration:
+             <code>
+             <![CDATA[
+             [settings]
+             secretKey = a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7
+             
+             [advanced]
+             customerId = ticketania
+             eventId = advanced
+             includeTargetUrl = true
+             domainAlias = queue-example.ticketania.com
+             landingPage = http://www.mysplitpage.com/
+             useSsl = false
+             ]]>
+             </code>
+             </example>
+             <example>
+             Java EE Example
+             <code language="none">
+             <![CDATA[
+                 try
+                 {
+                         IValidateResult result = SessionValidationController.validateRequest("advanced", URI.create("http://queue-it.com"));
+             
+                         // Check if user must be enqueued
+                         if (result instanceof EnqueueResult)
+                         {
+                             response.sendRedirect(((EnqueueResult)result).getRedirectUrl().toString());
+                             return;
+                         }
+             
+                         // Check if user has been through the queue (will be invoked for every page request after the user has been validated)
+                         if (result instanceof AcceptedConfirmedResult)
+                         {
+                             AcceptedConfirmedResult accepted = (AcceptedConfirmedResult)result;
+                                 if (accepted.isInitialValidationRequest())
+                                 {
+                                     Object[] model = new Object[] {
+                                                 accepted.getQueue().getCustomerId(),
+                                                 accepted.getQueue().getEventId(),
+                                                 accepted.getKnownUser().getQueueId(),
+                                                 accepted.getKnownUser().getPlaceInQueue(),
+                                                 accepted.getKnownUser().getTimeStamp()
+                                     };
+                                 }
+                         }
+                 }
+                 catch (ExpiredValidationException ex)
+                 {
+                     // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
+                     response.sendRedirect("error.jsp?queuename=advanced&t=" + ex.getKnownUser().getOriginalUrl());
+                     return;
+                 }
+                 catch (KnownUserValidationException ex)
+                 {
+                     // Known user is invalid - Show error page and use GetCancelUrl to get user back in the queue
+                     response.sendRedirect("error.jsp?queuename=advanced&t=" + ((KnownUserException)ex.getCause()).getOriginalUrl());
+                     return;
+                 }
+             ]]>
+             </code>
+             Configuration queueit.properties:
+             <code>
+             <![CDATA[
+             secretKey = a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7
+             ]]>
+             </code>
+             Configuration queueit-default.properties:
+             <code>
+             <![CDATA[
+             customerId = ticketania
+             eventId = advanced
+             includeTargetUrl = true
+             domainAlias = queue-example.ticketania.com
+             landingPage = QueueIT.Security.Examples.Java/advancedlanding.jsp
+             useSsl = false
+             ]]>
+             </code>
+             </example>        
+        </member>
+        <member name="M:QueueIT.Security.SessionValidationController.ValidateRequest(System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.Globalization.CultureInfo,System.String)">
+             <summary>
+             Validates the request not using configuration 
+             </summary>
+             <param name="customerId">The Customer ID of the queue</param>
+             <param name="eventId">The Event ID of the queue</param>
+             <param name="includeTargetUrl">
+             If true the user will be redirected to the current page when the user is through the queue
+             </param>
+             <param name="sslEnabled">
+             If true the queue uses SSL
+             </param>
+             <param name="domainAlias">
+             An optional domain of the queue
+             </param>
+             <param name="language">
+             The language of the queue if different from default
+             </param>
+             <param name="layoutName">
+             The layout of the queue if different from default
+             </param>
+             <exception cref="T:QueueIT.Security.ExpiredValidationException">The Known User request URL has expired</exception>
+             <exception cref="T:QueueIT.Security.KnownUserValidationException">The Known User request URL is invalid or has been tampered with</exception>
+             <returns>The validation result</returns>
+             <example>
+             Source Code;
+             <code language="cs">
+             // Setting cookie domain to allow multiple subdomains in your application 
+             // May be placed in global.asax
+             CookieValidateResultRepository.Configure(cookieDomain: ".ticketania.com");
+             
+             try
+             {
+                 IValidateResult result = SessionValidationController.ValidateRequest("ticketania", "codeonly");
+            
+                 // Check if user must be enqueued
+                 if (result is EnqueueResult)
+                 {
+                     Response.Redirect((result as EnqueueResult).RedirectUrl.AbsoluteUri);
+                 }
+            
+                 // Check if user has been through the queue (will be invoked for every page request after the user has been validated)
+                 if (result is AcceptedConfirmedResult)
+                 {
+                     AcceptedConfirmedResult confirmedResult = result as AcceptedConfirmedResult;
+            
+                     if (!confirmedResult.IsInitialValidationRequest)
+                         return; // data has already been persisted
+            
+                     PersistModel model = new PersistModel(
+                         confirmedResult.Queue.CustomerId, 
+                         confirmedResult.Queue.EventId, 
+                         confirmedResult.KnownUser.QueueId,
+                         confirmedResult.KnownUser.PlaceInQueue,
+                         confirmedResult.KnownUser.TimeStamp);
+            
+                     model.Persist();
+                 }
+             }
+             catch (ExpiredValidationException ex)
+             {
+                 // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
+                 Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.KnownUser.OriginalUrl.AbsoluteUri));
+             }
+             catch (KnownUserValidationException ex)
+             {
+                 // The known user url or hash is not valid - Show error page and use GetCancelUrl to get user back in the queue
+                 Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.OriginalUrl.AbsoluteUri));
+             }        
+             </code>
+             </example>
+             <example>
+             PHP Example
+             <code language="none">
+             <![CDATA[
+             <?php
+             	require_once('../QueueIT.Security PHP/SessionValidationController.php');
+             		
+             	use QueueIT\Security\SessionValidationController, 
+             		QueueIT\Security\ExpiredValidationException, 
+             		QueueIT\Security\KnownUserValidationException,
+             		QueueIT\Security\EnqueueResult;
+             
+             	session_start();
+             
+             	KnownUserFactory::configure('a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7');
+             	
+             	try
+             	{
+             		$result = SessionValidationController::validateRequest('ticketania', 'codeonly', true);
+             		
+             		// Check if user must be enqueued
+             		if ($result instanceof EnqueueResult)
+             		{
+             			header('Location: ' . $result->getRedirectUrl());
+             		}
+             	}
+             	catch (ExpiredValidationException $ex)
+             	{
+             		// Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
+             		header('Location: error.php?queuename=default&t=' . urlencode($ex->getKnownUser()->getOriginalUrl()));
+             	}
+             	catch (KnownUserValidationException $ex)
+             	{
+             		// Known user is invalid - Show error page and use GetCancelUrl to get user back in the queue
+             		header('Location: error.php?queuename=default&t=' + urlencode($ex->previous->getOriginalUrl()));
+             	}     
+             ?>
+             ]]>
+             </code>
+             </example>
+             <example>
+             Java EE Example
+             <code language="none">
+             <![CDATA[
+                 KnownUserFactory.configure("a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7");
+             
+                 try
+                 {
+                     IValidateResult result = SessionValidationController.validateRequest("ticketania", "codeonly", true);
+             
+                     // Check if user must be enqueued
+                     if (result instanceof EnqueueResult)
+                     {
+                         response.sendRedirect(((EnqueueResult)result).getRedirectUrl().toString());
+                         return;
+                     }
+                 }
+                 catch (ExpiredValidationException ex)
+                 {
+                     // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
+                      response.sendRedirect("error.jsp?queuename=&t=" + ex.getKnownUser().getOriginalUrl());
+                     return;
+                 }
+                 catch (KnownUserValidationException ex)
+                 {
+                     // Known user is invalid - Show error page and use GetCancelUrl to get user back in the queue
+                     response.sendRedirect("error.jsp?queuename=&t=" + ((KnownUserException)ex.getCause()).getOriginalUrl());
+                     return;
+                 }        
+             ]]>
+             </code>
+             </example>
+        </member>
+        <member name="M:QueueIT.Security.SessionValidationController.ValidateRequest(System.String,System.String,System.Uri,System.Nullable{System.Boolean},System.String,System.Globalization.CultureInfo,System.String)">
+             <summary>
+             Validates the request not using configuration 
+             </summary>
+             <param name="customerId">The Customer ID of the queue</param>
+             <param name="eventId">The Event ID of the queue</param>
+             <param name="targetUrl">
+             The URL the user will be redirected to when the user is through the queue
+             </param>
+             <param name="sslEnabled">
+             If true the queue uses SSL
+             </param>
+             <param name="domainAlias">
+             An optional domain of the queue
+             </param>
+             <param name="language">
+             The language of the queue if different from default
+             </param>
+             <param name="layoutName">
+             The layout of the queue if different from default
+             </param>
+             <exception cref="T:QueueIT.Security.ExpiredValidationException">The Known User request URL has expired</exception>
+             <exception cref="T:QueueIT.Security.KnownUserValidationException">The Known User request URL is invalid or has been tampered with</exception>
+             <returns>The validation result</returns>
+             <example>
+             Source Code;
+             <code language="cs">
+             // Setting cookie domain to allow multiple subdomains in your application 
+             // May be placed in global.asax
+             CookieValidateResultRepository.Configure(cookieDomain: ".ticketania.com");
+             
+             try
+             {
+                 IValidateResult result = SessionValidationController.ValidateRequest("ticketania", "codeonly", new Uri("http://queue-it.com");
+            
+                 // Check if user must be enqueued
+                 if (result is EnqueueResult)
+                 {
+                     Response.Redirect((result as EnqueueResult).RedirectUrl.AbsoluteUri);
+                 }
+            
+                 // Check if user has been through the queue (will be invoked for every page request after the user has been validated)
+                 if (result is AcceptedConfirmedResult)
+                 {
+                     AcceptedConfirmedResult confirmedResult = result as AcceptedConfirmedResult;
+            
+                     if (!confirmedResult.IsInitialValidationRequest)
+                         return; // data has already been persisted
+            
+                     PersistModel model = new PersistModel(
+                         confirmedResult.Queue.CustomerId, 
+                         confirmedResult.Queue.EventId, 
+                         confirmedResult.KnownUser.QueueId,
+                         confirmedResult.KnownUser.PlaceInQueue,
+                         confirmedResult.KnownUser.TimeStamp);
+            
+                     model.Persist();
+                 }
+             }
+             catch (ExpiredValidationException ex)
+             {
+                 // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
+                 Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.KnownUser.OriginalUrl.AbsoluteUri));
+             }
+             catch (KnownUserValidationException ex)
+             {
+                 // The known user url or hash is not valid - Show error page and use GetCancelUrl to get user back in the queue
+                 Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.OriginalUrl.AbsoluteUri));
+             }        
+             </code>
+             </example>
+             <example>
+             PHP Example
+             <code language="none">
+             <![CDATA[
+             <?php
+             	require_once('../QueueIT.Security PHP/SessionValidationController.php');
+             		
+             	use QueueIT\Security\SessionValidationController, 
+             		QueueIT\Security\ExpiredValidationException, 
+             		QueueIT\Security\KnownUserValidationException,
+             		QueueIT\Security\EnqueueResult;
+             
+             	KnownUserFactory::configure('a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7');
+             	
+             	try
+             	{
+             		$result = SessionValidationController::validateRequest('ticketania', 'codeonly', "http://queue-it.com");
+             		
+             		// Check if user must be enqueued
+             		if ($result instanceof EnqueueResult)
+             		{
+             			header('Location: ' . $result->getRedirectUrl());
+             		}
+             	}
+             	catch (ExpiredValidationException $ex)
+             	{
+             		// Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
+             		header('Location: error.php?queuename=default&t=' . urlencode($ex->getKnownUser()->getOriginalUrl()));
+             	}
+             	catch (KnownUserValidationException $ex)
+             	{
+             		// Known user is invalid - Show error page and use GetCancelUrl to get user back in the queue
+             		header('Location: error.php?queuename=default&t=' + urlencode($ex->previous->getOriginalUrl()));
+             	}     
+             ?>
+             ]]>
+             </code>
+             </example>
+             <example>
+             Java EE Example
+             <code language="none">
+             <![CDATA[
+                 KnownUserFactory.configure("a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7");
+             
+                 try
+                 {
+                     IValidateResult result = SessionValidationController.validateRequest("ticketania", "codeonly", URI.create("http://queue-it.com"));
+             
+                     // Check if user must be enqueued
+                     if (result instanceof EnqueueResult)
+                     {
+                         response.sendRedirect(((EnqueueResult)result).getRedirectUrl().toString());
+                         return;
+                     }
+                 }
+                 catch (ExpiredValidationException ex)
+                 {
+                     // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
+                      response.sendRedirect("error.jsp?queuename=&t=" + ex.getKnownUser().getOriginalUrl());
+                     return;
+                 }
+                 catch (KnownUserValidationException ex)
+                 {
+                     // Known user is invalid - Show error page and use GetCancelUrl to get user back in the queue
+                     response.sendRedirect("error.jsp?queuename=&t=" + ((KnownUserException)ex.getCause()).getOriginalUrl());
+                     return;
+                 }        
+             ]]>
+             </code>
+             </example>
+        </member>
+        <member name="T:QueueIT.Security.Hashing">
+            <summary>
+            Provides helper methods to hash Known User requests
+            </summary>
+        </member>
+        <member name="M:QueueIT.Security.Hashing.EncryptPlaceInQueue(System.Int64)">
+            <summary>
+            Obfuscate a queue number
+            </summary>
+            <param name="placeInQueue">The queue number</param>
+            <returns>The obfuscated queue number</returns>
+        </member>
+        <member name="M:QueueIT.Security.Hashing.DecryptPlaceInQueue(System.String)">
+            <summary>
+            Unobfuscate a queue number
+            </summary>
+            <param name="encryptedPlaceInQueue">The obfuscated queue number</param>
+            <returns>The queue number</returns>
+        </member>
+        <member name="M:QueueIT.Security.Hashing.GetTimestamp(System.Nullable{System.DateTime})">
+            <summary>
+            Generates a UNIX timestpam from UTC Now
+            </summary>
+            <returns>Seconds since 1970</returns>
+        </member>
+        <member name="M:QueueIT.Security.Hashing.TimestampToDateTime(System.Int64)">
+            <summary>
+            Converts a UNIX timestamp to a DateTime object
+            </summary>
+            <param name="timestamp">Seconds since 1970</param>
+            <returns>The DateTime object</returns>
+        </member>
+        <member name="M:QueueIT.Security.Hashing.GenerateMD5Hash(System.String,System.String)">
+            <summary>
+            Genereates an MD5 hash of a url usin a secret key
+            </summary>
+            <param name="Url">The url to generate hash from</param>
+            <param name="SharedEventKey">The secret key</param>
+            <returns>The generated MD5 hash as HEX</returns>
+        </member>
+        <member name="M:QueueIT.Security.Hashing.VerifyMD5Hash(System.Security.Cryptography.MD5,System.String,System.String,System.String)">
+            <summary>
+            Verifies that the URL has not been tampered with using a secret key
+            </summary>
+            <param name="md5Hash">An MD5 instance used genereate hashes</param>
+            <param name="url">The URL to verify</param>
+            <param name="SharedEventKey">The secret key</param>
+            <param name="PlaceInQueueEncryptString">The encrypted queue number (the p-parameter)</param>
+            <returns>Returns -1 if the URL has been tampered with - otherwhise the queue number of the request. The queue number may be 9999999 if the queue number is unknown</returns>
+        </member>
+        <member name="M:QueueIT.Security.Hashing.GenerateRandomSecretKey(System.Int32)">
+            <summary>
+            Generates a ransom secret key
+            </summary>
+            <param name="Length">The lenght of the key</param>
+            <returns>The key</returns>
+        </member>
+        <member name="T:QueueIT.Security.HttpRequestBaseExtensions">
+            <summary>
+            Extensions to HttpRequestBase
+            </summary>
+        </member>
+        <member name="M:QueueIT.Security.HttpRequestBaseExtensions.RealUrl(System.Web.HttpRequestBase)">
+            <summary>
+            Gets the URL entered in the web browser
+            </summary>
+            <param name="request">The request</param>
+            <returns>The browser URL</returns>
+        </member>
+        <member name="T:QueueIT.Security.HttpRequestExtensions">
+            <summary>
+            Extensions to HttpRequest
+            </summary>
+        </member>
+        <member name="M:QueueIT.Security.HttpRequestExtensions.RealUrl(System.Web.HttpRequest)">
+            <summary>
+            Gets the URL entered in the web browser
+            </summary>
+            <param name="request">The request</param>
+            <returns>The browser URL</returns>
+        </member>
+        <member name="T:QueueIT.Security.IKnownUserUrlProvider">
+            <summary>
+            Interface to create a class that returns the original hashed URL (in case of URL rewrite or similar)
+            </summary>
+        </member>
+        <member name="M:QueueIT.Security.IKnownUserUrlProvider.GetUrl">
+            <summary>
+            Returns the redirect URL as provided by Queue-it
+            </summary>
+            <returns>The url sent to the browser by the Queue-it service</returns>
+        </member>
+        <member name="M:QueueIT.Security.IKnownUserUrlProvider.GetQueueId(System.String)">
+            <summary>
+            Returns the Queue ID from the Known User token in the URL querystring
+            </summary>
+            <param name="queryStringPrefix">The querystring prefix</param>
+            <returns>The Queue ID</returns>
+        </member>
+        <member name="M:QueueIT.Security.IKnownUserUrlProvider.GetPlaceInQueue(System.String)">
+            <summary>
+            Returns the obfuscated place in queue from the Known User token in the URL querystring
+            </summary>
+            <param name="queryStringPrefix">The querystring prefix</param>
+            <returns>The obfuscated place in queue</returns>
+        </member>
+        <member name="M:QueueIT.Security.IKnownUserUrlProvider.GetTimeStamp(System.String)">
+            <summary>
+            Returns the timestamp of when the Known User token was generated
+            </summary>
+            <param name="queryStringPrefix">The querystring prefix</param>
+            <returns>The creation timestamp</returns>
+        </member>
+        <member name="M:QueueIT.Security.IKnownUserUrlProvider.GetEventId(System.String)">
+            <summary>
+            Returns the Event ID from the Known User token in the URL querystring
+            </summary>
+            <param name="queryStringPrefix">The querystring prefix</param>
+            <returns>The Event ID</returns>
+        </member>
+        <member name="M:QueueIT.Security.IKnownUserUrlProvider.GetCustomerId(System.String)">
+            <summary>
+            Returns the Customer ID from the Known User token in the URL querystring
+            </summary>
+            <param name="queryStringPrefix">The querystring prefix</param>
+            <returns>The Customer ID</returns>
+        </member>
+        <member name="M:QueueIT.Security.IKnownUserUrlProvider.GetOriginalUrl(System.String)">
+            <summary>
+            Returns the original target url without Known User token
+            </summary>
+            <param name="queryStringPrefix">The querystring prefix</param>
+            <returns>The Original URL</returns>
+        </member>
+        <member name="M:QueueIT.Security.IKnownUserUrlProvider.GetRedirectType(System.String)">
+            <summary>
+            Returns how the user has been redirected to the target URL
+            </summary>
+            <param name="queryStringPrefix">The querystring prefix</param>
+            <returns>Method of redirect</returns>
+        </member>
+        <member name="T:QueueIT.Security.IKnownUser">
+            <summary>
+            A reprecentation of the details of a known user queue id request
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.IKnownUser.QueueId">
+            <summary>
+            The Queue ID of the request
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.IKnownUser.PlaceInQueue">
+            <summary>
+            The Queue Number of the Queue ID. 
+            This may be null if the queue number is unknown at the time of redirect or the request is a safetynet redirect
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.IKnownUser.TimeStamp">
+            <summary>
+            The UTC timestamp of when the request was initialized
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.IKnownUser.CustomerId">
+            <summary>
+            The Customer ID of the Queue ID
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.IKnownUser.EventId">
+            <summary>
+            The Event ID of the Queue ID
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.IKnownUser.OriginalUrl">
+            <summary>
+            The URL the user was redirected to without known user parameters
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.IKnownUser.RedirectType">
+            <summary>
+            The type of redirect
+            </summary>
+        </member>
+        <member name="T:QueueIT.Security.InvalidKnownUserHashException">
+            <summary>
+            Thrown if the hash of the Known User request is invalid
+            </summary>
+        </member>
+        <member name="T:QueueIT.Security.InvalidKnownUserUrlException">
+            <summary>
+            Thrown if the Known User request does not contaion the required parameters
+            </summary>
+        </member>
+        <member name="T:QueueIT.Security.IQueue">
+            <summary>
+            An object reprecenting the queue, the status of the queue and helper methods to generate URLs
+            </summary>
+        </member>
+        <member name="M:QueueIT.Security.IQueue.GetQueueUrl(System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.Globalization.CultureInfo,System.String)">
+            <summary>
+            Returns the URL to the queue. This will be the landing page if one is configured
+            </summary>
+            <param name="includeTargetUrl">
+            If true the user will be redirected to the current page when the user is through the queue
+            </param>
+            <param name="sslEnabled">
+            If true the queue uses SSL
+            </param>
+            <param name="domainAlias">
+            An optional domain of the queue
+            </param>
+            <param name="language">
+            The language of the queue if different from default
+            </param>
+            <param name="layoutName">
+            The layout of the queue if different from default
+            </param>
+            <returns>The URL to the queue</returns>
+        </member>
+        <member name="M:QueueIT.Security.IQueue.GetQueueUrl(System.Uri,System.Nullable{System.Boolean},System.String,System.Globalization.CultureInfo,System.String)">
+            <summary>
+            Returns the URL to the queue. This will be the landing page if one is configured
+            </summary>
+            <param name="targetUrl">
+            If URL the user will be redirected to when the user is through the queue
+            </param>
+            <param name="sslEnabled">
+            If true the queue uses SSL
+            </param>
+            <param name="domainAlias">
+            An optional domain of the queue
+            </param>
+            <param name="language">
+            The language of the queue if different from default
+            </param>
+            <param name="layoutName">
+            The layout of the queue if different from default
+            </param>
+            <returns>The URL to the queue</returns>
+        </member>
+        <member name="M:QueueIT.Security.IQueue.GetCancelUrl(System.Uri,System.Nullable{System.Guid},System.Nullable{System.Boolean},System.String)">
+            <summary>
+            Returns the URL used to cancel a Queue ID and force the user back in the queue
+            </summary>
+            <param name="landingPage">
+            The URL the user is redirected to when the Queue ID is canceled. 
+            If null the user is redirected to the queue
+            </param>
+            <param name="queueId">The Queue ID to cancel</param>
+            <param name="sslEnabled">If true the cancel page uses SSL</param>
+            <param name="domainAlias">An optional domain of the cancel page</param>
+            <returns>The URL of the cancel page</returns>
+        </member>
+        <member name="M:QueueIT.Security.IQueue.GetLandingPageUrl(System.Nullable{System.Boolean})">
+            <summary>
+            Returns the configured landing page (split page)
+            </summary>
+            <param name="includeTargetUrl">If true the current URL will be sent to the landing page as a querystring parameter</param>
+            <returns>The URL of the landing page</returns>
+        </member>
+        <member name="M:QueueIT.Security.IQueue.GetLandingPageUrl(System.Uri)">
+            <summary>
+            Returns the configured landing page (split page)
+            </summary>
+            <param name="targetUrl">An URL to send to the landing page as a querystring parameter</param>
+            <returns>The URL of the landing page</returns>
+        </member>
+        <member name="P:QueueIT.Security.IQueue.EventId">
+            <summary>
+            The Event ID of the queue
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.IQueue.CustomerId">
+            <summary>
+            The Customer ID of the queue
+            </summary>
+        </member>
+        <member name="T:QueueIT.Security.KnownUserFactory">
+            <summary>
+            Provides factory methods to verify Known User requests
+            </summary>
+            <remarks>
+            View members for additional information and examples
+            </remarks>
+        </member>
+        <member name="M:QueueIT.Security.KnownUserFactory.Configure(System.String,System.Func{QueueIT.Security.IKnownUserUrlProvider},System.String)">
+            <summary>
+            Configures the KnownUserFactory. This method will override any previous calls and configuration in config files.
+            </summary>
+            <param name="secretKey">The secret key as configured on the queue</param>
+            <param name="urlProviderFactory">
+            An optional way of providing the original hashed URL (in case of URL rewrite or similar)
+            </param>
+            <param name="querystringPrefix">
+            An optional querystring prefix as configured on the Queue-it account. 
+            This can be used if there are name collisions with the queuestring parameters appended by Queue-it 
+            </param>
+        </member>
+        <member name="M:QueueIT.Security.KnownUserFactory.VerifyMd5Hash(System.String,QueueIT.Security.IKnownUserUrlProvider,System.String)">
+             <summary>
+             Verifies a MD5 Known User request
+             </summary>
+             <param name="secretKey">
+             The secret key as configured on the queue
+             </param>
+             <param name="urlProvider">
+             An optional way of providing the original hashed URL (in case of URL rewrite or similar)
+             </param>
+             <param name="querystringPrefix">The request to verify
+             An optional querystring prefix as configured on the Queue-it account. 
+             This can be used if there are name collisions with the queuestring parameters appended by Queue-it 
+             </param>
+             <returns>IKnownUser reprecentation of the request</returns>
+             <exception cref="T:System.ArgumentNullException">
+             The Secret Key cannot be null. Invoke KnownUserFactory.Configure or add configuration in config file.
+             </exception>
+             <exception cref="T:QueueIT.Security.InvalidKnownUserUrlException">
+             The Known User request does not contaion the required parameters
+             </exception>
+             <exception cref="T:QueueIT.Security.InvalidKnownUserHashException">
+             The hash of the request is invalid
+             </exception>
+             <example>
+             <code language="cs">
+             try
+             {
+                 IKnownUser knownUser = KnownUserFactory.VerifyMd5Hash();
+            
+                 if (knownUser == null)
+                     throw new UnverifiedKnownUserException();
+            
+                 if (knownUser.TimeStamp  &lt; DateTime.UtcNow.Subtract(TimeSpan.FromMinutes(3)))
+                     throw new UnverifiedKnownUserException();
+            
+                 PersistModel model = new PersistModel(
+                     knownUser.QueueId,
+                     knownUser.PlaceInQueue,
+                     knownUser.TimeStamp);
+            
+                 model.Persist();
+             }
+             catch (KnownUserException ex)
+             {
+                 Response.Redirect("Error.aspx?queuename=link");
+             }
+             </code>
+             </example>
+             <example>
+             PHP example:
+             <code language="none">
+             <![CDATA[
+             <?php
+             	require_once('../QueueIT.Security PHP/KnownUserFactory.php');
+             	
+             	use QueueIT\Security\KnownUserFactory, QueueIT\Security\KnownUserException;
+             	
+             	try
+             	{
+             		$knownUser = KnownUserFactory::verifyMd5Hash();
+             	
+             		if ($knownUser == null)
+             			header('Location: link.php');
+             				
+             		if ($knownUser->getTimeStamp()->getTimestamp() < (time() - 180))
+             			header('Location: link.php');
+             	}
+             	catch (KnownUserException $ex)
+             	{
+             		header('Location: error.php');
+             	}
+             ?>
+             ]]>
+             </code>
+             </example>
+             <example>
+             Java EE example:
+             <code language="none">
+             <![CDATA[
+                 try
+                 {
+                     IKnownUser knownUser = KnownUserFactory.verifyMd5Hash();
+             
+                     if (knownUser == null) {
+                         response.sendRedirect("link.jsp");
+                         return;
+                     }
+             
+                     if (knownUser.getTimeStamp().getTime()  < ((new Date()).getTime() - 180 * 1000)) {
+                         response.sendRedirect("link.jsp");
+                         return;
+                     }
+                 }
+                 catch (KnownUserException ex)
+                 {
+                     response.sendRedirect("error.jsp");
+                     return;
+                 }
+             ]]>
+             </code>
+             </example>
+        </member>
+        <member name="P:QueueIT.Security.KnownUserFactory.SecretKey">
+            <summary>
+            The secret key used for hashing and encryption
+            </summary>
+        </member>
+        <member name="T:QueueIT.Security.QueueFactory">
+            <summary>
+            Provides factory methods to create IQueue instances
+            </summary>
+            <remarks>
+            View members for additional information and examples
+            </remarks>
+        </member>
+        <member name="M:QueueIT.Security.QueueFactory.CreateQueue">
+            <summary>
+            Creates or gets the default queue defined by configuration 
+            This method requires a queue with then name 'default' to be configured in the application config file
+            </summary>
+            <returns>The IQueue singleton object</returns>
+            <example>
+            Source Code;
+            <code language="cs">
+            IQueue defaultQueue = QueueFactory.CreateQueue();
+            </code>
+            
+            Configuration:
+            <code>
+            <![CDATA[
+            <configuration>
+               <configSections>
+                  <section name="queueit.security" type="QueueIT.Security.Configuration.SettingsSection, QueueIT.Security"/>
+               </configSections>
+               <queueit.security 
+                  secretKey="a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7">
+                  <queues>
+                     <queue name="default" customerId="ticketania" eventId="simple"/>
+                  </queues>
+               </queueit.security>
+            </configuration>
+            ]]>
+            </code>
+            </example>
+        </member>
+        <member name="M:QueueIT.Security.QueueFactory.CreateQueue(System.String)">
+            <summary>
+            Creates or gets a queue defined by configuration 
+            This method requires a queue to be configured in the application config file with the name provided in queueName
+            </summary>
+            <param name="queueName">The name of the queue as defined in the configuration file</param>
+            <returns>The IQueue singleton object</returns>
+            <example>
+            Source Code;
+            <code language="cs">
+            IQueue defaultQueue = QueueFactory.CreateQueue("myqueue");
+            </code>
+            
+            Configuration:
+            <code>
+            <![CDATA[
+            <configuration>
+               <configSections>
+                  <section name="queueit.security" type="QueueIT.Security.Configuration.SettingsSection, QueueIT.Security"/>
+               </configSections>
+               <queueit.security 
+                  secretKey="a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7">
+                  <queues>
+                     <queue name="myqueue" customerId="ticketania" eventId="advanced"/>
+                  </queues>
+               </queueit.security>
+            </configuration>
+            ]]>
+            </code>
+            </example>
+        </member>
+        <member name="M:QueueIT.Security.QueueFactory.CreateQueue(System.String,System.String)">
+            <summary>
+            Creates or gets a queue not using configuration 
+            </summary>
+            <param name="customerId">The Customer ID of the queue</param>
+            <param name="eventId">The Event ID of the queue</param>
+            <returns>The IQueue singleton object</returns>
+            <example>
+            Source Code;
+            <code language="cs">
+            IQueue defaultQueue = QueueFactory.CreateQueue("ticketania", "codeonly");
+            </code>
+            </example>
+        </member>
+        <member name="M:QueueIT.Security.QueueFactory.Configure(System.String)">
+            <summary>
+            Configure the Queue Factory
+            </summary>
+            <param name="hostDomain">The domain name of the Queue-it service. This should not normally be set</param>
+        </member>
+    </members>
+</doc>
