@@ -38,7 +38,7 @@
           <externalLink>
             <linkText>Download PHP Reference Implementation</linkText>
             <linkAlternateText>Download PHP Reference Implementation</linkAlternateText>
-            <linkUri>../Samples/QueueIT.Security.Examples.Php.zip</linkUri>
+            <linkUri>https://github.com/queueit/QueueIT.Security-Php/tree/master/QueueIT.Security.Examples.Php</linkUri>
           </externalLink>
         </para>
       </content>
@@ -50,7 +50,7 @@
           <externalLink>
             <linkText>Download Java EE Reference Implementation</linkText>
             <linkAlternateText>Download Java EE Reference Implementation</linkAlternateText>
-            <linkUri>../Samples/QueueIT.Security.Examples.Java.zip</linkUri>
+            <linkUri>https://github.com/queueit/QueueIT.Security-JavaEE/tree/master/QueueIT.Security.Examples</linkUri>
           </externalLink>
         </para>
       </content>
