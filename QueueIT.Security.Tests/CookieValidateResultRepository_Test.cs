@@ -206,6 +206,69 @@ namespace QueueIT.Security.Tests
         }
 
         [TestMethod]
+        public void CookieValidateResultRepository_SetValidationResult_DefaultExpiration_Test()
+        {
+            DateTime testOffest = DateTime.UtcNow;
+
+            string secretKey = "acb";
+
+            this._knownUser.Stub(knownUser => knownUser.CustomerId).Return("CustomerId");
+            this._knownUser.Stub(knownUser => knownUser.EventId).Return("EventId");
+            this._knownUser.Stub(knownUser => knownUser.QueueId).Return(Guid.NewGuid());
+            this._knownUser.Stub(knownUser => knownUser.OriginalUrl).Return(new Uri("http://original.url/"));
+            this._knownUser.Stub(knownUser => knownUser.PlaceInQueue).Return(5486);
+            this._knownUser.Stub(knownUser => knownUser.RedirectType).Return(RedirectType.Queue);
+            this._knownUser.Stub(knownUser => knownUser.TimeStamp).Return(DateTime.UtcNow);
+
+            this._queue.Stub(queue => queue.CustomerId).Return("CustomerId");
+            this._queue.Stub(queue => queue.EventId).Return("EventId");
+
+            KnownUserFactory.Configure(secretKey);
+
+            CookieValidateResultRepository repository = new CookieValidateResultRepository();
+
+            AcceptedConfirmedResult result = new AcceptedConfirmedResult(this._queue, this._knownUser, true);
+
+            repository.SetValidationResult(this._queue, result);
+
+            Assert.AreEqual(1, this._response.Cookies.Count);
+            Assert.IsTrue(this._response.Cookies[0].Expires >= testOffest.AddMinutes(20) && 
+                this._response.Cookies[0].Expires <= DateTime.UtcNow.AddMinutes(20));
+        }
+
+        [TestMethod]
+        public void CookieValidateResultRepository_SetValidationResult_CookieExpiration_Test()
+        {
+            DateTime testOffest = DateTime.UtcNow;
+
+            string secretKey = "acb";
+
+            this._knownUser.Stub(knownUser => knownUser.CustomerId).Return("CustomerId");
+            this._knownUser.Stub(knownUser => knownUser.EventId).Return("EventId");
+            this._knownUser.Stub(knownUser => knownUser.QueueId).Return(Guid.NewGuid());
+            this._knownUser.Stub(knownUser => knownUser.OriginalUrl).Return(new Uri("http://original.url/"));
+            this._knownUser.Stub(knownUser => knownUser.PlaceInQueue).Return(5486);
+            this._knownUser.Stub(knownUser => knownUser.RedirectType).Return(RedirectType.Queue);
+            this._knownUser.Stub(knownUser => knownUser.TimeStamp).Return(DateTime.UtcNow);
+
+            this._queue.Stub(queue => queue.CustomerId).Return("CustomerId");
+            this._queue.Stub(queue => queue.EventId).Return("EventId");
+
+            KnownUserFactory.Configure(secretKey);
+
+            CookieValidateResultRepository.Configure(cookieExpiration: TimeSpan.FromMinutes(5));
+            CookieValidateResultRepository repository = new CookieValidateResultRepository();
+
+            AcceptedConfirmedResult result = new AcceptedConfirmedResult(this._queue, this._knownUser, true);
+
+            repository.SetValidationResult(this._queue, result);
+
+            Assert.AreEqual(1, this._response.Cookies.Count);
+            Assert.IsTrue(this._response.Cookies[0].Expires >= testOffest.AddMinutes(5) &&
+                this._response.Cookies[0].Expires <= DateTime.UtcNow.AddMinutes(5));
+        }
+
+        [TestMethod]
         public void CookieValidateResultRepository_SetValidationResult_NotAccepted_NoCookie_Test()
         {
             this._knownUser.Stub(knownUser => knownUser.CustomerId).Return("CustomerId");

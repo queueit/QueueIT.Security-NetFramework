@@ -144,6 +144,7 @@ namespace QueueIT.Security
         ///       </queues>
         ///       <repositorySettings>
         ///           <setting name="CookieDomain" value=".ticketania.com" />
+        ///           <setting name="CookieExpiration" value="00:20:00" />
         ///       </repositorySettings>
         ///    </queueit.security>
         /// </configuration>
@@ -336,6 +337,7 @@ namespace QueueIT.Security
         ///       </queues>
         ///       <repositorySettings>
         ///           <setting name="CookieDomain" value=".ticketania.com" />
+        ///           <setting name="CookieExpiration" value="00:20:00" />
         ///       </repositorySettings>
         ///    </queueit.security>
         /// </configuration>
@@ -531,6 +533,7 @@ namespace QueueIT.Security
         ///       </queues>
         ///       <repositorySettings>
         ///           <setting name="CookieDomain" value=".ticketania.com" />
+        ///           <setting name="CookieExpiration" value="00:20:00" />
         ///       </repositorySettings>
         ///    </queueit.security>
         /// </configuration>
@@ -768,6 +771,7 @@ namespace QueueIT.Security
         ///       </queues>
         ///       <repositorySettings>
         ///           <setting name="CookieDomain" value=".ticketania.com" />
+        ///           <setting name="CookieExpiration" value="00:20:00" />
         ///       </repositorySettings>
         ///    </queueit.security>
         /// </configuration>

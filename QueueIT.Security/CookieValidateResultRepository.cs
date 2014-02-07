@@ -12,6 +12,7 @@ namespace QueueIT.Security
     public class CookieValidateResultRepository : ValidateResultRepositoryBase
     {
         private static string CookieDomain;
+        private static TimeSpan CookieExpiration = TimeSpan.FromMinutes(20);
 
         static CookieValidateResultRepository()
         {
@@ -24,6 +25,11 @@ namespace QueueIT.Security
             if (settings != null && settings.RepositorySettings != null)
             {
                 CookieDomain = GetValue("CookieDomain", settings.RepositorySettings);
+                string cookieExpirationString = GetValue("CookieExpiration", settings.RepositorySettings);
+
+                TimeSpan cookieExpiration;
+                if (TimeSpan.TryParse(cookieExpirationString, out cookieExpiration))
+                    CookieExpiration = cookieExpiration;
             }
         }
 
@@ -31,10 +37,13 @@ namespace QueueIT.Security
         /// Configures the CookieValidateResultRepository. This method will override any previous calls and configuration in config files.
         /// </summary>
         /// <param name="cookieDomain">The domain name of the cookie scope</param>
-        public static void Configure(string cookieDomain = null)
+        /// <param name="cookieExpiration">The amount of time the user can stay on the website before sent to the queue. The time will be extended each time validation is performed.</param>
+        public static void Configure(string cookieDomain = null, TimeSpan cookieExpiration = default(TimeSpan))
         {
             if (cookieDomain != null)
                 CookieDomain = cookieDomain;
+            if (cookieExpiration != default(TimeSpan))
+                CookieExpiration = cookieExpiration;
         }
 
         internal static void Clear()
@@ -64,6 +73,8 @@ namespace QueueIT.Security
                 if (actualHash != expectedHash)
                     return null;
 
+                SetCookie(queue, queueId, originalUrl, placeInQueue, redirectType, timeStamp, actualHash);
+
                 return new AcceptedConfirmedResult(
                     queue,
                     new Md5KnownUser(
@@ -88,9 +99,6 @@ namespace QueueIT.Security
 
             if (acceptedResult != null)
             {
-                var key = GenerateKey(queue.CustomerId, queue.EventId);
-                HttpCookie validationCookie = new HttpCookie(key);
-
                 string queueId = acceptedResult.KnownUser.QueueId.ToString();
                 string originalUrl = acceptedResult.KnownUser.OriginalUrl.AbsoluteUri;
                 int placeInQueue = acceptedResult.KnownUser.PlaceInQueue.HasValue ? acceptedResult.KnownUser.PlaceInQueue.Value : 0;
@@ -99,18 +107,33 @@ namespace QueueIT.Security
 
                 string hash = GenerateHash(queueId, originalUrl, placeInQueue.ToString(), redirectType, timeStamp);
 
-                validationCookie.Values["QueueId"] = queueId;
-                validationCookie.Values["OriginalUrl"] = originalUrl;
-                validationCookie.Values["PlaceInQueue"] = Hashing.EncryptPlaceInQueue(placeInQueue);
-                validationCookie.Values["RedirectType"] = redirectType;
-                validationCookie.Values["TimeStamp"] = timeStamp;
-                validationCookie.Values["Hash"] = hash;
-
-                validationCookie.HttpOnly = true;
-                validationCookie.Domain = CookieDomain;
-
-                HttpContext.Current.Response.Cookies.Add(validationCookie);
+                SetCookie(queue, queueId, originalUrl, placeInQueue, redirectType, timeStamp, hash);
             }
+        }
+
+        private static void SetCookie(
+            IQueue queue, 
+            string queueId, 
+            string originalUrl, 
+            int placeInQueue, 
+            string redirectType,
+            string timeStamp, 
+            string hash)
+        {
+            var key = GenerateKey(queue.CustomerId, queue.EventId);
+            HttpCookie validationCookie = new HttpCookie(key);
+            validationCookie.Values["QueueId"] = queueId;
+            validationCookie.Values["OriginalUrl"] = originalUrl;
+            validationCookie.Values["PlaceInQueue"] = Hashing.EncryptPlaceInQueue(placeInQueue);
+            validationCookie.Values["RedirectType"] = redirectType;
+            validationCookie.Values["TimeStamp"] = timeStamp;
+            validationCookie.Values["Hash"] = hash;
+
+            validationCookie.HttpOnly = true;
+            validationCookie.Domain = CookieDomain;
+            validationCookie.Expires = DateTime.UtcNow.Add(CookieExpiration);
+
+            HttpContext.Current.Response.Cookies.Add(validationCookie);
         }
 
         private string GenerateHash(
