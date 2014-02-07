@@ -68,11 +68,12 @@
             <param name="queue">The queue of the validation result</param>
             <param name="validationResult">The validation result of the user</param>
         </member>
-        <member name="M:QueueIT.Security.CookieValidateResultRepository.Configure(System.String)">
+        <member name="M:QueueIT.Security.CookieValidateResultRepository.Configure(System.String,System.TimeSpan)">
             <summary>
             Configures the CookieValidateResultRepository. This method will override any previous calls and configuration in config files.
             </summary>
             <param name="cookieDomain">The domain name of the cookie scope</param>
+            <param name="cookieExpiration">The amount of time the user can stay on the website before sent to the queue. The time will be extended each time validation is performed.</param>
         </member>
         <member name="T:QueueIT.Security.ExpiredValidationException">
             <summary>
@@ -279,6 +280,7 @@
                    </queues>
                    <repositorySettings>
                        <setting name="CookieDomain" value=".ticketania.com" />
+                       <setting name="CookieExpiration" value="00:20:00" />
                    </repositorySettings>
                 </queueit.security>
              </configuration>
@@ -325,6 +327,7 @@
              <![CDATA[
              [settings]
              secretKey = a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7
+             cookieExpiration = 1200
              
              [default]
              customerId = ticketania
@@ -365,6 +368,7 @@
              <code>
              <![CDATA[
              secretKey = a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7
+             cookieExpiration = 1200
              ]]>
              </code>
              Configuration queueit-default.properties:
@@ -454,6 +458,7 @@
                    </queues>
                    <repositorySettings>
                        <setting name="CookieDomain" value=".ticketania.com" />
+                       <setting name="CookieExpiration" value="00:20:00" />
                    </repositorySettings>
                 </queueit.security>
              </configuration>
@@ -500,6 +505,7 @@
              <![CDATA[
              [settings]
              secretKey = a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7
+             cookieExpiration = 1200
              
              [default]
              customerId = ticketania
@@ -540,6 +546,7 @@
              <code>
              <![CDATA[
              secretKey = a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7
+             cookieExpiration = 1200
              ]]>
              </code>
              Configuration queueit-default.properties:
@@ -632,6 +639,7 @@
                    </queues>
                    <repositorySettings>
                        <setting name="CookieDomain" value=".ticketania.com" />
+                       <setting name="CookieExpiration" value="00:20:00" />
                    </repositorySettings>
                 </queueit.security>
              </configuration>
@@ -692,6 +700,7 @@
              <![CDATA[
              [settings]
              secretKey = a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7
+             cookieExpiration = 1200
              
              [advanced]
              customerId = ticketania
@@ -752,6 +761,7 @@
              <code>
              <![CDATA[
              secretKey = a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7
+             cookieExpiration = 1200
              ]]>
              </code>
              Configuration queueit-default.properties:
@@ -848,6 +858,7 @@
                    </queues>
                    <repositorySettings>
                        <setting name="CookieDomain" value=".ticketania.com" />
+                       <setting name="CookieExpiration" value="00:20:00" />
                    </repositorySettings>
                 </queueit.security>
              </configuration>
@@ -908,6 +919,7 @@
              <![CDATA[
              [settings]
              secretKey = a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7
+             cookieExpiration = 1200
              
              [advanced]
              customerId = ticketania
@@ -968,6 +980,7 @@
              <code>
              <![CDATA[
              secretKey = a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7
+             cookieExpiration = 1200
              ]]>
              </code>
              Configuration queueit-default.properties:

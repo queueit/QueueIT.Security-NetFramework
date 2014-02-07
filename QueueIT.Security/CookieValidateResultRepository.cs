@@ -49,6 +49,7 @@ namespace QueueIT.Security
         internal static void Clear()
         {
             CookieDomain = null;
+            CookieExpiration = TimeSpan.FromMinutes(20);
         }
 
         public override IValidateResult GetValidationResult(IQueue queue)
