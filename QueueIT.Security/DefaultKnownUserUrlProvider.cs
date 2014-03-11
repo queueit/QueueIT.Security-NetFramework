@@ -5,7 +5,11 @@ using System.Web;
 
 namespace QueueIT.Security
 {
-    internal class DefaultKnownUserUrlProvider : IKnownUserUrlProvider
+    /// <summary>
+    /// The default Known User Url Provider which gets the URL and Known User tokens from the request object. 
+    /// Override this if your application does URL rewrite to make the URL the same as the configured target URL on the event.
+    /// </summary>
+    public class DefaultKnownUserUrlProvider : IKnownUserUrlProvider
     {
         private HttpRequest _request;
 
@@ -25,12 +29,22 @@ namespace QueueIT.Security
             this._request = request;
         }
 
-        public Uri GetUrl()
+        /// <summary>
+        /// Returns the target URL as configured on event with Known User tokens
+        /// </summary>
+        /// <returns>The queue target url</returns>
+        public virtual Uri GetUrl()
         {
             return this._request.RealUrl();
         }
 
-        public string GetQueueId(string queryStringPrefix)
+        /// <summary>
+        /// The queue ID of the Known User token
+        /// </summary>
+        /// <remarks>The 'q' querystring paramenter</remarks>
+        /// <param name="queryStringPrefix">Optional query string prefix as configured on the queue event</param>
+        /// <returns>The queue ID</returns>
+        public virtual string GetQueueId(string queryStringPrefix)
         {
             string queueIdParameter = this._request.QueryString[string.Concat(queryStringPrefix, "q")];
             if (string.IsNullOrEmpty(queueIdParameter))
@@ -39,7 +53,13 @@ namespace QueueIT.Security
             return queueIdParameter;
         }
 
-        public string GetPlaceInQueue(string queryStringPrefix)
+        /// <summary>
+        /// Returns the obfuscated queue number
+        /// </summary>
+        /// <remarks>The 'p' querystring parameter</remarks>
+        /// <param name="queryStringPrefix">Optional query string prefix as configured on the queue event</param>
+        /// <returns>The obfuscated queue number</returns>
+        public virtual string GetPlaceInQueue(string queryStringPrefix)
         {
             string placeInQueueParameter = this._request.QueryString[string.Concat(queryStringPrefix, "p")];
             if (string.IsNullOrEmpty(placeInQueueParameter))
@@ -48,7 +68,13 @@ namespace QueueIT.Security
             return placeInQueueParameter;
         }
 
-        public string GetTimeStamp(string queryStringPrefix)
+        /// <summary>
+        /// Returns the time stamp as seconds since 1970 (unix time)
+        /// </summary>
+        /// <remarks>The 'ts' querystring parameter</remarks>
+        /// <param name="queryStringPrefix">Optional query string prefix as configured on the queue event</param>
+        /// <returns>The time stamp as seconds since 1970</returns>
+        public virtual string GetTimeStamp(string queryStringPrefix)
         {
             string timestampParameter = this._request.QueryString[string.Concat(queryStringPrefix, "ts")];
 
@@ -58,7 +84,13 @@ namespace QueueIT.Security
             return timestampParameter;
         }
 
-        public string GetEventId(string queryStringPrefix)
+        /// <summary>
+        /// Returns the event ID
+        /// </summary>
+        /// <remarks>The 'e' querystring parameter</remarks>
+        /// <param name="queryStringPrefix">Optional query string prefix as configured on the queue event</param>
+        /// <returns>The event ID</returns>
+        public virtual string GetEventId(string queryStringPrefix)
         {
             string eventIdParameter = this._request.QueryString[string.Concat(queryStringPrefix, "e")];
 
@@ -68,7 +100,13 @@ namespace QueueIT.Security
             return eventIdParameter;
         }
 
-        public string GetCustomerId(string queryStringPrefix)
+        /// <summary>
+        /// Returns the customer ID
+        /// </summary>
+        /// <remarks>The 'c' querystring parameter</remarks>
+        /// <param name="queryStringPrefix">Optional query string prefix as configured on the queue event</param>
+        /// <returns>The customer ID</returns>
+        public virtual string GetCustomerId(string queryStringPrefix)
         {
             string customerIdParameter = this._request.QueryString[string.Concat(queryStringPrefix, "c")];
 
@@ -78,7 +116,13 @@ namespace QueueIT.Security
             return customerIdParameter;
         }
 
-        public string GetRedirectType(string queryStringPrefix)
+        /// <summary>
+        /// Returns the redirect type
+        /// </summary>
+        /// <remarks>The 'rt' querystring parameter</remarks>
+        /// <param name="queryStringPrefix">Optional query string prefix as configured on the queue event</param>
+        /// <returns>The redirect type</returns>
+        public virtual string GetRedirectType(string queryStringPrefix)
         {
             string redirectTypeParameter = this._request.QueryString[string.Concat(queryStringPrefix, "rt")];
 
@@ -88,7 +132,12 @@ namespace QueueIT.Security
             return redirectTypeParameter;
         }
 
-        public Uri GetOriginalUrl(string queryStringPrefix)
+        /// <summary>
+        /// Returns the target URL without Known User tokens
+        /// </summary>
+        /// <param name="queryStringPrefix">Optional query string prefix as configured on the queue event</param>
+        /// <returns>The target URL without Known User tokens</returns>
+        public virtual Uri GetOriginalUrl(string queryStringPrefix)
         {
             UriBuilder uriBuilder = new UriBuilder(this.GetUrl());
             NameValueCollection querystringParameters = HttpUtility.ParseQueryString(uriBuilder.Query);
