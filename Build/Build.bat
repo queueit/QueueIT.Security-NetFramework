@@ -11,6 +11,10 @@ IF %ERRORLEVEL% NEQ 0 GOTO Error
 
 xcopy ..\QueueIT.Security\Bin\Release\*.* /Y
 IF %ERRORLEVEL% NEQ 0 GOTO Error
+xcopy ..\QueueIT.Security.Mvc\Bin\Release\QueueIT.Security.Mvc.dll /Y
+IF %ERRORLEVEL% NEQ 0 GOTO Error
+xcopy ..\QueueIT.Security.Mvc\Bin\Release\QueueIT.Security.Mvc.xml /Y
+IF %ERRORLEVEL% NEQ 0 GOTO Error
 
 GOTO End
 

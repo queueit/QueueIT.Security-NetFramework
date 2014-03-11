@@ -34,6 +34,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{C0D645B7
 		Build\MSTest.exe = Build\MSTest.exe
 		Build\MSTest.exe.config = Build\MSTest.exe.config
 		Build\QueueIT.Security.dll = Build\QueueIT.Security.dll
+		Build\QueueIT.Security.Mvc.dll = Build\QueueIT.Security.Mvc.dll
+		Build\QueueIT.Security.Mvc.XML = Build\QueueIT.Security.Mvc.XML
 		Build\QueueIT.Security.XML = Build\QueueIT.Security.XML
 	EndProjectSection
 EndProject

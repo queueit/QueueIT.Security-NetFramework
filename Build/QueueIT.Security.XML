@@ -1423,6 +1423,73 @@
             <param name="queryStringPrefix">The querystring prefix</param>
             <returns>Method of redirect</returns>
         </member>
+        <member name="T:QueueIT.Security.DefaultKnownUserUrlProvider">
+            <summary>
+            The default Known User Url Provider which gets the URL and Known User tokens from the request object. 
+            Override this if your application does URL rewrite to make the URL the same as the configured target URL on the event.
+            </summary>
+        </member>
+        <member name="M:QueueIT.Security.DefaultKnownUserUrlProvider.GetUrl">
+            <summary>
+            Returns the target URL as configured on event with Known User tokens
+            </summary>
+            <returns>The queue target url</returns>
+        </member>
+        <member name="M:QueueIT.Security.DefaultKnownUserUrlProvider.GetQueueId(System.String)">
+            <summary>
+            The queue ID of the Known User token
+            </summary>
+            <remarks>The 'q' querystring paramenter</remarks>
+            <param name="queryStringPrefix">Optional query string prefix as configured on the queue event</param>
+            <returns>The queue ID</returns>
+        </member>
+        <member name="M:QueueIT.Security.DefaultKnownUserUrlProvider.GetPlaceInQueue(System.String)">
+            <summary>
+            Returns the obfuscated queue number
+            </summary>
+            <remarks>The 'p' querystring parameter</remarks>
+            <param name="queryStringPrefix">Optional query string prefix as configured on the queue event</param>
+            <returns>The obfuscated queue number</returns>
+        </member>
+        <member name="M:QueueIT.Security.DefaultKnownUserUrlProvider.GetTimeStamp(System.String)">
+            <summary>
+            Returns the time stamp as seconds since 1970 (unix time)
+            </summary>
+            <remarks>The 'ts' querystring parameter</remarks>
+            <param name="queryStringPrefix">Optional query string prefix as configured on the queue event</param>
+            <returns>The time stamp as seconds since 1970</returns>
+        </member>
+        <member name="M:QueueIT.Security.DefaultKnownUserUrlProvider.GetEventId(System.String)">
+            <summary>
+            Returns the event ID
+            </summary>
+            <remarks>The 'e' querystring parameter</remarks>
+            <param name="queryStringPrefix">Optional query string prefix as configured on the queue event</param>
+            <returns>The event ID</returns>
+        </member>
+        <member name="M:QueueIT.Security.DefaultKnownUserUrlProvider.GetCustomerId(System.String)">
+            <summary>
+            Returns the customer ID
+            </summary>
+            <remarks>The 'c' querystring parameter</remarks>
+            <param name="queryStringPrefix">Optional query string prefix as configured on the queue event</param>
+            <returns>The customer ID</returns>
+        </member>
+        <member name="M:QueueIT.Security.DefaultKnownUserUrlProvider.GetRedirectType(System.String)">
+            <summary>
+            Returns the redirect type
+            </summary>
+            <remarks>The 'rt' querystring parameter</remarks>
+            <param name="queryStringPrefix">Optional query string prefix as configured on the queue event</param>
+            <returns>The redirect type</returns>
+        </member>
+        <member name="M:QueueIT.Security.DefaultKnownUserUrlProvider.GetOriginalUrl(System.String)">
+            <summary>
+            Returns the target URL without Known User tokens
+            </summary>
+            <param name="queryStringPrefix">Optional query string prefix as configured on the queue event</param>
+            <returns>The target URL without Known User tokens</returns>
+        </member>
         <member name="T:QueueIT.Security.IKnownUser">
             <summary>
             A reprecentation of the details of a known user queue id request
