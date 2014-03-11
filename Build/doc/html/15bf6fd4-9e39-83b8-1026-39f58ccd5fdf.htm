@@ -1,0 +1,260 @@
+﻿<html xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp"><head><link rel="SHORTCUT ICON" href="./../icons/favicon.ico" /><style type="text/css">.OH_CodeSnippetContainerTabLeftActive, .OH_CodeSnippetContainerTabLeft,.OH_CodeSnippetContainerTabLeftDisabled { backgroundImageName: tabLeftBG.gif; }.OH_CodeSnippetContainerTabRightActive, .OH_CodeSnippetContainerTabRight,.OH_CodeSnippetContainerTabRightDisabled { backgroundImageName: tabRightBG.gif; }.OH_footer { backgroundImageName: footer_slice.gif; background-position: top; background-repeat: repeat-x; }</style><link rel="stylesheet" type="text/css" href="./../styles/branding.css" /><link rel="stylesheet" type="text/css" href="./../styles/branding-en-US.css" /><style type="text/css">
+			body
+			{
+			border-left:5px solid #e6e6e6;
+			overflow-x:scroll;
+			overflow-y:scroll;
+			}
+		</style><script src="./../scripts/branding.js" type="text/javascript"><!----></script><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>SessionValidationController.ValidateRequest Method (String, String, Uri, Nullable(Boolean), String, CultureInfo, String)</title><meta name="Language" content="en-us" /><meta name="Microsoft.Help.Id" content="M:QueueIT.Security.SessionValidationController.ValidateRequest(System.String,System.String,System.Uri,System.Nullable{System.Boolean},System.String,System.Globalization.CultureInfo,System.String)" /><meta name="Description" content="Validates the request not using configuration" /><meta name="Microsoft.Help.ContentType" content="Reference" /><meta name="BrandingAware" content="'true'" /><meta name="container" content="QueueIT.Security" /><meta name="file" content="15bf6fd4-9e39-83b8-1026-39f58ccd5fdf" /><meta name="guid" content="15bf6fd4-9e39-83b8-1026-39f58ccd5fdf" /><link type="text/css" rel="stylesheet" href="ms-help://Hx/HxRuntime/HxLink.css" /><link type="text/css" rel="stylesheet" href="./../styles/highlight.css" /><script type="text/javascript" src="../scripts/highlight.js"><!----></script><meta name="SelfBranded" content="true" /></head><body onload="onLoad()" class="primary-mtps-offline-document"><div class="OH_outerDiv"><div class="OH_outerContent"><table class="TitleTable"><tr><td class="OH_tdTitleColumn">SessionValidationController<span id="ID0EFBABAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EFBABAAA?vb=.|cpp=::|cs=.|fs=.|nu=.");
+				</script>ValidateRequest Method (String, String, Uri, Nullable<span id="ID0EDBABAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDBABAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script>Boolean<span id="ID0EBBABAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBBABAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>, String, CultureInfo, String)</td><td class="OH_tdRunningTitleColumn">QueueIT.Security Documentation</td></tr></table><div id="mainSection"><div id="mainBody"><span class="introStyle"></span><div class="summary">
+             Validates the request not using configuration 
+             </div><p></p><b>Namespace:</b> <a href="ba2411b0-2415-503f-55cd-4b67a1dbeea2.htm" target="">QueueIT.Security</a><br /><b>Assembly:</b> <span sdata="assembly">QueueIT.Security</span> (in QueueIT.Security.dll) Version: 1.3.29.15689 (1.3.29.0)<div class="OH_CollapsibleAreaRegion"><div class="OH_regiontitle">Syntax</div><div class="OH_CollapsibleArea_HrDiv"><hr class="OH_CollapsibleArea_Hr" /></div></div><div class="OH_clear"></div><div id="snippetGroup_Syntax" class="code"><div id="ID0EAGGAAAAA" class="OH_CodeSnippetContainer"><div class="OH_CodeSnippetContainerTabs" id="ID0EAGGAAAAA_tabs"><div class="OH_CodeSnippetContainerTabLeftActive" id="ID0EAGGAAAAA_tabimgleft"></div><div id="ID0EAGGAAAAA_tab1" class="OH_CodeSnippetContainerTabActive" EnableCopyCode="true"><a href="#" onclick="javascript:ChangeTab('ID0EAGGAAAAA','C#','1','4');return false;">C#</a></div><div id="ID0EAGGAAAAA_tab2" class="OH_CodeSnippetContainerTabDisabledNotFirst" EnableCopyCode="true" disabled="true"><a>VB</a></div><div id="ID0EAGGAAAAA_tab3" class="OH_CodeSnippetContainerTabDisabledNotFirst" EnableCopyCode="true" disabled="true"><a>C++</a></div><div id="ID0EAGGAAAAA_tab4" class="OH_CodeSnippetContainerTabDisabledNotFirst" EnableCopyCode="true" disabled="true"><a>F#</a></div><div class="OH_CodeSnippetContainerTabRight" id="ID0EAGGAAAAA_tabimgright"></div></div><div id="ID0EAGGAAAAA_codecollection" class="OH_CodeSnippetContainerCodeCollection"><div class="OH_CodeSnippetToolBar"><div class="OH_CodeSnippetToolBarText"><a id="ID0EAGGAAAAA_ViewColorized" href="#" onclick="javascript:ExchangeTitleContent('ID0EAGGAAAAA','4')" title="View Colorized" style="display: none">View Colorized</a><a id="ID0EAGGAAAAA_copycode" href="#" onclick="javascript:CopyToClipboard('ID0EAGGAAAAA','4')" title="Copy to Clipboard">Copy to Clipboard</a><a id="ID0EAGGAAAAA_PrintText" class="OH_PrintText" href="#" onclick="javascript:Print('ID0EAGGAAAAA','4')" title="Print">Print</a></div></div><div id="ID0EAGGAAAAA_code_Div1" class="OH_CodeSnippetContainerCode" style="display: block"><pre><span class="keyword">public</span> <span class="keyword">static</span> <span class="identifier">IValidateResult</span> <span class="identifier">ValidateRequest</span>(
+	<span class="identifier">string</span> <span class="parameter">customerId</span>,
+	<span class="identifier">string</span> <span class="parameter">eventId</span>,
+	<span class="identifier">Uri</span> <span class="parameter">targetUrl</span>,
+	<span class="identifier">Nullable</span>&lt;<span class="identifier">bool</span>&gt; <span class="parameter">sslEnabled</span> = <span class="keyword">null</span>,
+	<span class="identifier">string</span> <span class="parameter">domainAlias</span> = <span class="keyword">null</span>,
+	<span class="identifier">CultureInfo</span> <span class="parameter">language</span> = <span class="keyword">null</span>,
+	<span class="identifier">string</span> <span class="parameter">layoutName</span> = <span class="keyword">null</span>
+)</pre></div><div id="ID0EAGGAAAAA_code_Plain_Div1" class="OH_CodeSnippetContainerCode" style="display: none"><pre>public static IValidateResult ValidateRequest(
+	string customerId,
+	string eventId,
+	Uri targetUrl,
+	Nullable&lt;bool&gt; sslEnabled = null,
+	string domainAlias = null,
+	CultureInfo language = null,
+	string layoutName = null
+)</pre></div><div id="ID0EAGGAAAAA_code_Div2" class="OH_CodeSnippetContainerCode" style="display: none"><pre /></div><div id="ID0EAGGAAAAA_code_Plain_Div2" class="OH_CodeSnippetContainerCode" style="display: none"><pre /></div><div id="ID0EAGGAAAAA_code_Div3" class="OH_CodeSnippetContainerCode" style="display: none"><pre /></div><div id="ID0EAGGAAAAA_code_Plain_Div3" class="OH_CodeSnippetContainerCode" style="display: none"><pre /></div><div id="ID0EAGGAAAAA_code_Div4" class="OH_CodeSnippetContainerCode" style="display: none"><pre /></div><div id="ID0EAGGAAAAA_code_Plain_Div4" class="OH_CodeSnippetContainerCode" style="display: none"><pre /></div></div></div><script>addSpecificTextLanguageTagSet('ID0EAGGAAAAA');</script></div><div id="parameters"><h4 class="subHeading">Parameters</h4><dl paramName="customerId"><dt><span class="parameter">customerId</span></dt><dd>Type: <span class="nolink">System<span id="ID0EBCAGFGAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBCAGFGAAAAA?vb=.|cpp=::|cs=.|fs=.|nu=.");
+				</script>String</span><br /><span>The Customer ID of the queue</span></dd></dl><dl paramName="eventId"><dt><span class="parameter">eventId</span></dt><dd>Type: <span class="nolink">System<span id="ID0EBCAFFGAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBCAFFGAAAAA?vb=.|cpp=::|cs=.|fs=.|nu=.");
+				</script>String</span><br /><span>The Event ID of the queue</span></dd></dl><dl paramName="targetUrl"><dt><span class="parameter">targetUrl</span></dt><dd>Type: <span class="nolink">System<span id="ID0EBCAEFGAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBCAEFGAAAAA?vb=.|cpp=::|cs=.|fs=.|nu=.");
+				</script>Uri</span><br /><span>
+             The URL the user will be redirected to when the user is through the queue
+             </span></dd></dl><dl paramName="sslEnabled"><dt><span class="parameter">sslEnabled</span> (Optional)</dt><dd>Type: <span class="nolink">System<span id="ID0EBFADFGAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBFADFGAAAAA?vb=.|cpp=::|cs=.|fs=.|nu=.");
+				</script>Nullable</span><span id="ID0EEADFGAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EEADFGAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><span class="nolink">Boolean</span><span id="ID0ECADFGAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0ECADFGAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script><br /><span>
+             If true the queue uses SSL
+             </span></dd></dl><dl paramName="domainAlias"><dt><span class="parameter">domainAlias</span> (Optional)</dt><dd>Type: <span class="nolink">System<span id="ID0EBCACFGAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBCACFGAAAAA?vb=.|cpp=::|cs=.|fs=.|nu=.");
+				</script>String</span><br /><span>
+             An optional domain of the queue
+             </span></dd></dl><dl paramName="language"><dt><span class="parameter">language</span> (Optional)</dt><dd>Type: <span class="nolink">System.Globalization<span id="ID0EBCABFGAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBCABFGAAAAA?vb=.|cpp=::|cs=.|fs=.|nu=.");
+				</script>CultureInfo</span><br /><span>
+             The language of the queue if different from default
+             </span></dd></dl><dl paramName="layoutName"><dt><span class="parameter">layoutName</span> (Optional)</dt><dd>Type: <span class="nolink">System<span id="ID0EBCAAFGAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBCAAFGAAAAA?vb=.|cpp=::|cs=.|fs=.|nu=.");
+				</script>String</span><br /><span>
+             The layout of the queue if different from default
+             </span></dd></dl></div><h4 class="subHeading">Return Value</h4>Type: <a href="f918a987-5262-00dd-daa3-613172c14d17.htm" target="">IValidateResult</a><br />The validation result<div class="OH_CollapsibleAreaRegion"><div class="OH_regiontitle">Exceptions</div><div class="OH_CollapsibleArea_HrDiv"><hr class="OH_CollapsibleArea_Hr" /></div></div><div class="OH_clear"></div><div class="tableSection"><table><tr><th class="ps_exceptionNameColumn">Exception</th><th class="ps_exceptionConditionColumn">Condition</th></tr><tr><td><a href="6084a5cb-4f07-66e4-30ed-72ea5f7d0721.htm" target="">QueueIT.Security<span id="ID0EBABBAAFAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBABBAAFAAAAA?vb=.|cpp=::|cs=.|fs=.|nu=.");
+				</script>ExpiredValidationException</a></td><td>The Known User request URL has expired</td></tr><tr><td><a href="f1f5cedd-a939-f145-f280-13a1dabae4e8.htm" target="">QueueIT.Security<span id="ID0EBABAAAFAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBABAAAFAAAAA?vb=.|cpp=::|cs=.|fs=.|nu=.");
+				</script>KnownUserValidationException</a></td><td>The Known User request URL is invalid or has been tampered with</td></tr></table></div><div class="OH_CollapsibleAreaRegion"><div class="OH_regiontitle">Examples</div><div class="OH_CollapsibleArea_HrDiv"><hr class="OH_CollapsibleArea_Hr" /></div></div><div class="OH_clear"></div>
+             Source Code;
+             <div id="ID0EAEAAAAA" class="OH_CodeSnippetContainer"><div class="OH_CodeSnippetContainerTabs" id="ID0EAEAAAAA_tabs"><div class="OH_CodeSnippetContainerTabLeftActive" id="ID0EAEAAAAA_tabimgleft"></div><div id="ID0EAEAAAAA_tab1" class="OH_CodeSnippetContainerTabActive" EnableCopyCode="true"><a href="#" onclick="javascript:ChangeTab('ID0EAEAAAAA','C#','1','4');return false;">C#</a></div><div id="ID0EAEAAAAA_tab2" class="OH_CodeSnippetContainerTabDisabledNotFirst" EnableCopyCode="true" disabled="true"><a>VB</a></div><div id="ID0EAEAAAAA_tab3" class="OH_CodeSnippetContainerTabDisabledNotFirst" EnableCopyCode="true" disabled="true"><a>C++</a></div><div id="ID0EAEAAAAA_tab4" class="OH_CodeSnippetContainerTabDisabledNotFirst" EnableCopyCode="true" disabled="true"><a>F#</a></div><div class="OH_CodeSnippetContainerTabRight" id="ID0EAEAAAAA_tabimgright"></div></div><div id="ID0EAEAAAAA_codecollection" class="OH_CodeSnippetContainerCodeCollection"><div class="OH_CodeSnippetToolBar"><div class="OH_CodeSnippetToolBarText"><a id="ID0EAEAAAAA_ViewColorized" href="#" onclick="javascript:ExchangeTitleContent('ID0EAEAAAAA','4')" title="View Colorized" style="display: none">View Colorized</a><a id="ID0EAEAAAAA_copycode" href="#" onclick="javascript:CopyToClipboard('ID0EAEAAAAA','4')" title="Copy to Clipboard">Copy to Clipboard</a><a id="ID0EAEAAAAA_PrintText" class="OH_PrintText" href="#" onclick="javascript:Print('ID0EAEAAAAA','4')" title="Print">Print</a></div></div><div id="ID0EAEAAAAA_code_Div1" class="OH_CodeSnippetContainerCode" style="display: block"><pre><span class="highlight-comment">// Setting cookie domain to allow multiple subdomains in your application </span> 
+<span class="highlight-comment">// May be placed in global.asax</span>
+CookieValidateResultRepository.Configure(cookieDomain: <span class="highlight-literal">".ticketania.com"</span>);
+
+<span class="highlight-keyword">try</span>
+{
+    IValidateResult result = SessionValidationController.ValidateRequest(<span class="highlight-literal">"ticketania"</span>, <span class="highlight-literal">"codeonly"</span>, <span class="highlight-keyword">new</span> Uri(<span class="highlight-literal">"http://queue-it.com"</span>);
+
+    <span class="highlight-comment">// Check if user must be enqueued</span> 
+    <span class="highlight-keyword">if</span> (result <span class="highlight-keyword">is</span> EnqueueResult)
+    {
+        Response.Redirect((result <span class="highlight-keyword">as</span> EnqueueResult).RedirectUrl.AbsoluteUri);
+    }
+
+    <span class="highlight-comment">// Check if user has been through the queue (will be invoked for every page request after the user has been validated)</span> 
+    <span class="highlight-keyword">if</span> (result <span class="highlight-keyword">is</span> AcceptedConfirmedResult)
+    {
+        AcceptedConfirmedResult confirmedResult = result <span class="highlight-keyword">as</span> AcceptedConfirmedResult;
+
+        <span class="highlight-keyword">if</span> (!confirmedResult.IsInitialValidationRequest)
+            <span class="highlight-keyword">return</span>; <span class="highlight-comment">// data has already been persisted</span>
+
+        PersistModel model = <span class="highlight-keyword">new</span> PersistModel(
+            confirmedResult.Queue.CustomerId, 
+            confirmedResult.Queue.EventId, 
+            confirmedResult.KnownUser.QueueId,
+            confirmedResult.KnownUser.PlaceInQueue,
+            confirmedResult.KnownUser.TimeStamp);
+
+        model.Persist();
+    }
+}
+<span class="highlight-keyword">catch</span> (ExpiredValidationException ex)
+{
+    <span class="highlight-comment">// Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue</span>
+    Response.Redirect(<span class="highlight-literal">"Error.aspx?queuename=advanced&amp;t="</span> + HttpUtility.UrlEncode(ex.KnownUser.OriginalUrl.AbsoluteUri));
+}
+<span class="highlight-keyword">catch</span> (KnownUserValidationException ex)
+{
+    <span class="highlight-comment">// The known user url or hash is not valid - Show error page and use GetCancelUrl to get user back in the queue</span>
+    Response.Redirect(<span class="highlight-literal">"Error.aspx?queuename=advanced&amp;t="</span> + HttpUtility.UrlEncode(ex.OriginalUrl.AbsoluteUri));
+}</pre></div><div id="ID0EAEAAAAA_code_Plain_Div1" class="OH_CodeSnippetContainerCode" style="display: none"><pre>// Setting cookie domain to allow multiple subdomains in your application  
+// May be placed in global.asax
+CookieValidateResultRepository.Configure(cookieDomain: ".ticketania.com");
+
+try
+{
+    IValidateResult result = SessionValidationController.ValidateRequest("ticketania", "codeonly", new Uri("http://queue-it.com");
+
+    // Check if user must be enqueued 
+    if (result is EnqueueResult)
+    {
+        Response.Redirect((result as EnqueueResult).RedirectUrl.AbsoluteUri);
+    }
+
+    // Check if user has been through the queue (will be invoked for every page request after the user has been validated) 
+    if (result is AcceptedConfirmedResult)
+    {
+        AcceptedConfirmedResult confirmedResult = result as AcceptedConfirmedResult;
+
+        if (!confirmedResult.IsInitialValidationRequest)
+            return; // data has already been persisted
+
+        PersistModel model = new PersistModel(
+            confirmedResult.Queue.CustomerId, 
+            confirmedResult.Queue.EventId, 
+            confirmedResult.KnownUser.QueueId,
+            confirmedResult.KnownUser.PlaceInQueue,
+            confirmedResult.KnownUser.TimeStamp);
+
+        model.Persist();
+    }
+}
+catch (ExpiredValidationException ex)
+{
+    // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
+    Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.KnownUser.OriginalUrl.AbsoluteUri));
+}
+catch (KnownUserValidationException ex)
+{
+    // The known user url or hash is not valid - Show error page and use GetCancelUrl to get user back in the queue
+    Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.OriginalUrl.AbsoluteUri));
+}</pre></div><div id="ID0EAEAAAAA_code_Div2" class="OH_CodeSnippetContainerCode" style="display: none"><pre /></div><div id="ID0EAEAAAAA_code_Plain_Div2" class="OH_CodeSnippetContainerCode" style="display: none"><pre /></div><div id="ID0EAEAAAAA_code_Div3" class="OH_CodeSnippetContainerCode" style="display: none"><pre /></div><div id="ID0EAEAAAAA_code_Plain_Div3" class="OH_CodeSnippetContainerCode" style="display: none"><pre /></div><div id="ID0EAEAAAAA_code_Div4" class="OH_CodeSnippetContainerCode" style="display: none"><pre /></div><div id="ID0EAEAAAAA_code_Plain_Div4" class="OH_CodeSnippetContainerCode" style="display: none"><pre /></div></div></div><script>addSpecificTextLanguageTagSet('ID0EAEAAAAA');</script><div class="OH_CollapsibleAreaRegion"><div class="OH_regiontitle">Examples</div><div class="OH_CollapsibleArea_HrDiv"><hr class="OH_CollapsibleArea_Hr" /></div></div><div class="OH_clear"></div>
+             PHP Example
+             <div id="ID0EADAAAAA" class="OH_CodeSnippetContainer"><div class="OH_CodeSnippetContainerTabs" id="ID0EADAAAAA_tabs"></div><div id="ID0EADAAAAA_codecollection" class="OH_CodeSnippetContainerCodeCollection"><div class="OH_CodeSnippetToolBar"><div class="OH_CodeSnippetToolBarText"><a id="ID0EADAAAAA_ViewColorized" href="#" onclick="javascript:ExchangeTitleContent('ID0EADAAAAA','4')" title="View Colorized" style="display: none">View Colorized</a><a id="ID0EADAAAAA_copycode" href="#" onclick="javascript:CopyToClipboard('ID0EADAAAAA','4')" title="Copy to Clipboard">Copy to Clipboard</a><a id="ID0EADAAAAA_PrintText" class="OH_PrintText" href="#" onclick="javascript:Print('ID0EADAAAAA','4')" title="Print">Print</a></div></div><div id="ID0EADAAAAA_code_Div1" class="OH_CodeSnippetContainerCode" style="display: block"><pre>&lt;?php
+        require_once('../QueueIT.Security PHP/SessionValidationController.php');
+
+        use QueueIT\Security\SessionValidationController, 
+                QueueIT\Security\ExpiredValidationException, 
+                QueueIT\Security\KnownUserValidationException,
+                QueueIT\Security\EnqueueResult;
+
+        KnownUserFactory::configure('a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7');
+
+        try
+        {
+                $result = SessionValidationController::validateRequest('ticketania', 'codeonly', "http://queue-it.com");
+
+                // Check if user must be enqueued
+                if ($result instanceof EnqueueResult)
+                {
+                        header('Location: ' . $result-&gt;getRedirectUrl());
+                }
+        }
+        catch (ExpiredValidationException $ex)
+        {
+                // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
+                header('Location: error.php?queuename=default&amp;t=' . urlencode($ex-&gt;getKnownUser()-&gt;getOriginalUrl()));
+        }
+        catch (KnownUserValidationException $ex)
+        {
+                // Known user is invalid - Show error page and use GetCancelUrl to get user back in the queue
+                header('Location: error.php?queuename=default&amp;t=' + urlencode($ex-&gt;previous-&gt;getOriginalUrl()));
+        }     
+?&gt;</pre></div><div id="ID0EADAAAAA_code_Plain_Div1" class="OH_CodeSnippetContainerCode" style="display: none"><pre>&lt;?php
+        require_once('../QueueIT.Security PHP/SessionValidationController.php');
+
+        use QueueIT\Security\SessionValidationController, 
+                QueueIT\Security\ExpiredValidationException, 
+                QueueIT\Security\KnownUserValidationException,
+                QueueIT\Security\EnqueueResult;
+
+        KnownUserFactory::configure('a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7');
+
+        try
+        {
+                $result = SessionValidationController::validateRequest('ticketania', 'codeonly', "http://queue-it.com");
+
+                // Check if user must be enqueued
+                if ($result instanceof EnqueueResult)
+                {
+                        header('Location: ' . $result-&gt;getRedirectUrl());
+                }
+        }
+        catch (ExpiredValidationException $ex)
+        {
+                // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
+                header('Location: error.php?queuename=default&amp;t=' . urlencode($ex-&gt;getKnownUser()-&gt;getOriginalUrl()));
+        }
+        catch (KnownUserValidationException $ex)
+        {
+                // Known user is invalid - Show error page and use GetCancelUrl to get user back in the queue
+                header('Location: error.php?queuename=default&amp;t=' + urlencode($ex-&gt;previous-&gt;getOriginalUrl()));
+        }     
+?&gt;</pre></div></div></div><script>addSpecificTextLanguageTagSet('ID0EADAAAAA');</script><div class="OH_CollapsibleAreaRegion"><div class="OH_regiontitle">Examples</div><div class="OH_CollapsibleArea_HrDiv"><hr class="OH_CollapsibleArea_Hr" /></div></div><div class="OH_clear"></div>
+             Java EE Example
+             <div id="ID0EACAAAAA" class="OH_CodeSnippetContainer"><div class="OH_CodeSnippetContainerTabs" id="ID0EACAAAAA_tabs"></div><div id="ID0EACAAAAA_codecollection" class="OH_CodeSnippetContainerCodeCollection"><div class="OH_CodeSnippetToolBar"><div class="OH_CodeSnippetToolBarText"><a id="ID0EACAAAAA_ViewColorized" href="#" onclick="javascript:ExchangeTitleContent('ID0EACAAAAA','4')" title="View Colorized" style="display: none">View Colorized</a><a id="ID0EACAAAAA_copycode" href="#" onclick="javascript:CopyToClipboard('ID0EACAAAAA','4')" title="Copy to Clipboard">Copy to Clipboard</a><a id="ID0EACAAAAA_PrintText" class="OH_PrintText" href="#" onclick="javascript:Print('ID0EACAAAAA','4')" title="Print">Print</a></div></div><div id="ID0EACAAAAA_code_Div1" class="OH_CodeSnippetContainerCode" style="display: block"><pre>KnownUserFactory.configure("a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7");
+
+try
+{
+    IValidateResult result = SessionValidationController.validateRequest("ticketania", "codeonly", URI.create("http://queue-it.com"));
+
+    // Check if user must be enqueued
+    if (result instanceof EnqueueResult)
+    {
+        response.sendRedirect(((EnqueueResult)result).getRedirectUrl().toString());
+        return;
+    }
+}
+catch (ExpiredValidationException ex)
+{
+    // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
+     response.sendRedirect("error.jsp?queuename=&amp;t=" + ex.getKnownUser().getOriginalUrl());
+    return;
+}
+catch (KnownUserValidationException ex)
+{
+    // Known user is invalid - Show error page and use GetCancelUrl to get user back in the queue
+    response.sendRedirect("error.jsp?queuename=&amp;t=" + ((KnownUserException)ex.getCause()).getOriginalUrl());
+    return;
+}</pre></div><div id="ID0EACAAAAA_code_Plain_Div1" class="OH_CodeSnippetContainerCode" style="display: none"><pre>KnownUserFactory.configure("a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7");
+
+try
+{
+    IValidateResult result = SessionValidationController.validateRequest("ticketania", "codeonly", URI.create("http://queue-it.com"));
+
+    // Check if user must be enqueued
+    if (result instanceof EnqueueResult)
+    {
+        response.sendRedirect(((EnqueueResult)result).getRedirectUrl().toString());
+        return;
+    }
+}
+catch (ExpiredValidationException ex)
+{
+    // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
+     response.sendRedirect("error.jsp?queuename=&amp;t=" + ex.getKnownUser().getOriginalUrl());
+    return;
+}
+catch (KnownUserValidationException ex)
+{
+    // Known user is invalid - Show error page and use GetCancelUrl to get user back in the queue
+    response.sendRedirect("error.jsp?queuename=&amp;t=" + ((KnownUserException)ex.getCause()).getOriginalUrl());
+    return;
+}</pre></div></div></div><script>addSpecificTextLanguageTagSet('ID0EACAAAAA');</script><a name="seeAlsoSection"><!----></a><div class="OH_CollapsibleAreaRegion"><div class="OH_regiontitle">See Also</div><div class="OH_CollapsibleArea_HrDiv"><hr class="OH_CollapsibleArea_Hr" /></div></div><div class="OH_clear"></div><div class="seeAlsoStyle"><a href="a31e4793-b02e-e032-8cf7-a21668556dab.htm" target="">SessionValidationController Class</a></div><div class="seeAlsoStyle"><a href="14d3a09b-9a5c-07bc-fb98-82708b087462.htm" target="">SessionValidationController Members</a></div><div class="seeAlsoStyle"><a href="68594519-1591-de56-ed82-d9cf13421aa7.htm" target="">ValidateRequest Overload</a></div><div class="seeAlsoStyle"><a href="ba2411b0-2415-503f-55cd-4b67a1dbeea2.htm" target="">QueueIT.Security Namespace</a></div></div></div></div></div><div id="OH_footer" class="OH_footer"><p>2013 - Queue-it</p><div class="OH_feedbacklink"><a href="mailto:support@queue-it.net?subject=QueueIT.Security+Documentation+SessionValidationController.ValidateRequest+Method+(String%2c+String%2c+Uri%2c+Nullable(Boolean)%2c+String%2c+CultureInfo%2c+String)+100+EN-US&amp;body=Your%20feedback%20is%20used%20to%20improve%20the%20documentation%20and%20the%20product.%20Your%20e-mail%20address%20will%20not%20be%20used%20for%20any%20other%20purpose%20and%20is%20disposed%20of%20after%20the%20issue%20you%20report%20is%20resolved.%20While%20working%20to%20resolve%20the%20issue%20that%20you%20report%2c%20you%20may%20be%20contacted%20via%20e-mail%20to%20get%20further%20details%20or%20clarification%20on%20the%20feedback%20you%20sent.%20After%20the%20issue%20you%20report%20has%20been%20addressed%2c%20you%20may%20receive%20an%20e-mail%20to%20let%20you%20know%20that%20your%20feedback%20has%20been%20addressed.">Send Feedback</a> on this topic to Queue-it.</div></div></body></html>

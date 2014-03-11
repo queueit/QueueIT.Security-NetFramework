@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpTOC>
+
+  <HelpTOCNode Title="Welcome" Url="html/4bdc3e3a-ba1a-4aa2-9173-b27ddfaa377b.htm" />
+  <HelpTOCNode Id="fc39c448-d7b9-4bba-a81b-1aca026f56b5" Title="Getting Started">
+    <HelpTOCNode Title="ASP.NET Web Forms" Url="html/ec9c1caf-725d-485b-9d0d-915395d49d7e.htm" />
+    <HelpTOCNode Title="ASP.NET MVC" Url="html/20ed6335-b5ef-4710-8713-fbfd9f05af1c.htm" />
+    <HelpTOCNode Title="PHP" Url="html/973784d9-3c06-4822-9f0f-244af9e79748.htm" />
+    <HelpTOCNode Title="Java EE" Url="html/78d90f4a-32a5-4af5-a7cb-2982a705ca83.htm" />
+  </HelpTOCNode>
+  <HelpTOCNode Title="Reference Implementations" Url="html/9269961f-84a9-4f6d-a63e-100becdbd51a.htm" />
+  <HelpTOCNode Id="a33785fe-ef0b-4fd7-947a-f80d8fbcf55b" Title="Configuration">
+    <HelpTOCNode Title=".Net Framework" Url="html/f439359a-4f2d-4a71-9f66-5c77a7d04b89.htm" />
+    <HelpTOCNode Title="PHP" Url="html/07a2cc3b-ea76-43fd-bdd9-9197f6999c57.htm" />
+    <HelpTOCNode Title="Java EE" Url="html/c8dfb74b-fae8-4d37-b6df-860519d7438d.htm" />
+  </HelpTOCNode>
+  <HelpTOCNode Id="2e2520be-d793-4f21-a49c-78d9d262591c" Title="QueueIT.Security Namespace" Url="html/ba2411b0-2415-503f-55cd-4b67a1dbeea2.htm">
+    <HelpTOCNode Id="008fd6da-2067-4584-bb0d-d8ee2a8ccec6" Title="AcceptedConfirmedResult Class" Url="html/bda34605-afcd-e238-2d87-49577d0de88c.htm">
+      <HelpTOCNode Title="AcceptedConfirmedResult Members" Url="html/276da517-af88-1e82-76fb-f1eb6b13493e.htm" />
+      <HelpTOCNode Id="8607659b-d244-46e8-ab7e-99f916d6684a" Title="AcceptedConfirmedResult Properties" Url="html/eeee8980-96a7-0c4f-4b0b-d8e5490d0311.htm">
+        <HelpTOCNode Title="IsInitialValidationRequest Property " Url="html/416bffac-ad7b-d0f0-3ca4-376eac427f90.htm" />
+        <HelpTOCNode Title="KnownUser Property " Url="html/5c9a5534-2977-4bfe-f1c2-97ec2fa76d84.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="3c266f6f-737e-438c-bcc2-3c5f7dffcbe2" Title="CookieValidateResultRepository Class" Url="html/bd7df010-14cd-9a75-37ac-cdf4643dc232.htm">
+      <HelpTOCNode Title="CookieValidateResultRepository Members" Url="html/d1d1b584-f072-0e73-3097-51f98552cd0e.htm" />
+      <HelpTOCNode Title="CookieValidateResultRepository Constructor " Url="html/cea1fbde-c3d0-cc1a-808d-8e421a7a81e9.htm" />
+      <HelpTOCNode Id="01d24d7a-8f11-4bd1-9e6e-3d3c09a007ee" Title="CookieValidateResultRepository Methods" Url="html/cc04394f-034e-db60-025f-acc3917f0793.htm">
+        <HelpTOCNode Title="Configure Method " Url="html/23a6310a-8d0f-8517-9858-6d0dd208c722.htm" />
+        <HelpTOCNode Title="GetValidationResult Method " Url="html/c4415906-c50d-f081-201b-1582da67fdc2.htm" />
+        <HelpTOCNode Title="SetValidationResult Method " Url="html/435ceebe-14a3-725e-33ff-7d3ef6c1c0dc.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="5b723e70-2801-4731-a180-be4f01209943" Title="DefaultKnownUserUrlProvider Class" Url="html/1220df6c-a64d-9aec-0c20-9362f1c85a6d.htm">
+      <HelpTOCNode Title="DefaultKnownUserUrlProvider Members" Url="html/6b8f99b1-30fd-8969-e728-c85a22a980cf.htm" />
+      <HelpTOCNode Id="0e7e87af-e960-42f2-b6be-a5697256afd7" Title="DefaultKnownUserUrlProvider Constructor " Url="html/33430c6f-dca2-5797-af4c-fe8aa6ec1f9f.htm">
+        <HelpTOCNode Title="DefaultKnownUserUrlProvider Constructor " Url="html/70d1f089-e224-e1ad-1b6c-62fb467ee408.htm" />
+        <HelpTOCNode Title="DefaultKnownUserUrlProvider Constructor (HttpRequest)" Url="html/42cb2371-31d9-f6cf-63fc-d6e76b657f9a.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="c66da996-7a21-401d-899e-e426357f7bca" Title="DefaultKnownUserUrlProvider Methods" Url="html/fdb8af9a-d29e-a2c7-dd54-849386a10006.htm">
+        <HelpTOCNode Title="GetCustomerId Method " Url="html/54c02315-7b05-742f-10d8-972fcb3612cb.htm" />
+        <HelpTOCNode Title="GetEventId Method " Url="html/7a4bf067-a1fb-e80c-8a46-b2a2d9cb92e0.htm" />
+        <HelpTOCNode Title="GetOriginalUrl Method " Url="html/d0c9d5ee-cb1c-b55f-7247-58a254549cc9.htm" />
+        <HelpTOCNode Title="GetPlaceInQueue Method " Url="html/20499128-314b-ce29-df90-fef8f4841366.htm" />
+        <HelpTOCNode Title="GetQueueId Method " Url="html/ca243ab1-5fe2-e2c0-443c-1b2b8f565cbf.htm" />
+        <HelpTOCNode Title="GetRedirectType Method " Url="html/847ccae9-282c-4c9f-cc67-13775f810ddd.htm" />
+        <HelpTOCNode Title="GetTimeStamp Method " Url="html/ad77e3f4-1c83-8bb2-698d-fdf9877ddecb.htm" />
+        <HelpTOCNode Title="GetUrl Method " Url="html/9ac94464-9e48-e07e-ee54-d668ec4e6ad3.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="c1b2f11a-8dec-48bd-a456-cf379fecc24b" Title="EnqueueResult Class" Url="html/1ec0f009-fda0-1296-f201-a58b65f57949.htm">
+      <HelpTOCNode Title="EnqueueResult Members" Url="html/a427b6d8-cfd4-5f86-9d7c-6125deff85dd.htm" />
+      <HelpTOCNode Id="a62cd040-4e28-4ad1-b103-2a873627757c" Title="EnqueueResult Properties" Url="html/5add5ff3-eda4-732e-f279-581387d8e9f8.htm">
+        <HelpTOCNode Title="RedirectUrl Property " Url="html/5d9a8830-5322-fc0a-642f-b6d8db2dfe32.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="f944e56b-b119-44ed-b336-c34fa8a7ff2c" Title="ExpiredValidationException Class" Url="html/6084a5cb-4f07-66e4-30ed-72ea5f7d0721.htm">
+      <HelpTOCNode Title="ExpiredValidationException Members" Url="html/96259763-3bdc-6b8c-46cc-5521d9e4c0f4.htm" />
+      <HelpTOCNode Id="cf7e137b-d262-4a8e-8aa9-f9a2d81057f0" Title="ExpiredValidationException Properties" Url="html/781f374f-594d-df7e-90b3-cbc8a5968632.htm">
+        <HelpTOCNode Title="KnownUser Property " Url="html/f3507bb9-dccc-6709-8a72-3ec1d47df9ab.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="22d483c7-3b26-49a2-a519-f0bc7cbff45e" Title="IKnownUser Interface" Url="html/a2e050d1-35b8-57a1-8bb4-62305156475a.htm">
+      <HelpTOCNode Title="IKnownUser Members" Url="html/fdcfe9b3-7be1-9cc3-fa0c-481f87a18645.htm" />
+      <HelpTOCNode Id="6749fcf8-a7bf-40c1-af7a-24ec94ba101c" Title="IKnownUser Properties" Url="html/88c75d88-3191-0f18-4f51-f130cac3fa83.htm">
+        <HelpTOCNode Title="CustomerId Property " Url="html/8dba71d4-488a-fd91-670b-cd55c8fec974.htm" />
+        <HelpTOCNode Title="EventId Property " Url="html/093c07bc-a3b1-5cc0-fda8-27acbe1fa1f4.htm" />
+        <HelpTOCNode Title="OriginalUrl Property " Url="html/03fc8506-9afe-7e10-a7b4-e03f8ec58173.htm" />
+        <HelpTOCNode Title="PlaceInQueue Property " Url="html/2f80dbb4-5177-a16e-7e64-ead948cf1358.htm" />
+        <HelpTOCNode Title="QueueId Property " Url="html/8e348fc4-2184-4eba-2ec3-4f6ebfbdc31e.htm" />
+        <HelpTOCNode Title="RedirectType Property " Url="html/5a621f9c-f9cf-7420-ffed-9eba7fd164c3.htm" />
+        <HelpTOCNode Title="TimeStamp Property " Url="html/224893eb-274b-f7e4-aff9-1abfb03a3d88.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="644f7050-3698-46e5-9102-90a2937e63a2" Title="IKnownUserUrlProvider Interface" Url="html/b07431ba-e902-8529-15ee-362559c8c5b1.htm">
+      <HelpTOCNode Title="IKnownUserUrlProvider Members" Url="html/1b61e071-599c-4aec-db36-b52c4a3e5879.htm" />
+      <HelpTOCNode Id="6304d0b8-00c2-4e2d-a7cb-56966d4958d2" Title="IKnownUserUrlProvider Methods" Url="html/ea8f535f-6ba1-fded-8721-5247b661679c.htm">
+        <HelpTOCNode Title="GetCustomerId Method " Url="html/683e3e45-037a-f332-44be-18cca3163466.htm" />
+        <HelpTOCNode Title="GetEventId Method " Url="html/4a267b9f-dc7a-7c6c-40aa-a459f6ff9a6d.htm" />
+        <HelpTOCNode Title="GetOriginalUrl Method " Url="html/2551eefd-1136-3046-c88c-2ba8b9edd79e.htm" />
+        <HelpTOCNode Title="GetPlaceInQueue Method " Url="html/a325df98-e1ee-9c4f-22bf-038a3e858180.htm" />
+        <HelpTOCNode Title="GetQueueId Method " Url="html/97f79b85-debf-31da-2a17-1784ef4f2f27.htm" />
+        <HelpTOCNode Title="GetRedirectType Method " Url="html/4ec666c3-2beb-be56-c9cc-3a20cc00bddd.htm" />
+        <HelpTOCNode Title="GetTimeStamp Method " Url="html/56ad8212-3195-56d2-5b1f-320bdabe36f1.htm" />
+        <HelpTOCNode Title="GetUrl Method " Url="html/e2b142bc-012b-8250-e780-42267ffe28b1.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="8fd5753e-7fc0-4508-97db-fa543ac0b366" Title="InvalidKnownUserHashException Class" Url="html/5cdeb6ca-f513-70cc-930d-3ec3b1e81de7.htm">
+      <HelpTOCNode Title="InvalidKnownUserHashException Members" Url="html/dd343bcb-7dfd-6dec-b06a-6bb9c875021b.htm" />
+      <HelpTOCNode Title="InvalidKnownUserHashException Properties" Url="html/f5f1c767-246d-310e-3ceb-1d4bf6ce45a4.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="0c6a9848-dea3-4f92-84a6-cce8041e985e" Title="InvalidKnownUserUrlException Class" Url="html/9f8b541d-3a92-aa0c-0121-d3b0cc46dcdf.htm">
+      <HelpTOCNode Title="InvalidKnownUserUrlException Members" Url="html/fc00218b-235d-1d4f-a300-466253544696.htm" />
+      <HelpTOCNode Title="InvalidKnownUserUrlException Properties" Url="html/4a196e44-1fd9-7e4f-8bd1-732b58c803fa.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="1aafeaac-74c1-4b6d-9a66-5a6269da5399" Title="IQueue Interface" Url="html/7d9057b1-21d3-8c04-8050-4673a00dc138.htm">
+      <HelpTOCNode Title="IQueue Members" Url="html/c3bf338e-ac2d-c88d-3f7e-ae864b228c96.htm" />
+      <HelpTOCNode Id="c24143c8-7399-4ed5-9b6f-8c505a1dc41a" Title="IQueue Methods" Url="html/b156b00a-4b63-78c5-4aa8-19fa3fa607f7.htm">
+        <HelpTOCNode Title="GetCancelUrl Method " Url="html/4015e893-dfe2-29f3-1ae3-649f4c10de8b.htm" />
+        <HelpTOCNode Id="20992735-c60b-43b3-aa37-00141f315286" Title="GetLandingPageUrl Method " Url="html/be38716c-ccef-1ce7-22bc-2061391edd0b.htm">
+          <HelpTOCNode Title="GetLandingPageUrl Method (Nullable(Boolean))" Url="html/70746d17-64e0-67c0-d1dd-22500c2ed19e.htm" />
+          <HelpTOCNode Title="GetLandingPageUrl Method (Uri)" Url="html/945d859d-01a9-6446-85c7-57aebf1fbd2a.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="61a9da4a-8254-4bc2-8491-ef2f59fadbf0" Title="GetQueueUrl Method " Url="html/8149e465-1045-97f7-e1d1-3a0f26faae9a.htm">
+          <HelpTOCNode Title="GetQueueUrl Method (Nullable(Boolean), Nullable(Boolean), String, CultureInfo, String)" Url="html/978f879b-11d0-b5d6-7e75-a213f4765519.htm" />
+          <HelpTOCNode Title="GetQueueUrl Method (Uri, Nullable(Boolean), String, CultureInfo, String)" Url="html/8f44a6fe-87d4-7e07-87ea-cc8a8093cbb4.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="746c682b-312c-4d31-97a9-d7972ed97f5d" Title="IQueue Properties" Url="html/6b10ac8b-c05a-90be-d8d0-0e389846eaae.htm">
+        <HelpTOCNode Title="CustomerId Property " Url="html/67277358-094e-2a34-284f-9eb58bea6a8b.htm" />
+        <HelpTOCNode Title="EventId Property " Url="html/c3d14477-93af-6313-564c-6ceb4ac1607d.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="773ae0d8-d35a-49ba-8ce5-e513e45c0929" Title="IValidateResult Interface" Url="html/f918a987-5262-00dd-daa3-613172c14d17.htm">
+      <HelpTOCNode Title="IValidateResult Members" Url="html/e7f91094-0ca4-8806-3aac-e2b413fdc045.htm" />
+      <HelpTOCNode Id="39149091-08af-4b73-9658-14ad28f3a8d8" Title="IValidateResult Properties" Url="html/965404a1-aac2-a160-4f6e-7157e0e73e29.htm">
+        <HelpTOCNode Title="Queue Property " Url="html/2ebc46f0-c6e2-c844-5922-6b60d71d923f.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="f66265e1-2917-4d07-9838-17bc4687f72b" Title="IValidateResultRepository Interface" Url="html/d21f5ee4-ed91-9c0a-ad85-32bf84364f16.htm">
+      <HelpTOCNode Title="IValidateResultRepository Members" Url="html/17e0065d-3fd1-dd3e-8462-b88c8b9451e5.htm" />
+      <HelpTOCNode Id="7525653b-e544-4209-b660-b6395b7a7f7c" Title="IValidateResultRepository Methods" Url="html/d9927a50-3767-ba07-07a2-acb950cf2c9c.htm">
+        <HelpTOCNode Title="GetValidationResult Method " Url="html/97b1fbf0-0c18-ee6f-dcb6-a402b77b6041.htm" />
+        <HelpTOCNode Title="SetValidationResult Method " Url="html/0d8c3524-072c-9f55-3fa9-8d573b5176c0.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="e863451b-7dd4-4089-900a-0d4a70159cab" Title="KnownUserException Class" Url="html/22284745-4b22-a6a5-1c7f-e887ca2d34fb.htm">
+      <HelpTOCNode Title="KnownUserException Members" Url="html/70ad2345-1f96-bb66-932c-ab6dc951c9f5.htm" />
+      <HelpTOCNode Title="KnownUserException Constructor " Url="html/c941c618-2505-3d23-5176-78807a1073ba.htm" />
+      <HelpTOCNode Id="81ce451f-30ac-4e65-829e-7eba03585022" Title="KnownUserException Properties" Url="html/c1e1cbf1-1ea1-ef0a-ed21-29bb537f924e.htm">
+        <HelpTOCNode Title="OriginalUrl Property " Url="html/4b4229a2-c1c7-f2ce-1710-29a19c479375.htm" />
+        <HelpTOCNode Title="ValidatedUrl Property " Url="html/c4cd99a6-fb8f-ea9b-4314-7be13c57ec8b.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="fa8ea169-81c4-4c02-acd7-e58f5629fcef" Title="KnownUserFactory Class" Url="html/3e123a56-23b4-f63a-57aa-1a188534d2c6.htm">
+      <HelpTOCNode Title="KnownUserFactory Members" Url="html/a53e5505-d68c-0a69-7d12-bd1d73352893.htm" />
+      <HelpTOCNode Id="49e48b75-8571-4d09-bf76-eec6f093c1dd" Title="KnownUserFactory Methods" Url="html/31f8ceb5-59de-f9fb-cbce-30127b32ed37.htm">
+        <HelpTOCNode Title="Configure Method " Url="html/c0e624b2-a1fc-51e5-f926-bf26890b88f4.htm" />
+        <HelpTOCNode Title="VerifyMd5Hash Method " Url="html/028c2b91-e5df-3d0f-2406-f577482677ff.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="8692c824-bc48-400f-bf95-a091a9fe20d5" Title="KnownUserFactory Properties" Url="html/c7931c1b-8810-cd1e-966c-251f9ed4c30d.htm">
+        <HelpTOCNode Title="SecretKey Property " Url="html/21fc607a-2498-abd5-eb5c-ec11a6dfcd9c.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="6fe4abf7-7194-438f-9a85-f2ea28845e45" Title="KnownUserValidationException Class" Url="html/f1f5cedd-a939-f145-f280-13a1dabae4e8.htm">
+      <HelpTOCNode Title="KnownUserValidationException Members" Url="html/0fbf883d-b870-8f8d-f2d5-2036e97528c4.htm" />
+      <HelpTOCNode Title="KnownUserValidationException Properties" Url="html/dc43a1bd-85c8-184b-5769-d48afb231f90.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="c0b6c39e-b420-4165-8a14-5ac92c5a3be0" Title="QueueFactory Class" Url="html/3ff33990-9a3e-1094-a984-e09975a31517.htm">
+      <HelpTOCNode Title="QueueFactory Members" Url="html/70277755-99c9-1d90-1d00-fd70a848dfdb.htm" />
+      <HelpTOCNode Id="057c7c18-1250-4186-bcf0-3f9e77ac9f3a" Title="QueueFactory Methods" Url="html/69040b75-53a7-c9bd-d9d9-a3959c1e5caa.htm">
+        <HelpTOCNode Title="Configure Method " Url="html/c38def13-faf4-efb9-b118-90eddfee97e4.htm" />
+        <HelpTOCNode Id="e950c24a-9509-44b9-817f-03bca01fb043" Title="CreateQueue Method " Url="html/723aeb1e-0df1-ca1c-3c9b-230b44ecec7a.htm">
+          <HelpTOCNode Title="CreateQueue Method " Url="html/464aee11-6dfd-9b22-20ed-045aec91ba69.htm" />
+          <HelpTOCNode Title="CreateQueue Method (String)" Url="html/02d9cd2e-16bc-aedf-803e-8bae17c42b1c.htm" />
+          <HelpTOCNode Title="CreateQueue Method (String, String)" Url="html/82f1b42a-1695-79b5-780d-01af6624d839.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Title="RedirectType Enumeration" Url="html/b9ff7ee8-c473-a9db-90a8-483f6c70460d.htm" />
+    <HelpTOCNode Id="fda6f696-43c4-4fab-8d02-fc5c3a272b88" Title="SessionStateModel Class" Url="html/d61560c5-aa5c-f9d6-1a1c-1ee6b0883d17.htm">
+      <HelpTOCNode Title="SessionStateModel Members" Url="html/3261c5fb-abcc-3bce-4239-b50eb444f71e.htm" />
+      <HelpTOCNode Title="SessionStateModel Constructor " Url="html/0551de56-b0c4-d3e8-ed52-5a4ef45ea8ab.htm" />
+      <HelpTOCNode Id="5c7d7cb3-85e1-471d-a423-03983fcb282b" Title="SessionStateModel Properties" Url="html/111b423a-4fde-a278-8f14-388d2653fe89.htm">
+        <HelpTOCNode Title="OriginalUri Property " Url="html/fbcfbad3-a1ac-352d-4fa4-94fee396accb.htm" />
+        <HelpTOCNode Title="PlaceInQueue Property " Url="html/8e92d240-5080-d9b8-04e1-87f9841230bc.htm" />
+        <HelpTOCNode Title="QueueId Property " Url="html/d73353ce-6b2f-7d6e-8bb7-f928fe0029d5.htm" />
+        <HelpTOCNode Title="RedirectType Property " Url="html/29b35238-341f-dde0-8b45-c75f9e56dccc.htm" />
+        <HelpTOCNode Title="TimeStamp Property " Url="html/36a567ff-3e93-5818-6353-3c3ba2dcbea0.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="6c031070-e3a6-4129-91f6-4044e7083928" Title="SessionValidateResultRepository Class" Url="html/2cc6c216-5415-4172-54bd-c992bbce7ecc.htm">
+      <HelpTOCNode Title="SessionValidateResultRepository Members" Url="html/e40cd7f7-1d8c-dae1-4341-01053af9a8a6.htm" />
+      <HelpTOCNode Title="SessionValidateResultRepository Constructor " Url="html/6d42ba0a-9430-6922-f4d8-4f83e7021ade.htm" />
+      <HelpTOCNode Id="d73d9ce4-ac22-4b6b-9b1c-4650c8bb07e6" Title="SessionValidateResultRepository Methods" Url="html/10e3bf61-6cd6-1c5e-1687-93c9de54eb9b.htm">
+        <HelpTOCNode Title="GetValidationResult Method " Url="html/29c59a7b-8177-7f9c-54dd-03dc9ef82096.htm" />
+        <HelpTOCNode Title="SetValidationResult Method " Url="html/40dd4810-e32d-1022-9791-1999120d73ca.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="b6105dbd-fdf8-47bc-b9de-6e61b01b1055" Title="SessionValidationController Class" Url="html/a31e4793-b02e-e032-8cf7-a21668556dab.htm">
+      <HelpTOCNode Title="SessionValidationController Members" Url="html/14d3a09b-9a5c-07bc-fb98-82708b087462.htm" />
+      <HelpTOCNode Id="e7e07ad6-fa4c-40c7-964e-edcbff7ad11b" Title="SessionValidationController Methods" Url="html/94b019b5-4b26-ecda-6aa3-60b63b35c2ce.htm">
+        <HelpTOCNode Title="Configure Method " Url="html/d063d39b-2bec-dde5-6996-0cf66d4e7a01.htm" />
+        <HelpTOCNode Id="6505ce2c-cfc1-4053-81d2-86dbc71df8cb" Title="ValidateRequest Method " Url="html/68594519-1591-de56-ed82-d9cf13421aa7.htm">
+          <HelpTOCNode Title="ValidateRequest Method (Nullable(Boolean), Nullable(Boolean), String, CultureInfo, String)" Url="html/0738c9e3-3fac-704b-8b99-e3fa1c801d05.htm" />
+          <HelpTOCNode Title="ValidateRequest Method (Uri, Nullable(Boolean), String, CultureInfo, String)" Url="html/f5a7e9a1-e789-8c93-adbc-f902240e8698.htm" />
+          <HelpTOCNode Title="ValidateRequest Method (String, Nullable(Boolean), Nullable(Boolean), String, CultureInfo, String)" Url="html/56da0567-9538-cc73-634f-000937a1d86f.htm" />
+          <HelpTOCNode Title="ValidateRequest Method (String, Uri, Nullable(Boolean), String, CultureInfo, String)" Url="html/29325056-ab7e-3172-9821-298ec755c861.htm" />
+          <HelpTOCNode Title="ValidateRequest Method (String, String, Nullable(Boolean), Nullable(Boolean), String, CultureInfo, String)" Url="html/9d0acbf9-2975-58cf-ef31-fb1780e49a87.htm" />
+          <HelpTOCNode Title="ValidateRequest Method (String, String, Uri, Nullable(Boolean), String, CultureInfo, String)" Url="html/15bf6fd4-9e39-83b8-1026-39f58ccd5fdf.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="af42bb0e-1960-4c90-8d59-bd8961e0c4fd" Title="SessionValidationException Class" Url="html/af4df27b-cac1-cb68-1a79-8b7c52aba107.htm">
+      <HelpTOCNode Title="SessionValidationException Members" Url="html/c0c34eb3-93d6-680c-cd1a-aa58ed3e1091.htm" />
+      <HelpTOCNode Id="ce801809-99b4-459b-b0f4-96af5b1dba98" Title="SessionValidationException Properties" Url="html/ab672adc-0b23-d5d0-0e68-dc6c9ad50b18.htm">
+        <HelpTOCNode Title="Queue Property " Url="html/2427df37-6c7a-4e83-a6bc-e10662b15c50.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="a5cb96e3-4390-4f18-92be-c00e15b44df6" Title="ValidateResultBase Class" Url="html/e48d697b-7765-cfbd-a8d9-054dfd21076d.htm">
+      <HelpTOCNode Title="ValidateResultBase Members" Url="html/35841aff-e755-9c21-4f31-3d3244f04764.htm" />
+      <HelpTOCNode Id="20c6fead-c2e0-4145-939e-82897e3946d1" Title="ValidateResultBase Properties" Url="html/fbfcf2ea-b664-4746-62c6-905bff910ad5.htm">
+        <HelpTOCNode Title="Queue Property " Url="html/735cf510-3458-7e12-9dcb-01d7ebda933d.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="694ab806-a567-45dd-8b3b-24103da7886a" Title="ValidateResultRepositoryBase Class" Url="html/8cf87d67-6cff-c4fd-f24e-0fd71baf9f0a.htm">
+      <HelpTOCNode Title="ValidateResultRepositoryBase Members" Url="html/422fb734-af31-5549-52bd-55f96272f200.htm" />
+      <HelpTOCNode Title="ValidateResultRepositoryBase Constructor " Url="html/296f58c1-0724-73a9-4216-f774e80b4f2e.htm" />
+      <HelpTOCNode Id="12d44ad5-4a7f-48c2-b1a9-348deddaa811" Title="ValidateResultRepositoryBase Methods" Url="html/fff43fb9-ee68-8c7b-428c-1e7c2f442406.htm">
+        <HelpTOCNode Title="GenerateKey Method " Url="html/d8155ab3-e4aa-8541-98fb-a0707bc4d872.htm" />
+        <HelpTOCNode Title="GetValidationResult Method " Url="html/8350f6e6-fdc4-5154-b92a-cca066792c39.htm" />
+        <HelpTOCNode Title="GetValue Method " Url="html/b6e023c2-9ef8-9349-af51-8c4d1c8e7dde.htm" />
+        <HelpTOCNode Title="SetValidationResult Method " Url="html/f9f20e40-4ccb-4b65-3040-ccdf69a07241.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="a47540d9-f7d1-49e3-805c-1d3ac9c388c3" Title="QueueIT.Security.Mvc Namespace" Url="html/5c47874a-229a-0e87-72ce-90992532df84.htm">
+    <HelpTOCNode Id="051a61fd-681f-479d-a4a8-6360abc5cbe5" Title="KnownUserAttribute Class" Url="html/b7a29d5b-6a3b-6ff5-93b6-29923946f038.htm">
+      <HelpTOCNode Title="KnownUserAttribute Members" Url="html/d24189a3-2a63-aef8-be90-fa23c6fd6cde.htm" />
+      <HelpTOCNode Title="KnownUserAttribute Constructor " Url="html/30d7e462-1e2e-03ff-cf24-c4409ae507e7.htm" />
+      <HelpTOCNode Id="11c558d5-975c-44e2-8c5e-af8ee79fad1d" Title="KnownUserAttribute Methods" Url="html/fa40bb53-ee36-693a-7f2b-deb4af6e14d4.htm">
+        <HelpTOCNode Title="OnActionExecuting Method " Url="html/a465a96a-7635-db3e-7884-daadecd51398.htm" />
+        <HelpTOCNode Title="OnException Method " Url="html/de4e8cf2-0ac4-d1d6-1fe7-a45f43c5e72d.htm" />
+        <HelpTOCNode Title="OnValidated Method " Url="html/259bcaeb-ec2a-8903-e7aa-11127108a8f0.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="12712eec-1937-4e36-8538-b692ef27177e" Title="KnownUserAttribute Properties" Url="html/83621664-90bd-37d9-96bd-a50b73ec0e4d.htm">
+        <HelpTOCNode Title="ErrorView Property " Url="html/4dd195d0-26eb-7f05-e040-bedd5e5aacd5.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="cb9784af-d6be-4544-bf9d-e9534458932c" Title="KnownUserErrorModel Class" Url="html/115e83be-888b-61d9-48b4-5a7de0998505.htm">
+      <HelpTOCNode Title="KnownUserErrorModel Members" Url="html/76351779-09d7-d343-b512-ababfb88d018.htm" />
+      <HelpTOCNode Id="613691a5-7ecf-489e-a918-b7b3e330f249" Title="KnownUserErrorModel Properties" Url="html/70ef7c32-fd1f-a86b-01f6-b57a48bf5d7e.htm">
+        <HelpTOCNode Title="Exception Property " Url="html/abd60b8a-980f-4293-1e19-ad52ceb6c635.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="c677c726-6086-433f-aca6-67d39e819536" Title="KnownUserModel Class" Url="html/0f9eaf96-431f-5ce7-6eab-f360f7a9958e.htm">
+      <HelpTOCNode Title="KnownUserModel Members" Url="html/ae3e9924-5d23-9922-6253-9a0ec2e63724.htm" />
+      <HelpTOCNode Title="KnownUserModel Constructor " Url="html/27cf8bda-44b6-9e3e-f138-d50dba53e3d0.htm" />
+      <HelpTOCNode Id="32ecacbd-30ed-426f-b434-ca67b5508232" Title="KnownUserModel Properties" Url="html/9534e248-1983-dfb0-57a9-f91ebc94084e.htm">
+        <HelpTOCNode Title="KnownUser Property " Url="html/86ebcc7b-aa3e-03a1-405f-80e6ac53a8c6.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="78230bfa-254e-4b34-91ed-b19a72c6c329" Title="SessionValidationAttribute Class" Url="html/087f754f-885d-f4f6-7b29-98f3adb78403.htm">
+      <HelpTOCNode Title="SessionValidationAttribute Members" Url="html/b7605bfe-0153-a071-1f0a-056b08a1a9f5.htm" />
+      <HelpTOCNode Id="8b8a73e3-e1cc-47e9-afdf-d2f18a8d3b32" Title="SessionValidationAttribute Constructor " Url="html/982bd64a-5585-6d35-a838-590bff444aa9.htm">
+        <HelpTOCNode Title="SessionValidationAttribute Constructor " Url="html/840faad6-a873-b170-dd5f-f0008f7ce457.htm" />
+        <HelpTOCNode Title="SessionValidationAttribute Constructor (String)" Url="html/5943389e-11cd-3d2a-1f69-9b6f2a00eb6b.htm" />
+        <HelpTOCNode Title="SessionValidationAttribute Constructor (String, String)" Url="html/1686a1cd-2b8c-d278-7651-eb889e5e5142.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="795aa99a-3448-4bd9-b853-14fd14658a2c" Title="SessionValidationAttribute Methods" Url="html/0b884058-cc5d-cbea-dcf3-4490c86b3dca.htm">
+        <HelpTOCNode Title="OnActionExecuting Method " Url="html/fbc916ab-7d86-2ad5-f2ee-e18dfaef1440.htm" />
+        <HelpTOCNode Title="OnException Method " Url="html/55adeb47-dc82-eab0-da96-c9067f995c3f.htm" />
+        <HelpTOCNode Title="OnValidated Method " Url="html/2d76b686-5b75-eb5a-aa46-381e012fca8f.htm" />
+        <HelpTOCNode Title="ValidateRequest Method " Url="html/154c0047-810f-800f-aa86-d6cd143d4477.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="e61229b8-057b-4da6-93d9-521451306d17" Title="SessionValidationAttribute Properties" Url="html/4b82ff8b-ad6d-46f6-4d0e-f134b18c1a90.htm">
+        <HelpTOCNode Title="DomainAlias Property " Url="html/cfc44e72-36e5-3651-00ce-a9b848f65f5e.htm" />
+        <HelpTOCNode Title="ErrorView Property " Url="html/7fd14f47-0be1-99f8-b73f-3d9ee54d51f6.htm" />
+        <HelpTOCNode Title="IncludeTargetUrl Property " Url="html/8cc4689c-f7c0-e240-94a3-18feb809b202.htm" />
+        <HelpTOCNode Title="SslEnabled Property " Url="html/5b7d7d9e-e46e-3f2c-e4e8-124745b15c40.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="e76999b8-d3c7-4d35-98cf-daeec287c1ac" Title="SessionValidationErrorModel Class" Url="html/fdf373a6-d967-8a5c-bd80-8e1ffa501e16.htm">
+      <HelpTOCNode Title="SessionValidationErrorModel Members" Url="html/f21a1a8e-5e97-a9d8-1155-da4df04d0a81.htm" />
+      <HelpTOCNode Id="497ecdd6-e1f3-4f73-a47b-52e559e4a430" Title="SessionValidationErrorModel Properties" Url="html/81b1251b-27f6-d475-3a88-fa0c40cb28b2.htm">
+        <HelpTOCNode Title="Exception Property " Url="html/69dd0e9f-f3a3-dddf-5afb-f98b55c22b6c.htm" />
+        <HelpTOCNode Title="OriginalUrl Property " Url="html/c431c19f-2f17-2147-debc-026c6f6ebbd5.htm" />
+        <HelpTOCNode Title="Queue Property " Url="html/830bc2c1-6994-e1b9-497f-1f9e852d7d01.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="8c663915-daf5-4f1a-b578-8155865e87ff" Title="SessionValidationModel Class" Url="html/74bc1ae7-3854-a2bb-90c0-58af7a6d1846.htm">
+      <HelpTOCNode Title="SessionValidationModel Members" Url="html/7e354879-021a-d22a-2703-d6b1dcde64a5.htm" />
+      <HelpTOCNode Title="SessionValidationModel Constructor " Url="html/a1924835-224d-2c35-d1d9-ab91d0ff0ac5.htm" />
+      <HelpTOCNode Id="e01e5f9d-33f6-4beb-a241-744e60318899" Title="SessionValidationModel Properties" Url="html/71d25bda-4e66-92cc-b121-5e12edb72839.htm">
+        <HelpTOCNode Title="ValidateResult Property " Url="html/4a5dd42f-13f8-6579-f18c-7ffa7f4c0e2d.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="dd1525d8-a550-433e-a65c-2d854415d6db" Title="UnverifiedKnownUserException Class" Url="html/332ec740-6e59-3c02-aec1-bd82cb1ce302.htm">
+      <HelpTOCNode Title="UnverifiedKnownUserException Members" Url="html/e0c05942-5d68-4f7b-35b1-3c7fd31b2833.htm" />
+      <HelpTOCNode Title="UnverifiedKnownUserException Constructor " Url="html/68f72a5e-9874-53c2-1af0-b33f81b620cf.htm" />
+      <HelpTOCNode Title="UnverifiedKnownUserException Properties" Url="html/1e4720b4-d4eb-a26c-5b0c-8c3e28531f2c.htm" />
+    </HelpTOCNode>
+  </HelpTOCNode>
+</HelpTOC>
