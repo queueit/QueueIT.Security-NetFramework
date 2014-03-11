@@ -1,0 +1,426 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QueueIT.Security.Mvc</name>
+    </assembly>
+    <members>
+        <member name="T:QueueIT.Security.Mvc.KnownUserErrorModel">
+            <summary>
+            View model which is sent to the known user error view on request validation exceptions
+            </summary>
+            <example>
+            <code language="cs">
+            public class AdvancedController : Controller
+            {
+                [KnownUser(ErrorView = "MyErrorView")]
+                public ActionResult Index()
+                {
+                    return View();
+                }
+            }
+            </code>
+            <code>
+            <![CDATA[
+            @model QueueIT.Security.Mvc.KnownUserErrorModel
+            
+            @{
+                ViewBag.Title = "Validation Error";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+            }
+            
+            <div>An error occured.</div>
+            <div>
+                <a href="/">Back To Home</a>
+            </div>
+            ]]>
+            </code>
+            </example>
+        </member>
+        <member name="P:QueueIT.Security.Mvc.KnownUserErrorModel.Exception">
+            <summary>
+            The known user exception thrown
+            </summary>
+        </member>
+        <member name="T:QueueIT.Security.Mvc.KnownUserAttribute">
+             <summary>
+             Action Filter which enables Known User validation functionality
+             </summary>
+             <example>
+             Source Code;
+             <code>
+             [KnownUser]
+             public ActionResult Target(KnownUserModel knownUserModel)
+             {
+                 PersistModel model = new PersistModel(
+                     knownUserModel.KnownUser.QueueId,
+                     knownUserModel.KnownUser.PlaceInQueue,
+                     knownUserModel.KnownUser.TimeStamp);
+            
+                 model.Persist();
+            
+                 return View();
+             }
+             </code>
+             </example>    
+        </member>
+        <member name="M:QueueIT.Security.Mvc.KnownUserAttribute.OnActionExecuting(System.Web.Mvc.ActionExecutingContext)">
+            <summary>
+            
+            </summary>
+            <param name="filterContext">The Action Executing Filter Context</param>
+        </member>
+        <member name="M:QueueIT.Security.Mvc.KnownUserAttribute.OnValidated(System.Web.Mvc.ActionExecutingContext,QueueIT.Security.IKnownUser)">
+            <summary>
+            When overridden it provides access to the known user object.  
+            E.g. to persist Queue ID details to the database.
+            </summary>
+            <param name="filterContext">The Action Executing Filter Context</param>
+            <param name="knownUser">The validated Known User object</param>
+            <example>
+            <code>
+            protected override void OnValidated(ActionExecutingContext filterContext, IKnownUser knownUser)
+            {
+                    PersistModel model = new PersistModel(
+                        knownUser.QueueId,
+                        knownUser.PlaceInQueue,
+                        knownUser.TimeStamp);
+            
+                    model.Persist();
+                }
+            
+                base.OnValidated(filterContext, result);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:QueueIT.Security.Mvc.KnownUserAttribute.OnException(System.Web.Mvc.ActionExecutingContext,QueueIT.Security.KnownUserException)">
+            <summary>
+            When overridden it provides access to Known User Validation exceptions.  
+            </summary>
+            <param name="filterContext">The Action Executing Filter Context</param>
+            <param name="exception">The exception thrown</param>
+        </member>
+        <member name="P:QueueIT.Security.Mvc.KnownUserAttribute.ErrorView">
+            <summary>
+            The view to display in case of a Known User validation exception. Default view is QueueITKnownUserError.
+            </summary>
+        </member>
+        <member name="T:QueueIT.Security.Mvc.KnownUserModel">
+            <summary>
+            View model for known user validation which is added to the action parameters list if included in the parameters of the controller action
+            </summary>
+            <example>
+            <code language="cs">
+            public class LinkController : Controller
+            {
+                [KnownUser]
+                public ActionResult Landing(KnownUserModel knownUserModel)
+                {
+                    Guid queueId = knownUserModel.KnownUser.QueueId;
+            
+                    return View();
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="P:QueueIT.Security.Mvc.KnownUserModel.KnownUser">
+            <summary>
+            The validated Known User Object
+            </summary>
+        </member>
+        <member name="T:QueueIT.Security.Mvc.SessionValidationAttribute">
+            <summary>
+            Action Filter which enables simple implementation of the QueueIT.Security functionality
+            </summary>
+            <remarks>
+            View members for additional information and examples
+            </remarks>
+            <example>
+            Source Code;
+            <code>
+            [SessionValidation("advanced")]
+            public ActionResult Index(SessionValidationModel validationModel)
+            {
+                IValidateResult result = validationModel.ValidateResult;
+            
+                return View();
+            }
+            </code>
+            
+            Configuration:
+            <code>
+            <![CDATA[
+            <configuration>
+               <configSections>
+                  <section name="queueit.security" type="QueueIT.Security.Configuration.SettingsSection, QueueIT.Security"/>
+               </configSections>
+               <queueit.security 
+                  secretKey="a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7">
+                  <queues>
+                     <queue name="default" customerId="ticketania" eventId="simple"/>
+                  </queues>
+               </queueit.security>
+            </configuration>
+            ]]>
+            </code>
+            </example>    
+        </member>
+        <member name="M:QueueIT.Security.Mvc.SessionValidationAttribute.#ctor">
+            <summary>
+            Validates the request based on the default queue defined by configuration 
+            This method requires a queue with then name 'default' to be configured in the application config file
+            </summary>
+            <example>
+            Source Code;
+            <code>
+            [SessionValidation]
+            public ActionResult Index()
+            {
+                return View();
+            }
+            </code>
+            
+            Configuration:
+            <code>
+            <![CDATA[
+            <configuration>
+               <configSections>
+                  <section name="queueit.security" type="QueueIT.Security.Configuration.SettingsSection, QueueIT.Security"/>
+               </configSections>
+               <queueit.security 
+                  secretKey="a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7">
+                  <queues>
+                     <queue name="default" customerId="ticketania" eventId="simple"/>
+                  </queues>
+               </queueit.security>
+            </configuration>
+            ]]>
+            </code>
+            </example>
+        </member>
+        <member name="M:QueueIT.Security.Mvc.SessionValidationAttribute.#ctor(System.String)">
+            <summary>
+            Validates the request based on a queue defined by configuration  
+            This method requires a queue to be configured in the application config file with the name provided in queueName
+            </summary>
+            <param name="queueName">The name of the queue as defined in the configuration file</param>
+            <example>
+            Source Code;
+            <code>
+            [SessionValidation("advanced")]
+            public ActionResult Index()
+            {
+                return View();
+            }
+            </code>
+            
+            Configuration:
+            <code>
+            <![CDATA[
+            <configuration>
+               <configSections>
+                  <section name="queueit.security" type="QueueIT.Security.Configuration.SettingsSection, QueueIT.Security"/>
+               </configSections>
+               <queueit.security 
+                  secretKey="a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7">
+                  <queues>
+                     <queue name="advanced" customerId="ticketania" eventId="advanced"/>
+                  </queues>
+               </queueit.security>
+            </configuration>
+            ]]>
+            </code>
+            </example>
+        </member>
+        <member name="M:QueueIT.Security.Mvc.SessionValidationAttribute.#ctor(System.String,System.String)">
+            <summary>
+            Validates the request not using configuration 
+            </summary>
+            <param name="customerId">The Customer ID of the queue</param>
+            <param name="eventId">The Event ID of the queue</param>
+            <example>
+            Source Code;
+            <code>
+            [SessionValidation("ticketania", "codeonly")]
+            public ActionResult Index()
+            {
+                return View();
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:QueueIT.Security.Mvc.SessionValidationAttribute.OnActionExecuting(System.Web.Mvc.ActionExecutingContext)">
+            <summary>
+            Validates the request
+            </summary>
+            <param name="filterContext">The Action Executing Filter Context</param>
+        </member>
+        <member name="M:QueueIT.Security.Mvc.SessionValidationAttribute.ValidateRequest(System.Web.Mvc.ActionExecutingContext)">
+            <summary>
+            When overridden it provides full control of generating the validation result.  
+            E.g. by looking up the Customer and Event ID in a database
+            </summary>
+            <param name="filterContext">The Action Executing Filter Context</param>
+            <returns>The validation result</returns>
+            <example>
+            <code>
+            protected override IValidateResult ValidateRequest(ActionExecutingContext filterContext)
+            {
+               var model = db.QueueLookup(filterContext);
+               return SessionValidationController.ValidateRequest(model.CustomerId, model.EventId);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:QueueIT.Security.Mvc.SessionValidationAttribute.OnValidated(System.Web.Mvc.ActionExecutingContext,QueueIT.Security.IValidateResult)">
+            <summary>
+            When overridden it provides access to the validation request.  
+            E.g. to persist Queue ID details to the database.
+            Call base to redirect to the queue on EnqueueResult.
+            </summary>
+            <param name="filterContext">The Action Executing Filter Context</param>
+            <param name="result">The validation result</param>
+            <example>
+            <code>
+            protected override void OnValidated(ActionExecutingContext filterContext, IValidateResult result)
+            {
+                // Check if user must be enqueued
+                if (result is EnqueueResult)
+                {
+                    // Optional action
+                }
+            
+                // Check if user has been through the queue (will be invoked for every page request after the user has been validated)
+                if (result is AcceptedConfirmedResult)
+                {
+                    AcceptedConfirmedResult confirmedResult = result as AcceptedConfirmedResult;
+            
+                    if (!confirmedResult.IsInitialValidationRequest)
+                        return; // data has already been persisted
+            
+                    PersistModel model = new PersistModel(
+                        confirmedResult.Queue.CustomerId,
+                        confirmedResult.Queue.EventId,
+                        confirmedResult.KnownUser.QueueId,
+                        confirmedResult.KnownUser.PlaceInQueue,
+                        confirmedResult.KnownUser.TimeStamp);
+            
+                    model.Persist();
+                }
+            
+                base.OnValidated(filterContext, result);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:QueueIT.Security.Mvc.SessionValidationAttribute.OnException(System.Web.Mvc.ActionExecutingContext,QueueIT.Security.SessionValidationException)">
+            <summary>
+            When overridden it provides access to Known User Validation exceptions.  
+            </summary>
+            <param name="filterContext">The Action Executing Filter Context</param>
+            <param name="exception">The exception thrown</param>
+        </member>
+        <member name="P:QueueIT.Security.Mvc.SessionValidationAttribute.IncludeTargetUrl">
+            <summary>
+            If true the user will be redirected to the current page when the user is through the queue
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.Mvc.SessionValidationAttribute.SslEnabled">
+            <summary>
+            If true the queue uses SSL
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.Mvc.SessionValidationAttribute.DomainAlias">
+            <summary>
+            An optional domain of the queue
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.Mvc.SessionValidationAttribute.ErrorView">
+            <summary>
+            The view to display in case of a Known User validation exception. Default view is QueueITValidationError.
+            </summary>
+        </member>
+        <member name="T:QueueIT.Security.Mvc.SessionValidationErrorModel">
+            <summary>
+            View model which is sent to the validation error view on request validation exceptions
+            </summary>
+            <example>
+            <code language="cs">
+            public class AdvancedController : Controller
+            {
+                [SessionValidation("advanced", ErrorView = "MyErrorView")]
+                public ActionResult Index()
+                {
+                    return View();
+                }
+            }
+            </code>
+            <code>
+            <![CDATA[
+            @model QueueIT.Security.Mvc.SessionValidationErrorModel
+            
+            @{
+                ViewBag.Title = "Validation Error";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+            }
+            
+            <div>An error occured.</div>
+            <div>
+                <a href="/">Back To Home</a> <a href="@Model.Queue.GetCancelUrl(Model.OriginalUrl).AbsoluteUri">Go to queue</a>
+            </div>
+            ]]>
+            </code>
+            </example>
+        </member>
+        <member name="P:QueueIT.Security.Mvc.SessionValidationErrorModel.Exception">
+            <summary>
+            The validation exception thrown
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.Mvc.SessionValidationErrorModel.OriginalUrl">
+            <summary>
+            The URL of the validation request without Known User details
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.Mvc.SessionValidationErrorModel.Queue">
+            <summary>
+            The queue of the validation request.
+            </summary>
+        </member>
+        <member name="T:QueueIT.Security.Mvc.SessionValidationModel">
+            <summary>
+            View model for request validations which is added to the action parameters list if included in the parameters of the controller action
+            </summary>
+            <example>
+            <code language="cs">
+            public class AdvancedController : Controller
+            {
+                [SessionValidation("advanced")]
+                public ActionResult Index(SessionValidationModel validationModel)
+                {
+                    IValidateResult result = validationModel.ValidateResult;
+            
+                    return View();
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:QueueIT.Security.Mvc.SessionValidationModel.#ctor">
+            <summary>
+            Public constructor used by ASP.NET MVC
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.Mvc.SessionValidationModel.ValidateResult">
+            <summary>
+            Validation result
+            </summary>
+        </member>
+        <member name="T:QueueIT.Security.Mvc.UnverifiedKnownUserException">
+            <summary>
+            Thrown if the Known User request does not contaion any tokens
+            </summary>
+        </member>
+    </members>
+</doc>
