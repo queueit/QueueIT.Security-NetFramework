@@ -7,8 +7,33 @@ using QueueIT.Security.Configuration;
 namespace QueueIT.Security
 {
     /// <summary>
-    /// A repository to store user session state which stores the validation result in a http cookie. 
+    /// A repository to store user session state which stores the validation result in a http cookie. This is the default.
     /// </summary>
+    /// <remarks>
+    /// This will by default store a cookie with 20 minutes expiration.
+    /// </remarks>
+    /// <example>
+    /// <code language="cs">
+    /// CookieValidateResultRepository.Configure(".ticketania.com", TimeSpan.FromMinutes(20));
+    /// </code>
+    /// Configuration:
+    /// <code>
+    /// <![CDATA[
+    /// <configuration>
+    ///    <configSections>
+    ///       <section name="queueit.security" type="QueueIT.Security.Configuration.SettingsSection, QueueIT.Security"/>
+    ///    </configSections>
+    ///    <queueit.security>
+    ///       <repositorySettings>
+    ///           <setting name="CookieDomain" value=".ticketania.com" />
+    ///           <setting name="CookieExpiration" value="00:20:00" />
+    ///       </repositorySettings>
+    ///    </queueit.security>
+    /// </configuration>    
+    /// ]]>
+    /// </code>
+    /// </example>
+
     public class CookieValidateResultRepository : ValidateResultRepositoryBase
     {
         private static string CookieDomain;

@@ -3,6 +3,15 @@ using System.Web;
 
 namespace QueueIT.Security
 {
+    /// <summary>
+    /// A repository to store user session state which stores the validation result in a http cookie.
+    /// </summary>
+    /// <remarks>The default repository is the CookieValidateResultRepository. Use the Configure method of the SessionValidationController to override.</remarks>
+    /// <example>
+    /// <code language="cs">
+    /// SessionValidationController.Configure(validationResultProviderFactory: () => new SessionValidateResultRepository);
+    /// </code>
+    /// </example>
     public class SessionValidateResultRepository : ValidateResultRepositoryBase
     {
         public override IValidateResult GetValidationResult(IQueue queue)
