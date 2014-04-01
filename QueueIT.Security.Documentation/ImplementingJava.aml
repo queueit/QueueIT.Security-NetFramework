@@ -7,44 +7,7 @@
     <introduction>
       <para>Implementing Known User request validation in Java EE</para>
     </introduction>
-
-    <section address="link">
-      <title>Link Implementation Strategy</title>
-      <content>
-        <para>Using the link implementation strategy the request on the queue target page requires verification</para>
-        <procedure>
-          <title>Using the Known User Factory to validate the request</title>
-          <steps class="ordered">
-            <step>
-              <content>
-                <para>Add the QueueIt.Security.jar file to your project.</para>
-              </content>
-            </step>
-            <step>
-              <content>
-                <para>Add JSP Servlet Filter to web.xml as described in <link xlink:href="c8dfb74b-fae8-4d37-b6df-860519d7438d">configuration</link>.</para>
-              </content>
-            </step>
-            <step>
-              <content>
-                <para>
-                  Implement one of the <codeEntityReference>T:QueueIT.Security.KnownUserFactory</codeEntityReference>
-                  factory methods to validate the request on the queue target page.
-                </para>
-              </content>
-            </step>
-            <step>
-              <content>
-                <para>
-                  Optionally add <link xlink:href="c8dfb74b-fae8-4d37-b6df-860519d7438d">properties files</link>.
-                </para>
-              </content>
-            </step>
-          </steps>
-          <!-- <conclusion>Optional conclusion</conclusion> -->
-        </procedure>
-      </content>
-    </section>
+   
     <section address="session">
       <title>Session Strategy</title>
       <content>
@@ -96,6 +59,48 @@
           <codeEntityReference>T:QueueIT.Security.QueueFactory</codeEntityReference> and
           <codeEntityReference>T:QueueIT.Security.KnownUserFactory</codeEntityReference> and implement state and routing using custom logic.
         </para>
+      </content>
+    </section>
+    <section address="link">
+      <title>Link Implementation Strategy</title>
+      <content>
+        <alert class="important">
+          <para>Session strategy should be your first choice so only use Link strategy if for some reason Session strategy can't be applied</para>
+        </alert>
+        <para>Using the link implementation strategy the request on the queue target page requires verification</para>
+        <procedure>
+          <title>Using the Known User Factory to validate the request</title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>Add the QueueIt.Security.jar file to your project.</para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Add JSP Servlet Filter to web.xml as described in <link xlink:href="c8dfb74b-fae8-4d37-b6df-860519d7438d">configuration</link>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Implement one of the <codeEntityReference>T:QueueIT.Security.KnownUserFactory</codeEntityReference>
+                  factory methods to validate the request on the queue target page.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Optionally add <link xlink:href="c8dfb74b-fae8-4d37-b6df-860519d7438d">properties files</link>.
+                </para>
+              </content>
+            </step>
+          </steps>
+          <!-- <conclusion>Optional conclusion</conclusion> -->
+        </procedure>
       </content>
     </section>
     <relatedTopics>

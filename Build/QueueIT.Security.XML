@@ -45,8 +45,32 @@
         </member>
         <member name="T:QueueIT.Security.CookieValidateResultRepository">
             <summary>
-            A repository to store user session state which stores the validation result in a http cookie. 
+            A repository to store user session state which stores the validation result in a http cookie. This is the default.
             </summary>
+            <remarks>
+            This will by default store a cookie with 20 minutes expiration.
+            </remarks>
+            <example>
+            <code language="cs">
+            CookieValidateResultRepository.Configure(".ticketania.com", TimeSpan.FromMinutes(20));
+            </code>
+            Configuration:
+            <code>
+            <![CDATA[
+            <configuration>
+               <configSections>
+                  <section name="queueit.security" type="QueueIT.Security.Configuration.SettingsSection, QueueIT.Security"/>
+               </configSections>
+               <queueit.security>
+                  <repositorySettings>
+                      <setting name="CookieDomain" value=".ticketania.com" />
+                      <setting name="CookieExpiration" value="00:20:00" />
+                  </repositorySettings>
+               </queueit.security>
+            </configuration>    
+            ]]>
+            </code>
+            </example>
         </member>
         <member name="T:QueueIT.Security.IValidateResultRepository">
             <summary>
@@ -1842,6 +1866,17 @@
             Configure the Queue Factory
             </summary>
             <param name="hostDomain">The domain name of the Queue-it service. This should not normally be set</param>
+        </member>
+        <member name="T:QueueIT.Security.SessionValidateResultRepository">
+            <summary>
+            A repository to store user session state which stores the validation result in a http cookie.
+            </summary>
+            <remarks>The default repository is the CookieValidateResultRepository. Use the Configure method of the SessionValidationController to override.</remarks>
+            <example>
+            <code language="cs">
+            SessionValidationController.Configure(validationResultProviderFactory: () => new SessionValidateResultRepository);
+            </code>
+            </example>
         </member>
     </members>
 </doc>

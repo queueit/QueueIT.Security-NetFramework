@@ -11,8 +11,45 @@
         in your project. If you have any information, tips, updates, or corrections 
         that you would like to see added to the guide, feel free to submit them 
         to the author using the Send Feedback link in the page footer.</para>
+      <para>This documentation is structured as follows</para>
     </introduction>
-    <section></section>
+    <section>
+      <title>Getting started</title>
+      <content>
+        <para>Here you can read about our different implementation strategies based on a technology choice, 
+        e.g. ASP Web Forms, ASP MVC, PHP or Java EE. We currently support 2 different implementation strategies. 
+        The recommended one is ‘Session’ but if this doesn’t align well with your current situation, 
+        please be free to go with the ‘Link’ strategy instead.</para>
+      </content>
+    </section>
+    <section>
+      <title>Reference Implementations</title>
+      <content>
+        <para>This section contains links to downloadable content. 
+        This content is runnable code examples for the different technology choices mentioned earlier.</para>
+      </content>
+    </section>
+    <section>
+      <title>Configuration</title>
+      <content>
+        <para>Please read this section to ensure correct configuration of the implementation.</para>
+      </content>
+    </section>
+    <section>
+      <title>Pitfalls</title>
+      <content>
+        <para>This is a must read for new customers. 
+        In this section we go through classical implementation mistakes. 
+        From problem detection to proposed solutions.</para>
+      </content>
+    </section>
+    <section>
+      <title>Queue IT Security section(s)</title>
+      <content>
+        <para>These last sections contains C# documentation 
+        of the content found in the Queue IT security namespaces.</para>
+      </content>
+    </section>   
     <relatedTopics>
     </relatedTopics>
   </developerConceptualDocument>

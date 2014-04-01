@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="9c770124-51d9-49ed-90ae-c209b6471f5b" revisionNumber="1">
+  <developerConceptualDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>
+        In this section you can read about common implementation mistakes
+        and countermeasures for them.
+      </para>
+    </introduction>
+    <section>
+      <title>Design for failure with health check implementation</title>
+      <content>
+        <para>
+          The queue solution provides high availability, but we always recommend you design for failure.
+          This can be archieved by polling our end at <link><![CDATA[https://healthcheck.queue-it.net/healthcheck.aspx/?c={your-customer-id}&e={your-event-id}]]></link>.
+          Doing so on regular basis and handling the case when no response is recieved can improve your service towards your customers,
+          i.e. presenting them with an alternative or just an explaination of the issue at hand.
+        </para>
+        <para>
+          Please refer to the <link xlink:href="9269961f-84a9-4f6d-a63e-100becdbd51a">Reference Implementations</link> where concreate examples of the
+          health check polling mechanism can be found.
+        </para>
+      </content>
+    </section>
+    <section>
+      <title>Ensure correct alignment of expirations</title>
+      <content>
+        <para>
+          A common mistake is misconfiguration of the different timout settings on the queue it platform.
+          Below we mention the 3 available and how they are used.
+        </para>
+        <list class="bullet">
+          <listItem>
+            <para>ticketExpiration: Is a <link xlink:href="f439359a-4f2d-4a71-9f66-5c77a7d04b89">configuration setting</link> where you specify a timespan, i.e. "00:03:00" (3 min). This setting decides how long time a ticket is can be used on the target site.</para>
+          </listItem>
+          <listItem>
+            <para>Queue number validity time: This value is set op via the go management portal (https://go.queue-it.net) under advanced settings on the actual event. This setting decides how long time any given ticket is valid (e.g. no new ticket when still valid and revisiting the queue)</para>
+          </listItem>
+          <listItem>
+            <para>CookieExpiration: Is a <link xlink:href="f439359a-4f2d-4a71-9f66-5c77a7d04b89">configuration setting</link> where you specify a timespan, i.e. "00:20:00" (20 min). This setting decides how long the session cookie is active on the target site.</para>
+          </listItem>
+        </list>
+        <para>The important thing to remember here is that you need to follow the guidelines specified below. The values in the example are the default recommended ones.</para>
+        <alert class="important">
+          <para>
+            <![CDATA[ticketExpiration (3 min) < QueueNumberValidity (10 min) <= CookieExpiration (20 min)]]>
+          </para>
+        </alert>      
+      </content>
+    </section>
+    <section>
+      <title>Special handling in URL rewrite situations</title>
+      <content>
+        <para>
+          If you experience your end users always are redirected back to the queue and therefore never ends up at the target URL, you could have an URL rewrite situation.
+          This happens if you have some mechanism altering with the URL, which then breaks the default Known User validation implementation.
+        </para>
+        <para>
+          In this case you need to override the default url provider. Below you can see an example of this.
+        </para>
+        <code language="csharp">
+          public class MyCustomUrlProvider : DefaultKnownUserUrlProvider
+          {
+            public override Uri GetUrl()
+            {
+              string internalUrl = base.GetUrl().ToString();
+              string publicUrl = internalUrl.Replace("http", "https").Replace(":4490", "");
+              return new Uri(publicUrl);
+            }
+          }
+        </code>
+      </content>
+    </section>
+    <relatedTopics>
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

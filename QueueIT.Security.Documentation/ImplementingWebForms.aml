@@ -1,92 +1,95 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <topic id="ec9c1caf-725d-485b-9d0d-915395d49d7e" revisionNumber="1">
-    <developerWalkthroughDocument
-      xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
-      xmlns:xlink="http://www.w3.org/1999/xlink">
+  <developerWalkthroughDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
 
-        <introduction>
-            <para>Implementing Known User request validation in ASP.NET Web Forms</para>
-        </introduction>
+    <introduction>
+      <para>Implementing Known User request validation in ASP.NET Web Forms</para>
+    </introduction>
 
-        <section address="link">
-            <title>Link Implementation Strategy</title>
-            <content>
-                <para>Using the link implementation strategy the request on the queue target page requires verification</para>
-                <procedure>
-                    <title>Using the Known User Factory to validate the request</title>
-                    <steps class="ordered">
-                        <step>
-                            <content>
-                                <para>Add a reference to the QueueIT.Security DLL.</para>
-                            </content>
-                        </step>
-                        <step>
-                            <content>
-                                <para>
-                                    Implement one of the <codeEntityReference>T:QueueIT.Security.KnownUserFactory</codeEntityReference>
-                                    factory methods to validate the request on the queue target page.
-                                </para>
-                            </content>
-                        </step>
-                        <step>
-                            <content>
-                                <para>
-                                    Optionally add <link xlink:href="f439359a-4f2d-4a71-9f66-5c77a7d04b89">configuration section</link>.
-                                </para>
-                            </content>
-                        </step>
-                    </steps>
-                    <!-- <conclusion>Optional conclusion</conclusion> -->
-                </procedure>
-            </content>
-        </section>
-        <section address="session">
-            <title>Session Strategy</title>
-            <content>
+    <section address="session">
+      <title>Session Strategy</title>
+      <content>
+        <para>
+          The session implementation requires the code to route requests based on session state.
+          If the user does not have a session and the Known User tokens are not included in the request
+          the users must be redirected to the queue. If the Known User tokens are in the request they
+          must be validated and a session must be created. The
+          <codeEntityReference>T:QueueIT.Security.SessionValidationController</codeEntityReference> class
+          is a helper class that simplifies the implementation of the queue validation by handling sessions
+          and Known User validation as well as routing.
+        </para>
+        <procedure>
+          <title>Using the Session Validation Controller to validate the request</title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>Add a reference to the QueueIT.Security DLL.</para>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
-                    The session implementation requires the code to route requests based on session state.
-                    If the user does not have a session and the Known User tokens are not included in the request
-                    the users must be redirected to the queue. If the Known User tokens are in the request they
-                    must be validated and a session must be created. The 
-                    <codeEntityReference>T:QueueIT.Security.SessionValidationController</codeEntityReference> class 
-                    is a helper class that simplifies the implementation of the queue validation by handling sessions 
-                    and Known User validation as well as routing.
+                  Implement one of the <codeEntityReference>T:QueueIT.Security.SessionValidationController</codeEntityReference>
+                  factory methods to validate the request on all pages that is protected by the queue.
                 </para>
-                <procedure>
-                    <title>Using the Session Validation Controller to validate the request</title>
-                    <steps class="ordered">
-                        <step>
-                            <content>
-                                <para>Add a reference to the QueueIT.Security DLL.</para>
-                            </content>
-                        </step>
-                        <step>
-                            <content>
-                                <para>
-                                    Implement one of the <codeEntityReference>T:QueueIT.Security.SessionValidationController</codeEntityReference>
-                                    factory methods to validate the request on all pages that is protected by the queue.
-                                </para>
-                            </content>
-                        </step>
-                        <step>
-                            <content>
-                                <para>
-                                    Optionally add <link xlink:href="f439359a-4f2d-4a71-9f66-5c77a7d04b89">configuration section</link>.
-                                </para>
-                            </content>
-                        </step>
-                    </steps>
-                </procedure>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
-                    By default the <codeEntityReference>T:QueueIT.Security.SessionValidationController</codeEntityReference> uses ASP.NET Session state.
-                    Use the Configure() method and the <codeEntityReference>T:QueueIT.Security.IValidateResultRepository</codeEntityReference> interface 
-                    to implement a custom session provider. If you need more control please use 
-                    <codeEntityReference>T:QueueIT.Security.QueueFactory</codeEntityReference> and 
-                    <codeEntityReference>T:QueueIT.Security.KnownUserFactory</codeEntityReference> and implement state and routing using custom logic.
+                  Optionally add <link xlink:href="f439359a-4f2d-4a71-9f66-5c77a7d04b89">configuration section</link>.
                 </para>
-            </content>
-        </section>
-        <relatedTopics>
-        </relatedTopics>
-    </developerWalkthroughDocument>
+              </content>
+            </step>
+          </steps>
+        </procedure>
+        <para>
+          By default the <codeEntityReference>T:QueueIT.Security.SessionValidationController</codeEntityReference> uses ASP.NET Session state.
+          Use the Configure() method and the <codeEntityReference>T:QueueIT.Security.IValidateResultRepository</codeEntityReference> interface
+          to implement a custom session provider. If you need more control please use
+          <codeEntityReference>T:QueueIT.Security.QueueFactory</codeEntityReference> and
+          <codeEntityReference>T:QueueIT.Security.KnownUserFactory</codeEntityReference> and implement state and routing using custom logic.
+        </para>
+      </content>
+    </section>
+    <section address="link">
+      <title>Link Implementation Strategy</title>
+      <content>
+        <alert class="important">
+          <para>Session strategy should be your first choice so only use Link strategy if for some reason Session strategy can't be applied</para>
+        </alert>
+        <para>Using the link implementation strategy the request on the queue target page requires verification</para>
+        <procedure>
+          <title>Using the Known User Factory to validate the request</title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>Add a reference to the QueueIT.Security DLL.</para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Implement one of the <codeEntityReference>T:QueueIT.Security.KnownUserFactory</codeEntityReference>
+                  factory methods to validate the request on the queue target page.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Optionally add <link xlink:href="f439359a-4f2d-4a71-9f66-5c77a7d04b89">configuration section</link>.
+                </para>
+              </content>
+            </step>
+          </steps>
+          <!-- <conclusion>Optional conclusion</conclusion> -->
+        </procedure>
+      </content>
+    </section>
+    <relatedTopics>
+    </relatedTopics>
+  </developerWalkthroughDocument>
 </topic>

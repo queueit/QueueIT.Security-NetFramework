@@ -5,7 +5,11 @@
     xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <introduction>
-      <para>The following reference implementations are provided</para>
+      <para>The following reference implementations are provided.</para>
+      <alert class="important">
+        <para>Each downloadable reference contains a simple, advanced, code-only and link implementation. 
+        We recommend the simple solution + <link xlink:href="9c770124-51d9-49ed-90ae-c209b6471f5b">health check</link> which is sufficient in most cases.</para>
+      </alert>
     </introduction>
     <section address="webforms">
       <title>ASP.NET Web Forms</title>
@@ -55,7 +59,6 @@
         </para>
       </content>
     </section>
-
     <relatedTopics>
     </relatedTopics>
   </developerConceptualDocument>

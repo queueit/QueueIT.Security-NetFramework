@@ -2,9 +2,7 @@
 <HelpKI>
   <HelpKINode Title="AcceptedConfirmedResult class">
     <HelpKINode Title="AcceptedConfirmedResult Class" Url="html/bda34605-afcd-e238-2d87-49577d0de88c.htm" />
-    <HelpKINode Title="AcceptedConfirmedResult Members" Url="html/276da517-af88-1e82-76fb-f1eb6b13493e.htm" />
     <HelpKINode Title="about AcceptedConfirmedResult class" Url="html/bda34605-afcd-e238-2d87-49577d0de88c.htm" />
-    <HelpKINode Title="all members" Url="html/276da517-af88-1e82-76fb-f1eb6b13493e.htm" />
     <HelpKINode Title="properties" Url="html/eeee8980-96a7-0c4f-4b0b-d8e5490d0311.htm" />
   </HelpKINode>
   <HelpKINode Title="AcceptedConfirmedResult.IsInitialValidationRequest property" Url="html/416bffac-ad7b-d0f0-3ca4-376eac427f90.htm" />
@@ -18,9 +16,7 @@
   </HelpKINode>
   <HelpKINode Title="CookieValidateResultRepository class">
     <HelpKINode Title="CookieValidateResultRepository Class" Url="html/bd7df010-14cd-9a75-37ac-cdf4643dc232.htm" />
-    <HelpKINode Title="CookieValidateResultRepository Members" Url="html/d1d1b584-f072-0e73-3097-51f98552cd0e.htm" />
     <HelpKINode Title="about CookieValidateResultRepository class" Url="html/bd7df010-14cd-9a75-37ac-cdf4643dc232.htm" />
-    <HelpKINode Title="all members" Url="html/d1d1b584-f072-0e73-3097-51f98552cd0e.htm" />
     <HelpKINode Title="constructor" Url="html/cea1fbde-c3d0-cc1a-808d-8e421a7a81e9.htm" />
     <HelpKINode Title="methods" Url="html/cc04394f-034e-db60-025f-acc3917f0793.htm" />
   </HelpKINode>
@@ -35,9 +31,7 @@
   </HelpKINode>
   <HelpKINode Title="DefaultKnownUserUrlProvider class">
     <HelpKINode Title="DefaultKnownUserUrlProvider Class" Url="html/1220df6c-a64d-9aec-0c20-9362f1c85a6d.htm" />
-    <HelpKINode Title="DefaultKnownUserUrlProvider Members" Url="html/6b8f99b1-30fd-8969-e728-c85a22a980cf.htm" />
     <HelpKINode Title="about DefaultKnownUserUrlProvider class" Url="html/1220df6c-a64d-9aec-0c20-9362f1c85a6d.htm" />
-    <HelpKINode Title="all members" Url="html/6b8f99b1-30fd-8969-e728-c85a22a980cf.htm" />
     <HelpKINode Title="constructor" Url="html/33430c6f-dca2-5797-af4c-fe8aa6ec1f9f.htm" />
     <HelpKINode Title="methods" Url="html/fdb8af9a-d29e-a2c7-dd54-849386a10006.htm" />
   </HelpKINode>
@@ -55,9 +49,7 @@
   <HelpKINode Title="DomainAlias property" Url="html/cfc44e72-36e5-3651-00ce-a9b848f65f5e.htm" />
   <HelpKINode Title="EnqueueResult class">
     <HelpKINode Title="EnqueueResult Class" Url="html/1ec0f009-fda0-1296-f201-a58b65f57949.htm" />
-    <HelpKINode Title="EnqueueResult Members" Url="html/a427b6d8-cfd4-5f86-9d7c-6125deff85dd.htm" />
     <HelpKINode Title="about EnqueueResult class" Url="html/1ec0f009-fda0-1296-f201-a58b65f57949.htm" />
-    <HelpKINode Title="all members" Url="html/a427b6d8-cfd4-5f86-9d7c-6125deff85dd.htm" />
     <HelpKINode Title="properties" Url="html/5add5ff3-eda4-732e-f279-581387d8e9f8.htm" />
   </HelpKINode>
   <HelpKINode Title="EnqueueResult.RedirectUrl property" Url="html/5d9a8830-5322-fc0a-642f-b6d8db2dfe32.htm" />
@@ -75,9 +67,7 @@
   </HelpKINode>
   <HelpKINode Title="ExpiredValidationException class">
     <HelpKINode Title="ExpiredValidationException Class" Url="html/6084a5cb-4f07-66e4-30ed-72ea5f7d0721.htm" />
-    <HelpKINode Title="ExpiredValidationException Members" Url="html/96259763-3bdc-6b8c-46cc-5521d9e4c0f4.htm" />
     <HelpKINode Title="about ExpiredValidationException class" Url="html/6084a5cb-4f07-66e4-30ed-72ea5f7d0721.htm" />
-    <HelpKINode Title="all members" Url="html/96259763-3bdc-6b8c-46cc-5521d9e4c0f4.htm" />
     <HelpKINode Title="properties" Url="html/781f374f-594d-df7e-90b3-cbc8a5968632.htm" />
   </HelpKINode>
   <HelpKINode Title="ExpiredValidationException.KnownUser property" Url="html/f3507bb9-dccc-6709-8a72-3ec1d47df9ab.htm" />
@@ -126,9 +116,7 @@
   <HelpKINode Title="GetValue method" Url="html/b6e023c2-9ef8-9349-af51-8c4d1c8e7dde.htm" />
   <HelpKINode Title="IKnownUser interface">
     <HelpKINode Title="IKnownUser Interface" Url="html/a2e050d1-35b8-57a1-8bb4-62305156475a.htm" />
-    <HelpKINode Title="IKnownUser Members" Url="html/fdcfe9b3-7be1-9cc3-fa0c-481f87a18645.htm" />
     <HelpKINode Title="about IKnownUser interface" Url="html/a2e050d1-35b8-57a1-8bb4-62305156475a.htm" />
-    <HelpKINode Title="all members" Url="html/fdcfe9b3-7be1-9cc3-fa0c-481f87a18645.htm" />
     <HelpKINode Title="properties" Url="html/88c75d88-3191-0f18-4f51-f130cac3fa83.htm" />
   </HelpKINode>
   <HelpKINode Title="IKnownUser.CustomerId property" Url="html/8dba71d4-488a-fd91-670b-cd55c8fec974.htm" />
@@ -140,9 +128,7 @@
   <HelpKINode Title="IKnownUser.TimeStamp property" Url="html/224893eb-274b-f7e4-aff9-1abfb03a3d88.htm" />
   <HelpKINode Title="IKnownUserUrlProvider interface">
     <HelpKINode Title="IKnownUserUrlProvider Interface" Url="html/b07431ba-e902-8529-15ee-362559c8c5b1.htm" />
-    <HelpKINode Title="IKnownUserUrlProvider Members" Url="html/1b61e071-599c-4aec-db36-b52c4a3e5879.htm" />
     <HelpKINode Title="about IKnownUserUrlProvider interface" Url="html/b07431ba-e902-8529-15ee-362559c8c5b1.htm" />
-    <HelpKINode Title="all members" Url="html/1b61e071-599c-4aec-db36-b52c4a3e5879.htm" />
     <HelpKINode Title="methods" Url="html/ea8f535f-6ba1-fded-8721-5247b661679c.htm" />
   </HelpKINode>
   <HelpKINode Title="IKnownUserUrlProvider.GetCustomerId method" Url="html/683e3e45-037a-f332-44be-18cca3163466.htm" />
@@ -156,23 +142,17 @@
   <HelpKINode Title="IncludeTargetUrl property" Url="html/8cc4689c-f7c0-e240-94a3-18feb809b202.htm" />
   <HelpKINode Title="InvalidKnownUserHashException class">
     <HelpKINode Title="InvalidKnownUserHashException Class" Url="html/5cdeb6ca-f513-70cc-930d-3ec3b1e81de7.htm" />
-    <HelpKINode Title="InvalidKnownUserHashException Members" Url="html/dd343bcb-7dfd-6dec-b06a-6bb9c875021b.htm" />
     <HelpKINode Title="about InvalidKnownUserHashException class" Url="html/5cdeb6ca-f513-70cc-930d-3ec3b1e81de7.htm" />
-    <HelpKINode Title="all members" Url="html/dd343bcb-7dfd-6dec-b06a-6bb9c875021b.htm" />
     <HelpKINode Title="properties" Url="html/f5f1c767-246d-310e-3ceb-1d4bf6ce45a4.htm" />
   </HelpKINode>
   <HelpKINode Title="InvalidKnownUserUrlException class">
     <HelpKINode Title="InvalidKnownUserUrlException Class" Url="html/9f8b541d-3a92-aa0c-0121-d3b0cc46dcdf.htm" />
-    <HelpKINode Title="InvalidKnownUserUrlException Members" Url="html/fc00218b-235d-1d4f-a300-466253544696.htm" />
     <HelpKINode Title="about InvalidKnownUserUrlException class" Url="html/9f8b541d-3a92-aa0c-0121-d3b0cc46dcdf.htm" />
-    <HelpKINode Title="all members" Url="html/fc00218b-235d-1d4f-a300-466253544696.htm" />
     <HelpKINode Title="properties" Url="html/4a196e44-1fd9-7e4f-8bd1-732b58c803fa.htm" />
   </HelpKINode>
   <HelpKINode Title="IQueue interface">
     <HelpKINode Title="IQueue Interface" Url="html/7d9057b1-21d3-8c04-8050-4673a00dc138.htm" />
-    <HelpKINode Title="IQueue Members" Url="html/c3bf338e-ac2d-c88d-3f7e-ae864b228c96.htm" />
     <HelpKINode Title="about IQueue interface" Url="html/7d9057b1-21d3-8c04-8050-4673a00dc138.htm" />
-    <HelpKINode Title="all members" Url="html/c3bf338e-ac2d-c88d-3f7e-ae864b228c96.htm" />
     <HelpKINode Title="methods" Url="html/b156b00a-4b63-78c5-4aa8-19fa3fa607f7.htm" />
     <HelpKINode Title="properties" Url="html/6b10ac8b-c05a-90be-d8d0-0e389846eaae.htm" />
   </HelpKINode>
@@ -184,17 +164,13 @@
   <HelpKINode Title="IsInitialValidationRequest property" Url="html/416bffac-ad7b-d0f0-3ca4-376eac427f90.htm" />
   <HelpKINode Title="IValidateResult interface">
     <HelpKINode Title="IValidateResult Interface" Url="html/f918a987-5262-00dd-daa3-613172c14d17.htm" />
-    <HelpKINode Title="IValidateResult Members" Url="html/e7f91094-0ca4-8806-3aac-e2b413fdc045.htm" />
     <HelpKINode Title="about IValidateResult interface" Url="html/f918a987-5262-00dd-daa3-613172c14d17.htm" />
-    <HelpKINode Title="all members" Url="html/e7f91094-0ca4-8806-3aac-e2b413fdc045.htm" />
     <HelpKINode Title="properties" Url="html/965404a1-aac2-a160-4f6e-7157e0e73e29.htm" />
   </HelpKINode>
   <HelpKINode Title="IValidateResult.Queue property" Url="html/2ebc46f0-c6e2-c844-5922-6b60d71d923f.htm" />
   <HelpKINode Title="IValidateResultRepository interface">
     <HelpKINode Title="IValidateResultRepository Interface" Url="html/d21f5ee4-ed91-9c0a-ad85-32bf84364f16.htm" />
-    <HelpKINode Title="IValidateResultRepository Members" Url="html/17e0065d-3fd1-dd3e-8462-b88c8b9451e5.htm" />
     <HelpKINode Title="about IValidateResultRepository interface" Url="html/d21f5ee4-ed91-9c0a-ad85-32bf84364f16.htm" />
-    <HelpKINode Title="all members" Url="html/17e0065d-3fd1-dd3e-8462-b88c8b9451e5.htm" />
     <HelpKINode Title="methods" Url="html/d9927a50-3767-ba07-07a2-acb950cf2c9c.htm" />
   </HelpKINode>
   <HelpKINode Title="IValidateResultRepository.GetValidationResult method" Url="html/97b1fbf0-0c18-ee6f-dcb6-a402b77b6041.htm" />
@@ -206,9 +182,7 @@
   </HelpKINode>
   <HelpKINode Title="KnownUserAttribute class">
     <HelpKINode Title="KnownUserAttribute Class" Url="html/b7a29d5b-6a3b-6ff5-93b6-29923946f038.htm" />
-    <HelpKINode Title="KnownUserAttribute Members" Url="html/d24189a3-2a63-aef8-be90-fa23c6fd6cde.htm" />
     <HelpKINode Title="about KnownUserAttribute class" Url="html/b7a29d5b-6a3b-6ff5-93b6-29923946f038.htm" />
-    <HelpKINode Title="all members" Url="html/d24189a3-2a63-aef8-be90-fa23c6fd6cde.htm" />
     <HelpKINode Title="constructor" Url="html/30d7e462-1e2e-03ff-cf24-c4409ae507e7.htm" />
     <HelpKINode Title="methods" Url="html/fa40bb53-ee36-693a-7f2b-deb4af6e14d4.htm" />
     <HelpKINode Title="properties" Url="html/83621664-90bd-37d9-96bd-a50b73ec0e4d.htm" />
@@ -220,17 +194,13 @@
   <HelpKINode Title="KnownUserAttribute.OnValidated method" Url="html/259bcaeb-ec2a-8903-e7aa-11127108a8f0.htm" />
   <HelpKINode Title="KnownUserErrorModel class">
     <HelpKINode Title="KnownUserErrorModel Class" Url="html/115e83be-888b-61d9-48b4-5a7de0998505.htm" />
-    <HelpKINode Title="KnownUserErrorModel Members" Url="html/76351779-09d7-d343-b512-ababfb88d018.htm" />
     <HelpKINode Title="about KnownUserErrorModel class" Url="html/115e83be-888b-61d9-48b4-5a7de0998505.htm" />
-    <HelpKINode Title="all members" Url="html/76351779-09d7-d343-b512-ababfb88d018.htm" />
     <HelpKINode Title="properties" Url="html/70ef7c32-fd1f-a86b-01f6-b57a48bf5d7e.htm" />
   </HelpKINode>
   <HelpKINode Title="KnownUserErrorModel.Exception property" Url="html/abd60b8a-980f-4293-1e19-ad52ceb6c635.htm" />
   <HelpKINode Title="KnownUserException class">
     <HelpKINode Title="KnownUserException Class" Url="html/22284745-4b22-a6a5-1c7f-e887ca2d34fb.htm" />
-    <HelpKINode Title="KnownUserException Members" Url="html/70ad2345-1f96-bb66-932c-ab6dc951c9f5.htm" />
     <HelpKINode Title="about KnownUserException class" Url="html/22284745-4b22-a6a5-1c7f-e887ca2d34fb.htm" />
-    <HelpKINode Title="all members" Url="html/70ad2345-1f96-bb66-932c-ab6dc951c9f5.htm" />
     <HelpKINode Title="constructor" Url="html/c941c618-2505-3d23-5176-78807a1073ba.htm" />
     <HelpKINode Title="properties" Url="html/c1e1cbf1-1ea1-ef0a-ed21-29bb537f924e.htm" />
   </HelpKINode>
@@ -239,9 +209,7 @@
   <HelpKINode Title="KnownUserException.ValidatedUrl property" Url="html/c4cd99a6-fb8f-ea9b-4314-7be13c57ec8b.htm" />
   <HelpKINode Title="KnownUserFactory class">
     <HelpKINode Title="KnownUserFactory Class" Url="html/3e123a56-23b4-f63a-57aa-1a188534d2c6.htm" />
-    <HelpKINode Title="KnownUserFactory Members" Url="html/a53e5505-d68c-0a69-7d12-bd1d73352893.htm" />
     <HelpKINode Title="about KnownUserFactory class" Url="html/3e123a56-23b4-f63a-57aa-1a188534d2c6.htm" />
-    <HelpKINode Title="all members" Url="html/a53e5505-d68c-0a69-7d12-bd1d73352893.htm" />
     <HelpKINode Title="methods" Url="html/31f8ceb5-59de-f9fb-cbce-30127b32ed37.htm" />
     <HelpKINode Title="properties" Url="html/c7931c1b-8810-cd1e-966c-251f9ed4c30d.htm" />
   </HelpKINode>
@@ -250,9 +218,7 @@
   <HelpKINode Title="KnownUserFactory.VerifyMd5Hash method" Url="html/028c2b91-e5df-3d0f-2406-f577482677ff.htm" />
   <HelpKINode Title="KnownUserModel class">
     <HelpKINode Title="KnownUserModel Class" Url="html/0f9eaf96-431f-5ce7-6eab-f360f7a9958e.htm" />
-    <HelpKINode Title="KnownUserModel Members" Url="html/ae3e9924-5d23-9922-6253-9a0ec2e63724.htm" />
     <HelpKINode Title="about KnownUserModel class" Url="html/0f9eaf96-431f-5ce7-6eab-f360f7a9958e.htm" />
-    <HelpKINode Title="all members" Url="html/ae3e9924-5d23-9922-6253-9a0ec2e63724.htm" />
     <HelpKINode Title="constructor" Url="html/27cf8bda-44b6-9e3e-f138-d50dba53e3d0.htm" />
     <HelpKINode Title="properties" Url="html/9534e248-1983-dfb0-57a9-f91ebc94084e.htm" />
   </HelpKINode>
@@ -260,9 +226,7 @@
   <HelpKINode Title="KnownUserModel.KnownUserModel constructor" Url="html/27cf8bda-44b6-9e3e-f138-d50dba53e3d0.htm" />
   <HelpKINode Title="KnownUserValidationException class">
     <HelpKINode Title="KnownUserValidationException Class" Url="html/f1f5cedd-a939-f145-f280-13a1dabae4e8.htm" />
-    <HelpKINode Title="KnownUserValidationException Members" Url="html/0fbf883d-b870-8f8d-f2d5-2036e97528c4.htm" />
     <HelpKINode Title="about KnownUserValidationException class" Url="html/f1f5cedd-a939-f145-f280-13a1dabae4e8.htm" />
-    <HelpKINode Title="all members" Url="html/0fbf883d-b870-8f8d-f2d5-2036e97528c4.htm" />
     <HelpKINode Title="properties" Url="html/dc43a1bd-85c8-184b-5769-d48afb231f90.htm" />
   </HelpKINode>
   <HelpKINode Title="OnActionExecuting method">
@@ -296,9 +260,7 @@
   </HelpKINode>
   <HelpKINode Title="QueueFactory class">
     <HelpKINode Title="QueueFactory Class" Url="html/3ff33990-9a3e-1094-a984-e09975a31517.htm" />
-    <HelpKINode Title="QueueFactory Members" Url="html/70277755-99c9-1d90-1d00-fd70a848dfdb.htm" />
     <HelpKINode Title="about QueueFactory class" Url="html/3ff33990-9a3e-1094-a984-e09975a31517.htm" />
-    <HelpKINode Title="all members" Url="html/70277755-99c9-1d90-1d00-fd70a848dfdb.htm" />
     <HelpKINode Title="methods" Url="html/69040b75-53a7-c9bd-d9d9-a3959c1e5caa.htm" />
   </HelpKINode>
   <HelpKINode Title="QueueFactory.Configure method" Url="html/c38def13-faf4-efb9-b118-90eddfee97e4.htm" />
@@ -308,124 +270,37 @@
     <HelpKINode Title="SessionStateModel.QueueId Property " Url="html/d73353ce-6b2f-7d6e-8bb7-f928fe0029d5.htm" />
   </HelpKINode>
   <HelpKINode Title="QueueIT.Security namespace" Url="html/ba2411b0-2415-503f-55cd-4b67a1dbeea2.htm" />
-  <HelpKINode Title="QueueIT.Security.AcceptedConfirmedResult class">
-    <HelpKINode Title="AcceptedConfirmedResult Class" Url="html/bda34605-afcd-e238-2d87-49577d0de88c.htm" />
-    <HelpKINode Title="AcceptedConfirmedResult Members" Url="html/276da517-af88-1e82-76fb-f1eb6b13493e.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.CookieValidateResultRepository class">
-    <HelpKINode Title="CookieValidateResultRepository Class" Url="html/bd7df010-14cd-9a75-37ac-cdf4643dc232.htm" />
-    <HelpKINode Title="CookieValidateResultRepository Members" Url="html/d1d1b584-f072-0e73-3097-51f98552cd0e.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.DefaultKnownUserUrlProvider class">
-    <HelpKINode Title="DefaultKnownUserUrlProvider Class" Url="html/1220df6c-a64d-9aec-0c20-9362f1c85a6d.htm" />
-    <HelpKINode Title="DefaultKnownUserUrlProvider Members" Url="html/6b8f99b1-30fd-8969-e728-c85a22a980cf.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.EnqueueResult class">
-    <HelpKINode Title="EnqueueResult Class" Url="html/1ec0f009-fda0-1296-f201-a58b65f57949.htm" />
-    <HelpKINode Title="EnqueueResult Members" Url="html/a427b6d8-cfd4-5f86-9d7c-6125deff85dd.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.ExpiredValidationException class">
-    <HelpKINode Title="ExpiredValidationException Class" Url="html/6084a5cb-4f07-66e4-30ed-72ea5f7d0721.htm" />
-    <HelpKINode Title="ExpiredValidationException Members" Url="html/96259763-3bdc-6b8c-46cc-5521d9e4c0f4.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.IKnownUser interface">
-    <HelpKINode Title="IKnownUser Interface" Url="html/a2e050d1-35b8-57a1-8bb4-62305156475a.htm" />
-    <HelpKINode Title="IKnownUser Members" Url="html/fdcfe9b3-7be1-9cc3-fa0c-481f87a18645.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.IKnownUserUrlProvider interface">
-    <HelpKINode Title="IKnownUserUrlProvider Interface" Url="html/b07431ba-e902-8529-15ee-362559c8c5b1.htm" />
-    <HelpKINode Title="IKnownUserUrlProvider Members" Url="html/1b61e071-599c-4aec-db36-b52c4a3e5879.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.InvalidKnownUserHashException class">
-    <HelpKINode Title="InvalidKnownUserHashException Class" Url="html/5cdeb6ca-f513-70cc-930d-3ec3b1e81de7.htm" />
-    <HelpKINode Title="InvalidKnownUserHashException Members" Url="html/dd343bcb-7dfd-6dec-b06a-6bb9c875021b.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.InvalidKnownUserUrlException class">
-    <HelpKINode Title="InvalidKnownUserUrlException Class" Url="html/9f8b541d-3a92-aa0c-0121-d3b0cc46dcdf.htm" />
-    <HelpKINode Title="InvalidKnownUserUrlException Members" Url="html/fc00218b-235d-1d4f-a300-466253544696.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.IQueue interface">
-    <HelpKINode Title="IQueue Interface" Url="html/7d9057b1-21d3-8c04-8050-4673a00dc138.htm" />
-    <HelpKINode Title="IQueue Members" Url="html/c3bf338e-ac2d-c88d-3f7e-ae864b228c96.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.IValidateResult interface">
-    <HelpKINode Title="IValidateResult Interface" Url="html/f918a987-5262-00dd-daa3-613172c14d17.htm" />
-    <HelpKINode Title="IValidateResult Members" Url="html/e7f91094-0ca4-8806-3aac-e2b413fdc045.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.IValidateResultRepository interface">
-    <HelpKINode Title="IValidateResultRepository Interface" Url="html/d21f5ee4-ed91-9c0a-ad85-32bf84364f16.htm" />
-    <HelpKINode Title="IValidateResultRepository Members" Url="html/17e0065d-3fd1-dd3e-8462-b88c8b9451e5.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.KnownUserException class">
-    <HelpKINode Title="KnownUserException Class" Url="html/22284745-4b22-a6a5-1c7f-e887ca2d34fb.htm" />
-    <HelpKINode Title="KnownUserException Members" Url="html/70ad2345-1f96-bb66-932c-ab6dc951c9f5.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.KnownUserFactory class">
-    <HelpKINode Title="KnownUserFactory Class" Url="html/3e123a56-23b4-f63a-57aa-1a188534d2c6.htm" />
-    <HelpKINode Title="KnownUserFactory Members" Url="html/a53e5505-d68c-0a69-7d12-bd1d73352893.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.KnownUserValidationException class">
-    <HelpKINode Title="KnownUserValidationException Class" Url="html/f1f5cedd-a939-f145-f280-13a1dabae4e8.htm" />
-    <HelpKINode Title="KnownUserValidationException Members" Url="html/0fbf883d-b870-8f8d-f2d5-2036e97528c4.htm" />
-  </HelpKINode>
+  <HelpKINode Title="QueueIT.Security.AcceptedConfirmedResult class" Url="html/bda34605-afcd-e238-2d87-49577d0de88c.htm" />
+  <HelpKINode Title="QueueIT.Security.CookieValidateResultRepository class" Url="html/bd7df010-14cd-9a75-37ac-cdf4643dc232.htm" />
+  <HelpKINode Title="QueueIT.Security.DefaultKnownUserUrlProvider class" Url="html/1220df6c-a64d-9aec-0c20-9362f1c85a6d.htm" />
+  <HelpKINode Title="QueueIT.Security.EnqueueResult class" Url="html/1ec0f009-fda0-1296-f201-a58b65f57949.htm" />
+  <HelpKINode Title="QueueIT.Security.ExpiredValidationException class" Url="html/6084a5cb-4f07-66e4-30ed-72ea5f7d0721.htm" />
+  <HelpKINode Title="QueueIT.Security.IKnownUser interface" Url="html/a2e050d1-35b8-57a1-8bb4-62305156475a.htm" />
+  <HelpKINode Title="QueueIT.Security.IKnownUserUrlProvider interface" Url="html/b07431ba-e902-8529-15ee-362559c8c5b1.htm" />
+  <HelpKINode Title="QueueIT.Security.InvalidKnownUserHashException class" Url="html/5cdeb6ca-f513-70cc-930d-3ec3b1e81de7.htm" />
+  <HelpKINode Title="QueueIT.Security.InvalidKnownUserUrlException class" Url="html/9f8b541d-3a92-aa0c-0121-d3b0cc46dcdf.htm" />
+  <HelpKINode Title="QueueIT.Security.IQueue interface" Url="html/7d9057b1-21d3-8c04-8050-4673a00dc138.htm" />
+  <HelpKINode Title="QueueIT.Security.IValidateResult interface" Url="html/f918a987-5262-00dd-daa3-613172c14d17.htm" />
+  <HelpKINode Title="QueueIT.Security.IValidateResultRepository interface" Url="html/d21f5ee4-ed91-9c0a-ad85-32bf84364f16.htm" />
+  <HelpKINode Title="QueueIT.Security.KnownUserException class" Url="html/22284745-4b22-a6a5-1c7f-e887ca2d34fb.htm" />
+  <HelpKINode Title="QueueIT.Security.KnownUserFactory class" Url="html/3e123a56-23b4-f63a-57aa-1a188534d2c6.htm" />
+  <HelpKINode Title="QueueIT.Security.KnownUserValidationException class" Url="html/f1f5cedd-a939-f145-f280-13a1dabae4e8.htm" />
   <HelpKINode Title="QueueIT.Security.Mvc namespace" Url="html/5c47874a-229a-0e87-72ce-90992532df84.htm" />
-  <HelpKINode Title="QueueIT.Security.Mvc.KnownUserAttribute class">
-    <HelpKINode Title="KnownUserAttribute Class" Url="html/b7a29d5b-6a3b-6ff5-93b6-29923946f038.htm" />
-    <HelpKINode Title="KnownUserAttribute Members" Url="html/d24189a3-2a63-aef8-be90-fa23c6fd6cde.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.Mvc.KnownUserErrorModel class">
-    <HelpKINode Title="KnownUserErrorModel Class" Url="html/115e83be-888b-61d9-48b4-5a7de0998505.htm" />
-    <HelpKINode Title="KnownUserErrorModel Members" Url="html/76351779-09d7-d343-b512-ababfb88d018.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.Mvc.KnownUserModel class">
-    <HelpKINode Title="KnownUserModel Class" Url="html/0f9eaf96-431f-5ce7-6eab-f360f7a9958e.htm" />
-    <HelpKINode Title="KnownUserModel Members" Url="html/ae3e9924-5d23-9922-6253-9a0ec2e63724.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.Mvc.SessionValidationAttribute class">
-    <HelpKINode Title="SessionValidationAttribute Class" Url="html/087f754f-885d-f4f6-7b29-98f3adb78403.htm" />
-    <HelpKINode Title="SessionValidationAttribute Members" Url="html/b7605bfe-0153-a071-1f0a-056b08a1a9f5.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.Mvc.SessionValidationErrorModel class">
-    <HelpKINode Title="SessionValidationErrorModel Class" Url="html/fdf373a6-d967-8a5c-bd80-8e1ffa501e16.htm" />
-    <HelpKINode Title="SessionValidationErrorModel Members" Url="html/f21a1a8e-5e97-a9d8-1155-da4df04d0a81.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.Mvc.SessionValidationModel class">
-    <HelpKINode Title="SessionValidationModel Class" Url="html/74bc1ae7-3854-a2bb-90c0-58af7a6d1846.htm" />
-    <HelpKINode Title="SessionValidationModel Members" Url="html/7e354879-021a-d22a-2703-d6b1dcde64a5.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.Mvc.UnverifiedKnownUserException class">
-    <HelpKINode Title="UnverifiedKnownUserException Class" Url="html/332ec740-6e59-3c02-aec1-bd82cb1ce302.htm" />
-    <HelpKINode Title="UnverifiedKnownUserException Members" Url="html/e0c05942-5d68-4f7b-35b1-3c7fd31b2833.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.QueueFactory class">
-    <HelpKINode Title="QueueFactory Class" Url="html/3ff33990-9a3e-1094-a984-e09975a31517.htm" />
-    <HelpKINode Title="QueueFactory Members" Url="html/70277755-99c9-1d90-1d00-fd70a848dfdb.htm" />
-  </HelpKINode>
+  <HelpKINode Title="QueueIT.Security.Mvc.KnownUserAttribute class" Url="html/b7a29d5b-6a3b-6ff5-93b6-29923946f038.htm" />
+  <HelpKINode Title="QueueIT.Security.Mvc.KnownUserErrorModel class" Url="html/115e83be-888b-61d9-48b4-5a7de0998505.htm" />
+  <HelpKINode Title="QueueIT.Security.Mvc.KnownUserModel class" Url="html/0f9eaf96-431f-5ce7-6eab-f360f7a9958e.htm" />
+  <HelpKINode Title="QueueIT.Security.Mvc.SessionValidationAttribute class" Url="html/087f754f-885d-f4f6-7b29-98f3adb78403.htm" />
+  <HelpKINode Title="QueueIT.Security.Mvc.SessionValidationErrorModel class" Url="html/fdf373a6-d967-8a5c-bd80-8e1ffa501e16.htm" />
+  <HelpKINode Title="QueueIT.Security.Mvc.SessionValidationModel class" Url="html/74bc1ae7-3854-a2bb-90c0-58af7a6d1846.htm" />
+  <HelpKINode Title="QueueIT.Security.Mvc.UnverifiedKnownUserException class" Url="html/332ec740-6e59-3c02-aec1-bd82cb1ce302.htm" />
+  <HelpKINode Title="QueueIT.Security.QueueFactory class" Url="html/3ff33990-9a3e-1094-a984-e09975a31517.htm" />
   <HelpKINode Title="QueueIT.Security.RedirectType enumeration" Url="html/b9ff7ee8-c473-a9db-90a8-483f6c70460d.htm" />
-  <HelpKINode Title="QueueIT.Security.SessionStateModel class">
-    <HelpKINode Title="SessionStateModel Class" Url="html/d61560c5-aa5c-f9d6-1a1c-1ee6b0883d17.htm" />
-    <HelpKINode Title="SessionStateModel Members" Url="html/3261c5fb-abcc-3bce-4239-b50eb444f71e.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.SessionValidateResultRepository class">
-    <HelpKINode Title="SessionValidateResultRepository Class" Url="html/2cc6c216-5415-4172-54bd-c992bbce7ecc.htm" />
-    <HelpKINode Title="SessionValidateResultRepository Members" Url="html/e40cd7f7-1d8c-dae1-4341-01053af9a8a6.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.SessionValidationController class">
-    <HelpKINode Title="SessionValidationController Class" Url="html/a31e4793-b02e-e032-8cf7-a21668556dab.htm" />
-    <HelpKINode Title="SessionValidationController Members" Url="html/14d3a09b-9a5c-07bc-fb98-82708b087462.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.SessionValidationException class">
-    <HelpKINode Title="SessionValidationException Class" Url="html/af4df27b-cac1-cb68-1a79-8b7c52aba107.htm" />
-    <HelpKINode Title="SessionValidationException Members" Url="html/c0c34eb3-93d6-680c-cd1a-aa58ed3e1091.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.ValidateResultBase class">
-    <HelpKINode Title="ValidateResultBase Class" Url="html/e48d697b-7765-cfbd-a8d9-054dfd21076d.htm" />
-    <HelpKINode Title="ValidateResultBase Members" Url="html/35841aff-e755-9c21-4f31-3d3244f04764.htm" />
-  </HelpKINode>
-  <HelpKINode Title="QueueIT.Security.ValidateResultRepositoryBase class">
-    <HelpKINode Title="ValidateResultRepositoryBase Class" Url="html/8cf87d67-6cff-c4fd-f24e-0fd71baf9f0a.htm" />
-    <HelpKINode Title="ValidateResultRepositoryBase Members" Url="html/422fb734-af31-5549-52bd-55f96272f200.htm" />
-  </HelpKINode>
+  <HelpKINode Title="QueueIT.Security.SessionStateModel class" Url="html/d61560c5-aa5c-f9d6-1a1c-1ee6b0883d17.htm" />
+  <HelpKINode Title="QueueIT.Security.SessionValidateResultRepository class" Url="html/2cc6c216-5415-4172-54bd-c992bbce7ecc.htm" />
+  <HelpKINode Title="QueueIT.Security.SessionValidationController class" Url="html/a31e4793-b02e-e032-8cf7-a21668556dab.htm" />
+  <HelpKINode Title="QueueIT.Security.SessionValidationException class" Url="html/af4df27b-cac1-cb68-1a79-8b7c52aba107.htm" />
+  <HelpKINode Title="QueueIT.Security.ValidateResultBase class" Url="html/e48d697b-7765-cfbd-a8d9-054dfd21076d.htm" />
+  <HelpKINode Title="QueueIT.Security.ValidateResultRepositoryBase class" Url="html/8cf87d67-6cff-c4fd-f24e-0fd71baf9f0a.htm" />
   <HelpKINode Title="RedirectType enumeration" Url="html/b9ff7ee8-c473-a9db-90a8-483f6c70460d.htm" />
   <HelpKINode Title="RedirectType property">
     <HelpKINode Title="IKnownUser.RedirectType Property " Url="html/5a621f9c-f9cf-7420-ffed-9eba7fd164c3.htm" />
@@ -436,9 +311,7 @@
   <HelpKINode Title="SecretKey property" Url="html/21fc607a-2498-abd5-eb5c-ec11a6dfcd9c.htm" />
   <HelpKINode Title="SessionStateModel class">
     <HelpKINode Title="SessionStateModel Class" Url="html/d61560c5-aa5c-f9d6-1a1c-1ee6b0883d17.htm" />
-    <HelpKINode Title="SessionStateModel Members" Url="html/3261c5fb-abcc-3bce-4239-b50eb444f71e.htm" />
     <HelpKINode Title="about SessionStateModel class" Url="html/d61560c5-aa5c-f9d6-1a1c-1ee6b0883d17.htm" />
-    <HelpKINode Title="all members" Url="html/3261c5fb-abcc-3bce-4239-b50eb444f71e.htm" />
     <HelpKINode Title="constructor" Url="html/0551de56-b0c4-d3e8-ed52-5a4ef45ea8ab.htm" />
     <HelpKINode Title="properties" Url="html/111b423a-4fde-a278-8f14-388d2653fe89.htm" />
   </HelpKINode>
@@ -450,9 +323,7 @@
   <HelpKINode Title="SessionStateModel.TimeStamp property" Url="html/36a567ff-3e93-5818-6353-3c3ba2dcbea0.htm" />
   <HelpKINode Title="SessionValidateResultRepository class">
     <HelpKINode Title="SessionValidateResultRepository Class" Url="html/2cc6c216-5415-4172-54bd-c992bbce7ecc.htm" />
-    <HelpKINode Title="SessionValidateResultRepository Members" Url="html/e40cd7f7-1d8c-dae1-4341-01053af9a8a6.htm" />
     <HelpKINode Title="about SessionValidateResultRepository class" Url="html/2cc6c216-5415-4172-54bd-c992bbce7ecc.htm" />
-    <HelpKINode Title="all members" Url="html/e40cd7f7-1d8c-dae1-4341-01053af9a8a6.htm" />
     <HelpKINode Title="constructor" Url="html/6d42ba0a-9430-6922-f4d8-4f83e7021ade.htm" />
     <HelpKINode Title="methods" Url="html/10e3bf61-6cd6-1c5e-1687-93c9de54eb9b.htm" />
   </HelpKINode>
@@ -461,9 +332,7 @@
   <HelpKINode Title="SessionValidateResultRepository.SetValidationResult method" Url="html/40dd4810-e32d-1022-9791-1999120d73ca.htm" />
   <HelpKINode Title="SessionValidationAttribute class">
     <HelpKINode Title="SessionValidationAttribute Class" Url="html/087f754f-885d-f4f6-7b29-98f3adb78403.htm" />
-    <HelpKINode Title="SessionValidationAttribute Members" Url="html/b7605bfe-0153-a071-1f0a-056b08a1a9f5.htm" />
     <HelpKINode Title="about SessionValidationAttribute class" Url="html/087f754f-885d-f4f6-7b29-98f3adb78403.htm" />
-    <HelpKINode Title="all members" Url="html/b7605bfe-0153-a071-1f0a-056b08a1a9f5.htm" />
     <HelpKINode Title="constructor" Url="html/982bd64a-5585-6d35-a838-590bff444aa9.htm" />
     <HelpKINode Title="methods" Url="html/0b884058-cc5d-cbea-dcf3-4490c86b3dca.htm" />
     <HelpKINode Title="properties" Url="html/4b82ff8b-ad6d-46f6-4d0e-f134b18c1a90.htm" />
@@ -479,18 +348,14 @@
   <HelpKINode Title="SessionValidationAttribute.ValidateRequest method" Url="html/154c0047-810f-800f-aa86-d6cd143d4477.htm" />
   <HelpKINode Title="SessionValidationController class">
     <HelpKINode Title="SessionValidationController Class" Url="html/a31e4793-b02e-e032-8cf7-a21668556dab.htm" />
-    <HelpKINode Title="SessionValidationController Members" Url="html/14d3a09b-9a5c-07bc-fb98-82708b087462.htm" />
     <HelpKINode Title="about SessionValidationController class" Url="html/a31e4793-b02e-e032-8cf7-a21668556dab.htm" />
-    <HelpKINode Title="all members" Url="html/14d3a09b-9a5c-07bc-fb98-82708b087462.htm" />
     <HelpKINode Title="methods" Url="html/94b019b5-4b26-ecda-6aa3-60b63b35c2ce.htm" />
   </HelpKINode>
   <HelpKINode Title="SessionValidationController.Configure method" Url="html/d063d39b-2bec-dde5-6996-0cf66d4e7a01.htm" />
   <HelpKINode Title="SessionValidationController.ValidateRequest method" Url="html/68594519-1591-de56-ed82-d9cf13421aa7.htm" />
   <HelpKINode Title="SessionValidationErrorModel class">
     <HelpKINode Title="SessionValidationErrorModel Class" Url="html/fdf373a6-d967-8a5c-bd80-8e1ffa501e16.htm" />
-    <HelpKINode Title="SessionValidationErrorModel Members" Url="html/f21a1a8e-5e97-a9d8-1155-da4df04d0a81.htm" />
     <HelpKINode Title="about SessionValidationErrorModel class" Url="html/fdf373a6-d967-8a5c-bd80-8e1ffa501e16.htm" />
-    <HelpKINode Title="all members" Url="html/f21a1a8e-5e97-a9d8-1155-da4df04d0a81.htm" />
     <HelpKINode Title="properties" Url="html/81b1251b-27f6-d475-3a88-fa0c40cb28b2.htm" />
   </HelpKINode>
   <HelpKINode Title="SessionValidationErrorModel.Exception property" Url="html/69dd0e9f-f3a3-dddf-5afb-f98b55c22b6c.htm" />
@@ -498,17 +363,13 @@
   <HelpKINode Title="SessionValidationErrorModel.Queue property" Url="html/830bc2c1-6994-e1b9-497f-1f9e852d7d01.htm" />
   <HelpKINode Title="SessionValidationException class">
     <HelpKINode Title="SessionValidationException Class" Url="html/af4df27b-cac1-cb68-1a79-8b7c52aba107.htm" />
-    <HelpKINode Title="SessionValidationException Members" Url="html/c0c34eb3-93d6-680c-cd1a-aa58ed3e1091.htm" />
     <HelpKINode Title="about SessionValidationException class" Url="html/af4df27b-cac1-cb68-1a79-8b7c52aba107.htm" />
-    <HelpKINode Title="all members" Url="html/c0c34eb3-93d6-680c-cd1a-aa58ed3e1091.htm" />
     <HelpKINode Title="properties" Url="html/ab672adc-0b23-d5d0-0e68-dc6c9ad50b18.htm" />
   </HelpKINode>
   <HelpKINode Title="SessionValidationException.Queue property" Url="html/2427df37-6c7a-4e83-a6bc-e10662b15c50.htm" />
   <HelpKINode Title="SessionValidationModel class">
     <HelpKINode Title="SessionValidationModel Class" Url="html/74bc1ae7-3854-a2bb-90c0-58af7a6d1846.htm" />
-    <HelpKINode Title="SessionValidationModel Members" Url="html/7e354879-021a-d22a-2703-d6b1dcde64a5.htm" />
     <HelpKINode Title="about SessionValidationModel class" Url="html/74bc1ae7-3854-a2bb-90c0-58af7a6d1846.htm" />
-    <HelpKINode Title="all members" Url="html/7e354879-021a-d22a-2703-d6b1dcde64a5.htm" />
     <HelpKINode Title="constructor" Url="html/a1924835-224d-2c35-d1d9-ab91d0ff0ac5.htm" />
     <HelpKINode Title="properties" Url="html/71d25bda-4e66-92cc-b121-5e12edb72839.htm" />
   </HelpKINode>
@@ -528,9 +389,7 @@
   <HelpKINode Title="Unknown enumeration member" Url="html/b9ff7ee8-c473-a9db-90a8-483f6c70460d.htm" />
   <HelpKINode Title="UnverifiedKnownUserException class">
     <HelpKINode Title="UnverifiedKnownUserException Class" Url="html/332ec740-6e59-3c02-aec1-bd82cb1ce302.htm" />
-    <HelpKINode Title="UnverifiedKnownUserException Members" Url="html/e0c05942-5d68-4f7b-35b1-3c7fd31b2833.htm" />
     <HelpKINode Title="about UnverifiedKnownUserException class" Url="html/332ec740-6e59-3c02-aec1-bd82cb1ce302.htm" />
-    <HelpKINode Title="all members" Url="html/e0c05942-5d68-4f7b-35b1-3c7fd31b2833.htm" />
     <HelpKINode Title="constructor" Url="html/68f72a5e-9874-53c2-1af0-b33f81b620cf.htm" />
     <HelpKINode Title="properties" Url="html/1e4720b4-d4eb-a26c-5b0c-8c3e28531f2c.htm" />
   </HelpKINode>
@@ -543,17 +402,13 @@
   <HelpKINode Title="ValidateResult property" Url="html/4a5dd42f-13f8-6579-f18c-7ffa7f4c0e2d.htm" />
   <HelpKINode Title="ValidateResultBase class">
     <HelpKINode Title="ValidateResultBase Class" Url="html/e48d697b-7765-cfbd-a8d9-054dfd21076d.htm" />
-    <HelpKINode Title="ValidateResultBase Members" Url="html/35841aff-e755-9c21-4f31-3d3244f04764.htm" />
     <HelpKINode Title="about ValidateResultBase class" Url="html/e48d697b-7765-cfbd-a8d9-054dfd21076d.htm" />
-    <HelpKINode Title="all members" Url="html/35841aff-e755-9c21-4f31-3d3244f04764.htm" />
     <HelpKINode Title="properties" Url="html/fbfcf2ea-b664-4746-62c6-905bff910ad5.htm" />
   </HelpKINode>
   <HelpKINode Title="ValidateResultBase.Queue property" Url="html/735cf510-3458-7e12-9dcb-01d7ebda933d.htm" />
   <HelpKINode Title="ValidateResultRepositoryBase class">
     <HelpKINode Title="ValidateResultRepositoryBase Class" Url="html/8cf87d67-6cff-c4fd-f24e-0fd71baf9f0a.htm" />
-    <HelpKINode Title="ValidateResultRepositoryBase Members" Url="html/422fb734-af31-5549-52bd-55f96272f200.htm" />
     <HelpKINode Title="about ValidateResultRepositoryBase class" Url="html/8cf87d67-6cff-c4fd-f24e-0fd71baf9f0a.htm" />
-    <HelpKINode Title="all members" Url="html/422fb734-af31-5549-52bd-55f96272f200.htm" />
     <HelpKINode Title="constructor" Url="html/296f58c1-0724-73a9-4216-f774e80b4f2e.htm" />
     <HelpKINode Title="methods" Url="html/fff43fb9-ee68-8c7b-428c-1e7c2f442406.htm" />
   </HelpKINode>
