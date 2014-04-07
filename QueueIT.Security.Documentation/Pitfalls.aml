@@ -10,6 +10,7 @@
         and countermeasures for them.
       </para>
     </introduction>
+    
     <section>
       <title>Design for failure with health check implementation</title>
       <content>
@@ -25,6 +26,7 @@
         </para>
       </content>
     </section>
+    
     <section>
       <title>Ensure correct alignment of expirations</title>
       <content>
@@ -34,13 +36,13 @@
         </para>
         <list class="bullet">
           <listItem>
-            <para>ticketExpiration: Is a <link xlink:href="f439359a-4f2d-4a71-9f66-5c77a7d04b89">configuration setting</link> where you specify a timespan, i.e. "00:03:00" (3 min). This setting decides how long time a ticket is can be used on the target site.</para>
+            <para><legacyBold>ticketExpiration:</legacyBold> Is a <link xlink:href="f439359a-4f2d-4a71-9f66-5c77a7d04b89">configuration setting</link> where you specify a timespan, i.e. "00:03:00" (3 min). This setting decides how long time a ticket can be used on the target site.</para>
           </listItem>
           <listItem>
-            <para>Queue number validity time: This value is set op via the go management portal (https://go.queue-it.net) under advanced settings on the actual event. This setting decides how long time any given ticket is valid (e.g. no new ticket when still valid and revisiting the queue)</para>
+            <para><legacyBold>Queue number validity time:</legacyBold> This value is set up via the go management portal (<externalLink><linkText>https://go.queue-it.net</linkText><linkUri>https://go.queue-it.net</linkUri></externalLink>) under advanced settings on the actual event. This setting decides how long time any given ticket is valid (e.g. issuing no new ticket when existing is still valid and user is revisiting the queue)</para>
           </listItem>
           <listItem>
-            <para>CookieExpiration: Is a <link xlink:href="f439359a-4f2d-4a71-9f66-5c77a7d04b89">configuration setting</link> where you specify a timespan, i.e. "00:20:00" (20 min). This setting decides how long the session cookie is active on the target site.</para>
+            <para><legacyBold>CookieExpiration:</legacyBold> Is a <link xlink:href="f439359a-4f2d-4a71-9f66-5c77a7d04b89">configuration setting</link> where you specify a timespan, i.e. "00:20:00" (20 min). This setting decides how long the session cookie is active on the target site.</para>
           </listItem>
         </list>
         <para>The important thing to remember here is that you need to follow the guidelines specified below. The values in the example are the default recommended ones.</para>
@@ -51,12 +53,36 @@
         </alert>      
       </content>
     </section>
+    
+    <section>
+      <title>Subdomain scenarios require correct CookieDomain setting</title>
+      <content>
+        <para>
+          <legacyUnderline>Example:</legacyUnderline> Lets say you redirect your users to <legacyBold>www.ticketania.com</legacyBold> and from there on they go to <legacyBold>buy.ticketania.com</legacyBold>.
+        </para>
+        <para>
+          In this situation you need to set the value of CookieDomain setting to <legacyBold>.ticketania.com</legacyBold> ensuring that the Known User validation mechanism still functions.
+        </para>
+      <code language="xml">
+        <![CDATA[
+...
+<repositorySettings>
+  <setting name="CookieDomain" value=".ticketania.com" />
+  <setting name="CookieExpiration" value="00:20:00" />
+</repositorySettings>
+...
+      ]]>
+      </code>
+      <para>More details can be found in <codeEntityReference>T:QueueIT.Security.CookieValidateResultRepository</codeEntityReference>.</para>
+      </content>
+    </section>
+      
     <section>
       <title>Special handling in URL rewrite situations</title>
       <content>
         <para>
           If you experience your end users always are redirected back to the queue and therefore never ends up at the target URL, you could have an URL rewrite situation.
-          This happens if you have some mechanism altering with the URL, which then breaks the default Known User validation implementation.
+          This happens if you have some mechanism altering the URL, which then breaks the default Known User validation implementation.
         </para>
         <para>
           In this case you need to override the default url provider. Below you can see an example of this.
@@ -74,7 +100,9 @@
         </code>
       </content>
     </section>
+      
     <relatedTopics>
     </relatedTopics>
+  
   </developerConceptualDocument>
 </topic>

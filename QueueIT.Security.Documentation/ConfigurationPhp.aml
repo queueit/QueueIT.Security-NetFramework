@@ -5,10 +5,14 @@
     xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <introduction>
-      <para>Queues may be configured using an ini file in order to simplify the implementation or using the API</para>
+      <para>Queues may be configured using an ini file in order to simplify the implementation or using the API.</para>
+      <alert class="important">
+        <para>
+          Please read the <link xlink:href="9c770124-51d9-49ed-90ae-c209b6471f5b">Pitfalls</link> section for correct configuration.
+        </para>
+      </alert>
     </introduction>
     
-
     <section address="configurationsection">
       <title>Using Configuration Section</title>
       <content>

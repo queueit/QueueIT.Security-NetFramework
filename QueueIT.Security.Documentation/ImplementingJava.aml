@@ -53,7 +53,7 @@
           </steps>
         </procedure>
         <para>
-          By default the <codeEntityReference>T:QueueIT.Security.SessionValidationController</codeEntityReference> uses ASP.NET Session state.
+          By default the <codeEntityReference>T:QueueIT.Security.SessionValidationController</codeEntityReference> uses <codeEntityReference>T:QueueIT.Security.CookieValidateResultRepository</codeEntityReference>.
           Use the Configure() method and the <codeEntityReference>T:QueueIT.Security.IValidateResultRepository</codeEntityReference> interface
           to implement a custom session provider. If you need more control please use
           <codeEntityReference>T:QueueIT.Security.QueueFactory</codeEntityReference> and
