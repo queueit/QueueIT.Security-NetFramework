@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<topic id="9c770124-51d9-49ed-90ae-c209b6471f5b" revisionNumber="1">
+<topic id="9c770124-51d9-49ed-90ae-c209b6471f5b" revisionNumber="2">
   <developerConceptualDocument
     xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
     xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -36,7 +36,7 @@
         </para>
         <list class="bullet">
           <listItem>
-            <para><legacyBold>ticketExpiration:</legacyBold> Is a <link xlink:href="f439359a-4f2d-4a71-9f66-5c77a7d04b89">configuration setting</link> where you specify a timespan, i.e. "00:03:00" (3 min). This setting decides how long time a ticket can be used on the target site.</para>
+            <para><legacyBold>ticketExpiration:</legacyBold> Is a <link xlink:href="f439359a-4f2d-4a71-9f66-5c77a7d04b89">configuration setting</link> where you specify a timespan, i.e. "00:03:00" (3 min). This setting decides how long time a link to the target site can be used. The time should be long enough to cover clock-screw between your server and Queue-it' servers but short enough to prevent damage from users sharing the link on e.g. Twitter</para>
           </listItem>
           <listItem>
             <para><legacyBold>Queue number validity time:</legacyBold> This value is set up via the go management portal (<externalLink><linkText>https://go.queue-it.net</linkText><linkUri>https://go.queue-it.net</linkUri></externalLink>) under advanced settings on the actual event. This setting decides how long time any given ticket is valid (e.g. issuing no new ticket when existing is still valid and user is revisiting the queue)</para>

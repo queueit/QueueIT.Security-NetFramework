@@ -55,15 +55,19 @@
               <para>
                   Configuration may also be done in code using the static Configure methods of the classes 
                   <codeEntityReference>T:QueueIT.Security.QueueFactory</codeEntityReference>, 
-                  <codeEntityReference>T:QueueIT.Security.KnownUserFactory</codeEntityReference> and
-                  <codeEntityReference>T:QueueIT.Security.SessionValidationController</codeEntityReference>
+                  <codeEntityReference>T:QueueIT.Security.KnownUserFactory</codeEntityReference> and the ValidateRequest method of 
+                <codeEntityReference>T:QueueIT.Security.SessionValidationController</codeEntityReference>
               </para>
               <code language="cs">
-KnownUserFactory.Configure(
-    sharedEventKey = "a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7",
-    querystringPrefix = "pre");
-SessionValidationController.Configure(
-    ticketExpiration = TimeSpan.FromMinutes(3));
+                KnownUserFactory.Configure(
+                sharedEventKey = "a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7",
+                querystringPrefix = "pre");
+
+                SessionValidationController.Configure(
+                ticketExpiration = TimeSpan.FromMinutes(3));
+
+                IValidateResult result = SessionValidationController.ValidateRequest(
+                "ticketania", "bigevent", true, true, "queue-example.ticketania.com");
               </code>
           </content>
       </section>

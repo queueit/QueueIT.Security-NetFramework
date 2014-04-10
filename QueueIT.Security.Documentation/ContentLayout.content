@@ -12,7 +12,7 @@
     <Topic id="78d90f4a-32a5-4af5-a7cb-2982a705ca83" visible="True" title="Java EE" tocTitle="Java EE" linkText="Java EE" />
   </Topic>
   <Topic id="9269961f-84a9-4f6d-a63e-100becdbd51a" visible="True" title="Reference Implementations" tocTitle="Reference Implementations" linkText="Reference Implementations" />
-  <Topic id="b5045ce9-b37c-41ce-a749-f21cece4b9e1" visible="True" noFile="true" title="Configuration" tocTitle="Configuration" linkText="Configuration">
+  <Topic id="b5045ce9-b37c-41ce-a749-f21cece4b9e1" visible="True" noFile="true" isExpanded="true" title="Configuration" tocTitle="Configuration" linkText="Configuration">
     <Topic id="f439359a-4f2d-4a71-9f66-5c77a7d04b89" visible="True" title=".Net Framework" tocTitle=".Net Framework" linkText=".Net Framework" />
     <Topic id="07a2cc3b-ea76-43fd-bdd9-9197f6999c57" visible="True" title="PHP" tocTitle="PHP" linkText="PHP" />
     <Topic id="c8dfb74b-fae8-4d37-b6df-860519d7438d" visible="True" title="Java EE" tocTitle="Java EE" linkText="Java EE" />
