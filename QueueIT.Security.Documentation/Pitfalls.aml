@@ -98,6 +98,12 @@
             }
           }
         </code>
+        <para>
+          Then register the implementation with the KnownUserFactory or provide the implementation to the KnownUserFactory.VerifyMd5Hash method. The registration should only be done once.
+        </para>
+        <code language="csharp">
+          KnownUserFactory.Configure(urlProviderFactory: () => new MyCustomUrlProvider());
+        </code>
       </content>
     </section>
       
