@@ -106,7 +106,26 @@
         </code>
       </content>
     </section>
-      
+
+    <section>
+      <title>Browser cookie support</title>
+      <content>
+        <para>
+          The implementation of the <codeEntityReference>T:QueueIT.Security.SessionValidationController</codeEntityReference> stores state
+          in user cookies. The default <codeEntityReference>T:QueueIT.Security.CookieValidateResultRepository</codeEntityReference> adds 
+          one or more custom cookies and the <codeEntityReference>T:QueueIT.Security.SessionValidateResultRepository</codeEntityReference>
+          uses on the built in session state which typically also relies on cookies. If the browser does not support cookies the 
+          <codeEntityReference>T:QueueIT.Security.SessionValidationController</codeEntityReference> is unable to detect if the user has 
+          already been through the queue and it does not know that cookies are not supported. 
+        </para>
+        <para>
+          We reccomend that your application detects that cookies are not supported and displays an error message to the user before invoking 
+          the <codeEntityReference>T:QueueIT.Security.SessionValidationController</codeEntityReference>. If not users will be in an endless loop
+          between the queue and the target application.
+        </para>
+      </content>
+    </section>
+
     <relatedTopics>
     </relatedTopics>
   

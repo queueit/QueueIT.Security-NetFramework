@@ -91,6 +91,8 @@ namespace QueueIT.Security
         /// <returns>The validation result</returns>
         /// <example>
         /// <code language="cs">
+        /// // TODO: Show error page if the browser does not have cookie support
+        /// 
         /// try
         /// {
         ///     IValidateResult result = SessionValidationController.ValidateRequest();
@@ -163,6 +165,8 @@ namespace QueueIT.Security
         /// 		QueueIT\Security\KnownUserValidationException,
         /// 		QueueIT\Security\EnqueueResult;
         /// 
+        ///     // TODO: Show error page if the browser does not have cookie support
+        /// 
         /// 	try
         /// 	{
         /// 		$result = SessionValidationController::validateRequestFromConfiguration();
@@ -203,6 +207,8 @@ namespace QueueIT.Security
         /// Java EE Example
         /// <code language="none">
         /// <![CDATA[
+        ///     // TODO: Show error page if the browser does not have cookie support
+        /// 
         ///     try
         ///     {
         ///         IValidateResult result = SessionValidationController.validateRequest();
@@ -286,6 +292,8 @@ namespace QueueIT.Security
         /// <returns>The validation result</returns>
         /// <example>
         /// <code language="cs">
+        /// // TODO: Show error page if the browser does not have cookie support
+        /// 
         /// try
         /// {
         ///     IValidateResult result = SessionValidationController.ValidateRequest(new URI("http://queue-it.com"));
@@ -358,6 +366,8 @@ namespace QueueIT.Security
         /// 		QueueIT\Security\KnownUserValidationException,
         /// 		QueueIT\Security\EnqueueResult;
         /// 
+        ///     // TODO: Show error page if the browser does not have cookie support
+        /// 
         /// 	try
         /// 	{
         /// 		$result = SessionValidationController::validateRequestFromConfiguration("default", "http://queue-it.com");
@@ -398,6 +408,8 @@ namespace QueueIT.Security
         /// Java EE Example
         /// <code language="none">
         /// <![CDATA[
+        /// // TODO: Show error page if the browser does not have cookie support
+        /// 
         ///     try
         ///     {
         ///         IValidateResult result = SessionValidationController.validateRequest(URI.create("http://queue-it.com"));
@@ -483,6 +495,8 @@ namespace QueueIT.Security
         /// <example>
         /// Source Code;
         /// <code language="cs">
+        /// // TODO: Show error page if the browser does not have cookie support
+        /// 
         /// try
         /// {
         ///     IValidateResult result = SessionValidationController.ValidateRequest("advanced");
@@ -548,6 +562,8 @@ namespace QueueIT.Security
         /// PHP Example
         /// <code language="none">
         /// <![CDATA[
+        /// // TODO: Show error page if the browser does not have cookie support
+        /// 
         /// <?php
         /// 	require_once('../QueueIT.Security PHP/SessionValidationController.php');
         /// 		
@@ -614,6 +630,8 @@ namespace QueueIT.Security
         /// Java EE Example
         /// <code language="none">
         /// <![CDATA[
+        /// // TODO: Show error page if the browser does not have cookie support
+        /// 
         ///     try
         ///     {
         ///             IValidateResult result = SessionValidationController.validateRequest("advanced");
@@ -723,6 +741,8 @@ namespace QueueIT.Security
         /// <example>
         /// Source Code;
         /// <code language="cs">
+        /// // TODO: Show error page if the browser does not have cookie support
+        /// 
         /// try
         /// {
         ///     IValidateResult result = SessionValidationController.ValidateRequest("advanced", new Uri("http://queue-it.com"));
@@ -796,6 +816,8 @@ namespace QueueIT.Security
         /// 		QueueIT\Security\KnownUserValidationException,
         /// 		QueueIT\Security\EnqueueResult;
         /// 
+        ///     // TODO: Show error page if the browser does not have cookie support
+        /// 
         /// 	try
         /// 	{
         /// 		$result = SessionValidationController::validateRequestFromConfiguration('advanced', "http://queue-it.com");
@@ -854,6 +876,8 @@ namespace QueueIT.Security
         /// Java EE Example
         /// <code language="none">
         /// <![CDATA[
+        ///     // TODO: Show error page if the browser does not have cookie support
+        /// 
         ///     try
         ///     {
         ///             IValidateResult result = SessionValidationController.validateRequest("advanced", URI.create("http://queue-it.com"));
@@ -967,6 +991,8 @@ namespace QueueIT.Security
         /// // May be placed in global.asax
         /// CookieValidateResultRepository.Configure(cookieDomain: ".ticketania.com");
         /// 
+        /// // TODO: Show error page if the browser does not have cookie support
+        /// 
         /// try
         /// {
         ///     IValidateResult result = SessionValidationController.ValidateRequest("ticketania", "codeonly");
@@ -1021,6 +1047,8 @@ namespace QueueIT.Security
         /// 
         /// 	session_start();
         /// 
+        /// // TODO: Show error page if the browser does not have cookie support
+        /// 
         /// 	KnownUserFactory::configure('a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7');
         /// 	
         /// 	try
@@ -1052,6 +1080,8 @@ namespace QueueIT.Security
         /// <code language="none">
         /// <![CDATA[
         ///     KnownUserFactory.configure("a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7");
+        /// 
+        ///     // TODO: Show error page if the browser does not have cookie support
         /// 
         ///     try
         ///     {
@@ -1135,6 +1165,8 @@ namespace QueueIT.Security
         /// // May be placed in global.asax
         /// CookieValidateResultRepository.Configure(cookieDomain: ".ticketania.com");
         /// 
+        /// // TODO: Show error page if the browser does not have cookie support
+        /// 
         /// try
         /// {
         ///     IValidateResult result = SessionValidationController.ValidateRequest("ticketania", "codeonly", new Uri("http://queue-it.com");
@@ -1187,6 +1219,8 @@ namespace QueueIT.Security
         /// 		QueueIT\Security\KnownUserValidationException,
         /// 		QueueIT\Security\EnqueueResult;
         /// 
+        ///     // TODO: Show error page if the browser does not have cookie support
+        /// 
         /// 	KnownUserFactory::configure('a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7');
         /// 	
         /// 	try
@@ -1218,6 +1252,8 @@ namespace QueueIT.Security
         /// <code language="none">
         /// <![CDATA[
         ///     KnownUserFactory.configure("a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7");
+        /// 
+        ///     // TODO: Show error page if the browser does not have cookie support
         /// 
         ///     try
         ///     {

@@ -7,10 +7,13 @@ using QueueIT.Security.Configuration;
 namespace QueueIT.Security
 {
     /// <summary>
-    /// A repository to store user session state which stores the validation result in a http cookie. This is the default.
+    /// A repository to store state which stores the validation result in a http cookie. This is the default.
     /// </summary>
     /// <remarks>
-    /// This will by default store a cookie with 20 minutes expiration.
+    /// This will by default store a cookie with 20 minutes expiration.<br /><br />
+    /// NOTE: Users will be looped back to the queue if their browser does not support cookies. 
+    /// It is highly recommended that your application confirms that there is cookie support before sending the user to the queue. 
+    /// If there is no cookie support we recommend displaying an error message to the user asking them to enable cookies.
     /// </remarks>
     /// <example>
     /// <code language="cs">

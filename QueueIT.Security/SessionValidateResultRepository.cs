@@ -4,9 +4,14 @@ using System.Web;
 namespace QueueIT.Security
 {
     /// <summary>
-    /// A repository to store user session state which stores the validation result in a http cookie.
+    /// A repository to store state which stores the validation result in the built in session state.
     /// </summary>
-    /// <remarks>The default repository is the CookieValidateResultRepository. Use the Configure method of the SessionValidationController to override.</remarks>
+    /// <remarks>
+    /// The default repository is the CookieValidateResultRepository. Use the Configure method of the SessionValidationController to override.<br /><br />
+    /// NOTE: Users will be looped back to the queue if their browser does not support cookies. 
+    /// It is highly recommended that your application confirms that there is cookie support before sending the user to the queue. 
+    /// If there is no cookie support we recommend displaying an error message to the user asking them to enable cookies.
+    /// </remarks>
     /// <example>
     /// <code language="cs">
     /// SessionValidationController.Configure(validationResultProviderFactory: () => new SessionValidateResultRepository);
