@@ -10,7 +10,7 @@
         and countermeasures for them.
       </para>
     </introduction>
-    
+
     <section>
       <title>Design for failure with health check implementation</title>
       <content>
@@ -26,7 +26,7 @@
         </para>
       </content>
     </section>
-    
+
     <section>
       <title>Ensure correct alignment of expirations</title>
       <content>
@@ -36,13 +36,22 @@
         </para>
         <list class="bullet">
           <listItem>
-            <para><legacyBold>ticketExpiration:</legacyBold> Is a <link xlink:href="f439359a-4f2d-4a71-9f66-5c77a7d04b89">configuration setting</link> where you specify a timespan, i.e. "00:03:00" (3 min). This setting decides how long time a link to the target site can be used. The time should be long enough to cover clock-screw between your server and Queue-it' servers but short enough to prevent damage from users sharing the link on e.g. Twitter</para>
+            <para>
+              <legacyBold>ticketExpiration:</legacyBold> Is a <link xlink:href="f439359a-4f2d-4a71-9f66-5c77a7d04b89">configuration setting</link> where you specify a timespan, i.e. "00:03:00" (3 min). This setting decides how long time a link to the target site can be used. The time should be long enough to cover clock-screw between your server and Queue-it' servers but short enough to prevent damage from users sharing the link on e.g. Twitter
+            </para>
           </listItem>
           <listItem>
-            <para><legacyBold>Queue number validity time:</legacyBold> This value is set up via the go management portal (<externalLink><linkText>https://go.queue-it.net</linkText><linkUri>https://go.queue-it.net</linkUri></externalLink>) under advanced settings on the actual event. This setting decides how long time any given ticket is valid (e.g. issuing no new ticket when existing is still valid and user is revisiting the queue)</para>
+            <para>
+              <legacyBold>Queue number validity time:</legacyBold> This value is set up via the go management portal (<externalLink>
+                <linkText>https://go.queue-it.net</linkText>
+                <linkUri>https://go.queue-it.net</linkUri>
+              </externalLink>) under advanced settings on the actual event. This setting decides how long time any given ticket is valid (e.g. issuing no new ticket when existing is still valid and user is revisiting the queue)
+            </para>
           </listItem>
           <listItem>
-            <para><legacyBold>CookieExpiration:</legacyBold> Is a <link xlink:href="f439359a-4f2d-4a71-9f66-5c77a7d04b89">configuration setting</link> where you specify a timespan, i.e. "00:20:00" (20 min). This setting decides how long the session cookie is active on the target site.</para>
+            <para>
+              <legacyBold>CookieExpiration:</legacyBold> Is a <link xlink:href="f439359a-4f2d-4a71-9f66-5c77a7d04b89">configuration setting</link> where you specify a timespan, i.e. "00:20:00" (20 min). This setting decides how long the session cookie is active on the target site.
+            </para>
           </listItem>
         </list>
         <para>The important thing to remember here is that you need to follow the guidelines specified below. The values in the example are the default recommended ones.</para>
@@ -50,10 +59,10 @@
           <para>
             <![CDATA[ticketExpiration (3 min) < QueueNumberValidity (10 min) <= CookieExpiration (20 min)]]>
           </para>
-        </alert>      
+        </alert>
       </content>
     </section>
-    
+
     <section>
       <title>Subdomain scenarios require correct CookieDomain setting</title>
       <content>
@@ -63,8 +72,8 @@
         <para>
           In this situation you need to set the value of CookieDomain setting to <legacyBold>.ticketania.com</legacyBold> ensuring that the Known User validation mechanism still functions.
         </para>
-      <code language="xml">
-        <![CDATA[
+        <code language="xml">
+          <![CDATA[
 ...
 <repositorySettings>
   <setting name="CookieDomain" value=".ticketania.com" />
@@ -72,11 +81,13 @@
 </repositorySettings>
 ...
       ]]>
-      </code>
-      <para>More details can be found in <codeEntityReference>T:QueueIT.Security.CookieValidateResultRepository</codeEntityReference>.</para>
+        </code>
+        <para>
+          More details can be found in <codeEntityReference>T:QueueIT.Security.CookieValidateResultRepository</codeEntityReference>.
+        </para>
       </content>
     </section>
-      
+
     <section>
       <title>Special handling in URL rewrite situations</title>
       <content>
@@ -90,12 +101,12 @@
         <code language="csharp">
           public class MyCustomUrlProvider : DefaultKnownUserUrlProvider
           {
-            public override Uri GetUrl()
-            {
-              string internalUrl = base.GetUrl().ToString();
-              string publicUrl = internalUrl.Replace("http", "https").Replace(":4490", "");
-              return new Uri(publicUrl);
-            }
+          public override Uri GetUrl()
+          {
+          string internalUrl = base.GetUrl().ToString();
+          string publicUrl = internalUrl.Replace("http", "https").Replace(":4490", "");
+          return new Uri(publicUrl);
+          }
           }
         </code>
         <para>
@@ -112,22 +123,24 @@
       <content>
         <para>
           The implementation of the <codeEntityReference>T:QueueIT.Security.SessionValidationController</codeEntityReference> stores state
-          in user cookies. The default <codeEntityReference>T:QueueIT.Security.CookieValidateResultRepository</codeEntityReference> adds 
+          in user cookies. The default <codeEntityReference>T:QueueIT.Security.CookieValidateResultRepository</codeEntityReference> adds
           one or more custom cookies and the <codeEntityReference>T:QueueIT.Security.SessionValidateResultRepository</codeEntityReference>
-          uses on the built in session state which typically also relies on cookies. If the browser does not support cookies the 
-          <codeEntityReference>T:QueueIT.Security.SessionValidationController</codeEntityReference> is unable to detect if the user has 
-          already been through the queue and it does not know that cookies are not supported. 
+          uses on the built in session state which typically also relies on cookies. If the browser does not support cookies the
+          <codeEntityReference>T:QueueIT.Security.SessionValidationController</codeEntityReference> is unable to detect if the user has
+          already been through the queue and it does not know that cookies are not supported.
         </para>
-        <para>
-          We reccomend that your application detects that cookies are not supported and displays an error message to the user before invoking 
-          the <codeEntityReference>T:QueueIT.Security.SessionValidationController</codeEntityReference>. If not users will be in an endless loop
-          between the queue and the target application.
-        </para>
+        <alert class="important">
+          <para>
+            <![CDATA[We reccomend that your application detects that cookies are not supported and displays an error message to the user before invoking
+          the SessionValidationController. If not users will be in an endless loop
+          between the queue and the target application.]]>
+          </para>
+        </alert>
       </content>
     </section>
 
     <relatedTopics>
     </relatedTopics>
-  
+
   </developerConceptualDocument>
 </topic>
