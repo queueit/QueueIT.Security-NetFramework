@@ -34,6 +34,9 @@
                   Implement one of the <codeEntityReference>T:QueueIT.Security.SessionValidationController</codeEntityReference>
                   factory methods to validate the request on all pages that is protected by the queue.
                 </para>
+                <alert class="important">
+                  <para>Please be aware that this this implementation is not done on error handling pages (e.g. error.php) which will cause users to get looped arround.</para>
+                </alert>
               </content>
             </step>
             <step>

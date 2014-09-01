@@ -39,6 +39,9 @@
                   Add the <codeEntityReference>T:QueueIT.Security.Mvc.SessionValidationAttribute</codeEntityReference>
                   Action Filter attribute to validate the request on all pages that is protected by the queue.
                 </para>
+                <alert class="important">
+                  <para>Please be aware that this filter is not applied to error controller actions or similar which will cause users to get looped arround.</para>
+                </alert>
               </content>
             </step>
             <step>

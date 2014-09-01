@@ -32,8 +32,11 @@
               <content>
                 <para>
                   Implement one of the <codeEntityReference>T:QueueIT.Security.SessionValidationController</codeEntityReference>
-                  factory methods to validate the request on all pages that is protected by the queue.
+                  factory methods to validate the request on all pages that is protected by the queue. 
                 </para>
+                <alert class="important">
+                    <para>Please be aware that this this implementation is not done on error handling pages (e.g. Error.aspx) which will cause users to get looped arround.</para>                  
+                </alert>
               </content>
             </step>
             <step>
@@ -51,7 +54,7 @@
           to implement a custom session provider. If you need more control please use
           <codeEntityReference>T:QueueIT.Security.QueueFactory</codeEntityReference> and
           <codeEntityReference>T:QueueIT.Security.KnownUserFactory</codeEntityReference> and implement state and routing using custom logic.
-        </para>
+        </para>        
       </content>
     </section>
     <section address="link">
