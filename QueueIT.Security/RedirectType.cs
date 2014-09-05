@@ -28,6 +28,10 @@
         /// <summary>
         /// User has been redirected to the target URL using a direct link and has not been through the queue
         /// </summary>
-        DirectLink
+        DirectLink,
+        /// <summary>
+        /// User has been redirected to the target URL while the queue was idle
+        /// </summary>
+        Idle, 
     }
 }
