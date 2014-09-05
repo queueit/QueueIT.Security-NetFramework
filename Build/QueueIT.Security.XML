@@ -45,10 +45,13 @@
         </member>
         <member name="T:QueueIT.Security.CookieValidateResultRepository">
             <summary>
-            A repository to store user session state which stores the validation result in a http cookie. This is the default.
+            A repository to store state which stores the validation result in a http cookie. This is the default.
             </summary>
             <remarks>
-            This will by default store a cookie with 20 minutes expiration.
+            This will by default store a cookie with 20 minutes expiration.<br /><br />
+            NOTE: Users will be looped back to the queue if their browser does not support cookies. 
+            It is highly recommended that your application confirms that there is cookie support before sending the user to the queue. 
+            If there is no cookie support we recommend displaying an error message to the user asking them to enable cookies.
             </remarks>
             <example>
             <code language="cs">
@@ -184,6 +187,11 @@
             User has been redirected to the target URL using a direct link and has not been through the queue
             </summary>
         </member>
+        <member name="F:QueueIT.Security.RedirectType.Idle">
+            <summary>
+            User has been redirected to the target URL while the queue was idle
+            </summary>
+        </member>
         <member name="T:QueueIT.Security.SessionValidationController">
             <summary>
             Controller class which enables simple implementation of the QueueIT.Security functionality
@@ -251,6 +259,8 @@
              <returns>The validation result</returns>
              <example>
              <code language="cs">
+             // TODO: Show error page if the browser does not have cookie support
+             
              try
              {
                  IValidateResult result = SessionValidationController.ValidateRequest();
@@ -323,6 +333,8 @@
              		QueueIT\Security\KnownUserValidationException,
              		QueueIT\Security\EnqueueResult;
              
+                 // TODO: Show error page if the browser does not have cookie support
+             
              	try
              	{
              		$result = SessionValidationController::validateRequestFromConfiguration();
@@ -363,6 +375,8 @@
              Java EE Example
              <code language="none">
              <![CDATA[
+                 // TODO: Show error page if the browser does not have cookie support
+             
                  try
                  {
                      IValidateResult result = SessionValidationController.validateRequest();
@@ -429,6 +443,8 @@
              <returns>The validation result</returns>
              <example>
              <code language="cs">
+             // TODO: Show error page if the browser does not have cookie support
+             
              try
              {
                  IValidateResult result = SessionValidationController.ValidateRequest(new URI("http://queue-it.com"));
@@ -501,6 +517,8 @@
              		QueueIT\Security\KnownUserValidationException,
              		QueueIT\Security\EnqueueResult;
              
+                 // TODO: Show error page if the browser does not have cookie support
+             
              	try
              	{
              		$result = SessionValidationController::validateRequestFromConfiguration("default", "http://queue-it.com");
@@ -541,6 +559,8 @@
              Java EE Example
              <code language="none">
              <![CDATA[
+             // TODO: Show error page if the browser does not have cookie support
+             
                  try
                  {
                      IValidateResult result = SessionValidationController.validateRequest(URI.create("http://queue-it.com"));
@@ -609,6 +629,8 @@
              <example>
              Source Code;
              <code language="cs">
+             // TODO: Show error page if the browser does not have cookie support
+             
              try
              {
                  IValidateResult result = SessionValidationController.ValidateRequest("advanced");
@@ -674,6 +696,8 @@
              PHP Example
              <code language="none">
              <![CDATA[
+             // TODO: Show error page if the browser does not have cookie support
+             
              <?php
              	require_once('../QueueIT.Security PHP/SessionValidationController.php');
              		
@@ -740,6 +764,8 @@
              Java EE Example
              <code language="none">
              <![CDATA[
+             // TODO: Show error page if the browser does not have cookie support
+             
                  try
                  {
                          IValidateResult result = SessionValidationController.validateRequest("advanced");
@@ -828,6 +854,8 @@
              <example>
              Source Code;
              <code language="cs">
+             // TODO: Show error page if the browser does not have cookie support
+             
              try
              {
                  IValidateResult result = SessionValidationController.ValidateRequest("advanced", new Uri("http://queue-it.com"));
@@ -901,6 +929,8 @@
              		QueueIT\Security\KnownUserValidationException,
              		QueueIT\Security\EnqueueResult;
              
+                 // TODO: Show error page if the browser does not have cookie support
+             
              	try
              	{
              		$result = SessionValidationController::validateRequestFromConfiguration('advanced', "http://queue-it.com");
@@ -959,6 +989,8 @@
              Java EE Example
              <code language="none">
              <![CDATA[
+                 // TODO: Show error page if the browser does not have cookie support
+             
                  try
                  {
                          IValidateResult result = SessionValidationController.validateRequest("advanced", URI.create("http://queue-it.com"));
@@ -1051,6 +1083,8 @@
              // May be placed in global.asax
              CookieValidateResultRepository.Configure(cookieDomain: ".ticketania.com");
              
+             // TODO: Show error page if the browser does not have cookie support
+             
              try
              {
                  IValidateResult result = SessionValidationController.ValidateRequest("ticketania", "codeonly");
@@ -1105,6 +1139,8 @@
              
              	session_start();
              
+             // TODO: Show error page if the browser does not have cookie support
+             
              	KnownUserFactory::configure('a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7');
              	
              	try
@@ -1136,6 +1172,8 @@
              <code language="none">
              <![CDATA[
                  KnownUserFactory.configure("a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7");
+             
+                 // TODO: Show error page if the browser does not have cookie support
              
                  try
                  {
@@ -1195,6 +1233,8 @@
              // May be placed in global.asax
              CookieValidateResultRepository.Configure(cookieDomain: ".ticketania.com");
              
+             // TODO: Show error page if the browser does not have cookie support
+             
              try
              {
                  IValidateResult result = SessionValidationController.ValidateRequest("ticketania", "codeonly", new Uri("http://queue-it.com");
@@ -1247,6 +1287,8 @@
              		QueueIT\Security\KnownUserValidationException,
              		QueueIT\Security\EnqueueResult;
              
+                 // TODO: Show error page if the browser does not have cookie support
+             
              	KnownUserFactory::configure('a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7');
              	
              	try
@@ -1278,6 +1320,8 @@
              <code language="none">
              <![CDATA[
                  KnownUserFactory.configure("a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7");
+             
+                 // TODO: Show error page if the browser does not have cookie support
              
                  try
                  {
@@ -1869,9 +1913,14 @@
         </member>
         <member name="T:QueueIT.Security.SessionValidateResultRepository">
             <summary>
-            A repository to store user session state which stores the validation result in a http cookie.
+            A repository to store state which stores the validation result in the built in session state.
             </summary>
-            <remarks>The default repository is the CookieValidateResultRepository. Use the Configure method of the SessionValidationController to override.</remarks>
+            <remarks>
+            The default repository is the CookieValidateResultRepository. Use the Configure method of the SessionValidationController to override.<br /><br />
+            NOTE: Users will be looped back to the queue if their browser does not support cookies. 
+            It is highly recommended that your application confirms that there is cookie support before sending the user to the queue. 
+            If there is no cookie support we recommend displaying an error message to the user asking them to enable cookies.
+            </remarks>
             <example>
             <code language="cs">
             SessionValidationController.Configure(validationResultProviderFactory: () => new SessionValidateResultRepository);
