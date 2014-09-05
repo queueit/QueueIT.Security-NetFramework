@@ -93,7 +93,7 @@ namespace QueueIT.Security
                 string queueId = validationCookie.Values["QueueId"];
                 string originalUrl = validationCookie.Values["OriginalUrl"];
                 int placeInQueue = (int)Hashing.DecryptPlaceInQueue(validationCookie.Values["PlaceInQueue"]);
-                string redirectType = validationCookie.Values["RedirectType"];
+                RedirectType redirectType = (RedirectType)Enum.Parse(typeof(RedirectType), validationCookie.Values["RedirectType"]);
                 string timeStamp = validationCookie.Values["TimeStamp"];
                 string actualHash = validationCookie.Values["Hash"];
 
@@ -102,9 +102,7 @@ namespace QueueIT.Security
                 if (actualHash != expectedHash)
                     return null;
 
-                SetCookie(queue, queueId, originalUrl, placeInQueue, redirectType, timeStamp, actualHash);
-
-                return new AcceptedConfirmedResult(
+                AcceptedConfirmedResult result = new AcceptedConfirmedResult(
                     queue,
                     new Md5KnownUser(
                         new Guid(queueId),
@@ -112,8 +110,14 @@ namespace QueueIT.Security
                         Hashing.TimestampToDateTime(long.Parse(timeStamp)),
                         queue.CustomerId,
                         queue.EventId,
-                        (RedirectType)Enum.Parse(typeof(RedirectType), redirectType),
-                        new Uri(originalUrl)), false);
+                        redirectType,
+                        new Uri(originalUrl)), 
+                    false);
+
+                if (result.KnownUser.RedirectType != RedirectType.Disabled && result.KnownUser.RedirectType != RedirectType.Idle)
+                    SetCookie(queue, queueId, originalUrl, placeInQueue, redirectType, timeStamp, actualHash);
+
+                return result;
             }
             catch (ArgumentException)
             {
@@ -131,7 +135,7 @@ namespace QueueIT.Security
                 string queueId = acceptedResult.KnownUser.QueueId.ToString();
                 string originalUrl = acceptedResult.KnownUser.OriginalUrl.AbsoluteUri;
                 int placeInQueue = acceptedResult.KnownUser.PlaceInQueue.HasValue ? acceptedResult.KnownUser.PlaceInQueue.Value : 0;
-                string redirectType = acceptedResult.KnownUser.RedirectType.ToString();
+                RedirectType redirectType = acceptedResult.KnownUser.RedirectType;
                 string timeStamp = Hashing.GetTimestamp(acceptedResult.KnownUser.TimeStamp).ToString();
 
                 string hash = GenerateHash(queueId, originalUrl, placeInQueue.ToString(), redirectType, timeStamp);
@@ -145,7 +149,7 @@ namespace QueueIT.Security
             string queueId, 
             string originalUrl, 
             int placeInQueue, 
-            string redirectType,
+            RedirectType redirectType,
             string timeStamp, 
             string hash)
         {
@@ -154,13 +158,16 @@ namespace QueueIT.Security
             validationCookie.Values["QueueId"] = queueId;
             validationCookie.Values["OriginalUrl"] = originalUrl;
             validationCookie.Values["PlaceInQueue"] = Hashing.EncryptPlaceInQueue(placeInQueue);
-            validationCookie.Values["RedirectType"] = redirectType;
+            validationCookie.Values["RedirectType"] = redirectType.ToString();
             validationCookie.Values["TimeStamp"] = timeStamp;
             validationCookie.Values["Hash"] = hash;
 
             validationCookie.HttpOnly = true;
             validationCookie.Domain = CookieDomain;
-            validationCookie.Expires = DateTime.UtcNow.Add(CookieExpiration);
+            validationCookie.Expires = DateTime.UtcNow.Add(
+                redirectType == RedirectType.Disabled || redirectType == RedirectType.Idle 
+                ? TimeSpan.FromMinutes(3)
+                : CookieExpiration);
 
             HttpContext.Current.Response.Cookies.Add(validationCookie);
         }
@@ -169,12 +176,12 @@ namespace QueueIT.Security
             string queueId, 
             string originalUrl, 
             string placeInQueue, 
-            string redirectType, 
+            RedirectType redirectType, 
             string timestamp)
         {
             using (SHA256 sha2 = SHA256.Create())
             {
-                string valueToHash = string.Concat(queueId, originalUrl, placeInQueue, redirectType, timestamp, KnownUserFactory.SecretKey);
+                string valueToHash = string.Concat(queueId, originalUrl, placeInQueue, redirectType.ToString(), timestamp, KnownUserFactory.SecretKey);
                 byte[] hash = sha2.ComputeHash(Encoding.UTF8.GetBytes(valueToHash));
 
                 return BitConverter.ToString(hash);
