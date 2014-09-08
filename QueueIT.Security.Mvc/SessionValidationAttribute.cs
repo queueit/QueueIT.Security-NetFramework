@@ -4,7 +4,8 @@ using System.Web.Mvc;
 namespace QueueIT.Security.Mvc
 {
     /// <summary>
-    /// Action Filter which enables simple implementation of the QueueIT.Security functionality
+    /// Action Filter which enables simple implementation of the QueueIT.Security functionality.
+    /// Please be aware that this filter is not applied to error controller actions or similar which will cause users to get looped arround.
     /// </summary>
     /// <remarks>
     /// View members for additional information and examples

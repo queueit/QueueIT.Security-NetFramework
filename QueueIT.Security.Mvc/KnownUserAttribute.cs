@@ -4,7 +4,8 @@ using System.Web.Mvc;
 namespace QueueIT.Security.Mvc
 {
     /// <summary>
-    /// Action Filter which enables Known User validation functionality
+    /// Action Filter which enables Known User validation functionality.
+    /// Please be aware that this filter is not applied to error controller actions or similar which will cause users to get looped arround.
     /// </summary>
     /// <example>
     /// Source Code;

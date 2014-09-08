@@ -15,6 +15,12 @@ namespace QueueIT.Security.Examples.Webforms
             QueueITValidation();
         }
 
+        /// <summary>
+        /// Queue validation
+        /// </summary>
+        /// <remarks>
+        /// Please be aware that this this implementation is not done on error handling pages (e.g. Error.aspx) which will cause users to get looped arround.
+        /// </remarks>
         private void QueueITValidation()
         {
                 try

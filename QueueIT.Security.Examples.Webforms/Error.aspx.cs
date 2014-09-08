@@ -11,6 +11,9 @@ namespace QueueIT.Security.Examples.Webforms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Never perform queue validation on error handling pages (e.g. Error.aspx) because it will cause users to get looped arround.
+            // The recommended approach is to display a cancel link to users as shown below.
+            
             string queueName = Request.QueryString["queuename"];
 
             IQueue queue = QueueFactory.CreateQueue(queueName);
