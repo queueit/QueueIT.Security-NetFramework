@@ -68,8 +68,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueueFactoryTest.cs" />
     <Compile Include="SessionValidationControllerTest.cs" />
-    <Compile Include="CookieValidateResultRepository_Test.cs" />
+    <Compile Include="CookieValidateResultRepositoryTest.cs" />
     <Compile Include="SessionStateModelTest.cs" />
+    <Compile Include="SessionValidateResultRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\QueueIT.Security\QueueIT.Security.csproj">

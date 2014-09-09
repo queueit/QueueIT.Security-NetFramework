@@ -1359,7 +1359,18 @@ namespace QueueIT.Security
             {
                 throw new KnownUserValidationException(ex, queue);
             }
-
         }
+
+        internal static void SetExpiration(AcceptedConfirmedResult result, DateTime expirationTime)
+        {
+            IValidateResultRepository repository = _validationResultProviderFactory.Invoke();
+            repository.SetValidationResult(result.Queue, result, expirationTime);
+        }
+        internal static void Cancel(AcceptedConfirmedResult result)
+        {
+            IValidateResultRepository repository = _validationResultProviderFactory.Invoke();
+            repository.Cancel(result.Queue, result);
+        }
+
     }
 }

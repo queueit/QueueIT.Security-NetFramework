@@ -10,5 +10,6 @@ namespace QueueIT.Security
         public DateTime TimeStamp { get; set; }
         public RedirectType RedirectType { get; set; }
         public int? PlaceInQueue { get; set; }
+        public DateTime? Expiration { get; set; }
     }
 }

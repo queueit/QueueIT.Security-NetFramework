@@ -19,7 +19,8 @@ namespace QueueIT.Security.Tests
                 PlaceInQueue = 14575,
                 QueueId = Guid.NewGuid(),
                 RedirectType = RedirectType.Queue,
-                TimeStamp = DateTime.UtcNow
+                TimeStamp = DateTime.UtcNow,
+                Expiration = DateTime.UtcNow.AddMinutes(3)
             };
 
             MemoryStream stream = new MemoryStream();
@@ -35,6 +36,7 @@ namespace QueueIT.Security.Tests
             Assert.AreEqual(expectedModel.QueueId, actualModel.QueueId);
             Assert.AreEqual(expectedModel.RedirectType, actualModel.RedirectType);
             Assert.AreEqual(expectedModel.TimeStamp, actualModel.TimeStamp);
+            Assert.AreEqual(expectedModel.Expiration, actualModel.Expiration);
 
         }
     }

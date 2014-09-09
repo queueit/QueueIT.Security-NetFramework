@@ -1,4 +1,6 @@
-﻿namespace QueueIT.Security
+﻿using System;
+
+namespace QueueIT.Security
 {
     /// <summary>
     /// Validation result when it is confirmed that the user has been through the queue
@@ -20,6 +22,16 @@
         {
             this.KnownUser = knownUser;
             this.IsInitialValidationRequest = initialRequest;
+        }
+
+        public void SetExpiration(DateTime expirationTime)
+        {
+            SessionValidationController.SetExpiration(this, expirationTime);
+        }
+
+        public void Cancel()
+        {
+            SessionValidationController.Cancel(this);
         }
     }
 }

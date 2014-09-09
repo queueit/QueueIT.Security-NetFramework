@@ -1,4 +1,6 @@
-﻿namespace QueueIT.Security
+﻿using System;
+
+namespace QueueIT.Security
 {
     /// <summary>
     /// A repository to store user session state. This can be implemented if ASP.NET Sessions is unavailable. 
@@ -18,6 +20,14 @@
         /// </summary>
         /// <param name="queue">The queue of the validation result</param>
         /// <param name="validationResult">The validation result of the user</param>
-        void SetValidationResult(IQueue queue, IValidateResult validationResult);
+        /// <param name="expirationTime">The time where the result will expire</param>
+        void SetValidationResult(IQueue queue, IValidateResult validationResult, DateTime? expirationTime = null);
+
+        /// <summary>
+        /// Cancels a validation result
+        /// </summary>
+        /// <param name="queue">The queue of the validation result</param>
+        /// <param name="validationResult">The validation result of the user</param>
+        void Cancel(IQueue queue, IValidateResult validationResult);
     }
 }
