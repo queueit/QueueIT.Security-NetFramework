@@ -533,6 +533,7 @@ namespace QueueIT.Security.Tests
         [TestMethod]
         public void CookieValidateResultRepository_Cancel_Test()
         {
+            DateTime testOffset = DateTime.UtcNow;
             string secretKey = "acb";
 
             string expectedCustomerId = "CustomerId";
@@ -567,7 +568,8 @@ namespace QueueIT.Security.Tests
             repository.Cancel(this._queue, actualResult);
 
             Assert.AreEqual(1, this._response.Cookies.Count);
-            Assert.AreEqual(this._response.Cookies[0].Expires, DateTime.MinValue);
+            Assert.IsTrue(this._response.Cookies[0].Expires >= testOffset.AddDays(-1) &&
+                this._response.Cookies[0].Expires <= DateTime.UtcNow.AddDays(-1));
         }
     }
 }

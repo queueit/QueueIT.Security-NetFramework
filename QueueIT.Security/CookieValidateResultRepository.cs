@@ -172,7 +172,7 @@ namespace QueueIT.Security
 
         public override void Cancel(IQueue queue, IValidateResult validationResult)
         {
-            SetValidationResult(queue, validationResult, DateTime.MinValue);
+            SetValidationResult(queue, validationResult, DateTime.UtcNow.AddDays(-1));
         }
 
         private static void SetCookie(
