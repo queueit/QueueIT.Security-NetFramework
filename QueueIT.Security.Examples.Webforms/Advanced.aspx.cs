@@ -9,6 +9,7 @@ namespace QueueIT.Security.Examples.Webforms
     {
         static DateTime _lastCheck = DateTime.MinValue;
         static bool _healthCheckStatus = false;
+        private IValidateResult _result;
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -19,29 +20,29 @@ namespace QueueIT.Security.Examples.Webforms
         {
                 try
                 {
-                    IValidateResult result = SessionValidationController.ValidateRequest("advanced");
+                    this._result = SessionValidationController.ValidateRequest("advanced");
+                    var enqueue = this._result as EnqueueResult;
 
                     // Check if user must be enqueued (new users)
-                    if (result is EnqueueResult)
+                    if (enqueue != null)
                     {
-                        if (QueueIsHealthy(result.Queue)) //Is Queue-it service online for my queue?
-                            Response.Redirect((result as EnqueueResult).RedirectUrl.AbsoluteUri);
+                        if (QueueIsHealthy(enqueue.Queue)) //Is Queue-it service online for my queue?
+                            Response.Redirect(enqueue.RedirectUrl.AbsoluteUri);
                     }
 
                     // This part checks if user has been through the queue and persists the users queue details for later tracking
-                    if (result is AcceptedConfirmedResult)
+                    var accepted = this._result as AcceptedConfirmedResult;
+                    if (accepted != null)
                     {
-                        AcceptedConfirmedResult confirmedResult = result as AcceptedConfirmedResult;
-                        
-                        if (!confirmedResult.IsInitialValidationRequest)
+                        if (!accepted.IsInitialValidationRequest)
                             return; // data has already been persisted
 
                         PersistModel model = new PersistModel(
-                            confirmedResult.Queue.CustomerId,
-                            confirmedResult.Queue.EventId,
-                            confirmedResult.KnownUser.QueueId,
-                            confirmedResult.KnownUser.PlaceInQueue,
-                            confirmedResult.KnownUser.TimeStamp);
+                            accepted.Queue.CustomerId,
+                            accepted.Queue.EventId,
+                            accepted.KnownUser.QueueId,
+                            accepted.KnownUser.PlaceInQueue,
+                            accepted.KnownUser.TimeStamp);
 
                         model.Persist(); //Persist users queue details
                     }
@@ -56,6 +57,19 @@ namespace QueueIT.Security.Examples.Webforms
                     // The known user url or hash is not valid - Show error page and use GetCancelUrl to get user back in the queue
                     Response.Redirect("Error.aspx?queuename=advanced&t=" + HttpUtility.UrlEncode((ex.InnerException as KnownUserException).OriginalUrl.AbsoluteUri));
                 }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            var accepted = this._result as AcceptedConfirmedResult;
+            if (accepted != null)
+            {
+                var currentUrl = HttpContext.Current.Request.Url.AbsoluteUri.ToLower();
+                hlCancel.NavigateUrl = accepted.Queue.GetCancelUrl(
+                    new Uri(currentUrl.Substring(0, currentUrl.IndexOf("advanced.aspx")) + "cancel.aspx?eventid=advanced"),
+                    accepted.KnownUser.QueueId).ToString();
+            }
+
         }
 
         private bool QueueIsHealthy(IQueue Queue)

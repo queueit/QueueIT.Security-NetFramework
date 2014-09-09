@@ -33,4 +33,7 @@
             pages (it must only be included once on each page). In this example you will 
             find the control on the Site.Master page.</li>
     </ol>
+        <div>
+        <asp:HyperLink ID="hlCancel" runat="server">Cancel validation token Queue</asp:HyperLink>
+    </div>
 </asp:Content>

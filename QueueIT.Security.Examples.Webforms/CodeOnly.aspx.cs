@@ -6,6 +6,7 @@ namespace QueueIT.Security.Examples.Webforms
 {
     public partial class CodeOnly : Page
     {
+        private IValidateResult _result;
         static CodeOnly()
         {
             // Configure the shared key (should be done once - e.g. in global.asax) 
@@ -21,12 +22,13 @@ namespace QueueIT.Security.Examples.Webforms
         {
             try
             {
-                IValidateResult result = SessionValidationController.ValidateRequest("ticketania", "codeonly", includeTargetUrl: true);
+                this._result = SessionValidationController.ValidateRequest("ticketania", "codeonly", includeTargetUrl: true);
+                var enqueue = this._result as EnqueueResult;
 
                 // Check if user must be enqueued
-                if (result is EnqueueResult)
+                if (enqueue != null)
                 {
-                    Response.Redirect((result as EnqueueResult).RedirectUrl.AbsoluteUri);
+                    Response.Redirect(enqueue.RedirectUrl.AbsoluteUri);
                 }
             }
             catch (ExpiredValidationException ex)
@@ -44,6 +46,14 @@ namespace QueueIT.Security.Examples.Webforms
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            var accepted = this._result as AcceptedConfirmedResult;
+            if (accepted != null)
+            {
+                var currentUrl = HttpContext.Current.Request.Url.AbsoluteUri.ToLower();
+                hlCancel.NavigateUrl = accepted.Queue.GetCancelUrl(
+                    new Uri(currentUrl.Substring(0, currentUrl.IndexOf("codeonly.aspx")) + "cancel.aspx?eventId=codeonly"),
+                    accepted.KnownUser.QueueId).ToString();
+            }
         }
     }
 }
