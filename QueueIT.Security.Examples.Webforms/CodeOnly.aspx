@@ -31,5 +31,6 @@
             code in the page PreInit, in the master page PreInit or in the 
             Application_BeginRequest method of the global.asax file.</li>
     </ol>
-    <asp:HyperLink ID="hlCancel" runat="server">Cancel validation token Queue</asp:HyperLink>
+    <asp:HyperLink ID="hlCancel" runat="server">Cancel queue validation token</asp:HyperLink>
+    <asp:HyperLink ID="hlExpire" runat="server">Change expiration</asp:HyperLink>
 </asp:Content>

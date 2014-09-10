@@ -34,6 +34,7 @@
             find the control on the Site.Master page.</li>
     </ol>
         <div>
-        <asp:HyperLink ID="hlCancel" runat="server">Cancel validation token Queue</asp:HyperLink>
+        <asp:HyperLink ID="hlCancel" runat="server">Cancel queue validation token</asp:HyperLink>
+        <asp:HyperLink ID="hlExpire" runat="server">Change expiration</asp:HyperLink>
     </div>
 </asp:Content>

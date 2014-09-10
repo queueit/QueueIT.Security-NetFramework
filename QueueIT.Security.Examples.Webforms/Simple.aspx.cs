@@ -47,6 +47,7 @@ namespace QueueIT.Security.Examples.Webforms
                 hlCancel.NavigateUrl = accepted.Queue.GetCancelUrl(
                     new Uri(currentUrl.Substring(0, currentUrl.IndexOf("simple.aspx")) + "cancel.aspx?eventid=simple"),
                     accepted.KnownUser.QueueId).ToString();
+                hlExpire.NavigateUrl = "Expire.aspx?eventid=simple";
             }
 
         }

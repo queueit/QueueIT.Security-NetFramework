@@ -83,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdvancedLanding.aspx" />
+    <Content Include="Expire.aspx" />
     <Content Include="Cancel.aspx" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -177,6 +178,13 @@
     </Compile>
     <Compile Include="AdvancedLanding.aspx.designer.cs">
       <DependentUpon>AdvancedLanding.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Expire.aspx.cs">
+      <DependentUpon>Expire.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Expire.aspx.designer.cs">
+      <DependentUpon>Expire.aspx</DependentUpon>
     </Compile>
     <Compile Include="Cancel.aspx.cs">
       <DependentUpon>Cancel.aspx</DependentUpon>

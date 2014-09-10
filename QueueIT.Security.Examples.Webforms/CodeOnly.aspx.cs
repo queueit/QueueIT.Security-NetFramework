@@ -53,6 +53,8 @@ namespace QueueIT.Security.Examples.Webforms
                 hlCancel.NavigateUrl = accepted.Queue.GetCancelUrl(
                     new Uri(currentUrl.Substring(0, currentUrl.IndexOf("codeonly.aspx")) + "cancel.aspx?eventId=codeonly"),
                     accepted.KnownUser.QueueId).ToString();
+                hlExpire.NavigateUrl = "Expire.aspx?eventid=codeonly";
+
             }
         }
     }
