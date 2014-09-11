@@ -25,7 +25,7 @@ namespace QueueIT.Security.Examples.AspNetMvc.Controllers
             return View();
         }
 
-        [KnownUser]
+        [KnownUser] // Please be aware that this filter is not applied to error controller actions or similar which will cause users to get looped arround.
         public ActionResult Target(KnownUserModel knownUserModel)
         {
             PersistModel model = new PersistModel(
@@ -37,6 +37,5 @@ namespace QueueIT.Security.Examples.AspNetMvc.Controllers
 
             return View();
         }
-
     }
 }

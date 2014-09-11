@@ -9,6 +9,12 @@ namespace QueueIT.Security.Examples.Webforms
 {
     public partial class LinkTarget : System.Web.UI.Page
     {
+        /// <summary>
+        /// Queue validation
+        /// </summary>
+        /// <remarks>
+        /// Please be aware that this this implementation is not done on error handling pages (e.g. Error.aspx) which will cause users to get looped arround.
+        /// </remarks>
         protected override void OnPreInit(EventArgs e)
         {
             try
@@ -38,9 +44,8 @@ namespace QueueIT.Security.Examples.Webforms
 
             base.OnPreInit(e);
         }
-        protected void Page_Load(object sender, EventArgs e)
-        {
 
-        }
+        protected void Page_Load(object sender, EventArgs e)
+        { }
     }
 }

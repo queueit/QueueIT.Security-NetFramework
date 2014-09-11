@@ -12,6 +12,12 @@ namespace QueueIT.Security.Examples.Webforms
             QueueITValidation();
         }
 
+        /// <summary>
+        /// Queue validation
+        /// </summary>
+        /// <remarks>
+        /// Please be aware that this this implementation is not done on error handling pages (e.g. Error.aspx) which will cause users to get looped arround.
+        /// </remarks>
         private void QueueITValidation()
         {
             try
@@ -38,6 +44,7 @@ namespace QueueIT.Security.Examples.Webforms
                     HttpUtility.UrlEncode((ex.InnerException as KnownUserException).OriginalUrl.AbsoluteUri));
             }
         }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             var accepted = this._result as AcceptedConfirmedResult;

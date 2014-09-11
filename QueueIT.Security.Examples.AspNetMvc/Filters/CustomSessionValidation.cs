@@ -6,6 +6,10 @@ namespace QueueIT.Security.Examples.AspNetMvc.Filters
 {
     public class CustomSessionValidation : SessionValidationAttribute
     {
+        /// <summary>
+        /// Please be aware that this filter is not applied to error controller actions or similar which will cause users to get looped arround.
+        /// </summary>
+        /// <param name="queueName"></param>
         public CustomSessionValidation(string queueName)
             : base(queueName)
         {}
