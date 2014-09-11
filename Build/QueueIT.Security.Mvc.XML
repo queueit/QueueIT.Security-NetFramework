@@ -43,7 +43,8 @@
         </member>
         <member name="T:QueueIT.Security.Mvc.KnownUserAttribute">
              <summary>
-             Action Filter which enables Known User validation functionality
+             Action Filter which enables Known User validation functionality.
+             Please be aware that this filter is not applied to error controller actions or similar which will cause users to get looped arround.
              </summary>
              <example>
              Source Code;
@@ -131,7 +132,8 @@
         </member>
         <member name="T:QueueIT.Security.Mvc.SessionValidationAttribute">
             <summary>
-            Action Filter which enables simple implementation of the QueueIT.Security functionality
+            Action Filter which enables simple implementation of the QueueIT.Security functionality.
+            Please be aware that this filter is not applied to error controller actions or similar which will cause users to get looped arround.
             </summary>
             <remarks>
             View members for additional information and examples
