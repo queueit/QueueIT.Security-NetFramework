@@ -33,6 +33,17 @@
             The queue of the request validation
             </summary>
         </member>
+        <member name="M:QueueIT.Security.AcceptedConfirmedResult.SetExpiration(System.DateTime)">
+            <summary>
+            Sets the expiration time of the validation result
+            </summary>
+            <param name="expirationTime">The absolute time the validation request expires</param>
+        </member>
+        <member name="M:QueueIT.Security.AcceptedConfirmedResult.Cancel">
+            <summary>
+            Cancels the validation result
+            </summary>
+        </member>
         <member name="P:QueueIT.Security.AcceptedConfirmedResult.KnownUser">
             <summary>
             Known User details of the user
