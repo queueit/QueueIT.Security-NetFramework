@@ -24,11 +24,18 @@ namespace QueueIT.Security
             this.IsInitialValidationRequest = initialRequest;
         }
 
+        /// <summary>
+        /// Sets the expiration time of the validation result
+        /// </summary>
+        /// <param name="expirationTime">The absolute time the validation request expires</param>
         public void SetExpiration(DateTime expirationTime)
         {
             SessionValidationController.SetExpiration(this, expirationTime);
         }
 
+        /// <summary>
+        /// Cancels the validation result
+        /// </summary>
         public void Cancel()
         {
             SessionValidationController.Cancel(this);

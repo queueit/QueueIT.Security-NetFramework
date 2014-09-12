@@ -147,7 +147,7 @@ namespace QueueIT.Security.Tests
 
         public void SetValidationResult(IQueue queue, IValidateResult validationResult, DateTime? expirationTime = null)
         {
-            throw new NotImplementedException();
+            this._results.Add(queue.CustomerId + queue.EventId, validationResult);
         }
 
         public void Cancel(IQueue queue, IValidateResult validationResult)

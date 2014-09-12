@@ -48,14 +48,16 @@
             A repository to store state which stores the validation result in a http cookie. This is the default.
             </summary>
             <remarks>
-            This will by default store a cookie with 20 minutes expiration.<br /><br />
+            This will by default store a cookie with 20 minutes expiration and the cookie will be renewed for every page request. 
+            A cookie with a default expiration of 3 minutes will be set if the queue is in Idle or Disabled mode. 
+            After the expiration a new request will be made to put the user in the queue<br /><br />
             NOTE: Users will be looped back to the queue if their browser does not support cookies. 
             It is highly recommended that your application confirms that there is cookie support before sending the user to the queue. 
             If there is no cookie support we recommend displaying an error message to the user asking them to enable cookies.
             </remarks>
             <example>
             <code language="cs">
-            CookieValidateResultRepository.Configure(".ticketania.com", TimeSpan.FromMinutes(20));
+            CookieValidateResultRepository.Configure(".ticketania.com", TimeSpan.FromMinutes(20), TimeSpan.FromMinutes(3), TimeSpan.FromMinutes(3));
             </code>
             Configuration:
             <code>
@@ -68,6 +70,8 @@
                   <repositorySettings>
                       <setting name="CookieDomain" value=".ticketania.com" />
                       <setting name="CookieExpiration" value="00:20:00" />
+                      <setting name="IdleExpiration" value="00:03:00" />
+                      <setting name="DisabledExpiration" value="00:03:00" />
                   </repositorySettings>
                </queueit.security>
             </configuration>    
@@ -88,19 +92,29 @@
             <returns>The validation result of the user session if any. 
             Must return null if the users has not previously been validated.</returns>
         </member>
-        <member name="M:QueueIT.Security.IValidateResultRepository.SetValidationResult(QueueIT.Security.IQueue,QueueIT.Security.IValidateResult)">
+        <member name="M:QueueIT.Security.IValidateResultRepository.SetValidationResult(QueueIT.Security.IQueue,QueueIT.Security.IValidateResult,System.Nullable{System.DateTime})">
             <summary>
             Sets the validation result of a user on the session
             </summary>
             <param name="queue">The queue of the validation result</param>
             <param name="validationResult">The validation result of the user</param>
+            <param name="expirationTime">The time where the result will expire</param>
         </member>
-        <member name="M:QueueIT.Security.CookieValidateResultRepository.Configure(System.String,System.TimeSpan)">
+        <member name="M:QueueIT.Security.IValidateResultRepository.Cancel(QueueIT.Security.IQueue,QueueIT.Security.IValidateResult)">
+            <summary>
+            Cancels a validation result
+            </summary>
+            <param name="queue">The queue of the validation result</param>
+            <param name="validationResult">The validation result of the user</param>
+        </member>
+        <member name="M:QueueIT.Security.CookieValidateResultRepository.Configure(System.String,System.TimeSpan,System.TimeSpan,System.TimeSpan)">
             <summary>
             Configures the CookieValidateResultRepository. This method will override any previous calls and configuration in config files.
             </summary>
             <param name="cookieDomain">The domain name of the cookie scope</param>
             <param name="cookieExpiration">The amount of time the user can stay on the website before sent to the queue. The time will be extended each time validation is performed.</param>
+            <param name="idleExpiration">The amount of time the user can stay on the website before sent to the queue if the queue is in Idle mode. The time will not be extended each time validation is performed.</param>
+            <param name="disabledExpiration">The amount of time the user can stay on the website before sent to the queue if the queue is in disabled mode. The time will not be extended each time validation is performed.</param>
         </member>
         <member name="T:QueueIT.Security.ExpiredValidationException">
             <summary>
@@ -1926,6 +1940,13 @@
             SessionValidationController.Configure(validationResultProviderFactory: () => new SessionValidateResultRepository);
             </code>
             </example>
+        </member>
+        <member name="M:QueueIT.Security.SessionValidateResultRepository.Configure(System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Configures the SessionValidateResultRepository. This method will override any previous calls and configuration in config files.
+            </summary>
+            <param name="idleExpiration">The amount of time the user can stay on the website before sent to the queue if the queue is in Idle mode. The time will not be extended each time validation is performed.</param>
+            <param name="disabledExpiration">The amount of time the user can stay on the website before sent to the queue if the queue is in disabled mode. The time will not be extended each time validation is performed.</param>
         </member>
     </members>
 </doc>

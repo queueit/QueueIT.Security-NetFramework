@@ -113,6 +113,7 @@
     <None Include="ConfigurationJava.aml" />
     <None Include="ConfigurationNetFramework.aml" />
     <None Include="ConfigurationPhp.aml" />
+    <None Include="FAQ.aml" />
     <None Include="ImplementingJava.aml" />
     <None Include="ImplementingMvc.aml" />
     <None Include="ImplementingPhp.aml" />
