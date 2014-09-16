@@ -252,47 +252,6 @@ namespace QueueIT.Security.Tests
         }
 
         [TestMethod]
-        public void CookieValidateResultRepository_SetValidationResult_WriteCookie_DisabledQueue_Expiration_Test()
-        {
-            string secretKey = "acb";
-
-            string expectedCustomerId = "CustomerId";
-            string expectedEventId = "EventId";
-            Guid expectedQueueId = Guid.Empty;
-            Uri expectedOriginalUrl = new Uri("http://original.url/");
-            int expectedPlaceInQueue = 0;
-            RedirectType expectedRedirectType = RedirectType.Disabled;
-            long expectedSecondsSince1970 = 0;
-            DateTime expectedTimeStamp = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(expectedSecondsSince1970);
-            string expectedCookieName = "QueueITAccepted-SDFrts345E-" + expectedCustomerId.ToLower() + "-" + expectedEventId.ToLower();
-
-            this._knownUser.Stub(knownUser => knownUser.CustomerId).Return(expectedCustomerId);
-            this._knownUser.Stub(knownUser => knownUser.EventId).Return(expectedEventId);
-            this._knownUser.Stub(knownUser => knownUser.QueueId).Return(expectedQueueId);
-            this._knownUser.Stub(knownUser => knownUser.OriginalUrl).Return(expectedOriginalUrl);
-            this._knownUser.Stub(knownUser => knownUser.PlaceInQueue).Return(expectedPlaceInQueue);
-            this._knownUser.Stub(knownUser => knownUser.RedirectType).Return(expectedRedirectType);
-            this._knownUser.Stub(knownUser => knownUser.TimeStamp).Return(expectedTimeStamp);
-
-            this._queue.Stub(queue => queue.CustomerId).Return(expectedCustomerId);
-            this._queue.Stub(queue => queue.EventId).Return(expectedEventId);
-
-            CookieValidateResultRepository.Configure(null);
-            KnownUserFactory.Configure(secretKey);
-
-            CookieValidateResultRepository repository = new CookieValidateResultRepository();
-
-            AcceptedConfirmedResult result = new AcceptedConfirmedResult(this._queue, this._knownUser, true);
-
-            repository.SetValidationResult(this._queue, result);
-
-            Assert.AreEqual(1, this._response.Cookies.Count);
-            Assert.AreEqual(expectedCookieName, this._response.Cookies[0].Name);
-            Assert.IsTrue(this._response.Cookies[0].Expires > DateTime.UtcNow.AddMinutes(2).AddSeconds(50));
-            Assert.IsTrue(this._response.Cookies[0].Expires < DateTime.UtcNow.AddMinutes(3).AddSeconds(10));
-        }
-
-        [TestMethod]
         public void CookieValidateResultRepository_SetValidationResult_WriteCookie_IdleQueue_Expiration_Test()
         {
             string secretKey = "acb";

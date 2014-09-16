@@ -32,8 +32,6 @@ namespace QueueIT.Security
             {
                 SetTimespanFromRepositorySettings(
                     settings.RepositorySettings, "IdleExpiration", (value) => IdleExpiration = value);
-                SetTimespanFromRepositorySettings(
-                    settings.RepositorySettings, "DisabledExpiration", (value) => DisabledExpiration = value);
             }
         }
 
@@ -43,19 +41,15 @@ namespace QueueIT.Security
         /// <param name="idleExpiration">The amount of time the user can stay on the website before sent to the queue if the queue is in Idle mode. The time will not be extended each time validation is performed.</param>
         /// <param name="disabledExpiration">The amount of time the user can stay on the website before sent to the queue if the queue is in disabled mode. The time will not be extended each time validation is performed.</param>
         public static void Configure(
-            TimeSpan idleExpiration = default(TimeSpan),
-            TimeSpan disabledExpiration = default(TimeSpan))
+            TimeSpan idleExpiration = default(TimeSpan))
         {
             if (idleExpiration != default(TimeSpan))
                 IdleExpiration = idleExpiration;
-            if (disabledExpiration != default(TimeSpan))
-                DisabledExpiration = disabledExpiration;
         }
 
         internal static void Clear()
         {
             IdleExpiration = TimeSpan.FromMinutes(3);
-            DisabledExpiration = TimeSpan.FromMinutes(3);
         }
 
         public override IValidateResult GetValidationResult(IQueue queue)
@@ -99,8 +93,6 @@ namespace QueueIT.Security
 
                 if (expirationTime != null)
                     model.Expiration = expirationTime;
-                else if (acceptedResult.KnownUser.RedirectType == RedirectType.Disabled)
-                    model.Expiration = DateTime.UtcNow.Add(DisabledExpiration);
                 else if (acceptedResult.KnownUser.RedirectType == RedirectType.Idle)
                     model.Expiration = DateTime.UtcNow.Add(IdleExpiration);
 

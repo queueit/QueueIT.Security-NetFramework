@@ -63,8 +63,6 @@ namespace QueueIT.Security
                     settings.RepositorySettings, "CookieExpiration", (value) => CookieExpiration = value);
                 SetTimespanFromRepositorySettings(
                     settings.RepositorySettings, "IdleExpiration", (value) => IdleExpiration = value);
-                SetTimespanFromRepositorySettings(
-                    settings.RepositorySettings, "DisabledExpiration", (value) => DisabledExpiration = value);
             }
         }
 
@@ -87,8 +85,6 @@ namespace QueueIT.Security
                 CookieExpiration = cookieExpiration;
             if (idleExpiration != default(TimeSpan))
                 IdleExpiration = idleExpiration;
-            if (disabledExpiration != default(TimeSpan))
-                DisabledExpiration = disabledExpiration;
         }
 
         internal static void Clear()
@@ -96,7 +92,6 @@ namespace QueueIT.Security
             CookieDomain = null;
             CookieExpiration = TimeSpan.FromMinutes(20);
             IdleExpiration = TimeSpan.FromMinutes(3);
-            DisabledExpiration = TimeSpan.FromMinutes(3);
         }
 
         public override IValidateResult GetValidationResult(IQueue queue)
@@ -198,8 +193,6 @@ namespace QueueIT.Security
             validationCookie.Domain = CookieDomain;
             if (expirationTime != null)
                 validationCookie.Expires = expirationTime.Value;
-            else if (redirectType == RedirectType.Disabled)
-                validationCookie.Expires = DateTime.UtcNow.Add(DisabledExpiration);
             else if (redirectType == RedirectType.Idle)
                 validationCookie.Expires = DateTime.UtcNow.Add(IdleExpiration);
             else

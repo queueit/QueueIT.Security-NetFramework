@@ -6,7 +6,6 @@ namespace QueueIT.Security
     public abstract class ValidateResultRepositoryBase : IValidateResultRepository
     {
         protected static TimeSpan IdleExpiration = TimeSpan.FromMinutes(3);
-        protected static TimeSpan DisabledExpiration = TimeSpan.FromMinutes(3);
         private const string SessionQueueId = "QueueITAccepted-SDFrts345E-";
 
         protected static string GenerateKey(string customerId, string eventId)
