@@ -133,7 +133,7 @@ namespace QueueIT.Security
                         new Uri(originalUrl)), 
                     false);
 
-                if (result.KnownUser.RedirectType != RedirectType.Disabled && result.KnownUser.RedirectType != RedirectType.Idle)
+                if (result.KnownUser.RedirectType != RedirectType.Idle)
                     SetCookie(
                         queue, 
                         queueId, 

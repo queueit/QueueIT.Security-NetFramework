@@ -111,43 +111,6 @@ namespace QueueIT.Security.Tests
         }
 
         [TestMethod]
-        public void CookieValidateResultRepository_GetValidationResult_DisabledQueue_NoRenewCookie_Test()
-        {
-            string secretKey = "acb";
-
-            string expectedCustomerId = "CustomerId";
-            string expectedEventId = "EventId";
-            Guid expectedQueueId = Guid.Empty;
-            Uri expectedOriginalUrl = new Uri("http://original.url/");
-            int expectedPlaceInQueue = 0;
-            RedirectType expectedRedirectType = RedirectType.Disabled;
-            long expectedSecondsSince1970 = 0;
-            string cookieName = "QueueITAccepted-SDFrts345E-" + expectedCustomerId.ToLower() + "-" + expectedEventId.ToLower();
-            string expectedHash = "FB-3C-5B-68-D9-85-7E-6F-4B-01-19-68-75-6B-31-AF-22-E0-C7-E3-C8-85-20-A4-64-46-95-6B-75-66-FE-9C";
-
-            this._queue.Stub(queue => queue.CustomerId).Return(expectedCustomerId);
-            this._queue.Stub(queue => queue.EventId).Return(expectedEventId);
-
-            HttpCookie cookie = new HttpCookie(cookieName);
-            cookie.Values["QueueId"] = expectedQueueId.ToString();
-            cookie.Values["OriginalUrl"] = expectedOriginalUrl.AbsoluteUri;
-            cookie.Values["PlaceInQueue"] = Hashing.EncryptPlaceInQueue(expectedPlaceInQueue);
-            cookie.Values["RedirectType"] = expectedRedirectType.ToString();
-            cookie.Values["TimeStamp"] = expectedSecondsSince1970.ToString();
-            cookie.Values["Hash"] = expectedHash;
-
-            this._request.Cookies.Add(cookie);
-
-            KnownUserFactory.Configure(secretKey);
-
-            CookieValidateResultRepository repository = new CookieValidateResultRepository();
-
-            repository.GetValidationResult(this._queue);
-
-            Assert.AreEqual(0, this._response.Cookies.Count);
-        }
-
-        [TestMethod]
         public void CookieValidateResultRepository_GetValidationResult_IdleQueue_NoRenewCookie_Test()
         {
             string secretKey = "acb";
