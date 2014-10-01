@@ -181,12 +181,14 @@ namespace QueueIT.Security
                     "secretKey", 
                     "The Secret Key cannot be null. Invoke KnownUserFactory. Configure or add configuration in config file.");
 
+            Uri url = urlProvider.GetUrl();
+            if (url == null)
+                throw new InvalidKnownUserUrlException();
+
             Uri originalUrl = urlProvider.GetOriginalUrl(querystringPrefix);
-            Uri validateUrl = urlProvider.GetUrl();
 
             try
             {
-                Uri url = urlProvider.GetUrl();
                 Guid? queueId = ParseQueueId(urlProvider.GetQueueId(querystringPrefix));
                 string placeInQueueObfuscated = urlProvider.GetPlaceInQueue(querystringPrefix);
                 int? placeInQueue = null; 
@@ -222,7 +224,7 @@ namespace QueueIT.Security
             catch (KnownUserException ex)
             {
                 ex.OriginalUrl = originalUrl;
-                ex.ValidatedUrl = validateUrl;
+                ex.ValidatedUrl = url;
                 throw;
             }
         }

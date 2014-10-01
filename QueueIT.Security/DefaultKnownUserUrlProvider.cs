@@ -35,7 +35,14 @@ namespace QueueIT.Security
         /// <returns>The queue target url</returns>
         public virtual Uri GetUrl()
         {
-            return this._request.RealUrl();
+            try
+            {
+                return this._request.RealUrl();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         /// <summary>
