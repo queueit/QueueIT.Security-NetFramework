@@ -26,14 +26,14 @@ namespace QueueIT.Security.Examples.Webforms
         {
                 try
                 {
-                    this._result = SessionValidationController.ValidateRequest("advanced");
+                    this._result = SessionValidationController.ValidateRequest(QueueFactory.CreateQueue("advanced"));
                     var enqueue = this._result as EnqueueResult;
 
                     // Check if user must be enqueued (new users)
                     if (enqueue != null)
                     {
                         if (QueueIsHealthy(enqueue.Queue)) //Is Queue-it service online for my queue?
-                            Response.Redirect(enqueue.RedirectUrl.AbsoluteUri);
+                            Response.Redirect(enqueue.RedirectUrl);
                     }
 
                     // This part checks if user has been through the queue and persists the users queue details for later tracking
@@ -56,12 +56,12 @@ namespace QueueIT.Security.Examples.Webforms
                 catch (ExpiredValidationException ex)
                 {
                     // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
-                    Response.Redirect("Error.aspx?queuename=advanced&t=" + HttpUtility.UrlEncode(ex.KnownUser.OriginalUrl.AbsoluteUri));
+                    Response.Redirect("Error.aspx?queuename=advanced&t=" + HttpUtility.UrlEncode(ex.KnownUser.OriginalUrl));
                 }
                 catch (KnownUserValidationException ex)
                 {
                     // The known user url or hash is not valid - Show error page and use GetCancelUrl to get user back in the queue
-                    Response.Redirect("Error.aspx?queuename=advanced&t=" + HttpUtility.UrlEncode((ex.InnerException as KnownUserException).OriginalUrl.AbsoluteUri));
+                    Response.Redirect("Error.aspx?queuename=advanced&t=" + HttpUtility.UrlEncode((ex.InnerException as KnownUserException).OriginalUrl));
                 }
         }
 
@@ -72,7 +72,7 @@ namespace QueueIT.Security.Examples.Webforms
             {
                 var currentUrl = HttpContext.Current.Request.Url.AbsoluteUri.ToLower();
                 hlCancel.NavigateUrl = accepted.Queue.GetCancelUrl(
-                    new Uri(currentUrl.Substring(0, currentUrl.IndexOf("advanced.aspx")) + "cancel.aspx?eventid=advanced"),
+                    currentUrl.Substring(0, currentUrl.IndexOf("advanced.aspx")) + "cancel.aspx?eventid=advanced",
                     accepted.KnownUser.QueueId).ToString();
                 hlExpire.NavigateUrl = "Expire.aspx?eventid=advanced";
             }

@@ -13,11 +13,11 @@ namespace QueueIT.Security
         /// </summary>
         /// <param name="request">The request</param>
         /// <returns>The browser URL</returns>
-        public static Uri RealUrl(this HttpRequest request)
+        public static string RealUrl(this HttpRequest request)
         {
-            return new Uri(string.Concat(
+            return string.Concat(
                 request.Url.GetLeftPart(UriPartial.Authority),
-                request.RawUrl));
+                request.RawUrl);
         }
     }
 }

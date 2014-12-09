@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace QueueIT.Security.Examples.Webforms
 {
@@ -11,7 +6,9 @@ namespace QueueIT.Security.Examples.Webforms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            IValidateResult result = SessionValidationController.ValidateRequest("ticketania", Request.QueryString["eventid"]);
+            IValidateResult result = SessionValidationController.ValidateRequest(
+                QueueFactory.CreateQueue("ticketania", Request.QueryString["eventid"]));
+
             var accepted = result as AcceptedConfirmedResult;
 
             if (accepted != null)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Text.RegularExpressions;
 using QueueIT.Security.Configuration;
 
 namespace QueueIT.Security
@@ -181,11 +182,10 @@ namespace QueueIT.Security
                     "secretKey", 
                     "The Secret Key cannot be null. Invoke KnownUserFactory. Configure or add configuration in config file.");
 
-            Uri url = urlProvider.GetUrl();
-            if (url == null)
-                throw new InvalidKnownUserUrlException();
+            string url = urlProvider.GetUrl();
+            ValidateUrl(url);
 
-            Uri originalUrl = urlProvider.GetOriginalUrl(querystringPrefix);
+            string originalUrl = urlProvider.GetOriginalUrl(querystringPrefix);
 
             try
             {
@@ -227,6 +227,16 @@ namespace QueueIT.Security
                 ex.ValidatedUrl = url;
                 throw;
             }
+        }
+
+        private static void ValidateUrl(string url)
+        {
+            if (string.IsNullOrEmpty(url))
+                throw new InvalidKnownUserUrlException();
+            if (url == null)
+                throw new InvalidKnownUserUrlException();
+            if (!Regex.IsMatch(url, "^(https?://[^/]+)", RegexOptions.IgnoreCase))
+                throw new InvalidKnownUserUrlException();
         }
 
         private static RedirectType ParseRedirectType(string redirectType)
@@ -278,9 +288,9 @@ namespace QueueIT.Security
                 LoadConfiguration();
         }
 
-        private static void ValidateHash(Uri url, string secretKey, string expectedHash)
+        private static void ValidateHash(string url, string secretKey, string expectedHash)
         {
-            string hashString = url.AbsoluteUri.Substring(0, url.AbsoluteUri.Length - 32) + secretKey; //Remove hash value and add SharedEventKey
+            string hashString = url.Substring(0, url.Length - 32) + secretKey; //Remove hash value and add SharedEventKey
 
             using (MD5 md5 = MD5.Create())
             {
@@ -291,14 +301,12 @@ namespace QueueIT.Security
             }
         }
 
-        private static string GetExpectedHash(Uri url)
+        private static string GetExpectedHash(string url)
         {
-            string fullUrl = url.AbsoluteUri;
-
-            if (fullUrl == null || fullUrl.Length < 32)
+            if (url == null || url.Length < 32)
                 throw new InvalidKnownUserHashException();
 
-            return fullUrl.Substring(fullUrl.Length - 32);
+            return url.Substring(url.Length - 32);
         }
     }
 }

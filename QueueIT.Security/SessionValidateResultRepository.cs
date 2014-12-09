@@ -71,7 +71,7 @@ namespace QueueIT.Security
                     queue.CustomerId,
                     queue.EventId,
                     model.RedirectType,
-                    new Uri(model.OriginalUri)), 
+                    model.OriginalUri), 
                 false);
         }
 
@@ -85,7 +85,7 @@ namespace QueueIT.Security
                 SessionStateModel model = new SessionStateModel()
                 {
                     QueueId = acceptedResult.KnownUser.QueueId,
-                    OriginalUri = acceptedResult.KnownUser.OriginalUrl.AbsoluteUri,
+                    OriginalUri = acceptedResult.KnownUser.OriginalUrl,
                     PlaceInQueue = acceptedResult.KnownUser.PlaceInQueue,
                     TimeStamp = acceptedResult.KnownUser.TimeStamp,
                     RedirectType = acceptedResult.KnownUser.RedirectType,

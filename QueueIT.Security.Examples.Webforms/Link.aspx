@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Link" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Link.aspx.cs" Inherits="QueueIT.Security.Examples.Webforms.Link" %>
+﻿<%@ Page Title="Link Queue Configuration" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Link.aspx.cs" Inherits="QueueIT.Security.Examples.Webforms.Link" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
     <section class="featured">
         <div class="content-wrapper">

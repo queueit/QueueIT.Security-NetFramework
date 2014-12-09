@@ -22,6 +22,6 @@ namespace QueueIT.Security
         public string CustomerId { get; protected set; }
         public string EventId { get; protected set; }
         public RedirectType RedirectType { get; protected set; }
-        public Uri OriginalUrl { get; protected set; }
+        public string OriginalUrl { get; protected set; }
     }
 }

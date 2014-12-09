@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Specialized;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace QueueIT.Security
@@ -33,7 +34,7 @@ namespace QueueIT.Security
         /// Returns the target URL as configured on event with Known User tokens
         /// </summary>
         /// <returns>The queue target url</returns>
-        public virtual Uri GetUrl()
+        public virtual string GetUrl()
         {
             try
             {
@@ -144,34 +145,19 @@ namespace QueueIT.Security
         /// </summary>
         /// <param name="queryStringPrefix">Optional query string prefix as configured on the queue event</param>
         /// <returns>The target URL without Known User tokens</returns>
-        public virtual Uri GetOriginalUrl(string queryStringPrefix)
+        public virtual string GetOriginalUrl(string queryStringPrefix)
         {
-            UriBuilder uriBuilder = new UriBuilder(this.GetUrl());
-            NameValueCollection querystringParameters = HttpUtility.ParseQueryString(uriBuilder.Query);
-            querystringParameters.Remove(queryStringPrefix + "q");
-            querystringParameters.Remove(queryStringPrefix + "h");
-            querystringParameters.Remove(queryStringPrefix + "p");
-            querystringParameters.Remove(queryStringPrefix + "ts");
-            querystringParameters.Remove(queryStringPrefix + "e");
-            querystringParameters.Remove(queryStringPrefix + "c");
-            querystringParameters.Remove(queryStringPrefix + "rt");
+            string url = this.GetUrl();
+            url = Regex.Replace(url, @"([\?&])(" + queryStringPrefix + "q=[^&]*)", string.Empty, RegexOptions.IgnoreCase);
+            url = Regex.Replace(url, @"([\?&])(" + queryStringPrefix + "ts=[^&]*)", string.Empty, RegexOptions.IgnoreCase);
+            url = Regex.Replace(url, @"([\?&])(" + queryStringPrefix + "c=[^&]*)", string.Empty, RegexOptions.IgnoreCase);
+            url = Regex.Replace(url, @"([\?&])(" + queryStringPrefix + "e=[^&]*)", string.Empty, RegexOptions.IgnoreCase);
+            url = Regex.Replace(url, @"([\?&])(" + queryStringPrefix + "rt=[^&]*)", string.Empty, RegexOptions.IgnoreCase);
+            url = Regex.Replace(url, @"([\?&])(" + queryStringPrefix + "h=[^&]*)", string.Empty, RegexOptions.IgnoreCase);
+            url = Regex.Replace(url, @"([\?&])(" + queryStringPrefix + "p=[^&]*)", string.Empty, RegexOptions.IgnoreCase);
+            url = Regex.Replace(url, @"[\?&]$", string.Empty);
 
-            StringBuilder sb = new StringBuilder();
-            foreach (string querystringParameter in querystringParameters.AllKeys)
-            {
-                foreach (var parameterValue in querystringParameters.GetValues(querystringParameter))
-                {
-                    if (sb.Length > 0)
-                        sb.Append("&");
-                    sb.Append(querystringParameter);
-                    sb.Append("=");
-                    sb.Append(HttpUtility.UrlEncode(parameterValue));
-                }
-            }
-
-            uriBuilder.Query = sb.ToString();
-
-            return uriBuilder.Uri;
+            return url;
         }
     }
 }

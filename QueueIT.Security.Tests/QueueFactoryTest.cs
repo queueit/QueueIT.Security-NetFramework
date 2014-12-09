@@ -68,9 +68,9 @@ namespace QueueIT.Security.Tests
 
             IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
 
-            Uri actualQueueUrl = queue.GetQueueUrl();
+            string actualQueueUrl = queue.GetQueueUrl();
 
-            Assert.AreEqual(expectedQueueUrl, actualQueueUrl.AbsoluteUri);
+            Assert.AreEqual(expectedQueueUrl, actualQueueUrl);
         }
 
         [TestMethod]
@@ -85,9 +85,9 @@ namespace QueueIT.Security.Tests
 
             IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
 
-            Uri actualQueueUrl = queue.GetQueueUrl(language: new CultureInfo(expectedCulture));
+            string actualQueueUrl = queue.GetQueueUrl(language: new CultureInfo(expectedCulture));
 
-            Assert.AreEqual(expectedQueueUrl, actualQueueUrl.AbsoluteUri);
+            Assert.AreEqual(expectedQueueUrl, actualQueueUrl);
         }
 
         [TestMethod]
@@ -102,9 +102,9 @@ namespace QueueIT.Security.Tests
 
             IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
 
-            Uri actualQueueUrl = queue.GetQueueUrl(layoutName: expectedLayoutName);
+            string actualQueueUrl = queue.GetQueueUrl(layoutName: expectedLayoutName);
 
-            Assert.AreEqual(expectedQueueUrl, actualQueueUrl.AbsoluteUri);
+            Assert.AreEqual(expectedQueueUrl, actualQueueUrl);
         }
 
         [TestMethod]
@@ -119,9 +119,9 @@ namespace QueueIT.Security.Tests
 
             IQueue queue = QueueFactory.CreateQueue("customerId", "eventId");
 
-            Uri actualQueueUrl = queue.GetQueueUrl(domainAlias: expectedDomainAlias);
+            string actualQueueUrl = queue.GetQueueUrl(domainAlias: expectedDomainAlias);
 
-            Assert.AreEqual(expectedQueueUrl, actualQueueUrl.AbsoluteUri);
+            Assert.AreEqual(expectedQueueUrl, actualQueueUrl);
         }
 
         [TestMethod]
@@ -135,9 +135,9 @@ namespace QueueIT.Security.Tests
 
             IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
 
-            Uri actualQueueUrl = queue.GetQueueUrl(sslEnabled: true);
+            string actualQueueUrl = queue.GetQueueUrl(sslEnabled: true);
 
-            Assert.AreEqual(expectedQueueUrl, actualQueueUrl.AbsoluteUri);
+            Assert.AreEqual(expectedQueueUrl, actualQueueUrl);
         }
 
         [TestMethod]
@@ -157,9 +157,31 @@ namespace QueueIT.Security.Tests
 
             IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
 
-            Uri actualQueueUrl = queue.GetQueueUrl(includeTargetUrl: true);
+            string actualQueueUrl = queue.GetQueueUrl(includeTargetUrl: true);
 
-            Assert.AreEqual(expectedQueueUrl, actualQueueUrl.AbsoluteUri);
+            Assert.AreEqual(expectedQueueUrl, actualQueueUrl);
+        }
+
+        [TestMethod]
+        public void QueueFactory_GetQueueUrl_IncludeTargetWithInvalidChars_Test()
+        {
+            string expectedCustomerId = "customerid";
+            string expectedEventId = "eventid";
+            string expectedTarget = "http://target.url/?someprop=some|value&another={value}";
+
+            string expectedQueueUrl =
+                "http://" + expectedEventId + "-" + expectedCustomerId + ".queue-it.net/?c=" + expectedCustomerId + "&e=" + expectedEventId +
+                "&t=" + HttpUtility.UrlEncode(expectedTarget);
+
+            HttpContext.Current = new HttpContext(
+                new HttpRequest("", expectedTarget, "someprop=some|value&another={value}"),
+                new HttpResponse(null));
+
+            IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
+
+            string actualQueueUrl = queue.GetQueueUrl(includeTargetUrl: true);
+
+            Assert.AreEqual(expectedQueueUrl, actualQueueUrl);
         }
 
         [TestMethod]
@@ -175,9 +197,9 @@ namespace QueueIT.Security.Tests
 
             IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
 
-            Uri actualQueueUrl = queue.GetQueueUrl(new Uri(expectedTarget));
+            string actualQueueUrl = queue.GetQueueUrl(expectedTarget);
 
-            Assert.AreEqual(expectedQueueUrl, actualQueueUrl.AbsoluteUri);
+            Assert.AreEqual(expectedQueueUrl, actualQueueUrl);
         }
 
         [TestMethod]
@@ -191,9 +213,9 @@ namespace QueueIT.Security.Tests
 
             IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
 
-            Uri actualQueueUrl = queue.GetCancelUrl();
+            string actualQueueUrl = queue.GetCancelUrl();
 
-            Assert.AreEqual(expectedCancelUrl, actualQueueUrl.AbsoluteUri);
+            Assert.AreEqual(expectedCancelUrl, actualQueueUrl);
         }
 
         [TestMethod]
@@ -207,9 +229,9 @@ namespace QueueIT.Security.Tests
 
             IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
 
-            Uri actualQueueUrl = queue.GetCancelUrl(sslEnabled: true);
+            string actualQueueUrl = queue.GetCancelUrl(sslEnabled: true);
 
-            Assert.AreEqual(expectedCancelUrl, actualQueueUrl.AbsoluteUri);
+            Assert.AreEqual(expectedCancelUrl, actualQueueUrl);
         }
 
         [TestMethod]
@@ -223,9 +245,9 @@ namespace QueueIT.Security.Tests
 
             IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
 
-            Uri actualQueueUrl = queue.GetCancelUrl(domainAlias: "vent.queue-it.net");
+            string actualQueueUrl = queue.GetCancelUrl(domainAlias: "vent.queue-it.net");
 
-            Assert.AreEqual(expectedCancelUrl, actualQueueUrl.AbsoluteUri);
+            Assert.AreEqual(expectedCancelUrl, actualQueueUrl);
         }
 
 
@@ -242,9 +264,9 @@ namespace QueueIT.Security.Tests
 
             IQueue queue = QueueFactory.CreateQueue();
 
-            Uri actualQueueUrl = queue.GetCancelUrl();
+            string actualQueueUrl = queue.GetCancelUrl();
 
-            Assert.AreEqual(expectedCancelUrl, actualQueueUrl.AbsoluteUri);
+            Assert.AreEqual(expectedCancelUrl, actualQueueUrl);
         }
 
         [TestMethod]
@@ -260,9 +282,9 @@ namespace QueueIT.Security.Tests
 
             IQueue queue = QueueFactory.CreateQueue("queue1");
 
-            Uri actualQueueUrl = queue.GetCancelUrl();
+            string actualQueueUrl = queue.GetCancelUrl();
 
-            Assert.AreEqual(expectedCancelUrl, actualQueueUrl.AbsoluteUri);
+            Assert.AreEqual(expectedCancelUrl, actualQueueUrl);
         }
 
 
@@ -279,9 +301,9 @@ namespace QueueIT.Security.Tests
 
             IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
 
-            Uri actualQueueUrl = queue.GetCancelUrl(new Uri(expectedTarget));
+            string actualQueueUrl = queue.GetCancelUrl(expectedTarget);
 
-            Assert.AreEqual(expectedCancelUrl, actualQueueUrl.AbsoluteUri);
+            Assert.AreEqual(expectedCancelUrl, actualQueueUrl);
         }
 
         [TestMethod]
@@ -297,9 +319,9 @@ namespace QueueIT.Security.Tests
 
             IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
 
-            Uri actualQueueUrl = queue.GetCancelUrl();
+            string actualQueueUrl = queue.GetCancelUrl();
 
-            Assert.AreEqual(expectedCancelUrl, actualQueueUrl.AbsoluteUri);
+            Assert.AreEqual(expectedCancelUrl, actualQueueUrl);
         }
 
         [TestMethod]
@@ -307,7 +329,7 @@ namespace QueueIT.Security.Tests
         {
             IQueue queue = QueueFactory.CreateQueue("customerid", "eventid");
 
-            Uri actualLandingPageUrl = queue.GetLandingPageUrl();
+            string actualLandingPageUrl = queue.GetLandingPageUrl();
 
             Assert.IsNull(actualLandingPageUrl);
         }
@@ -319,9 +341,9 @@ namespace QueueIT.Security.Tests
 
             IQueue queue = QueueFactory.CreateQueue("queue1");
 
-            Uri actualLandingPageUrl = queue.GetLandingPageUrl();
+            string actualLandingPageUrl = queue.GetLandingPageUrl();
 
-            Assert.AreEqual(expectedLandingPageUrl, actualLandingPageUrl.AbsoluteUri);
+            Assert.AreEqual(expectedLandingPageUrl, actualLandingPageUrl);
         }
 
         [TestMethod]
@@ -336,9 +358,9 @@ namespace QueueIT.Security.Tests
 
             IQueue queue = QueueFactory.CreateQueue("queue1");
 
-            Uri actualLandingPageUrl = queue.GetLandingPageUrl(true);
+            string actualLandingPageUrl = queue.GetLandingPageUrl(true);
 
-            Assert.AreEqual(expectedLandingPageUrl, actualLandingPageUrl.AbsoluteUri);
+            Assert.AreEqual(expectedLandingPageUrl, actualLandingPageUrl);
         }
 
         [TestMethod]
@@ -349,9 +371,9 @@ namespace QueueIT.Security.Tests
 
             IQueue queue = QueueFactory.CreateQueue("queue1");
 
-            Uri actualLandingPageUrl = queue.GetLandingPageUrl(new Uri(expectedTarget));
+            string actualLandingPageUrl = queue.GetLandingPageUrl(expectedTarget);
 
-            Assert.AreEqual(expectedLandingPageUrl, actualLandingPageUrl.AbsoluteUri);
+            Assert.AreEqual(expectedLandingPageUrl, actualLandingPageUrl);
         }
     }
 }

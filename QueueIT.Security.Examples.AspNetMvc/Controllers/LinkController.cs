@@ -20,7 +20,7 @@ namespace QueueIT.Security.Examples.AspNetMvc.Controllers
 
             IQueue queue = QueueFactory.CreateQueue("link");
 
-            ViewBag.QueueUrl = queue.GetQueueUrl(targetUrl.Uri);
+            ViewBag.QueueUrl = queue.GetQueueUrl(targetUrl.Uri.AbsoluteUri);
 
             return View();
         }

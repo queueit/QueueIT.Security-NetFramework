@@ -8,7 +8,7 @@ namespace QueueIT.Security.Examples.Webforms
         {
             IQueue queue = QueueFactory.CreateQueue("advanced");
 
-            hlQueue.NavigateUrl = queue.GetQueueUrl(new Uri(Request.QueryString["t"])).AbsoluteUri;
+            hlQueue.NavigateUrl = queue.GetQueueUrl(Request.QueryString["t"]);
         }
     }
 }

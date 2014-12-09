@@ -110,8 +110,17 @@ namespace QueueIT.Security
                 RedirectType redirectType = (RedirectType)Enum.Parse(typeof(RedirectType), validationCookie.Values["RedirectType"]);
                 string timeStamp = validationCookie.Values["TimeStamp"];
                 string actualHash = validationCookie.Values["Hash"];
+                string expires = validationCookie.Values["Expires"];
 
-                string expectedHash = GenerateHash(queueId, originalUrl, placeInQueue.ToString(), redirectType, timeStamp);
+                DateTime expirationTime = DateTime.MinValue;
+                if (DateTime.TryParse(expires, out expirationTime))
+                    expirationTime = expirationTime.ToUniversalTime();
+
+                if (expirationTime < DateTime.UtcNow)
+                    return null;
+
+                string expectedHash = GenerateHash(
+                    queueId, originalUrl, placeInQueue.ToString(), redirectType, timeStamp, expirationTime);
 
                 if (actualHash != expectedHash)
                     return null;
@@ -125,19 +134,25 @@ namespace QueueIT.Security
                         queue.CustomerId,
                         queue.EventId,
                         redirectType,
-                        new Uri(originalUrl)), 
+                        originalUrl), 
                     false);
 
                 if (result.KnownUser.RedirectType != RedirectType.Idle)
+                {
+                    DateTime newExpirationTime = DateTime.UtcNow.Add(CookieExpiration);
+                    string newHash = GenerateHash(
+                        queueId, originalUrl, placeInQueue.ToString(), redirectType, timeStamp, newExpirationTime);
+
                     SetCookie(
                         queue, 
                         queueId, 
                         originalUrl, 
                         placeInQueue, 
                         redirectType, 
-                        timeStamp, 
-                        actualHash, 
-                        null);
+                        timeStamp,
+                        newHash,
+                        newExpirationTime);
+                }
 
                 return result;
             }
@@ -154,14 +169,17 @@ namespace QueueIT.Security
             if (acceptedResult != null)
             {
                 string queueId = acceptedResult.KnownUser.QueueId.ToString();
-                string originalUrl = acceptedResult.KnownUser.OriginalUrl.AbsoluteUri;
+                string originalUrl = acceptedResult.KnownUser.OriginalUrl;
                 int placeInQueue = acceptedResult.KnownUser.PlaceInQueue.HasValue ? acceptedResult.KnownUser.PlaceInQueue.Value : 0;
                 RedirectType redirectType = acceptedResult.KnownUser.RedirectType;
                 string timeStamp = Hashing.GetTimestamp(acceptedResult.KnownUser.TimeStamp).ToString();
 
-                string hash = GenerateHash(queueId, originalUrl, placeInQueue.ToString(), redirectType, timeStamp);
+                if (!expirationTime.HasValue)
+                    expirationTime = DateTime.UtcNow.Add(redirectType == RedirectType.Idle ? IdleExpiration : CookieExpiration);
 
-                SetCookie(queue, queueId, originalUrl, placeInQueue, redirectType, timeStamp, hash, expirationTime);
+                string hash = GenerateHash(queueId, originalUrl, placeInQueue.ToString(), redirectType, timeStamp, expirationTime.Value);
+
+                SetCookie(queue, queueId, originalUrl, placeInQueue, redirectType, timeStamp, hash, expirationTime.Value);
             }
         }
 
@@ -178,7 +196,7 @@ namespace QueueIT.Security
             RedirectType redirectType,
             string timeStamp, 
             string hash,
-            DateTime? expirationTime)
+            DateTime expirationTime)
         {
             var key = GenerateKey(queue.CustomerId, queue.EventId);
             HttpCookie validationCookie = new HttpCookie(key);
@@ -191,12 +209,8 @@ namespace QueueIT.Security
 
             validationCookie.HttpOnly = true;
             validationCookie.Domain = CookieDomain;
-            if (expirationTime != null)
-                validationCookie.Expires = expirationTime.Value;
-            else if (redirectType == RedirectType.Idle)
-                validationCookie.Expires = DateTime.UtcNow.Add(IdleExpiration);
-            else
-                validationCookie.Expires = DateTime.UtcNow.Add(CookieExpiration);
+            validationCookie.Expires = expirationTime;
+            validationCookie.Values["Expires"] = expirationTime.ToString("o");
 
             if (HttpContext.Current.Response.Cookies.AllKeys.Any(cookieKey => cookieKey == key))
                 HttpContext.Current.Response.Cookies.Remove(key);
@@ -208,15 +222,35 @@ namespace QueueIT.Security
             string originalUrl, 
             string placeInQueue, 
             RedirectType redirectType, 
-            string timestamp)
+            string timestamp,
+            DateTime expires)
         {
             using (SHA256 sha2 = SHA256.Create())
             {
-                string valueToHash = string.Concat(queueId, originalUrl, placeInQueue, redirectType.ToString(), timestamp, KnownUserFactory.SecretKey);
+                string valueToHash = string.Concat(
+                    queueId, 
+                    originalUrl, 
+                    placeInQueue, 
+                    redirectType.ToString(), 
+                    timestamp, 
+                    expires.ToString("o"),
+                    KnownUserFactory.SecretKey,
+                    this.GetFingerPrint());
                 byte[] hash = sha2.ComputeHash(Encoding.UTF8.GetBytes(valueToHash));
 
                 return BitConverter.ToString(hash);
             }
+        }
+
+        private string GetFingerPrint()
+        {
+            HttpRequest request = HttpContext.Current.Request;
+
+            return string.Concat(
+                request.Headers["User-Agent"],
+                request.Headers["Accept"],
+                request.Headers["Accept-Encoding"],
+                request.Headers["Accept-Language"]);
         }
     }
 }

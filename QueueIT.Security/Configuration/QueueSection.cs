@@ -59,12 +59,11 @@ namespace QueueIT.Security.Configuration
         }
 
         [ConfigurationProperty("landingPage", DefaultValue = null, IsRequired = false)]
-        [TypeConverter(typeof(UriTypeConverter))]
-        public virtual Uri LandingPage
+        public virtual string LandingPage
         {
             get
             {
-                return (Uri)this["landingPage"];
+                return (string)this["landingPage"];
             }
             set
             {

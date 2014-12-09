@@ -28,20 +28,20 @@ namespace QueueIT.Security.Examples.Webforms
                 // Check if user must be enqueued
                 if (enqueue != null)
                 {
-                    Response.Redirect(enqueue.RedirectUrl.AbsoluteUri);
+                    Response.Redirect(enqueue.RedirectUrl);
                 }
             }
             catch (ExpiredValidationException ex)
             {
                 // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
-                Response.Redirect("Error.aspx?queuename=default&t=" + HttpUtility.UrlEncode(ex.KnownUser.OriginalUrl.AbsoluteUri));
+                Response.Redirect("Error.aspx?queuename=default&t=" + HttpUtility.UrlEncode(ex.KnownUser.OriginalUrl));
             }
             catch (KnownUserValidationException ex)
             {
                 // Known user is invalid - Show error page and use GetCancelUrl to get user back in the queue
                 Response.Redirect(
                     "Error.aspx?queuename=default&t=" + 
-                    HttpUtility.UrlEncode((ex.InnerException as KnownUserException).OriginalUrl.AbsoluteUri));
+                    HttpUtility.UrlEncode((ex.InnerException as KnownUserException).OriginalUrl));
             }
         }
 
@@ -52,7 +52,7 @@ namespace QueueIT.Security.Examples.Webforms
             {
                 var currentUrl = HttpContext.Current.Request.Url.AbsoluteUri.ToLower();
                 hlCancel.NavigateUrl = accepted.Queue.GetCancelUrl(
-                    new Uri(currentUrl.Substring(0, currentUrl.IndexOf("simple.aspx")) + "cancel.aspx?eventid=simple"),
+                    currentUrl.Substring(0, currentUrl.IndexOf("simple.aspx")) + "cancel.aspx?eventid=simple",
                     accepted.KnownUser.QueueId).ToString();
                 hlExpire.NavigateUrl = "Expire.aspx?eventid=simple";
             }

@@ -17,7 +17,7 @@ namespace QueueIT.Security.Examples.AspNetMvc.Controllers
         {
             IQueue queue = QueueFactory.CreateQueue("advanced");
 
-            ViewBag.QueueUrl = queue.GetQueueUrl(new Uri(t)).AbsoluteUri;
+            ViewBag.QueueUrl = queue.GetQueueUrl(t);
 
             return View();
         }

@@ -10,6 +10,8 @@ namespace QueueIT.Security.Examples.Webforms
 {
     public partial class SiteMaster : MasterPage
     {
+        public string BodyId { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 

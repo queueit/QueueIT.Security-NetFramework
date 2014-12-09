@@ -31,7 +31,7 @@ namespace QueueIT.Security
         /// <summary>
         /// The URL the user was redirected to without known user parameters
         /// </summary>
-        Uri OriginalUrl { get; }
+        string OriginalUrl { get; }
         /// <summary>
         /// The type of redirect
         /// </summary>

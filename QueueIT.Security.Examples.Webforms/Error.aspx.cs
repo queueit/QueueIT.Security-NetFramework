@@ -18,7 +18,7 @@ namespace QueueIT.Security.Examples.Webforms
 
             IQueue queue = QueueFactory.CreateQueue(queueName);
 
-            hlQueue.NavigateUrl = queue.GetCancelUrl(new Uri(Request.QueryString["t"])).AbsoluteUri;
+            hlQueue.NavigateUrl = queue.GetCancelUrl(Request.QueryString["t"]);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace QueueIT.Security
         /// Returns the redirect URL as provided by Queue-it
         /// </summary>
         /// <returns>The url sent to the browser by the Queue-it service</returns>
-        Uri GetUrl();
+        string GetUrl();
         /// <summary>
         /// Returns the Queue ID from the Known User token in the URL querystring
         /// </summary>
@@ -48,7 +48,7 @@ namespace QueueIT.Security
         /// </summary>
         /// <param name="queryStringPrefix">The querystring prefix</param>
         /// <returns>The Original URL</returns>
-        Uri GetOriginalUrl(string queryStringPrefix);
+        string GetOriginalUrl(string queryStringPrefix);
         /// <summary>
         /// Returns how the user has been redirected to the target URL
         /// </summary>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Queue Landing Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AdvancedLanding.aspx.cs" Inherits="QueueIT.Security.Examples.Webforms.AdvancedLanding" %>
+﻿<%@ Page Title="Advanced Queue Landing Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AdvancedLanding.aspx.cs" Inherits="QueueIT.Security.Examples.Webforms.AdvancedLanding" %>
 
 <asp:Content runat="server" ID="FeaturedContent" ContentPlaceHolderID="FeaturedContent">
     <section class="featured">

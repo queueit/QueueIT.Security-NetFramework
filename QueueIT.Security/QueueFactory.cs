@@ -118,12 +118,12 @@ namespace QueueIT.Security
             Queue queue = InstantiateQueue(
                 queueConfiguration.CustomerId, 
                 queueConfiguration.EventId, 
-                queueConfiguration.DomainAlias,
-                queueConfiguration.LandingPage,
+                string.IsNullOrEmpty(queueConfiguration.DomainAlias) ? null : queueConfiguration.DomainAlias,
+                string.IsNullOrEmpty(queueConfiguration.LandingPage) ? null : queueConfiguration.LandingPage,
                 queueConfiguration.UseSsl,
                 queueConfiguration.IncludeTargetUrl,
                 string.IsNullOrEmpty(queueConfiguration.Language) ? null : new CultureInfo(queueConfiguration.Language),
-                queueConfiguration.LayoutName);
+                string.IsNullOrEmpty(queueConfiguration.LayoutName) ? null : queueConfiguration.LayoutName);
 
             return queue;
         }
@@ -152,7 +152,7 @@ namespace QueueIT.Security
             return queue;
         }
 
-        private static Queue InstantiateQueue(string customerId, string eventId, string domainAlias, Uri landingPage, 
+        private static Queue InstantiateQueue(string customerId, string eventId, string domainAlias, string landingPage, 
             bool sslEnabled, bool includeTargetUrl, CultureInfo culture, string layoutName)
         {
             string key = GenerateKey(customerId, eventId);

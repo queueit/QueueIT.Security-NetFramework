@@ -45,7 +45,7 @@ namespace QueueIT.Security.Tests
             this._knownUser.Stub(knownUser => knownUser.CustomerId).Return("CustomerId");
             this._knownUser.Stub(knownUser => knownUser.EventId).Return("EventId");
             this._knownUser.Stub(knownUser => knownUser.QueueId).Return(expectedQueueId);
-            this._knownUser.Stub(knownUser => knownUser.OriginalUrl).Return(new Uri("http://original.url/"));
+            this._knownUser.Stub(knownUser => knownUser.OriginalUrl).Return("http://original.url/");
             this._knownUser.Stub(knownUser => knownUser.PlaceInQueue).Return(5486);
             this._knownUser.Stub(knownUser => knownUser.RedirectType).Return(RedirectType.Queue);
             this._knownUser.Stub(knownUser => knownUser.TimeStamp).Return(testOffest);
@@ -80,7 +80,7 @@ namespace QueueIT.Security.Tests
             this._knownUser.Stub(knownUser => knownUser.CustomerId).Return("CustomerId");
             this._knownUser.Stub(knownUser => knownUser.EventId).Return("EventId");
             this._knownUser.Stub(knownUser => knownUser.QueueId).Return(Guid.NewGuid());
-            this._knownUser.Stub(knownUser => knownUser.OriginalUrl).Return(new Uri("http://original.url/"));
+            this._knownUser.Stub(knownUser => knownUser.OriginalUrl).Return("http://original.url/");
             this._knownUser.Stub(knownUser => knownUser.PlaceInQueue).Return(5486);
             this._knownUser.Stub(knownUser => knownUser.RedirectType).Return(RedirectType.Idle);
             this._knownUser.Stub(knownUser => knownUser.TimeStamp).Return(testOffest);
@@ -110,7 +110,7 @@ namespace QueueIT.Security.Tests
             this._knownUser.Stub(knownUser => knownUser.CustomerId).Return("CustomerId");
             this._knownUser.Stub(knownUser => knownUser.EventId).Return("EventId");
             this._knownUser.Stub(knownUser => knownUser.QueueId).Return(Guid.NewGuid());
-            this._knownUser.Stub(knownUser => knownUser.OriginalUrl).Return(new Uri("http://original.url/"));
+            this._knownUser.Stub(knownUser => knownUser.OriginalUrl).Return("http://original.url/");
             this._knownUser.Stub(knownUser => knownUser.PlaceInQueue).Return(5486);
             this._knownUser.Stub(knownUser => knownUser.RedirectType).Return(RedirectType.Idle);
             this._knownUser.Stub(knownUser => knownUser.TimeStamp).Return(testOffest);

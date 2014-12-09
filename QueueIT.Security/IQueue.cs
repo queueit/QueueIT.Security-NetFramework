@@ -21,6 +21,12 @@ namespace QueueIT.Security
         /// </summary>
         string CustomerId { get; }
 
+        bool SslEnabled { get; }
+        bool IncludeTargetUrl { get; }
+        string DomainAlias { get; }
+        CultureInfo Language { get; }
+        string LayoutName { get; }
+
         /// <summary>
         /// Returns the URL to the queue. This will be the landing page if one is configured
         /// </summary>
@@ -40,7 +46,7 @@ namespace QueueIT.Security
         /// The layout of the queue if different from default
         /// </param>
         /// <returns>The URL to the queue</returns>
-        Uri GetQueueUrl(bool? includeTargetUrl = null, bool? sslEnabled = null, string domainAlias = null, CultureInfo language = null, string layoutName = null);
+        string GetQueueUrl(bool? includeTargetUrl = null, bool? sslEnabled = null, string domainAlias = null, CultureInfo language = null, string layoutName = null);
 
         /// <summary>
         /// Returns the URL to the queue. This will be the landing page if one is configured
@@ -61,7 +67,7 @@ namespace QueueIT.Security
         /// The layout of the queue if different from default
         /// </param>
         /// <returns>The URL to the queue</returns>
-        Uri GetQueueUrl(Uri targetUrl, bool? sslEnabled = null, string domainAlias = null, CultureInfo language = null, string layoutName = null);
+        string GetQueueUrl(string targetUrl, bool? sslEnabled = null, string domainAlias = null, CultureInfo language = null, string layoutName = null);
 
         /// <summary>
         /// Returns the URL used to cancel a Queue ID and force the user back in the queue
@@ -74,20 +80,20 @@ namespace QueueIT.Security
         /// <param name="sslEnabled">If true the cancel page uses SSL</param>
         /// <param name="domainAlias">An optional domain of the cancel page</param>
         /// <returns>The URL of the cancel page</returns>
-        Uri GetCancelUrl(Uri landingPage = null, Guid? queueId = null, bool? sslEnabled = null, string domainAlias = null);
+        string GetCancelUrl(string landingPageUrl = null, Guid? queueId = null, bool? sslEnabled = null, string domainAlias = null);
 
         /// <summary>
         /// Returns the configured landing page (split page)
         /// </summary>
         /// <param name="includeTargetUrl">If true the current URL will be sent to the landing page as a querystring parameter</param>
         /// <returns>The URL of the landing page</returns>
-        Uri GetLandingPageUrl(bool? includeTargetUrl = null);
+        string GetLandingPageUrl(bool? includeTargetUrl = null);
 
         /// <summary>
         /// Returns the configured landing page (split page)
         /// </summary>
         /// <param name="targetUrl">An URL to send to the landing page as a querystring parameter</param>
         /// <returns>The URL of the landing page</returns>
-        Uri GetLandingPageUrl(Uri targetUrl);
+        string GetLandingPageUrl(string targetUrl);
     }
 }

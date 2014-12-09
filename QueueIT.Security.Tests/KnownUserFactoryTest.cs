@@ -256,7 +256,7 @@ namespace QueueIT.Security.Tests
             }
             catch (KnownUserException ex)
             {
-                Assert.AreEqual(url, ex.ValidatedUrl.AbsoluteUri);
+                Assert.AreEqual(url, ex.ValidatedUrl);
             }
         }
 
@@ -289,7 +289,7 @@ namespace QueueIT.Security.Tests
             }
             catch (KnownUserException ex)
             {
-                Assert.AreEqual(expectedOriginalUrl, ex.OriginalUrl.AbsoluteUri);
+                Assert.AreEqual(expectedOriginalUrl, ex.OriginalUrl);
             }
         }
 
@@ -401,7 +401,7 @@ namespace QueueIT.Security.Tests
             //Act
             IKnownUser knownUser = KnownUserFactory.VerifyMd5Hash(SharedSecreteEventKey);
             
-            Assert.AreEqual(expectedOriginalUrl.AbsoluteUri.ToString(), knownUser.OriginalUrl.AbsoluteUri.ToString());
+            Assert.AreEqual(expectedOriginalUrl.AbsoluteUri.ToString(), knownUser.OriginalUrl);
         }
 
         [TestMethod]
@@ -429,7 +429,7 @@ namespace QueueIT.Security.Tests
             //Act
             IKnownUser knownUser = KnownUserFactory.VerifyMd5Hash(SharedSecreteEventKey);
 
-            Assert.AreEqual(expectedOriginalUrl.AbsoluteUri.ToString(), knownUser.OriginalUrl.AbsoluteUri.ToString());
+            Assert.AreEqual(expectedOriginalUrl.AbsoluteUri.ToString(), knownUser.OriginalUrl);
         }
 
         [TestMethod]
@@ -460,7 +460,7 @@ namespace QueueIT.Security.Tests
             }
             catch (InvalidKnownUserHashException ex)
             {
-                Assert.AreEqual("http://q.queue-it.net/inqueue.aspx", ex.OriginalUrl.AbsoluteUri.ToString());
+                Assert.AreEqual("http://q.queue-it.net/inqueue.aspx", ex.OriginalUrl);
             }
             catch(Exception)
             {
@@ -486,7 +486,7 @@ namespace QueueIT.Security.Tests
             }
             catch (InvalidKnownUserUrlException ex)
             {
-                Assert.AreEqual("http://q.queue-it.net/inqueue.aspx", ex.OriginalUrl.AbsoluteUri.ToString());
+                Assert.AreEqual("http://q.queue-it.net/inqueue.aspx", ex.OriginalUrl);
             }
             catch (Exception)
             {

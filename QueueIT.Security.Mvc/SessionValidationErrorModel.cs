@@ -27,7 +27,7 @@ namespace QueueIT.Security.Mvc
     /// 
     /// <div>An error occured.</div>
     /// <div>
-    ///     <a href="/">Back To Home</a> <a href="@Model.Queue.GetCancelUrl(Model.OriginalUrl).AbsoluteUri">Go to queue</a>
+    ///     <a href="/">Back To Home</a> <a href="@Model.Queue.GetCancelUrl(Model.OriginalUrl)">Go to queue</a>
     /// </div>
     /// ]]>
     /// </code>
@@ -41,13 +41,13 @@ namespace QueueIT.Security.Mvc
         /// <summary>
         /// The URL of the validation request without Known User details
         /// </summary>
-        public Uri OriginalUrl { get; private set; }
+        public string OriginalUrl { get; private set; }
         /// <summary>
         /// The queue of the validation request.
         /// </summary>
         public IQueue Queue { get; private set; }
 
-        internal SessionValidationErrorModel(IQueue queue, SessionValidationException exception, Uri originalUrl)
+        internal SessionValidationErrorModel(IQueue queue, SessionValidationException exception, string originalUrl)
         {
             Queue = queue;
             Exception = exception;

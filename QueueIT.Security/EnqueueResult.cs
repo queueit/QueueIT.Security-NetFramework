@@ -10,9 +10,9 @@ namespace QueueIT.Security
         /// <summary>
         /// URL to redirect user to
         /// </summary>
-        public Uri RedirectUrl { get; private set; }
+        public string RedirectUrl { get; private set; }
 
-        internal EnqueueResult(IQueue queue, Uri redirectUrl)
+        internal EnqueueResult(IQueue queue, string redirectUrl)
             : base(queue)
         {
             RedirectUrl = redirectUrl;

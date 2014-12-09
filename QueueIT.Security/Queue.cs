@@ -7,49 +7,52 @@ namespace QueueIT.Security
 {
     internal class Queue : IQueue
     {
-        internal string DefaultDomainAlias { get; private set; }
-        internal bool DefaultSslEnabled { get; private set; }
-        internal bool DefaultIncludeTargetUrl { get; private set; }
-        internal string DefaultLayoutName { get; private set; }
-        internal CultureInfo DefaultLanguage { get; private set; }
-        private Uri _defaultQueueUrl;
-        private Uri _defaultLandingPageUrl;
-        private Uri _defaultCancelUrl;
+        public string DomainAlias { get; private set; }
+        public bool SslEnabled { get; private set; }
+        public bool IncludeTargetUrl { get; private set; }
+        public string LayoutName { get; private set; }
+        public CultureInfo Language { get; private set; }
+
+        private string _defaultQueueUrl;
+        private string _defaultLandingPageUrl;
+        private string _defaultCancelUrl;
 
         public string EventId { get; private set; }
         public string CustomerId { get; private set; }
 
-        internal Queue(string customerId, string eventId, string domainAlias, Uri landingPage, bool sslEnabled, bool includeTargetUrl, CultureInfo language, string layoutName)
+        internal Queue(string customerId, string eventId, string domainAlias, string landingPage, bool sslEnabled, bool includeTargetUrl, CultureInfo language, string layoutName)
         {
             this.CustomerId = customerId.ToLower();
             this.EventId = eventId.ToLower();
-            this._defaultQueueUrl = GenerateQueueUrl(sslEnabled, domainAlias, language, layoutName).Uri;
-            this._defaultCancelUrl = GenerateCancelUrl(sslEnabled, domainAlias).Uri;
+            this._defaultQueueUrl = GenerateQueueUrl(sslEnabled, domainAlias, language, layoutName).Uri.AbsoluteUri;
+            this._defaultCancelUrl = GenerateCancelUrl(sslEnabled, domainAlias).Uri.AbsoluteUri;
 
-            this.DefaultDomainAlias = domainAlias;
+            this.DomainAlias = domainAlias;
             this._defaultLandingPageUrl = landingPage;
-            this.DefaultLanguage = language;
-            this.DefaultLayoutName = layoutName;
+            this.Language = language;
+            this.LayoutName = layoutName;
 
-            if (this._defaultLandingPageUrl != null && !this._defaultLandingPageUrl.IsAbsoluteUri &&
+            if (!string.IsNullOrEmpty(this._defaultLandingPageUrl) && !this._defaultLandingPageUrl.StartsWith("http") &&
                 HttpContext.Current != null)
             {
-                Uri currentUrl = HttpContext.Current.Request.RealUrl();
-
-                UriBuilder builder = new UriBuilder(currentUrl.Scheme, currentUrl.Host, currentUrl.Port, this._defaultLandingPageUrl.OriginalString);
-                this._defaultLandingPageUrl = builder.Uri;
+                UriBuilder builder = new UriBuilder(
+                    HttpContext.Current.Request.Url.Scheme, 
+                    HttpContext.Current.Request.Url.Host, 
+                    HttpContext.Current.Request.Url.Port, 
+                    this._defaultLandingPageUrl);
+                this._defaultLandingPageUrl = builder.Uri.AbsoluteUri;
             }
-            this.DefaultSslEnabled = sslEnabled;
-            this.DefaultIncludeTargetUrl = includeTargetUrl;
+            this.SslEnabled = sslEnabled;
+            this.IncludeTargetUrl = includeTargetUrl;
         }
 
-        public Uri GetQueueUrl(bool? includeTargetUrl = null, bool? sslEnabled = null, string domainAlias = null, CultureInfo language = null, string layoutName = null)
+        public string GetQueueUrl(bool? includeTargetUrl = null, bool? sslEnabled = null, string domainAlias = null, CultureInfo language = null, string layoutName = null)
         {
             UriBuilder queueUrl = GetQueueUrlWithoutTarget(sslEnabled, domainAlias, language, layoutName);
 
-            IncludeTargetUrl(includeTargetUrl, queueUrl);
+            AddTargetUrl(includeTargetUrl, queueUrl);
 
-            return queueUrl.Uri;
+            return queueUrl.Uri.AbsoluteUri;
         }
 
         private UriBuilder GetQueueUrlWithoutTarget(bool? sslEnabled, string domainAlias, CultureInfo language, string layoutName)
@@ -67,30 +70,30 @@ namespace QueueIT.Security
             return queueUrl;
         }
 
-        public Uri GetQueueUrl(Uri targetUrl, bool? sslEnabled = null, string domainAlias = null, CultureInfo language = null, string layoutName = null)
+        public string GetQueueUrl(string targetUrl, bool? sslEnabled = null, string domainAlias = null, CultureInfo language = null, string layoutName = null)
         {
             UriBuilder queueUrl = GetQueueUrlWithoutTarget(sslEnabled, domainAlias, language, layoutName);
 
-            IncludeTargetUrl(targetUrl, queueUrl);
+            AddTargetUrl(targetUrl, queueUrl);
 
-            return queueUrl.Uri;
+            return queueUrl.Uri.AbsoluteUri;
         }
 
-        private void IncludeTargetUrl(bool? includeTargetUrl, UriBuilder queueUrl)
+        private void AddTargetUrl(bool? includeTargetUrl, UriBuilder queueUrl)
         {
             if (HttpContext.Current == null)
                 return;
 
             if (!includeTargetUrl.HasValue)
-                includeTargetUrl = this.DefaultIncludeTargetUrl;
+                includeTargetUrl = this.IncludeTargetUrl;
 
             if (!includeTargetUrl.Value)
                 return;
-
-            IncludeTargetUrl(HttpContext.Current.Request.Url, queueUrl);
+            
+            AddTargetUrl(HttpContext.Current.Request.RealUrl(), queueUrl);
         }
 
-        private static void IncludeTargetUrl(Uri targetUrl, UriBuilder queueUrl)
+        private static void AddTargetUrl(string targetUrl, UriBuilder queueUrl)
         {
             string query = (queueUrl.Query != null && queueUrl.Query.Length > 1) ? queueUrl.Query.Substring(1) : string.Empty;
 
@@ -99,10 +102,10 @@ namespace QueueIT.Security
             queueUrl.Query = string.Concat(
                 query,
                 string.IsNullOrEmpty(query) ? "t=" : "&t=", 
-                HttpUtility.UrlEncode(targetUrl.AbsoluteUri));
+                HttpUtility.UrlEncode(targetUrl));
         }
 
-        public Uri GetCancelUrl(Uri landingPage = null, Guid? queueId = null, bool? sslEnabled = null, string domainAlias = null)
+        public string GetCancelUrl(string landingPageUrl = null, Guid? queueId = null, bool? sslEnabled = null, string domainAlias = null)
         {
             UriBuilder cancelUrl = domainAlias != null
                 ? GenerateCancelUrl(sslEnabled, domainAlias)
@@ -119,51 +122,51 @@ namespace QueueIT.Security
                     (cancelUrl.Query != null && cancelUrl.Query.Length > 1) ? cancelUrl.Query.Substring(1) : string.Empty, 
                     "&q=", 
                     queueId.Value.ToString());
-            if (landingPage != null)
+            if (landingPageUrl != null)
+                cancelUrl.Query = string.Concat(
+                    (cancelUrl.Query != null && cancelUrl.Query.Length > 1) ? cancelUrl.Query.Substring(1) : string.Empty,
+                    "&r=",
+                    HttpUtility.UrlEncode(landingPageUrl));
+            if (landingPageUrl == null && _defaultLandingPageUrl != null)
                 cancelUrl.Query = string.Concat(
                     (cancelUrl.Query != null && cancelUrl.Query.Length > 1) ? cancelUrl.Query.Substring(1) : string.Empty,
                     "&r=", 
-                    HttpUtility.UrlEncode(landingPage.AbsoluteUri));
-            if (landingPage == null && _defaultLandingPageUrl != null)
-                cancelUrl.Query = string.Concat(
-                    (cancelUrl.Query != null && cancelUrl.Query.Length > 1) ? cancelUrl.Query.Substring(1) : string.Empty,
-                    "&r=", 
-                    HttpUtility.UrlEncode(_defaultLandingPageUrl.AbsoluteUri));
+                    HttpUtility.UrlEncode(_defaultLandingPageUrl));
 
-            return cancelUrl.Uri;
+            return cancelUrl.Uri.AbsoluteUri;
         }
 
-        public Uri GetLandingPageUrl(bool? includeTargetUrl)
+        public string GetLandingPageUrl(bool? includeTargetUrl)
         {
             if (this._defaultLandingPageUrl == null)
                 return null;
 
-            if ((!includeTargetUrl.HasValue || !includeTargetUrl.Value) && !this.DefaultIncludeTargetUrl)
+            if ((!includeTargetUrl.HasValue || !includeTargetUrl.Value) && !this.IncludeTargetUrl)
                 return this._defaultLandingPageUrl;
 
             UriBuilder builder = new UriBuilder(this._defaultLandingPageUrl);
 
-            IncludeTargetUrl(includeTargetUrl, builder);
+            AddTargetUrl(includeTargetUrl, builder);
 
-            return builder.Uri;
+            return builder.Uri.AbsoluteUri;
         }
 
-        public Uri GetLandingPageUrl(Uri targetUrl)
+        public string GetLandingPageUrl(string targetUrl)
         {
             if (this._defaultLandingPageUrl == null)
                 return null;
 
             UriBuilder builder = new UriBuilder(this._defaultLandingPageUrl);
 
-            IncludeTargetUrl(targetUrl, builder);
+            AddTargetUrl(targetUrl, builder);
 
-            return builder.Uri;
+            return builder.Uri.AbsoluteUri;
         }
 
         private UriBuilder GenerateQueueUrl(bool? sslEnabled, string domainAlias, CultureInfo language, string layoutName)
         {
             if (string.IsNullOrEmpty(domainAlias))
-                domainAlias = DefaultDomainAlias;
+                domainAlias = DomainAlias;
 
             UriBuilder uri = new UriBuilder(
                 sslEnabled.HasValue && sslEnabled.Value ? "https" : "http",
@@ -185,7 +188,7 @@ namespace QueueIT.Security
         private UriBuilder GenerateCancelUrl(bool? sslEnabled, string domainAlias)
         {
             if (string.IsNullOrEmpty(domainAlias))
-                domainAlias = DefaultDomainAlias;
+                domainAlias = DomainAlias;
 
             UriBuilder uri = new UriBuilder(
                 sslEnabled.HasValue && sslEnabled.Value ? "https" : "http",

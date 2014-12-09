@@ -11,7 +11,7 @@ namespace QueueIT.Security
             string customerId, 
             string eventId, 
             RedirectType redirectType, 
-            Uri originalUrl)
+            string originalUrl)
         {
             this.QueueId = queueId;
             this.PlaceInQueue = placeInQueue;

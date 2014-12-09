@@ -239,7 +239,7 @@ namespace QueueIT.Security.Mvc
         {
             if (!string.IsNullOrEmpty(this._queueName))
                 return SessionValidationController.ValidateRequest(
-                    this._queueName, this._includeTargetUrl, this._sslEnabled, this._domainAlias);
+                    QueueFactory.CreateQueue(this._queueName), this._includeTargetUrl, this._sslEnabled, this._domainAlias);
             if (!string.IsNullOrEmpty(this._customerId) && !string.IsNullOrEmpty(this._eventId))
                 return SessionValidationController.ValidateRequest(
                     this._customerId, this._eventId, this._includeTargetUrl, this._sslEnabled, this._domainAlias);
@@ -291,7 +291,7 @@ namespace QueueIT.Security.Mvc
             EnqueueResult enqueueResult = result as EnqueueResult;
             if (enqueueResult != null)
             {
-                filterContext.Result = new RedirectResult(enqueueResult.RedirectUrl.AbsoluteUri);
+                filterContext.Result = new RedirectResult(enqueueResult.RedirectUrl);
             }
         }
 

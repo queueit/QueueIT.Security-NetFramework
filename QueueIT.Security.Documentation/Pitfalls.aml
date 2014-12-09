@@ -101,11 +101,11 @@
         <code language="csharp">
           public class MyCustomUrlProvider : DefaultKnownUserUrlProvider
           {
-            public override Uri GetUrl()
+            public override string GetUrl()
             {
               string internalUrl = base.GetUrl().ToString();
               string publicUrl = internalUrl.Replace("http", "https").Replace(":4490", "");
-              return new Uri(publicUrl);
+              return new publicUrl;
             }
           }
         </code>

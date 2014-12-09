@@ -31,7 +31,7 @@ namespace QueueIT.Security.Tests
         [TestMethod]
         public void SessionValidationController_ValidateRequest_Test()
         {
-            IValidateResult result = SessionValidationController.ValidateRequest("customerId", "eventId");
+            IValidateResult result = SessionValidationController.ValidateRequest(QueueFactory.CreateQueue("customerId", "eventId"));
 
             Assert.IsInstanceOfType(result, typeof(EnqueueResult));
         }
@@ -60,7 +60,7 @@ namespace QueueIT.Security.Tests
             HttpContext.Current = new HttpContext(httpRequest, new HttpResponse(null));
 
             AcceptedConfirmedResult firstResult = SessionValidationController.ValidateRequest(
-                "somecust", "someevent") as AcceptedConfirmedResult;
+                QueueFactory.CreateQueue("somecust", "someevent")) as AcceptedConfirmedResult;
 
 
             Assert.IsNotNull(firstResult);
@@ -68,7 +68,7 @@ namespace QueueIT.Security.Tests
             Assert.AreEqual(expectedQueueId, firstResult.KnownUser.QueueId);
 
             AcceptedConfirmedResult secondResult = SessionValidationController.ValidateRequest(
-                "somecust", "someevent") as AcceptedConfirmedResult;
+                QueueFactory.CreateQueue("somecust", "someevent")) as AcceptedConfirmedResult;
 
             Assert.IsNotNull(secondResult);
             Assert.IsFalse(secondResult.IsInitialValidationRequest);
@@ -100,7 +100,7 @@ namespace QueueIT.Security.Tests
             HttpContext.Current = new HttpContext(httpRequest, new HttpResponse(null));
 
             SessionValidationController.ValidateRequest(
-                "somecust", "someevent");
+                QueueFactory.CreateQueue("somecust", "someevent"));
         }
 
         [TestMethod]
@@ -128,7 +128,7 @@ namespace QueueIT.Security.Tests
             HttpContext.Current = new HttpContext(httpRequest, new HttpResponse(null));
 
             SessionValidationController.ValidateRequest(
-                "somecust", "someevent");
+                QueueFactory.CreateQueue("somecust", "someevent"));
         }
 
     }

@@ -15,7 +15,7 @@ namespace QueueIT.Security.Tests
             int expectedPlaceInQueue = 465;
             string expectedCustomerId = "somecust";
             string expectedEventId = "someevent";
-            Uri expectedOriginalUrl = new Uri("http://google.com/");
+            string expectedOriginalUrl = "http://google.com/";
             RedirectType expectedRedirectType = RedirectType.Safetynet;
 
             //Act

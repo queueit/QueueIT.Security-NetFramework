@@ -95,12 +95,12 @@ namespace QueueIT.Security
         /// 
         /// try
         /// {
-        ///     IValidateResult result = SessionValidationController.ValidateRequest();
+        ///     IValidateResult result = SessionValidationController.validateRequestFromConfiguration();
         ///
         ///     // Check if user must be enqueued
         ///     if (result is EnqueueResult)
         ///     {
-        ///         Response.Redirect((result as EnqueueResult).RedirectUrl.AbsoluteUri);
+        ///         Response.Redirect((result as EnqueueResult).RedirectUrl);
         ///     }
         ///
         ///     // Check if user has been through the queue (will be invoked for every page request after the user has been validated)
@@ -124,12 +124,12 @@ namespace QueueIT.Security
         /// catch (ExpiredValidationException ex)
         /// {
         ///     // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
-        ///     Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.KnownUser.OriginalUrl.AbsoluteUri));
+        ///     Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.KnownUser.OriginalUrl));
         /// }
         /// catch (KnownUserValidationException ex)
         /// {
         ///     // The known user url or hash is not valid - Show error page and use GetCancelUrl to get user back in the queue
-        ///     Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.OriginalUrl.AbsoluteUri));
+        ///     Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.OriginalUrl));
         /// }        
         /// </code>
         /// Configuration:
@@ -211,12 +211,12 @@ namespace QueueIT.Security
         /// 
         ///     try
         ///     {
-        ///         IValidateResult result = SessionValidationController.validateRequest();
+        ///         IValidateResult result = SessionValidationController.validateRequestFromConfiguration();
         /// 
         ///         // Check if user must be enqueued
         ///         if (result instanceof EnqueueResult)
         ///         {
-        ///             response.sendRedirect(((EnqueueResult)result).getRedirectUrl().toString());
+        ///             response.sendRedirect(((EnqueueResult)result).getRedirectUrl());
         ///             return;
         ///         }
         ///     }
@@ -260,12 +260,12 @@ namespace QueueIT.Security
 
             return ValidateRequest(
                 queue,
-                sslEnabled.HasValue ? sslEnabled.Value : queue.DefaultSslEnabled,
-                includeTargetUrl.HasValue ? includeTargetUrl.Value : queue.DefaultIncludeTargetUrl,
+                sslEnabled.HasValue ? sslEnabled.Value : queue.SslEnabled,
+                includeTargetUrl.HasValue ? includeTargetUrl.Value : queue.IncludeTargetUrl,
                 null,
-                domainAlias ?? queue.DefaultDomainAlias,
-                language ?? queue.DefaultLanguage,
-                layoutName ?? queue.DefaultLayoutName);
+                domainAlias ?? queue.DomainAlias,
+                language ?? queue.Language,
+                layoutName ?? queue.LayoutName);
         }
 
         /// <summary>
@@ -296,12 +296,12 @@ namespace QueueIT.Security
         /// 
         /// try
         /// {
-        ///     IValidateResult result = SessionValidationController.ValidateRequest(new URI("http://queue-it.com"));
+        ///     IValidateResult result = SessionValidationController.ValidateRequest("http://queue-it.com");
         ///
         ///     // Check if user must be enqueued
         ///     if (result is EnqueueResult)
         ///     {
-        ///         Response.Redirect((result as EnqueueResult).RedirectUrl.AbsoluteUri);
+        ///         Response.Redirect((result as EnqueueResult).RedirectUrl);
         ///     }
         ///
         ///     // Check if user has been through the queue (will be invoked for every page request after the user has been validated)
@@ -325,12 +325,12 @@ namespace QueueIT.Security
         /// catch (ExpiredValidationException ex)
         /// {
         ///     // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
-        ///     Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.KnownUser.OriginalUrl.AbsoluteUri));
+        ///     Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.KnownUser.OriginalUrl));
         /// }
         /// catch (KnownUserValidationException ex)
         /// {
         ///     // The known user url or hash is not valid - Show error page and use GetCancelUrl to get user back in the queue
-        ///     Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.OriginalUrl.AbsoluteUri));
+        ///     Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.OriginalUrl));
         /// }        
         /// </code>
         /// Configuration:
@@ -412,12 +412,12 @@ namespace QueueIT.Security
         /// 
         ///     try
         ///     {
-        ///         IValidateResult result = SessionValidationController.validateRequest(URI.create("http://queue-it.com"));
+        ///         IValidateResult result = SessionValidationController.validateRequest("http://queue-it.com");
         /// 
         ///         // Check if user must be enqueued
         ///         if (result instanceof EnqueueResult)
         ///         {
-        ///             response.sendRedirect(((EnqueueResult)result).getRedirectUrl().toString());
+        ///             response.sendRedirect(((EnqueueResult)result).getRedirectUrl());
         ///             return;
         ///         }
         ///     }
@@ -451,7 +451,7 @@ namespace QueueIT.Security
         /// </code>
         /// </example>
         public static IValidateResult ValidateRequest(
-            Uri targetUrl,
+            string targetUrl,
             bool? sslEnabled = null,
             string domainAlias = null,
             CultureInfo language = null,
@@ -461,19 +461,19 @@ namespace QueueIT.Security
 
             return ValidateRequest(
                 queue,
-                sslEnabled.HasValue ? sslEnabled.Value : queue.DefaultSslEnabled,
+                sslEnabled.HasValue ? sslEnabled.Value : queue.SslEnabled,
                 false,
                 targetUrl,
-                domainAlias ?? queue.DefaultDomainAlias,
-                language ?? queue.DefaultLanguage,
-                layoutName ?? queue.DefaultLayoutName);
+                domainAlias ?? queue.DomainAlias,
+                language ?? queue.Language,
+                layoutName ?? queue.LayoutName);
         }
 
         /// <summary>
         /// Validates the request based on a queue defined by configuration  
         /// This method requires a queue to be configured in the application config file with the name provided in queueName
         /// </summary>
-        /// <param name="queueName">The name of the queue as defined in the configuration file</param>
+        /// <param name="queue">The queue</param>
         /// <param name="includeTargetUrl">
         /// If true the user will be redirected to the current page when the user is through the queue
         /// </param>
@@ -499,12 +499,12 @@ namespace QueueIT.Security
         /// 
         /// try
         /// {
-        ///     IValidateResult result = SessionValidationController.ValidateRequest("advanced");
+        ///     IValidateResult result = SessionValidationController.ValidateRequest(QueueFactory.Create("advanced"));
         ///
         ///     // Check if user must be enqueued
         ///     if (result is EnqueueResult)
         ///     {
-        ///         Response.Redirect((result as EnqueueResult).RedirectUrl.AbsoluteUri);
+        ///         Response.Redirect((result as EnqueueResult).RedirectUrl);
         ///     }
         ///
         ///     // Check if user has been through the queue (will be invoked for every page request after the user has been validated)
@@ -528,12 +528,12 @@ namespace QueueIT.Security
         /// catch (ExpiredValidationException ex)
         /// {
         ///     // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
-        ///     Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.KnownUser.OriginalUrl.AbsoluteUri));
+        ///     Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.KnownUser.OriginalUrl));
         /// }
         /// catch (KnownUserValidationException ex)
         /// {
         ///     // The known user url or hash is not valid - Show error page and use GetCancelUrl to get user back in the queue
-        ///     Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.OriginalUrl.AbsoluteUri));
+        ///     Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.OriginalUrl));
         /// }        
         /// </code>
         /// 
@@ -634,7 +634,7 @@ namespace QueueIT.Security
         /// 
         ///     try
         ///     {
-        ///             IValidateResult result = SessionValidationController.validateRequest("advanced");
+        ///             IValidateResult result = SessionValidationController.validateRequestFromConfiguration("advanced");
         /// 
         ///             // Check if user must be enqueued
         ///             if (result instanceof EnqueueResult)
@@ -693,272 +693,24 @@ namespace QueueIT.Security
         /// </code>
         /// </example>        
         public static IValidateResult ValidateRequest(
-            string queueName,
+            IQueue queue,
             bool? includeTargetUrl = null,
             bool? sslEnabled = null,
             string domainAlias = null,
             CultureInfo language = null, 
             string layoutName = null)
         {
-            if (string.IsNullOrEmpty(queueName))
-                throw new ArgumentException("Queue name is required", "queueName");
-
-            Queue queue = QueueFactory.CreateQueue(queueName) as Queue;
+            if (queue == null)
+                throw new ArgumentException("Queue is required", "queue");
 
             return ValidateRequest(
                 queue,
-                sslEnabled.HasValue ? sslEnabled.Value : queue.DefaultSslEnabled,
-                includeTargetUrl.HasValue ? includeTargetUrl.Value : queue.DefaultIncludeTargetUrl,
+                sslEnabled.HasValue ? sslEnabled.Value : queue.SslEnabled,
+                includeTargetUrl.HasValue ? includeTargetUrl.Value : queue.IncludeTargetUrl,
                 null,
-                domainAlias ?? queue.DefaultDomainAlias,
-                language ?? queue.DefaultLanguage,
-                layoutName ?? queue.DefaultLayoutName);
-        }
-
-        /// <summary>
-        /// Validates the request based on a queue defined by configuration  
-        /// This method requires a queue to be configured in the application config file with the name provided in queueName
-        /// </summary>
-        /// <param name="queueName">The name of the queue as defined in the configuration file</param>
-        /// <param name="targetUrl">
-        /// The URL the user will be redirected to when the user is through the queue
-        /// </param>
-        /// <param name="sslEnabled">
-        /// If true the queue uses SSL
-        /// </param>
-        /// <param name="domainAlias">
-        /// An optional domain of the queue
-        /// </param>
-        /// <param name="language">
-        /// The language of the queue if different from default
-        /// </param>
-        /// <param name="layoutName">
-        /// The layout of the queue if different from default
-        /// </param>
-        /// <exception cref="ExpiredValidationException">The Known User request URL has expired</exception>
-        /// <exception cref="KnownUserValidationException">The Known User request URL is invalid or has been tampered with</exception>
-        /// <returns>The validation result</returns>
-        /// <example>
-        /// Source Code;
-        /// <code language="cs">
-        /// // TODO: Show error page if the browser does not have cookie support
-        /// 
-        /// try
-        /// {
-        ///     IValidateResult result = SessionValidationController.ValidateRequest("advanced", new Uri("http://queue-it.com"));
-        ///
-        ///     // Check if user must be enqueued
-        ///     if (result is EnqueueResult)
-        ///     {
-        ///         Response.Redirect((result as EnqueueResult).RedirectUrl.AbsoluteUri);
-        ///     }
-        ///
-        ///     // Check if user has been through the queue (will be invoked for every page request after the user has been validated)
-        ///     if (result is AcceptedConfirmedResult)
-        ///     {
-        ///         AcceptedConfirmedResult confirmedResult = result as AcceptedConfirmedResult;
-        ///
-        ///         if (!confirmedResult.IsInitialValidationRequest)
-        ///             return; // data has already been persisted
-        ///
-        ///         PersistModel model = new PersistModel(
-        ///             confirmedResult.Queue.CustomerId, 
-        ///             confirmedResult.Queue.EventId, 
-        ///             confirmedResult.KnownUser.QueueId,
-        ///             confirmedResult.KnownUser.PlaceInQueue,
-        ///             confirmedResult.KnownUser.TimeStamp);
-        ///
-        ///         model.Persist();
-        ///     }
-        /// }
-        /// catch (ExpiredValidationException ex)
-        /// {
-        ///     // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
-        ///     Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.KnownUser.OriginalUrl.AbsoluteUri));
-        /// }
-        /// catch (KnownUserValidationException ex)
-        /// {
-        ///     // The known user url or hash is not valid - Show error page and use GetCancelUrl to get user back in the queue
-        ///     Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.OriginalUrl.AbsoluteUri));
-        /// }        
-        /// </code>
-        /// 
-        /// Configuration:
-        /// <code language="config">
-        /// <![CDATA[
-        /// <configuration>
-        ///    <configSections>
-        ///       <section name="queueit.security" type="QueueIT.Security.Configuration.SettingsSection, QueueIT.Security"/>
-        ///    </configSections>
-        ///    <queueit.security 
-        ///       secretKey="a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7">
-        ///       <queues>
-        ///          <queue name="advanced" customerId="ticketania" eventId="advanced"/>
-        ///       </queues>
-        ///       <repositorySettings>
-        ///           <setting name="CookieDomain" value=".ticketania.com" />
-        ///           <setting name="CookieExpiration" value="00:20:00" />
-        ///       </repositorySettings>
-        ///    </queueit.security>
-        /// </configuration>
-        /// ]]>
-        /// </code>
-        /// </example>
-        /// <example>
-        /// PHP Example
-        /// <code language="none">
-        /// <![CDATA[
-        /// <?php
-        /// 	require_once('../QueueIT.Security PHP/SessionValidationController.php');
-        /// 		
-        /// 	use QueueIT\Security\SessionValidationController, 
-        /// 		QueueIT\Security\ExpiredValidationException, 
-        /// 		QueueIT\Security\KnownUserValidationException,
-        /// 		QueueIT\Security\EnqueueResult;
-        /// 
-        ///     // TODO: Show error page if the browser does not have cookie support
-        /// 
-        /// 	try
-        /// 	{
-        /// 		$result = SessionValidationController::validateRequestFromConfiguration('advanced', "http://queue-it.com");
-        /// 		
-        /// 		// Check if user must be enqueued
-        /// 		if ($result instanceof EnqueueResult)
-        /// 		{
-        /// 			header('Location: ' . $result->getRedirectUrl());
-        /// 		}
-        /// 		
-        /// 		// Check if user has been through the queue (will be invoked for every page request after the user has been validated)
-        /// 		if ($result instanceof AcceptedConfirmedResult)
-        /// 		{		
-        /// 			if ($result->isInitialValidationRequest())
-        /// 			{
-        /// 				$model = array(
-        /// 					'CustomerId' => $result->getQueue()->getCustomerId(),
-        /// 					'EventId' => $result->getQueue()->getEventId(),
-        /// 					'QueueId' => $result->getKnownUser()->getQueueId(),
-        /// 					'PlaceInQueue' => $result->getKnownUser()->getPlaceInQueue(),
-        /// 					'TimeStamp' => $result->getKnownUser()->getTimeStamp());
-        /// 			}
-        /// 		}  
-        /// 	}
-        /// 	catch (ExpiredValidationException $ex)
-        /// 	{
-        /// 		// Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
-        /// 		header('Location: error.php?queuename=default&t=' . urlencode($ex->getKnownUser()->getOriginalUrl()));
-        /// 	}
-        /// 	catch (KnownUserValidationException $ex)
-        /// 	{
-        /// 		// Known user is invalid - Show error page and use GetCancelUrl to get user back in the queue
-        /// 		header('Location: error.php?queuename=default&t=' + urlencode($ex->previous->getOriginalUrl()));
-        /// 	}        
-        /// ?>
-        /// ]]>
-        /// </code>
-        /// Configuration:
-        /// <code>
-        /// <![CDATA[
-        /// [settings]
-        /// secretKey = a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7
-        /// cookieExpiration = 1200
-        /// 
-        /// [advanced]
-        /// customerId = ticketania
-        /// eventId = advanced
-        /// includeTargetUrl = true
-        /// domainAlias = queue-example.ticketania.com
-        /// landingPage = http://www.mysplitpage.com/
-        /// useSsl = false
-        /// ]]>
-        /// </code>
-        /// </example>
-        /// <example>
-        /// Java EE Example
-        /// <code language="none">
-        /// <![CDATA[
-        ///     // TODO: Show error page if the browser does not have cookie support
-        /// 
-        ///     try
-        ///     {
-        ///             IValidateResult result = SessionValidationController.validateRequest("advanced", URI.create("http://queue-it.com"));
-        /// 
-        ///             // Check if user must be enqueued
-        ///             if (result instanceof EnqueueResult)
-        ///             {
-        ///                 response.sendRedirect(((EnqueueResult)result).getRedirectUrl().toString());
-        ///                 return;
-        ///             }
-        /// 
-        ///             // Check if user has been through the queue (will be invoked for every page request after the user has been validated)
-        ///             if (result instanceof AcceptedConfirmedResult)
-        ///             {
-        ///                 AcceptedConfirmedResult accepted = (AcceptedConfirmedResult)result;
-        ///                     if (accepted.isInitialValidationRequest())
-        ///                     {
-        ///                         Object[] model = new Object[] {
-        ///                                     accepted.getQueue().getCustomerId(),
-        ///                                     accepted.getQueue().getEventId(),
-        ///                                     accepted.getKnownUser().getQueueId(),
-        ///                                     accepted.getKnownUser().getPlaceInQueue(),
-        ///                                     accepted.getKnownUser().getTimeStamp()
-        ///                         };
-        ///                     }
-        ///             }
-        ///     }
-        ///     catch (ExpiredValidationException ex)
-        ///     {
-        ///         // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
-        ///         response.sendRedirect("error.jsp?queuename=advanced&t=" + ex.getKnownUser().getOriginalUrl());
-        ///         return;
-        ///     }
-        ///     catch (KnownUserValidationException ex)
-        ///     {
-        ///         // Known user is invalid - Show error page and use GetCancelUrl to get user back in the queue
-        ///         response.sendRedirect("error.jsp?queuename=advanced&t=" + ((KnownUserException)ex.getCause()).getOriginalUrl());
-        ///         return;
-        ///     }
-        /// ]]>
-        /// </code>
-        /// Configuration queueit.properties:
-        /// <code>
-        /// <![CDATA[
-        /// secretKey = a774b1e2-8da7-4d51-b1a9-7647147bb13bace77210-a488-4b6f-afc9-8ba94551a7d7
-        /// cookieExpiration = 1200
-        /// ]]>
-        /// </code>
-        /// Configuration queueit-default.properties:
-        /// <code>
-        /// <![CDATA[
-        /// customerId = ticketania
-        /// eventId = advanced
-        /// includeTargetUrl = true
-        /// domainAlias = queue-example.ticketania.com
-        /// landingPage = QueueIT.Security.Examples.Java/advancedlanding.jsp
-        /// useSsl = false
-        /// ]]>
-        /// </code>
-        /// </example>        
-        public static IValidateResult ValidateRequest(
-            string queueName,
-            Uri targetUrl,
-            bool? sslEnabled = null,
-            string domainAlias = null,
-            CultureInfo language = null,
-            string layoutName = null)
-        {
-            if (string.IsNullOrEmpty(queueName))
-                throw new ArgumentException("Queue name is required", "queueName");
-
-            Queue queue = QueueFactory.CreateQueue(queueName) as Queue;
-
-            return ValidateRequest(
-                queue,
-                sslEnabled.HasValue ? sslEnabled.Value : queue.DefaultSslEnabled,
-                false,
-                targetUrl,
-                domainAlias ?? queue.DefaultDomainAlias,
-                language ?? queue.DefaultLanguage,
-                layoutName ?? queue.DefaultLayoutName);
+                domainAlias ?? queue.DomainAlias,
+                language ?? queue.Language,
+                layoutName ?? queue.LayoutName);
         }
 
         /// <summary>
@@ -1000,7 +752,7 @@ namespace QueueIT.Security
         ///     // Check if user must be enqueued
         ///     if (result is EnqueueResult)
         ///     {
-        ///         Response.Redirect((result as EnqueueResult).RedirectUrl.AbsoluteUri);
+        ///         Response.Redirect((result as EnqueueResult).RedirectUrl);
         ///     }
         ///
         ///     // Check if user has been through the queue (will be invoked for every page request after the user has been validated)
@@ -1024,12 +776,12 @@ namespace QueueIT.Security
         /// catch (ExpiredValidationException ex)
         /// {
         ///     // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
-        ///     Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.KnownUser.OriginalUrl.AbsoluteUri));
+        ///     Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.KnownUser.OriginalUrl));
         /// }
         /// catch (KnownUserValidationException ex)
         /// {
         ///     // The known user url or hash is not valid - Show error page and use GetCancelUrl to get user back in the queue
-        ///     Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.OriginalUrl.AbsoluteUri));
+        ///     Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.OriginalUrl));
         /// }        
         /// </code>
         /// </example>
@@ -1127,12 +879,12 @@ namespace QueueIT.Security
 
             return ValidateRequest(
                 queue, 
-                sslEnabled.HasValue ? sslEnabled.Value : queue.DefaultSslEnabled, 
-                includeTargetUrl.HasValue ? includeTargetUrl.Value : queue.DefaultIncludeTargetUrl,
+                sslEnabled.HasValue ? sslEnabled.Value : queue.SslEnabled, 
+                includeTargetUrl.HasValue ? includeTargetUrl.Value : queue.IncludeTargetUrl,
                 null,
-                domainAlias ?? queue.DefaultDomainAlias,
-                language ?? queue.DefaultLanguage,
-                layoutName ?? queue.DefaultLayoutName);
+                domainAlias ?? queue.DomainAlias,
+                language ?? queue.Language,
+                layoutName ?? queue.LayoutName);
         }
 
         /// <summary>
@@ -1169,12 +921,12 @@ namespace QueueIT.Security
         /// 
         /// try
         /// {
-        ///     IValidateResult result = SessionValidationController.ValidateRequest("ticketania", "codeonly", new Uri("http://queue-it.com");
+        ///     IValidateResult result = SessionValidationController.ValidateRequest("ticketania", "codeonly", "http://queue-it.com";
         ///
         ///     // Check if user must be enqueued
         ///     if (result is EnqueueResult)
         ///     {
-        ///         Response.Redirect((result as EnqueueResult).RedirectUrl.AbsoluteUri);
+        ///         Response.Redirect((result as EnqueueResult).RedirectUrl);
         ///     }
         ///
         ///     // Check if user has been through the queue (will be invoked for every page request after the user has been validated)
@@ -1198,12 +950,12 @@ namespace QueueIT.Security
         /// catch (ExpiredValidationException ex)
         /// {
         ///     // Known user has has expired - Show error page and use GetCancelUrl to get user back in the queue
-        ///     Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.KnownUser.OriginalUrl.AbsoluteUri));
+        ///     Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.KnownUser.OriginalUrl));
         /// }
         /// catch (KnownUserValidationException ex)
         /// {
         ///     // The known user url or hash is not valid - Show error page and use GetCancelUrl to get user back in the queue
-        ///     Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.OriginalUrl.AbsoluteUri));
+        ///     Response.Redirect("Error.aspx?queuename=advanced&amp;t=" + HttpUtility.UrlEncode(ex.OriginalUrl));
         /// }        
         /// </code>
         /// </example>
@@ -1257,7 +1009,7 @@ namespace QueueIT.Security
         /// 
         ///     try
         ///     {
-        ///         IValidateResult result = SessionValidationController.validateRequest("ticketania", "codeonly", URI.create("http://queue-it.com"));
+        ///         IValidateResult result = SessionValidationController.validateRequest("ticketania", "codeonly", "http://queue-it.com");
         /// 
         ///         // Check if user must be enqueued
         ///         if (result instanceof EnqueueResult)
@@ -1284,7 +1036,7 @@ namespace QueueIT.Security
         public static IValidateResult ValidateRequest(
             string customerId,
             string eventId,
-            Uri targetUrl,
+            string targetUrl,
             bool? sslEnabled = null,
             string domainAlias = null,
             CultureInfo language = null,
@@ -1299,19 +1051,19 @@ namespace QueueIT.Security
 
             return ValidateRequest(
                 queue,
-                sslEnabled.HasValue ? sslEnabled.Value : queue.DefaultSslEnabled,
+                sslEnabled.HasValue ? sslEnabled.Value : queue.SslEnabled,
                 false,
                 targetUrl,
-                domainAlias ?? queue.DefaultDomainAlias,
-                language ?? queue.DefaultLanguage,
-                layoutName ?? queue.DefaultLayoutName);
+                domainAlias ?? queue.DomainAlias,
+                language ?? queue.Language,
+                layoutName ?? queue.LayoutName);
         }
 
         private static IValidateResult ValidateRequest(
-            Queue queue, 
+            IQueue queue, 
             bool sslEnabled, 
             bool includeTargetUrl, 
-            Uri targetUrl,
+            string targetUrl,
             string domainAlias,
             CultureInfo language = null, 
             string layoutName = null)
@@ -1331,10 +1083,10 @@ namespace QueueIT.Security
 
                 if (knownUser == null)
                 {
-                    Uri landingPage = queue.GetLandingPageUrl(includeTargetUrl);
+                    string landingPageUrl = queue.GetLandingPageUrl(includeTargetUrl);
 
-                    if (landingPage != null)
-                        return new EnqueueResult(queue, landingPage);
+                    if (landingPageUrl != null)
+                        return new EnqueueResult(queue, landingPageUrl);
 
                     if (targetUrl != null)
                         return new EnqueueResult(queue, queue.GetQueueUrl(targetUrl, sslEnabled, domainAlias, language, layoutName));
