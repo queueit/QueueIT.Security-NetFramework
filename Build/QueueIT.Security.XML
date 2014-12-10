@@ -588,12 +588,12 @@
              
                  try
                  {
-                     IValidateResult result = SessionValidationController.validateRequest(URI.create("http://queue-it.com"));
+                     IValidateResult result = SessionValidationController.validateRequest("http://queue-it.com");
              
                      // Check if user must be enqueued
                      if (result instanceof EnqueueResult)
                      {
-                         response.sendRedirect(((EnqueueResult)result).getRedirectUrl().toString());
+                         response.sendRedirect(((EnqueueResult)result).getRedirectUrl());
                          return;
                      }
                  }
@@ -1018,7 +1018,7 @@
              
                  try
                  {
-                         IValidateResult result = SessionValidationController.validateRequest("advanced", URI.create("http://queue-it.com"));
+                         IValidateResult result = SessionValidationController.validateRequest("advanced", "http://queue-it.com");
              
                          // Check if user must be enqueued
                          if (result instanceof EnqueueResult)
@@ -1350,12 +1350,12 @@
              
                  try
                  {
-                     IValidateResult result = SessionValidationController.validateRequest("ticketania", "codeonly", URI.create("http://queue-it.com"));
+                     IValidateResult result = SessionValidationController.validateRequest("ticketania", "codeonly", "http://queue-it.com");
              
                      // Check if user must be enqueued
                      if (result instanceof EnqueueResult)
                      {
-                         response.sendRedirect(((EnqueueResult)result).getRedirectUrl().toString());
+                         response.sendRedirect(((EnqueueResult)result).getRedirectUrl());
                          return;
                      }
                  }
@@ -1952,7 +1952,7 @@
             </code>
             </example>
         </member>
-        <member name="M:QueueIT.Security.SessionValidateResultRepository.Configure(System.TimeSpan,System.TimeSpan)">
+        <member name="M:QueueIT.Security.SessionValidateResultRepository.Configure(System.TimeSpan)">
             <summary>
             Configures the SessionValidateResultRepository. This method will override any previous calls and configuration in config files.
             </summary>

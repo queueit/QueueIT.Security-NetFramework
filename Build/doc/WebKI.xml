@@ -22,7 +22,7 @@
     <HelpKINode Title="CookieValidateResultRepository.Configure Method " Url="html/950a82f6-59e8-e1d6-c0a1-8e03b24eedf9.htm" />
     <HelpKINode Title="KnownUserFactory.Configure Method " Url="html/c0e624b2-a1fc-51e5-f926-bf26890b88f4.htm" />
     <HelpKINode Title="QueueFactory.Configure Method " Url="html/c38def13-faf4-efb9-b118-90eddfee97e4.htm" />
-    <HelpKINode Title="SessionValidateResultRepository.Configure Method " Url="html/59761e46-7154-2230-bb4b-33fc660bba84.htm" />
+    <HelpKINode Title="SessionValidateResultRepository.Configure Method " Url="html/cca910b5-fd71-0ddf-ed2f-e2bb98ef6b60.htm" />
     <HelpKINode Title="SessionValidationController.Configure Method " Url="html/d063d39b-2bec-dde5-6996-0cf66d4e7a01.htm" />
   </HelpKINode>
   <HelpKINode Title="CookieValidateResultRepository class">
@@ -58,7 +58,6 @@
   <HelpKINode Title="DefaultKnownUserUrlProvider.GetUrl method" Url="html/9ac94464-9e48-e07e-ee54-d668ec4e6ad3.htm" />
   <HelpKINode Title="DirectLink enumeration member" Url="html/b9ff7ee8-c473-a9db-90a8-483f6c70460d.htm" />
   <HelpKINode Title="Disabled enumeration member" Url="html/b9ff7ee8-c473-a9db-90a8-483f6c70460d.htm" />
-  <HelpKINode Title="DisabledExpiration field" Url="html/4216e1b5-0452-f0fc-f6ef-83041a863aeb.htm" />
   <HelpKINode Title="DomainAlias property" Url="html/cfc44e72-36e5-3651-00ce-a9b848f65f5e.htm" />
   <HelpKINode Title="EnqueueResult class">
     <HelpKINode Title="EnqueueResult Class" Url="html/1ec0f009-fda0-1296-f201-a58b65f57949.htm" />
@@ -346,7 +345,7 @@
     <HelpKINode Title="methods" Url="html/10e3bf61-6cd6-1c5e-1687-93c9de54eb9b.htm" />
   </HelpKINode>
   <HelpKINode Title="SessionValidateResultRepository.Cancel method" Url="html/21ff7d4a-47b4-a7ef-8636-451099e5d3df.htm" />
-  <HelpKINode Title="SessionValidateResultRepository.Configure method" Url="html/59761e46-7154-2230-bb4b-33fc660bba84.htm" />
+  <HelpKINode Title="SessionValidateResultRepository.Configure method" Url="html/cca910b5-fd71-0ddf-ed2f-e2bb98ef6b60.htm" />
   <HelpKINode Title="SessionValidateResultRepository.GetValidationResult method" Url="html/29c59a7b-8177-7f9c-54dd-03dc9ef82096.htm" />
   <HelpKINode Title="SessionValidateResultRepository.SessionValidateResultRepository constructor" Url="html/6d42ba0a-9430-6922-f4d8-4f83e7021ade.htm" />
   <HelpKINode Title="SessionValidateResultRepository.SetValidationResult method" Url="html/cf666829-06af-7fa8-5039-278b0b5c34e9.htm" />
@@ -436,7 +435,6 @@
     <HelpKINode Title="methods" Url="html/fff43fb9-ee68-8c7b-428c-1e7c2f442406.htm" />
   </HelpKINode>
   <HelpKINode Title="ValidateResultRepositoryBase.Cancel method" Url="html/74e8978b-a6ff-0d02-7998-d3b95c11d531.htm" />
-  <HelpKINode Title="ValidateResultRepositoryBase.DisabledExpiration field" Url="html/4216e1b5-0452-f0fc-f6ef-83041a863aeb.htm" />
   <HelpKINode Title="ValidateResultRepositoryBase.GenerateKey method" Url="html/d8155ab3-e4aa-8541-98fb-a0707bc4d872.htm" />
   <HelpKINode Title="ValidateResultRepositoryBase.GetValidationResult method" Url="html/8350f6e6-fdc4-5154-b92a-cca066792c39.htm" />
   <HelpKINode Title="ValidateResultRepositoryBase.GetValue method" Url="html/b6e023c2-9ef8-9349-af51-8c4d1c8e7dde.htm" />

@@ -105,7 +105,7 @@ namespace QueueIT.Security
                     return null;
 
                 string queueId = validationCookie.Values["QueueId"];
-                string originalUrl = validationCookie.Values["OriginalUrl"];
+                string originalUrl = HttpUtility.UrlDecode(validationCookie.Values["OriginalUrl"]);
                 int placeInQueue = (int)Hashing.DecryptPlaceInQueue(validationCookie.Values["PlaceInQueue"]);
                 RedirectType redirectType = (RedirectType)Enum.Parse(typeof(RedirectType), validationCookie.Values["RedirectType"]);
                 string timeStamp = validationCookie.Values["TimeStamp"];
@@ -201,7 +201,7 @@ namespace QueueIT.Security
             var key = GenerateKey(queue.CustomerId, queue.EventId);
             HttpCookie validationCookie = new HttpCookie(key);
             validationCookie.Values["QueueId"] = queueId;
-            validationCookie.Values["OriginalUrl"] = originalUrl;
+            validationCookie.Values["OriginalUrl"] = HttpUtility.UrlEncode(originalUrl);
             validationCookie.Values["PlaceInQueue"] = Hashing.EncryptPlaceInQueue(placeInQueue);
             validationCookie.Values["RedirectType"] = redirectType.ToString();
             validationCookie.Values["TimeStamp"] = timeStamp;
