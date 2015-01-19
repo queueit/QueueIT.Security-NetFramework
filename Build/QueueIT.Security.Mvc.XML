@@ -369,7 +369,7 @@
             
             <div>An error occured.</div>
             <div>
-                <a href="/">Back To Home</a> <a href="@Model.Queue.GetCancelUrl(Model.OriginalUrl).AbsoluteUri">Go to queue</a>
+                <a href="/">Back To Home</a> <a href="@Model.Queue.GetCancelUrl(Model.OriginalUrl)">Go to queue</a>
             </div>
             ]]>
             </code>

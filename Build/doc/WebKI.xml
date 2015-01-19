@@ -58,7 +58,10 @@
   <HelpKINode Title="DefaultKnownUserUrlProvider.GetUrl method" Url="html/9ac94464-9e48-e07e-ee54-d668ec4e6ad3.htm" />
   <HelpKINode Title="DirectLink enumeration member" Url="html/b9ff7ee8-c473-a9db-90a8-483f6c70460d.htm" />
   <HelpKINode Title="Disabled enumeration member" Url="html/b9ff7ee8-c473-a9db-90a8-483f6c70460d.htm" />
-  <HelpKINode Title="DomainAlias property" Url="html/cfc44e72-36e5-3651-00ce-a9b848f65f5e.htm" />
+  <HelpKINode Title="DomainAlias property">
+    <HelpKINode Title="IQueue.DomainAlias Property " Url="html/5ace1c14-88d4-9a10-7882-d044f7daad38.htm" />
+    <HelpKINode Title="SessionValidationAttribute.DomainAlias Property " Url="html/cfc44e72-36e5-3651-00ce-a9b848f65f5e.htm" />
+  </HelpKINode>
   <HelpKINode Title="EnqueueResult class">
     <HelpKINode Title="EnqueueResult Class" Url="html/1ec0f009-fda0-1296-f201-a58b65f57949.htm" />
     <HelpKINode Title="about EnqueueResult class" Url="html/1ec0f009-fda0-1296-f201-a58b65f57949.htm" />
@@ -85,7 +88,7 @@
   </HelpKINode>
   <HelpKINode Title="ExpiredValidationException.KnownUser property" Url="html/f3507bb9-dccc-6709-8a72-3ec1d47df9ab.htm" />
   <HelpKINode Title="GenerateKey method" Url="html/d8155ab3-e4aa-8541-98fb-a0707bc4d872.htm" />
-  <HelpKINode Title="GetCancelUrl method" Url="html/4015e893-dfe2-29f3-1ae3-649f4c10de8b.htm" />
+  <HelpKINode Title="GetCancelUrl method" Url="html/768e50c8-c250-688b-70b9-f9e784745750.htm" />
   <HelpKINode Title="GetCustomerId method">
     <HelpKINode Title="DefaultKnownUserUrlProvider.GetCustomerId Method " Url="html/54c02315-7b05-742f-10d8-972fcb3612cb.htm" />
     <HelpKINode Title="IKnownUserUrlProvider.GetCustomerId Method " Url="html/683e3e45-037a-f332-44be-18cca3163466.htm" />
@@ -154,7 +157,10 @@
   <HelpKINode Title="IKnownUserUrlProvider.GetRedirectType method" Url="html/4ec666c3-2beb-be56-c9cc-3a20cc00bddd.htm" />
   <HelpKINode Title="IKnownUserUrlProvider.GetTimeStamp method" Url="html/56ad8212-3195-56d2-5b1f-320bdabe36f1.htm" />
   <HelpKINode Title="IKnownUserUrlProvider.GetUrl method" Url="html/e2b142bc-012b-8250-e780-42267ffe28b1.htm" />
-  <HelpKINode Title="IncludeTargetUrl property" Url="html/8cc4689c-f7c0-e240-94a3-18feb809b202.htm" />
+  <HelpKINode Title="IncludeTargetUrl property">
+    <HelpKINode Title="IQueue.IncludeTargetUrl Property " Url="html/0bb2c66a-6350-fe2c-7711-a6545d473025.htm" />
+    <HelpKINode Title="SessionValidationAttribute.IncludeTargetUrl Property " Url="html/8cc4689c-f7c0-e240-94a3-18feb809b202.htm" />
+  </HelpKINode>
   <HelpKINode Title="InvalidKnownUserHashException class">
     <HelpKINode Title="InvalidKnownUserHashException Class" Url="html/5cdeb6ca-f513-70cc-930d-3ec3b1e81de7.htm" />
     <HelpKINode Title="about InvalidKnownUserHashException class" Url="html/5cdeb6ca-f513-70cc-930d-3ec3b1e81de7.htm" />
@@ -172,10 +178,15 @@
     <HelpKINode Title="properties" Url="html/6b10ac8b-c05a-90be-d8d0-0e389846eaae.htm" />
   </HelpKINode>
   <HelpKINode Title="IQueue.CustomerId property" Url="html/67277358-094e-2a34-284f-9eb58bea6a8b.htm" />
+  <HelpKINode Title="IQueue.DomainAlias property" Url="html/5ace1c14-88d4-9a10-7882-d044f7daad38.htm" />
   <HelpKINode Title="IQueue.EventId property" Url="html/c3d14477-93af-6313-564c-6ceb4ac1607d.htm" />
-  <HelpKINode Title="IQueue.GetCancelUrl method" Url="html/4015e893-dfe2-29f3-1ae3-649f4c10de8b.htm" />
+  <HelpKINode Title="IQueue.GetCancelUrl method" Url="html/768e50c8-c250-688b-70b9-f9e784745750.htm" />
   <HelpKINode Title="IQueue.GetLandingPageUrl method" Url="html/be38716c-ccef-1ce7-22bc-2061391edd0b.htm" />
   <HelpKINode Title="IQueue.GetQueueUrl method" Url="html/8149e465-1045-97f7-e1d1-3a0f26faae9a.htm" />
+  <HelpKINode Title="IQueue.IncludeTargetUrl property" Url="html/0bb2c66a-6350-fe2c-7711-a6545d473025.htm" />
+  <HelpKINode Title="IQueue.Language property" Url="html/9f683cae-321e-c348-f080-c3a830c670a3.htm" />
+  <HelpKINode Title="IQueue.LayoutName property" Url="html/02af6152-1127-b429-c76b-44ddb16fba5f.htm" />
+  <HelpKINode Title="IQueue.SslEnabled property" Url="html/8ed8aae1-3546-3c01-409b-b92284489fc4.htm" />
   <HelpKINode Title="IsInitialValidationRequest property" Url="html/416bffac-ad7b-d0f0-3ca4-376eac427f90.htm" />
   <HelpKINode Title="IValidateResult interface">
     <HelpKINode Title="IValidateResult Interface" Url="html/f918a987-5262-00dd-daa3-613172c14d17.htm" />
@@ -245,6 +256,8 @@
     <HelpKINode Title="about KnownUserValidationException class" Url="html/f1f5cedd-a939-f145-f280-13a1dabae4e8.htm" />
     <HelpKINode Title="properties" Url="html/dc43a1bd-85c8-184b-5769-d48afb231f90.htm" />
   </HelpKINode>
+  <HelpKINode Title="Language property" Url="html/9f683cae-321e-c348-f080-c3a830c670a3.htm" />
+  <HelpKINode Title="LayoutName property" Url="html/02af6152-1127-b429-c76b-44ddb16fba5f.htm" />
   <HelpKINode Title="OnActionExecuting method">
     <HelpKINode Title="KnownUserAttribute.OnActionExecuting Method " Url="html/a465a96a-7635-db3e-7884-daadecd51398.htm" />
     <HelpKINode Title="SessionValidationAttribute.OnActionExecuting Method " Url="html/fbc916ab-7d86-2ad5-f2ee-e18dfaef1440.htm" />
@@ -402,7 +415,10 @@
     <HelpKINode Title="SessionValidateResultRepository.SetValidationResult Method " Url="html/cf666829-06af-7fa8-5039-278b0b5c34e9.htm" />
     <HelpKINode Title="ValidateResultRepositoryBase.SetValidationResult Method " Url="html/abdefcc1-248c-77e0-136f-29b3cbf456f5.htm" />
   </HelpKINode>
-  <HelpKINode Title="SslEnabled property" Url="html/5b7d7d9e-e46e-3f2c-e4e8-124745b15c40.htm" />
+  <HelpKINode Title="SslEnabled property">
+    <HelpKINode Title="IQueue.SslEnabled Property " Url="html/8ed8aae1-3546-3c01-409b-b92284489fc4.htm" />
+    <HelpKINode Title="SessionValidationAttribute.SslEnabled Property " Url="html/5b7d7d9e-e46e-3f2c-e4e8-124745b15c40.htm" />
+  </HelpKINode>
   <HelpKINode Title="TimeStamp property">
     <HelpKINode Title="IKnownUser.TimeStamp Property " Url="html/224893eb-274b-f7e4-aff9-1abfb03a3d88.htm" />
     <HelpKINode Title="SessionStateModel.TimeStamp Property " Url="html/36a567ff-3e93-5818-6353-3c3ba2dcbea0.htm" />
