@@ -234,23 +234,11 @@ namespace QueueIT.Security
                     redirectType.ToString(), 
                     timestamp, 
                     expires.ToString("o"),
-                    KnownUserFactory.SecretKey,
-                    this.GetFingerPrint());
+                    KnownUserFactory.SecretKey);
                 byte[] hash = sha2.ComputeHash(Encoding.UTF8.GetBytes(valueToHash));
 
                 return BitConverter.ToString(hash);
             }
-        }
-
-        private string GetFingerPrint()
-        {
-            HttpRequest request = HttpContext.Current.Request;
-
-            return string.Concat(
-                request.Headers["User-Agent"],
-                request.Headers["Accept"],
-                request.Headers["Accept-Encoding"],
-                request.Headers["Accept-Language"]);
         }
     }
 }
