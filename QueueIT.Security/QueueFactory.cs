@@ -165,8 +165,7 @@ namespace QueueIT.Security
             if (string.IsNullOrEmpty(domainAlias))
             {
                 domainAlias = string.Format(
-                    "{0}-{1}.{2}",
-                    eventId,
+                    "{0}.{1}",
                     customerId,
                     _hostDomain);
             }

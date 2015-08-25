@@ -64,7 +64,7 @@ namespace QueueIT.Security.Tests
             string expectedEventId = "eventid";
 
             string expectedQueueUrl =
-                "http://" + expectedEventId + "-" + expectedCustomerId + ".queue-it.net/?c=" + expectedCustomerId + "&e=" + expectedEventId;
+                "http://" + expectedCustomerId + ".queue-it.net/?c=" + expectedCustomerId + "&e=" + expectedEventId;
 
             IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
 
@@ -81,7 +81,7 @@ namespace QueueIT.Security.Tests
             string expectedCulture = "en-US";
 
             string expectedQueueUrl =
-                "http://" + expectedEventId + "-" + expectedCustomerId + ".queue-it.net/?c=" + expectedCustomerId + "&e=" + expectedEventId + "&cid=" + expectedCulture;
+                "http://" + expectedCustomerId + ".queue-it.net/?c=" + expectedCustomerId + "&e=" + expectedEventId + "&cid=" + expectedCulture;
 
             IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
 
@@ -98,7 +98,7 @@ namespace QueueIT.Security.Tests
             string expectedLayoutName = "Some Other Layout";
 
             string expectedQueueUrl =
-                "http://" + expectedEventId + "-" + expectedCustomerId + ".queue-it.net/?c=" + expectedCustomerId + "&e=" + expectedEventId + "&l=" + HttpUtility.UrlEncode(expectedLayoutName);
+                "http://" + expectedCustomerId + ".queue-it.net/?c=" + expectedCustomerId + "&e=" + expectedEventId + "&l=" + HttpUtility.UrlEncode(expectedLayoutName);
 
             IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
 
@@ -131,7 +131,7 @@ namespace QueueIT.Security.Tests
             string expectedEventId = "eventid";
 
             string expectedQueueUrl =
-                "https://" + expectedEventId + "-" + expectedCustomerId + ".queue-it.net/?c=" + expectedCustomerId + "&e=" + expectedEventId;
+                "https://" + expectedCustomerId + ".queue-it.net/?c=" + expectedCustomerId + "&e=" + expectedEventId;
 
             IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
 
@@ -148,7 +148,7 @@ namespace QueueIT.Security.Tests
             string expectedTarget = "http://target.url/?someprop=somevalue&another=value";
 
             string expectedQueueUrl =
-                "http://" + expectedEventId + "-" + expectedCustomerId + ".queue-it.net/?c=" + expectedCustomerId + "&e=" + expectedEventId +
+                "http://" + expectedCustomerId + ".queue-it.net/?c=" + expectedCustomerId + "&e=" + expectedEventId +
                 "&t=" + HttpUtility.UrlEncode(expectedTarget);
 
             HttpContext.Current = new HttpContext(
@@ -170,7 +170,7 @@ namespace QueueIT.Security.Tests
             string expectedTarget = "http://target.url/?someprop=some|value&another={value}";
 
             string expectedQueueUrl =
-                "http://" + expectedEventId + "-" + expectedCustomerId + ".queue-it.net/?c=" + expectedCustomerId + "&e=" + expectedEventId +
+                "http://" + expectedCustomerId + ".queue-it.net/?c=" + expectedCustomerId + "&e=" + expectedEventId +
                 "&t=" + HttpUtility.UrlEncode(expectedTarget);
 
             HttpContext.Current = new HttpContext(
@@ -192,7 +192,7 @@ namespace QueueIT.Security.Tests
             string expectedTarget = "http://target.url/?someprop=somevalue&another=value";
 
             string expectedQueueUrl =
-                "http://" + expectedEventId + "-" + expectedCustomerId + ".queue-it.net/?c=" + expectedCustomerId + "&e=" + expectedEventId +
+                "http://" + expectedCustomerId + ".queue-it.net/?c=" + expectedCustomerId + "&e=" + expectedEventId +
                 "&t=" + HttpUtility.UrlEncode(expectedTarget);
 
             IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
@@ -209,7 +209,7 @@ namespace QueueIT.Security.Tests
             string expectedEventId = "eventid";
 
             string expectedCancelUrl =
-                "http://" + expectedEventId + "-" + expectedCustomerId + ".queue-it.net/cancel.aspx?c=" + expectedCustomerId + "&e=" + expectedEventId;
+                "http://" + expectedCustomerId + ".queue-it.net/cancel.aspx?c=" + expectedCustomerId + "&e=" + expectedEventId;
 
             IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
 
@@ -225,7 +225,7 @@ namespace QueueIT.Security.Tests
             string expectedEventId = "eventid";
 
             string expectedCancelUrl =
-                "https://" + expectedEventId + "-" + expectedCustomerId + ".queue-it.net/cancel.aspx?c=" + expectedCustomerId + "&e=" + expectedEventId;
+                "https://" + expectedCustomerId + ".queue-it.net/cancel.aspx?c=" + expectedCustomerId + "&e=" + expectedEventId;
 
             IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
 
@@ -260,7 +260,7 @@ namespace QueueIT.Security.Tests
             string expectedEventId = "defaulteventid";
 
             string expectedCancelUrl =
-                "http://" + expectedEventId + "-" + expectedCustomerId + ".queue-it.net/cancel.aspx?c=" + expectedCustomerId + "&e=" + expectedEventId;
+                "http://" + expectedCustomerId + ".queue-it.net/cancel.aspx?c=" + expectedCustomerId + "&e=" + expectedEventId;
 
             IQueue queue = QueueFactory.CreateQueue();
 
@@ -296,7 +296,7 @@ namespace QueueIT.Security.Tests
             string expectedTarget = "http://target.url/?someprop=somevalue&another=value";
 
             string expectedCancelUrl =
-                "http://" + expectedEventId + "-" + expectedCustomerId + ".queue-it.net/cancel.aspx?c=" + expectedCustomerId + "&e=" + expectedEventId +
+                "http://" + expectedCustomerId + ".queue-it.net/cancel.aspx?c=" + expectedCustomerId + "&e=" + expectedEventId +
                 "&r=" + HttpUtility.UrlEncode(expectedTarget);
 
             IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
@@ -315,7 +315,7 @@ namespace QueueIT.Security.Tests
             string expectedEventId = "eventid";
 
             string expectedCancelUrl =
-                "http://" + expectedEventId + "-" + expectedCustomerId + ".testq.queue-it.net/cancel.aspx?c=" + expectedCustomerId + "&e=" + expectedEventId;
+                "http://" + expectedCustomerId + ".testq.queue-it.net/cancel.aspx?c=" + expectedCustomerId + "&e=" + expectedEventId;
 
             IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
 
