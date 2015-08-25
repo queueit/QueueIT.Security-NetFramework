@@ -12,8 +12,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{C0D645B7-1194-4925-A057-BCB5687EBF33}"
 	ProjectSection(SolutionItems) = preProject
 		Build\Build.bat = Build\Build.bat
-		Build\MSTest.exe = Build\MSTest.exe
-		Build\MSTest.exe.config = Build\MSTest.exe.config
 		Build\QueueIT.Security.dll = Build\QueueIT.Security.dll
 		Build\QueueIT.Security.Mvc.dll = Build\QueueIT.Security.Mvc.dll
 		Build\QueueIT.Security.Mvc.XML = Build\QueueIT.Security.Mvc.XML

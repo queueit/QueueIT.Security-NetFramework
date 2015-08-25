@@ -1,9 +1,7 @@
 @ECHO OFF
+set ERRORLEVEL=0
 
-set msBuildDir=%WINDIR%\Microsoft.NET\Framework\v4.0.30319   
-IF %ERRORLEVEL% NEQ 0 GOTO Error
- 
-call "%msBuildDir%\msbuild" "..\QueueIT.Security.sln" /p:Configuration=Release /l:FileLogger,Microsoft.Build.Engine;logfile=Build_Release.log
+call "msbuild" "..\QueueIT.Security.sln" /p:Configuration=Release /l:FileLogger,Microsoft.Build.Engine;logfile=Build_Release.log
 IF %ERRORLEVEL% NEQ 0 GOTO Error
 
 MSTest.exe /testcontainer:"..\QueueIT.Security.Tests\bin\Release\QueueIT.Security.Tests.dll"

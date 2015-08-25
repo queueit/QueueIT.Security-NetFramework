@@ -64,6 +64,11 @@
              </code>
              </example>    
         </member>
+        <member name="P:QueueIT.Security.Mvc.KnownUserAttribute.ErrorView">
+            <summary>
+            The view to display in case of a Known User validation exception. Default view is QueueITKnownUserError.
+            </summary>
+        </member>
         <member name="M:QueueIT.Security.Mvc.KnownUserAttribute.OnActionExecuting(System.Web.Mvc.ActionExecutingContext)">
             <summary>
             
@@ -100,11 +105,6 @@
             </summary>
             <param name="filterContext">The Action Executing Filter Context</param>
             <param name="exception">The exception thrown</param>
-        </member>
-        <member name="P:QueueIT.Security.Mvc.KnownUserAttribute.ErrorView">
-            <summary>
-            The view to display in case of a Known User validation exception. Default view is QueueITKnownUserError.
-            </summary>
         </member>
         <member name="T:QueueIT.Security.Mvc.KnownUserModel">
             <summary>
@@ -167,6 +167,26 @@
             ]]>
             </code>
             </example>    
+        </member>
+        <member name="P:QueueIT.Security.Mvc.SessionValidationAttribute.IncludeTargetUrl">
+            <summary>
+            If true the user will be redirected to the current page when the user is through the queue
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.Mvc.SessionValidationAttribute.SslEnabled">
+            <summary>
+            If true the queue uses SSL
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.Mvc.SessionValidationAttribute.DomainAlias">
+            <summary>
+            An optional domain of the queue
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.Mvc.SessionValidationAttribute.ErrorView">
+            <summary>
+            The view to display in case of a Known User validation exception. Default view is QueueITValidationError.
+            </summary>
         </member>
         <member name="M:QueueIT.Security.Mvc.SessionValidationAttribute.#ctor">
             <summary>
@@ -323,26 +343,6 @@
             <param name="filterContext">The Action Executing Filter Context</param>
             <param name="exception">The exception thrown</param>
         </member>
-        <member name="P:QueueIT.Security.Mvc.SessionValidationAttribute.IncludeTargetUrl">
-            <summary>
-            If true the user will be redirected to the current page when the user is through the queue
-            </summary>
-        </member>
-        <member name="P:QueueIT.Security.Mvc.SessionValidationAttribute.SslEnabled">
-            <summary>
-            If true the queue uses SSL
-            </summary>
-        </member>
-        <member name="P:QueueIT.Security.Mvc.SessionValidationAttribute.DomainAlias">
-            <summary>
-            An optional domain of the queue
-            </summary>
-        </member>
-        <member name="P:QueueIT.Security.Mvc.SessionValidationAttribute.ErrorView">
-            <summary>
-            The view to display in case of a Known User validation exception. Default view is QueueITValidationError.
-            </summary>
-        </member>
         <member name="T:QueueIT.Security.Mvc.SessionValidationErrorModel">
             <summary>
             View model which is sent to the validation error view on request validation exceptions
@@ -409,14 +409,14 @@
             </code>
             </example>
         </member>
-        <member name="M:QueueIT.Security.Mvc.SessionValidationModel.#ctor">
-            <summary>
-            Public constructor used by ASP.NET MVC
-            </summary>
-        </member>
         <member name="P:QueueIT.Security.Mvc.SessionValidationModel.ValidateResult">
             <summary>
             Validation result
+            </summary>
+        </member>
+        <member name="M:QueueIT.Security.Mvc.SessionValidationModel.#ctor">
+            <summary>
+            Public constructor used by ASP.NET MVC
             </summary>
         </member>
         <member name="T:QueueIT.Security.Mvc.UnverifiedKnownUserException">

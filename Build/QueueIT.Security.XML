@@ -9,28 +9,14 @@
             Validation result when it is confirmed that the user has been through the queue
             </summary>
         </member>
-        <member name="T:QueueIT.Security.ValidateResultBase">
+        <member name="P:QueueIT.Security.AcceptedConfirmedResult.KnownUser">
             <summary>
-            Base class for validation results
-            </summary>
-            <seealso cref="T:QueueIT.Security.AcceptedConfirmedResult"/>
-            <seealso cref="T:QueueIT.Security.EnqueueResult"/>
-        </member>
-        <member name="T:QueueIT.Security.IValidateResult">
-            <summary>
-            Represents a request validation result
-            </summary>
-            <seealso cref="T:QueueIT.Security.AcceptedConfirmedResult"/>
-            <seealso cref="T:QueueIT.Security.EnqueueResult"/>
-        </member>
-        <member name="P:QueueIT.Security.IValidateResult.Queue">
-            <summary>
-            The queue of the validation request
+            Known User details of the user
             </summary>
         </member>
-        <member name="P:QueueIT.Security.ValidateResultBase.Queue">
+        <member name="P:QueueIT.Security.AcceptedConfirmedResult.IsInitialValidationRequest">
             <summary>
-            The queue of the request validation
+            If true this current request has validated the user. Otherwise it is a cached result.
             </summary>
         </member>
         <member name="M:QueueIT.Security.AcceptedConfirmedResult.SetExpiration(System.DateTime)">
@@ -42,16 +28,6 @@
         <member name="M:QueueIT.Security.AcceptedConfirmedResult.Cancel">
             <summary>
             Cancels the validation result
-            </summary>
-        </member>
-        <member name="P:QueueIT.Security.AcceptedConfirmedResult.KnownUser">
-            <summary>
-            Known User details of the user
-            </summary>
-        </member>
-        <member name="P:QueueIT.Security.AcceptedConfirmedResult.IsInitialValidationRequest">
-            <summary>
-            If true this current request has validated the user. Otherwise it is a cached result.
             </summary>
         </member>
         <member name="T:QueueIT.Security.CookieValidateResultRepository">
@@ -90,6 +66,37 @@
             </code>
             </example>
         </member>
+        <member name="M:QueueIT.Security.CookieValidateResultRepository.Configure(System.String,System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Configures the CookieValidateResultRepository. This method will override any previous calls and configuration in config files.
+            </summary>
+            <param name="cookieDomain">The domain name of the cookie scope</param>
+            <param name="cookieExpiration">The amount of time the user can stay on the website before sent to the queue. The time will be extended each time validation is performed.</param>
+            <param name="idleExpiration">The amount of time the user can stay on the website before sent to the queue if the queue is in Idle mode. The time will not be extended each time validation is performed.</param>
+            <param name="disabledExpiration">The amount of time the user can stay on the website before sent to the queue if the queue is in disabled mode. The time will not be extended each time validation is performed.</param>
+        </member>
+        <member name="T:QueueIT.Security.ExpiredValidationException">
+            <summary>
+            Thrown if the Known User request URL is expired
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.ExpiredValidationException.KnownUser">
+            <summary>
+            The expired known User request
+            </summary>
+        </member>
+        <member name="T:QueueIT.Security.IValidateResult">
+            <summary>
+            Represents a request validation result
+            </summary>
+            <seealso cref="T:QueueIT.Security.AcceptedConfirmedResult" />
+            <seealso cref="T:QueueIT.Security.EnqueueResult" />
+        </member>
+        <member name="P:QueueIT.Security.IValidateResult.Queue">
+            <summary>
+            The queue of the validation request
+            </summary>
+        </member>
         <member name="T:QueueIT.Security.IValidateResultRepository">
             <summary>
             A repository to store user session state. This can be implemented if ASP.NET Sessions is unavailable. 
@@ -117,35 +124,6 @@
             </summary>
             <param name="queue">The queue of the validation result</param>
             <param name="validationResult">The validation result of the user</param>
-        </member>
-        <member name="M:QueueIT.Security.CookieValidateResultRepository.Configure(System.String,System.TimeSpan,System.TimeSpan,System.TimeSpan)">
-            <summary>
-            Configures the CookieValidateResultRepository. This method will override any previous calls and configuration in config files.
-            </summary>
-            <param name="cookieDomain">The domain name of the cookie scope</param>
-            <param name="cookieExpiration">The amount of time the user can stay on the website before sent to the queue. The time will be extended each time validation is performed.</param>
-            <param name="idleExpiration">The amount of time the user can stay on the website before sent to the queue if the queue is in Idle mode. The time will not be extended each time validation is performed.</param>
-            <param name="disabledExpiration">The amount of time the user can stay on the website before sent to the queue if the queue is in disabled mode. The time will not be extended each time validation is performed.</param>
-        </member>
-        <member name="T:QueueIT.Security.ExpiredValidationException">
-            <summary>
-            Thrown if the Known User request URL is expired
-            </summary>
-        </member>
-        <member name="T:QueueIT.Security.SessionValidationException">
-            <summary>
-            Thrown if the session validation fails
-            </summary>
-        </member>
-        <member name="P:QueueIT.Security.SessionValidationException.Queue">
-            <summary>
-            The queue of the Known User request
-            </summary>
-        </member>
-        <member name="P:QueueIT.Security.ExpiredValidationException.KnownUser">
-            <summary>
-            The expired known User request
-            </summary>
         </member>
         <member name="T:QueueIT.Security.KnownUserException">
             <summary>
@@ -1414,6 +1392,16 @@
             An object reprecenting the queue, the status of the queue and helper methods to generate URLs
             </summary>
         </member>
+        <member name="P:QueueIT.Security.IQueue.EventId">
+            <summary>
+            The Event ID of the queue
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.IQueue.CustomerId">
+            <summary>
+            The Customer ID of the queue
+            </summary>
+        </member>
         <member name="M:QueueIT.Security.IQueue.GetQueueUrl(System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.Globalization.CultureInfo,System.String)">
             <summary>
             Returns the URL to the queue. This will be the landing page if one is configured
@@ -1483,16 +1471,6 @@
             <param name="targetUrl">An URL to send to the landing page as a querystring parameter</param>
             <returns>The URL of the landing page</returns>
         </member>
-        <member name="P:QueueIT.Security.IQueue.EventId">
-            <summary>
-            The Event ID of the queue
-            </summary>
-        </member>
-        <member name="P:QueueIT.Security.IQueue.CustomerId">
-            <summary>
-            The Customer ID of the queue
-            </summary>
-        </member>
         <member name="T:QueueIT.Security.KnownUserFactory">
             <summary>
             Provides factory methods to verify Known User requests
@@ -1500,6 +1478,11 @@
             <remarks>
             View members for additional information and examples
             </remarks>
+        </member>
+        <member name="P:QueueIT.Security.KnownUserFactory.SecretKey">
+            <summary>
+            The secret key used for hashing and encryption
+            </summary>
         </member>
         <member name="M:QueueIT.Security.KnownUserFactory.Configure(System.String,System.Func{QueueIT.Security.IKnownUserUrlProvider},System.String)">
             <summary>
@@ -1617,11 +1600,6 @@
              </code>
              </example>
         </member>
-        <member name="P:QueueIT.Security.KnownUserFactory.SecretKey">
-            <summary>
-            The secret key used for hashing and encryption
-            </summary>
-        </member>
         <member name="T:QueueIT.Security.QueueFactory">
             <summary>
             Provides factory methods to create IQueue instances
@@ -1711,6 +1689,16 @@
             </summary>
             <param name="hostDomain">The domain name of the Queue-it service. This should not normally be set</param>
         </member>
+        <member name="T:QueueIT.Security.SessionValidationException">
+            <summary>
+            Thrown if the session validation fails
+            </summary>
+        </member>
+        <member name="P:QueueIT.Security.SessionValidationException.Queue">
+            <summary>
+            The queue of the Known User request
+            </summary>
+        </member>
         <member name="T:QueueIT.Security.SessionValidateResultRepository">
             <summary>
             A repository to store state which stores the validation result in the built in session state.
@@ -1733,6 +1721,18 @@
             </summary>
             <param name="idleExpiration">The amount of time the user can stay on the website before sent to the queue if the queue is in Idle mode. The time will not be extended each time validation is performed.</param>
             <param name="disabledExpiration">The amount of time the user can stay on the website before sent to the queue if the queue is in disabled mode. The time will not be extended each time validation is performed.</param>
+        </member>
+        <member name="T:QueueIT.Security.ValidateResultBase">
+            <summary>
+            Base class for validation results
+            </summary>
+            <seealso cref="T:QueueIT.Security.AcceptedConfirmedResult" />
+            <seealso cref="T:QueueIT.Security.EnqueueResult" />
+        </member>
+        <member name="P:QueueIT.Security.ValidateResultBase.Queue">
+            <summary>
+            The queue of the request validation
+            </summary>
         </member>
     </members>
 </doc>

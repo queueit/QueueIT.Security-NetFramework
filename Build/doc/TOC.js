@@ -2,8 +2,8 @@
 // System  : Sandcastle Help File Builder
 // File    : TOC.js
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 11/19/2013
-// Note    : Copyright 2006-2013, Eric Woodruff, All rights reserved
+// Updated : 03/26/2014
+// Note    : Copyright 2006-2014, Eric Woodruff, All rights reserved
 // Compiler: JavaScript
 //
 // This file contains the methods necessary to implement a simple tree view for the table of content with a
@@ -11,7 +11,7 @@
 // full-text searches.
 //
 // This code is published under the Microsoft Public License (Ms-PL).  A copy of the license should be
-// distributed with the code.  It can also be found at the project website: http://SHFB.CodePlex.com.  This
+// distributed with the code.  It can also be found at the project website: https://GitHub.com/EWSoftware/SHFB.  This
 // notice, the author's name, and all copyright notices must remain intact in all applications, documentation,
 // and source files.
 //
@@ -95,10 +95,9 @@ function Initialize(extension)
         for(idx = 0; idx < options.length; idx++)
             if(options[idx] == "topic" && idx + 1 < options.length)
             {
-                // Don't allow references outside the current site
-                if(options[idx + 1].length > 1 && options[idx + 1][0] != '/' && options[idx + 1][0] != '.')
+                // Don't allow javascript, or references outside the current site
+                if(options[idx + 1].match(/^\w[\w\/.]*$/))
                     topicContent.src = options[idx + 1];
-
                 break;
             }
     }
@@ -250,12 +249,15 @@ function GetParentTOCIds(target)
     {
         var id = x[i].getAttribute('Url');
 
-        id = id.substring(id.lastIndexOf("/") + 1, id.length - (id.length - id.lastIndexOf(".")));
-
-        if(id == target)
+        if(id != null)
         {
-            targetNode = x[i];
-            break;
+            id = id.substring(id.lastIndexOf("/") + 1, id.length - (id.length - id.lastIndexOf(".")));
+
+            if(id == target)
+            {
+                targetNode = x[i];
+                break;
+            }
         }
     }
 
