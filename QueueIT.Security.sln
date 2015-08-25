@@ -1,8 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30324.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExternalReferences", "ExternalReferences", "{0F50129F-248C-4B6C-99A7-82CE85E8A656}"
+	ProjectSection(SolutionItems) = preProject
+		ExternalReferences\Rhino.Mocks.dll = ExternalReferences\Rhino.Mocks.dll
+		ExternalReferences\System.Web.Mvc.dll = ExternalReferences\System.Web.Mvc.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{C0D645B7-1194-4925-A057-BCB5687EBF33}"
+	ProjectSection(SolutionItems) = preProject
+		Build\Build.bat = Build\Build.bat
+		Build\MSTest.exe = Build\MSTest.exe
+		Build\MSTest.exe.config = Build\MSTest.exe.config
+		Build\QueueIT.Security.dll = Build\QueueIT.Security.dll
+		Build\QueueIT.Security.Mvc.dll = Build\QueueIT.Security.Mvc.dll
+		Build\QueueIT.Security.Mvc.XML = Build\QueueIT.Security.Mvc.XML
+		Build\QueueIT.Security.XML = Build\QueueIT.Security.XML
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueIT.Security", "QueueIT.Security\QueueIT.Security.csproj", "{E1FF303A-698E-41A5-9101-78177E7B03E6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueIT.Security.Examples.AspNetMvc", "QueueIT.Security.Examples.AspNetMvc\QueueIT.Security.Examples.AspNetMvc.csproj", "{2CDDE36C-6E91-4726-80BA-BA6DE0779295}"
@@ -24,24 +41,7 @@ Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "QueueIT.Security.Documentat
 		{6F852BBF-386B-42F5-AB37-529FC0EAE7DD} = {6F852BBF-386B-42F5-AB37-529FC0EAE7DD}
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExternalReferences", "ExternalReferences", "{0F50129F-248C-4B6C-99A7-82CE85E8A656}"
-	ProjectSection(SolutionItems) = preProject
-		ExternalReferences\Rhino.Mocks.dll = ExternalReferences\Rhino.Mocks.dll
-		ExternalReferences\System.Web.Mvc.dll = ExternalReferences\System.Web.Mvc.dll
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueIT.Security.Tests", "QueueIT.Security.Tests\QueueIT.Security.Tests.csproj", "{95CC062E-B14E-4396-B054-6E35E5A60CD7}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{C0D645B7-1194-4925-A057-BCB5687EBF33}"
-	ProjectSection(SolutionItems) = preProject
-		Build\Build.bat = Build\Build.bat
-		Build\MSTest.exe = Build\MSTest.exe
-		Build\MSTest.exe.config = Build\MSTest.exe.config
-		Build\QueueIT.Security.dll = Build\QueueIT.Security.dll
-		Build\QueueIT.Security.Mvc.dll = Build\QueueIT.Security.Mvc.dll
-		Build\QueueIT.Security.Mvc.XML = Build\QueueIT.Security.Mvc.XML
-		Build\QueueIT.Security.XML = Build\QueueIT.Security.XML
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
