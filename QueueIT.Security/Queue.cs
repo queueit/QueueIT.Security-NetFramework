@@ -173,9 +173,10 @@ namespace QueueIT.Security
                 domainAlias);
 
             uri.Query = string.Format(
-                "c={0}&e={1}",
+                "c={0}&e={1}&ver=c{2}",
                 this.CustomerId,
-                this.EventId);
+                this.EventId,
+                this.GetType().Assembly.GetName().Version.ToString());
 
             if (language != null)
                 uri.Query = string.Concat(uri.Query.Substring(1), "&cid=", language.Name);

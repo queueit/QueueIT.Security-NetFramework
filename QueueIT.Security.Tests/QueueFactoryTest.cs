@@ -70,7 +70,7 @@ namespace QueueIT.Security.Tests
 
             string actualQueueUrl = queue.GetQueueUrl();
 
-            Assert.AreEqual(expectedQueueUrl, actualQueueUrl);
+            Assert.IsTrue(actualQueueUrl.StartsWith(expectedQueueUrl));
         }
 
         [TestMethod]
@@ -81,13 +81,29 @@ namespace QueueIT.Security.Tests
             string expectedCulture = "en-US";
 
             string expectedQueueUrl =
-                "http://" + expectedCustomerId + ".queue-it.net/?c=" + expectedCustomerId + "&e=" + expectedEventId + "&cid=" + expectedCulture;
+                "&cid=" + expectedCulture;
 
             IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
 
             string actualQueueUrl = queue.GetQueueUrl(language: new CultureInfo(expectedCulture));
 
-            Assert.AreEqual(expectedQueueUrl, actualQueueUrl);
+            Assert.IsTrue(actualQueueUrl.Contains(expectedQueueUrl));
+        }
+
+        [TestMethod]
+        public void QueueFactory_GetQueueUrl_Version_Test()
+        {
+            string expectedCustomerId = "customerid";
+            string expectedEventId = "eventid";
+            string expectedVersion = "c" + typeof(Queue).Assembly.GetName().Version.ToString();
+
+            string expectedQueueUrl = "&ver=" + expectedVersion;
+
+            IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
+
+            string actualQueueUrl = queue.GetQueueUrl();
+
+            Assert.IsTrue(actualQueueUrl.Contains(expectedQueueUrl));
         }
 
         [TestMethod]
@@ -97,14 +113,13 @@ namespace QueueIT.Security.Tests
             string expectedEventId = "eventid";
             string expectedLayoutName = "Some Other Layout";
 
-            string expectedQueueUrl =
-                "http://" + expectedCustomerId + ".queue-it.net/?c=" + expectedCustomerId + "&e=" + expectedEventId + "&l=" + HttpUtility.UrlEncode(expectedLayoutName);
+            string expectedQueueUrl = "&l=" + HttpUtility.UrlEncode(expectedLayoutName);
 
             IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
 
             string actualQueueUrl = queue.GetQueueUrl(layoutName: expectedLayoutName);
 
-            Assert.AreEqual(expectedQueueUrl, actualQueueUrl);
+            Assert.IsTrue(actualQueueUrl.Contains(expectedQueueUrl));
         }
 
         [TestMethod]
@@ -115,13 +130,13 @@ namespace QueueIT.Security.Tests
             string expectedDomainAlias = "my.queue.url";
 
             string expectedQueueUrl =
-                "http://" + expectedDomainAlias + "/?c=" + expectedCustomerId + "&e=" + expectedEventId;
+                "http://" + expectedDomainAlias + "/";
 
             IQueue queue = QueueFactory.CreateQueue("customerId", "eventId");
 
             string actualQueueUrl = queue.GetQueueUrl(domainAlias: expectedDomainAlias);
 
-            Assert.AreEqual(expectedQueueUrl, actualQueueUrl);
+            Assert.IsTrue(actualQueueUrl.StartsWith(expectedQueueUrl));
         }
 
         [TestMethod]
@@ -137,7 +152,7 @@ namespace QueueIT.Security.Tests
 
             string actualQueueUrl = queue.GetQueueUrl(sslEnabled: true);
 
-            Assert.AreEqual(expectedQueueUrl, actualQueueUrl);
+            Assert.IsTrue(actualQueueUrl.StartsWith(expectedQueueUrl));
         }
 
         [TestMethod]
@@ -147,9 +162,7 @@ namespace QueueIT.Security.Tests
             string expectedEventId = "eventid";
             string expectedTarget = "http://target.url/?someprop=somevalue&another=value";
 
-            string expectedQueueUrl =
-                "http://" + expectedCustomerId + ".queue-it.net/?c=" + expectedCustomerId + "&e=" + expectedEventId +
-                "&t=" + HttpUtility.UrlEncode(expectedTarget);
+            string expectedQueueUrl = "&t=" + HttpUtility.UrlEncode(expectedTarget);
 
             HttpContext.Current = new HttpContext(
                 new HttpRequest("", expectedTarget, "someprop=somevalue&another=value"), 
@@ -159,7 +172,7 @@ namespace QueueIT.Security.Tests
 
             string actualQueueUrl = queue.GetQueueUrl(includeTargetUrl: true);
 
-            Assert.AreEqual(expectedQueueUrl, actualQueueUrl);
+            Assert.IsTrue(actualQueueUrl.Contains(expectedQueueUrl));
         }
 
         [TestMethod]
@@ -169,9 +182,7 @@ namespace QueueIT.Security.Tests
             string expectedEventId = "eventid";
             string expectedTarget = "http://target.url/?someprop=some|value&another={value}";
 
-            string expectedQueueUrl =
-                "http://" + expectedCustomerId + ".queue-it.net/?c=" + expectedCustomerId + "&e=" + expectedEventId +
-                "&t=" + HttpUtility.UrlEncode(expectedTarget);
+            string expectedQueueUrl = "&t=" + HttpUtility.UrlEncode(expectedTarget);
 
             HttpContext.Current = new HttpContext(
                 new HttpRequest("", expectedTarget, "someprop=some|value&another={value}"),
@@ -181,7 +192,7 @@ namespace QueueIT.Security.Tests
 
             string actualQueueUrl = queue.GetQueueUrl(includeTargetUrl: true);
 
-            Assert.AreEqual(expectedQueueUrl, actualQueueUrl);
+            Assert.IsTrue(actualQueueUrl.Contains(expectedQueueUrl));
         }
 
         [TestMethod]
@@ -191,15 +202,13 @@ namespace QueueIT.Security.Tests
             string expectedEventId = "eventid";
             string expectedTarget = "http://target.url/?someprop=somevalue&another=value";
 
-            string expectedQueueUrl =
-                "http://" + expectedCustomerId + ".queue-it.net/?c=" + expectedCustomerId + "&e=" + expectedEventId +
-                "&t=" + HttpUtility.UrlEncode(expectedTarget);
+            string expectedQueueUrl = "&t=" + HttpUtility.UrlEncode(expectedTarget);
 
             IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
 
             string actualQueueUrl = queue.GetQueueUrl(expectedTarget);
 
-            Assert.AreEqual(expectedQueueUrl, actualQueueUrl);
+            Assert.IsTrue(actualQueueUrl.Contains(expectedQueueUrl));
         }
 
         [TestMethod]
