@@ -102,6 +102,43 @@ namespace QueueIT.Security.Tests
         }
 
         [TestMethod]
+        public void SessionValidateResultRepository_SetValidationResult_ExtendValidityDisabled_Test()
+        {
+            DateTime testOffest = DateTime.UtcNow;
+            string sessionKey = "QueueITAccepted-SDFrts345E-customerid-eventid";
+            int expectedSessionTimeout = 10;
+            HttpContext.Current.Session.Timeout = expectedSessionTimeout;
+
+
+            this._knownUser.Stub(knownUser => knownUser.CustomerId).Return("CustomerId");
+            this._knownUser.Stub(knownUser => knownUser.EventId).Return("EventId");
+            this._knownUser.Stub(knownUser => knownUser.QueueId).Return(Guid.NewGuid());
+            this._knownUser.Stub(knownUser => knownUser.OriginalUrl).Return("http://original.url/");
+            this._knownUser.Stub(knownUser => knownUser.PlaceInQueue).Return(5486);
+            this._knownUser.Stub(knownUser => knownUser.RedirectType).Return(RedirectType.Idle);
+            this._knownUser.Stub(knownUser => knownUser.TimeStamp).Return(testOffest);
+
+            this._queue.Stub(queue => queue.CustomerId).Return("CustomerId");
+            this._queue.Stub(queue => queue.EventId).Return("EventId");
+
+            AcceptedConfirmedResult result = new AcceptedConfirmedResult(this._queue, this._knownUser, true);
+
+            SessionValidateResultRepository.Configure(extendValidity: false);
+            SessionValidateResultRepository repository = new SessionValidateResultRepository();
+
+            repository.SetValidationResult(this._queue, result);
+
+            var actualSessionState = HttpContext.Current.Session[sessionKey] as SessionStateModel;
+
+            Assert.IsTrue(actualSessionState != null);
+            Assert.IsTrue(actualSessionState.Expiration.HasValue);
+            Assert.IsTrue(
+                actualSessionState.Expiration.Value >= testOffest.AddMinutes(expectedSessionTimeout) &&
+                actualSessionState.Expiration.Value <= DateTime.UtcNow.AddMinutes(expectedSessionTimeout));
+        }
+
+
+        [TestMethod]
         public void SessionValidateResultRepository_SetValidationResult_IdleMode_WithExpiration_Test()
         {
             DateTime testOffest = DateTime.UtcNow;

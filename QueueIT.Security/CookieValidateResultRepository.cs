@@ -35,6 +35,7 @@ namespace QueueIT.Security
     ///           <setting name="CookieExpiration" value="00:20:00" />
     ///           <setting name="IdleExpiration" value="00:03:00" />
     ///           <setting name="DisabledExpiration" value="00:03:00" />
+    ///           <setting name="ExtendValidity" value="true" />
     ///       </repositorySettings>
     ///    </queueit.security>
     /// </configuration>    
@@ -54,6 +55,8 @@ namespace QueueIT.Security
 
         private static void LoadConfiguration()
         {
+            ValidateResultRepositoryBase.LoadBaseConfiguration();
+
             SettingsSection settings = SettingsSection.GetSection();
             if (settings != null && settings.RepositorySettings != null)
             {
@@ -61,8 +64,6 @@ namespace QueueIT.Security
                 
                 SetTimespanFromRepositorySettings(
                     settings.RepositorySettings, "CookieExpiration", (value) => CookieExpiration = value);
-                SetTimespanFromRepositorySettings(
-                    settings.RepositorySettings, "IdleExpiration", (value) => IdleExpiration = value);
             }
         }
 
@@ -72,26 +73,27 @@ namespace QueueIT.Security
         /// <param name="cookieDomain">The domain name of the cookie scope</param>
         /// <param name="cookieExpiration">The amount of time the user can stay on the website before sent to the queue. The time will be extended each time validation is performed.</param>
         /// <param name="idleExpiration">The amount of time the user can stay on the website before sent to the queue if the queue is in Idle mode. The time will not be extended each time validation is performed.</param>
-        /// <param name="disabledExpiration">The amount of time the user can stay on the website before sent to the queue if the queue is in disabled mode. The time will not be extended each time validation is performed.</param>
+        /// <param name="extendValidity">If false, the time will not be extended each time validation is performed.</param>
         public static void Configure(
             string cookieDomain = null, 
             TimeSpan cookieExpiration = default(TimeSpan),
             TimeSpan idleExpiration = default(TimeSpan),
-            TimeSpan disabledExpiration = default(TimeSpan))
+            bool extendValidity = true)
         {
+            ValidateResultRepositoryBase.ConfigureBase(idleExpiration, extendValidity);
+
             if (cookieDomain != null)
                 CookieDomain = cookieDomain;
             if (cookieExpiration != default(TimeSpan))
                 CookieExpiration = cookieExpiration;
-            if (idleExpiration != default(TimeSpan))
-                IdleExpiration = idleExpiration;
         }
 
         internal static void Clear()
         {
+            ValidateResultRepositoryBase.ClearBase();
+
             CookieDomain = null;
             CookieExpiration = TimeSpan.FromMinutes(20);
-            IdleExpiration = TimeSpan.FromMinutes(3);
         }
 
         public override IValidateResult GetValidationResult(IQueue queue)
@@ -137,7 +139,7 @@ namespace QueueIT.Security
                         originalUrl), 
                     false);
 
-                if (result.KnownUser.RedirectType != RedirectType.Idle)
+                if (ExtendValidity && result.KnownUser.RedirectType != RedirectType.Idle)
                 {
                     DateTime newExpirationTime = DateTime.UtcNow.Add(CookieExpiration);
                     string newHash = GenerateHash(

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using System.Web.SessionState;
 using QueueIT.Security.Configuration;
 
 namespace QueueIT.Security
@@ -17,6 +18,22 @@ namespace QueueIT.Security
     /// <code language="cs">
     /// SessionValidationController.Configure(validationResultProviderFactory: () => new SessionValidateResultRepository);
     /// </code>
+    /// Configuration:
+    /// <code>
+    /// <![CDATA[
+    /// <configuration>
+    ///    <configSections>
+    ///       <section name="queueit.security" type="QueueIT.Security.Configuration.SettingsSection, QueueIT.Security"/>
+    ///    </configSections>
+    ///    <queueit.security>
+    ///       <repositorySettings>
+    ///           <setting name="IdleExpiration" value="00:03:00" />
+    ///           <setting name="ExtendValidity" value="true" />
+    ///       </repositorySettings>
+    ///    </queueit.security>
+    /// </configuration>    
+    /// ]]>
+    /// </code>    
     /// </example>
     public class SessionValidateResultRepository : ValidateResultRepositoryBase
     {
@@ -27,29 +44,24 @@ namespace QueueIT.Security
 
         private static void LoadConfiguration()
         {
-            SettingsSection settings = SettingsSection.GetSection();
-            if (settings != null && settings.RepositorySettings != null)
-            {
-                SetTimespanFromRepositorySettings(
-                    settings.RepositorySettings, "IdleExpiration", (value) => IdleExpiration = value);
-            }
+            ValidateResultRepositoryBase.LoadBaseConfiguration();
         }
 
         /// <summary>
         /// Configures the SessionValidateResultRepository. This method will override any previous calls and configuration in config files.
         /// </summary>
         /// <param name="idleExpiration">The amount of time the user can stay on the website before sent to the queue if the queue is in Idle mode. The time will not be extended each time validation is performed.</param>
-        /// <param name="disabledExpiration">The amount of time the user can stay on the website before sent to the queue if the queue is in disabled mode. The time will not be extended each time validation is performed.</param>
+        /// <param name="extendValidity">If false, the time will not be extended each time validation is performed.</param>
         public static void Configure(
-            TimeSpan idleExpiration = default(TimeSpan))
+            TimeSpan idleExpiration = default(TimeSpan),
+            bool extendValidity = true)
         {
-            if (idleExpiration != default(TimeSpan))
-                IdleExpiration = idleExpiration;
+            ValidateResultRepositoryBase.ConfigureBase(idleExpiration, extendValidity);
         }
 
         internal static void Clear()
         {
-            IdleExpiration = TimeSpan.FromMinutes(3);
+            ValidateResultRepositoryBase.ClearBase();
         }
 
         public override IValidateResult GetValidationResult(IQueue queue)
@@ -81,6 +93,9 @@ namespace QueueIT.Security
 
             if (acceptedResult != null)
             {
+                if (!expirationTime.HasValue && !ExtendValidity)
+                    expirationTime = DateTime.UtcNow.AddMinutes(HttpContext.Current.Session.Timeout);
+
                 var key = GenerateKey(queue.CustomerId, queue.EventId);
                 SessionStateModel model = new SessionStateModel()
                 {

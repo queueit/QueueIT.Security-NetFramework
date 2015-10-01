@@ -137,7 +137,7 @@ namespace QueueIT.Security.Tests
         }
 
         [TestMethod]
-        public void CookieValidateResultRepository_GetValidationResult_RenewCookie_Test()
+        public void CookieValidateResultRepository_GetValidationResult_ExtendValidity_Test()
         {
             string secretKey = "acb";
 
@@ -182,6 +182,56 @@ namespace QueueIT.Security.Tests
             repository.GetValidationResult(this._queue);
 
             Assert.AreEqual(1, this._response.Cookies.Count);
+        }
+
+        [TestMethod]
+        public void CookieValidateResultRepository_GetValidationResult_ExtendValidityDisabled_Test()
+        {
+            string secretKey = "acb";
+
+            string expectedCustomerId = "CustomerId";
+            string expectedEventId = "EventId";
+            Guid expectedQueueId = new Guid(4567846, 35, 87, 3, 5, 8, 6, 4, 8, 2, 3);
+            Uri expectedOriginalUrl = new Uri("http://original.url/");
+            int expectedPlaceInQueue = 5486;
+            RedirectType expectedRedirectType = RedirectType.Queue;
+            long expectedSecondsSince1970 = 5465468;
+            DateTime expectedTimeStamp = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(expectedSecondsSince1970);
+            string cookieName = "QueueITAccepted-SDFrts345E-" + expectedCustomerId.ToLower() + "-" + expectedEventId.ToLower();
+            DateTime expectedExpires = DateTime.UtcNow.AddMinutes(2);
+            string expectedHash = GenerateHash(
+                expectedQueueId.ToString(),
+                expectedOriginalUrl.AbsoluteUri,
+                expectedPlaceInQueue.ToString(),
+                expectedRedirectType,
+                expectedSecondsSince1970.ToString(),
+                expectedExpires,
+                string.Empty,
+                secretKey);
+
+            this._queue.Stub(queue => queue.CustomerId).Return(expectedCustomerId);
+            this._queue.Stub(queue => queue.EventId).Return(expectedEventId);
+
+            HttpCookie cookie = new HttpCookie(cookieName);
+            cookie.Values["QueueId"] = expectedQueueId.ToString();
+            cookie.Values["OriginalUrl"] = expectedOriginalUrl.AbsoluteUri;
+            cookie.Values["PlaceInQueue"] = Hashing.EncryptPlaceInQueue(expectedPlaceInQueue);
+            cookie.Values["RedirectType"] = expectedRedirectType.ToString();
+            cookie.Values["TimeStamp"] = expectedSecondsSince1970.ToString();
+            cookie.Values["Expires"] = expectedExpires.ToString("o");
+            cookie.Values["Hash"] = expectedHash;
+
+            this._request.Cookies.Add(cookie);
+
+            KnownUserFactory.Configure(secretKey);
+
+            CookieValidateResultRepository.Configure(extendValidity: false);
+
+            CookieValidateResultRepository repository = new CookieValidateResultRepository();
+            
+            repository.GetValidationResult(this._queue);
+
+            Assert.AreEqual(0, this._response.Cookies.Count);
         }
 
         [TestMethod]
