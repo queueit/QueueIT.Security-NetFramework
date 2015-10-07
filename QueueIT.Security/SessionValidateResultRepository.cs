@@ -93,9 +93,6 @@ namespace QueueIT.Security
 
             if (acceptedResult != null)
             {
-                if (!expirationTime.HasValue && !ExtendValidity)
-                    expirationTime = DateTime.UtcNow.AddMinutes(HttpContext.Current.Session.Timeout);
-
                 var key = GenerateKey(queue.CustomerId, queue.EventId);
                 SessionStateModel model = new SessionStateModel()
                 {
@@ -110,6 +107,8 @@ namespace QueueIT.Security
                     model.Expiration = expirationTime;
                 else if (acceptedResult.KnownUser.RedirectType == RedirectType.Idle)
                     model.Expiration = DateTime.UtcNow.Add(IdleExpiration);
+                else if (!ExtendValidity)
+                    model.Expiration = DateTime.UtcNow.AddMinutes(HttpContext.Current.Session.Timeout);
 
                 HttpContext.Current.Session[key] = model;
             }

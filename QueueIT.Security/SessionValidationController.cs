@@ -30,6 +30,12 @@ namespace QueueIT.Security
     /// });
     /// ]]>
     /// </code>
+    /// <code>
+    /// <![CDATA[
+    /// //PHP
+    /// SessionValidationController::configure(null, function () { return new SessionValidateResultRepository(); });
+    /// ]]>
+    /// </code>
     /// A thrid option is to implement a new validation result provider by implementing the IValidateResultRepository repository.
     /// <br/><br/>
     /// View members for additional information and examples
