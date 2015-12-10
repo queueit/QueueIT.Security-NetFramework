@@ -51,6 +51,7 @@ queryStringPrefix =
 ticketExpiration = 180
 cookieDomain = .ticketania.com
 cookieExpiration = 1200
+extendValidity = true
           ]]>
         </code>
         <para>

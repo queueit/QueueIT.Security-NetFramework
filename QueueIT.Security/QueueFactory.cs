@@ -142,11 +142,6 @@ namespace QueueIT.Security
         /// </example>
         public static IQueue CreateQueue(string customerId, string eventId)
         {
-            if (string.IsNullOrEmpty(customerId))
-                throw new ArgumentException("Customer ID cannot be null or empty", "customerId");
-            if (string.IsNullOrEmpty(eventId))
-                throw new ArgumentException("Event ID cannot be null or empty", "eventId");
-
             var queue = InstantiateQueue(customerId, eventId, null, null, false, false, null, null);
 
             return queue;
@@ -155,6 +150,13 @@ namespace QueueIT.Security
         private static Queue InstantiateQueue(string customerId, string eventId, string domainAlias, string landingPage, 
             bool sslEnabled, bool includeTargetUrl, CultureInfo culture, string layoutName)
         {
+            if (string.IsNullOrEmpty(customerId))
+                throw new ArgumentException("Customer ID cannot be null or empty", "customerId");
+            if (string.IsNullOrEmpty(eventId))
+                throw new ArgumentException("Event ID cannot be null or empty", "eventId");
+
+            customerId = customerId.ToLower().Trim();
+            eventId = eventId.ToLower().Trim();
             string key = GenerateKey(customerId, eventId);
 
             Dictionary<string, Queue> queues = _queues;
