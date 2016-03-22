@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>QueueIT.Security</id>
-    <version>2.0.3</version>
+    <version>1.0.0</version>
     <authors>Queue-it</authors>
     <owners>Queue-it</owners>
     <licenseUrl>https://queue-it.com/</licenseUrl>
