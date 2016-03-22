@@ -2,11 +2,11 @@ Set-Location -Path .. -PassThru
 
 & GitVersion /updateassemblyinfo
 
+$ver = & GitVersion.exe /output json /showvariable MajorMinorPatch
+
 Set-Location -Path Build -PassThru
 
 & .\Build.bat
-
-$ver = & GitVersion.exe /output json /showvariable MajorMinorPatch
 
 "Version: " + $ver
 
