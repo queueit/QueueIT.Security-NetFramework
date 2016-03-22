@@ -8,6 +8,8 @@ Set-Location -Path Build -PassThru
 
 $ver = & GitVersion.exe /output json /showvariable MajorMinorPatch
 
+"Version: " + $ver
+
 #using simple text replacement
 $con = Get-Content .\QueueIT.Security.nuspec
 $con | % { $_.Replace("<version>1.0.0</version>", "<version>" + $ver + "</version>") } | Set-Content .\QueueIT.Security.nuspec
