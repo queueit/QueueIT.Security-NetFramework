@@ -16,4 +16,4 @@ $con | % { $_.Replace("<version>1.0.0</version>", "<version>" + $ver + "</versio
 
 $loc = "QueueIT.Security." + $ver + ".nupkg"
 
-#& nuget push $loc 87c4bafe-830a-4147-9e8f-422bf70a69ea -Source https://www.myget.org/F/tessitura/api/v2/package
+& nuget push $loc 87c4bafe-830a-4147-9e8f-422bf70a69ea -Source https://www.myget.org/F/tessitura/api/v2/package
