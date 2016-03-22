@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>QueueIT.Security</id>
+    <version>2.0.3</version>
+    <authors>Queue-it</authors>
+    <owners>Queue-it</owners>
+    <licenseUrl>https://queue-it.com/</licenseUrl>
+    <projectUrl>https://queue-it.com/</projectUrl>
+    <iconUrl>https://queue-it.com/wp-content/uploads/2016/02/Logoqueueit.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Security functions for Queue-it</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright © Queue-it 2011</copyright>
+    <tags></tags>
+  </metadata>
+  <files>
+      <file src="QueueIT.Security.dll" target="lib" />
+      <file src="QueueIT.Security.xml" target="lib" />
+    </files>
+</package>
