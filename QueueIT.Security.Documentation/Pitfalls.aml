@@ -104,7 +104,7 @@
             public override string GetUrl()
             {
               string internalUrl = base.GetUrl().ToString();
-              string publicUrl = internalUrl.Replace("http", "https").Replace(":4490", "");
+              string publicUrl = internalUrl.Replace("http://", "https://").Replace(":4490", "");
               return new publicUrl;
             }
           }
