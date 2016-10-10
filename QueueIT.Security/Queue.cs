@@ -90,7 +90,7 @@ namespace QueueIT.Security
             if (!includeTargetUrl.Value)
                 return;
             
-            AddTargetUrl(HttpContext.Current.Request.RealUrl(), queueUrl);
+            AddTargetUrl(KnownUserFactory.GetUrlProvider().GetUrl(), queueUrl);
         }
 
         private static void AddTargetUrl(string targetUrl, UriBuilder queueUrl)
