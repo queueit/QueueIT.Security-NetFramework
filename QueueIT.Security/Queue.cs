@@ -81,9 +81,6 @@ namespace QueueIT.Security
 
         private void AddTargetUrl(bool? includeTargetUrl, UriBuilder queueUrl)
         {
-            if (HttpContext.Current == null)
-                return;
-
             if (!includeTargetUrl.HasValue)
                 includeTargetUrl = this.IncludeTargetUrl;
 
