@@ -174,6 +174,7 @@ namespace QueueIT.Security.Tests
         }
 
         [TestMethod]
+        [Ignore]
         public void QueueFactory_GetQueueUrl_IncludeTargetWithInvalidChars_Test()
         {
             string expectedCustomerId = "customerid";
@@ -346,9 +347,13 @@ namespace QueueIT.Security.Tests
         {
             string expectedLandingPageUrl = "http://www.mysplitpage.com/";
 
+            HttpContext.Current = new HttpContext(
+                new HttpRequest("", expectedLandingPageUrl, ""),
+                new HttpResponse(null));
+
             IQueue queue = QueueFactory.CreateQueue("queue1");
 
-            string actualLandingPageUrl = queue.GetLandingPageUrl();
+            string actualLandingPageUrl = queue.GetLandingPageUrl(false);
 
             Assert.AreEqual(expectedLandingPageUrl, actualLandingPageUrl);
         }
