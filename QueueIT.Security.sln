@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25008.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExternalReferences", "ExternalReferences", "{0F50129F-248C-4B6C-99A7-82CE85E8A656}"
 	ProjectSection(SolutionItems) = preProject
@@ -12,9 +12,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{C0D645B7-1194-4925-A057-BCB5687EBF33}"
 	ProjectSection(SolutionItems) = preProject
 		Build\Build.bat = Build\Build.bat
+		Build\publish.cmd = Build\publish.cmd
+		Build\publish.ps1 = Build\publish.ps1
 		Build\QueueIT.Security.dll = Build\QueueIT.Security.dll
 		Build\QueueIT.Security.Mvc.dll = Build\QueueIT.Security.Mvc.dll
 		Build\QueueIT.Security.Mvc.XML = Build\QueueIT.Security.Mvc.XML
+		Build\QueueIT.Security.nuspec = Build\QueueIT.Security.nuspec
 		Build\QueueIT.Security.XML = Build\QueueIT.Security.XML
 	EndProjectSection
 EndProject
@@ -32,12 +35,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueIT.Security.Examples.W
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueIT.Security.Mvc", "QueueIT.Security.Mvc\QueueIT.Security.Mvc.csproj", "{6F852BBF-386B-42F5-AB37-529FC0EAE7DD}"
-EndProject
-Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "QueueIT.Security.Documentation", "QueueIT.Security.Documentation\QueueIT.Security.Documentation.shfbproj", "{6E4BE90C-3B77-4C98-89C7-4E3C35EE8D29}"
-	ProjectSection(ProjectDependencies) = postProject
-		{E1FF303A-698E-41A5-9101-78177E7B03E6} = {E1FF303A-698E-41A5-9101-78177E7B03E6}
-		{6F852BBF-386B-42F5-AB37-529FC0EAE7DD} = {6F852BBF-386B-42F5-AB37-529FC0EAE7DD}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueIT.Security.Tests", "QueueIT.Security.Tests\QueueIT.Security.Tests.csproj", "{95CC062E-B14E-4396-B054-6E35E5A60CD7}"
 EndProject
@@ -63,10 +60,6 @@ Global
 		{6F852BBF-386B-42F5-AB37-529FC0EAE7DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F852BBF-386B-42F5-AB37-529FC0EAE7DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F852BBF-386B-42F5-AB37-529FC0EAE7DD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6E4BE90C-3B77-4C98-89C7-4E3C35EE8D29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6E4BE90C-3B77-4C98-89C7-4E3C35EE8D29}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6E4BE90C-3B77-4C98-89C7-4E3C35EE8D29}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6E4BE90C-3B77-4C98-89C7-4E3C35EE8D29}.Release|Any CPU.Build.0 = Release|Any CPU
 		{95CC062E-B14E-4396-B054-6E35E5A60CD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{95CC062E-B14E-4396-B054-6E35E5A60CD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95CC062E-B14E-4396-B054-6E35E5A60CD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
