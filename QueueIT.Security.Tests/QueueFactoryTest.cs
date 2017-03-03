@@ -164,9 +164,7 @@ namespace QueueIT.Security.Tests
 
             string expectedQueueUrl = "&t=" + HttpUtility.UrlEncode(expectedTarget);
 
-            HttpContext.Current = new HttpContext(
-                new HttpRequest("", expectedTarget, "someprop=somevalue&another=value"), 
-                new HttpResponse(null));
+            KnownUserFactory.Configure(urlProviderFactory: () => new MockKnownUserUrlProvicer(expectedTarget));
 
             IQueue queue = QueueFactory.CreateQueue(expectedCustomerId, expectedEventId);
 
@@ -383,6 +381,55 @@ namespace QueueIT.Security.Tests
             string actualLandingPageUrl = queue.GetLandingPageUrl(expectedTarget);
 
             Assert.AreEqual(expectedLandingPageUrl, actualLandingPageUrl);
+        }
+
+        private class MockKnownUserUrlProvicer : IKnownUserUrlProvider
+        {
+            private readonly string _url;
+            public MockKnownUserUrlProvicer(string url)
+            {
+                _url = url;
+            }
+
+            public string GetUrl()
+            {
+                return this._url;
+            }
+
+            public string GetQueueId(string queryStringPrefix)
+            {
+                throw new NotImplementedException();
+            }
+
+            public string GetPlaceInQueue(string queryStringPrefix)
+            {
+                throw new NotImplementedException();
+            }
+
+            public string GetTimeStamp(string queryStringPrefix)
+            {
+                throw new NotImplementedException();
+            }
+
+            public string GetEventId(string queryStringPrefix)
+            {
+                throw new NotImplementedException();
+            }
+
+            public string GetCustomerId(string queryStringPrefix)
+            {
+                throw new NotImplementedException();
+            }
+
+            public string GetOriginalUrl(string queryStringPrefix)
+            {
+                throw new NotImplementedException();
+            }
+
+            public string GetRedirectType(string queryStringPrefix)
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

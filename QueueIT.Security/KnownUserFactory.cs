@@ -288,6 +288,11 @@ namespace QueueIT.Security
                 LoadConfiguration();
         }
 
+        internal static IKnownUserUrlProvider GetUrlProvider()
+        {
+            return _defaultUrlProviderFactory.Invoke();
+        }
+
         private static void ValidateHash(string url, string secretKey, string expectedHash)
         {
             string hashString = url.Substring(0, url.Length - 32) + secretKey; //Remove hash value and add SharedEventKey

@@ -13,7 +13,7 @@ namespace QueueIT.Security
     {
         #region HMACSHA256Hash
 
-        [Obsolete("Please use MD5 hasing for future implementations")]
+        [Obsolete("Please use MD5 hashing for future implementations")]
         public static string GenerateHMACSHA256Hash(string Password, string QueueId, string UrlToHash)
         {
             ValidateInput(QueueId, "QueueId");
@@ -41,7 +41,7 @@ namespace QueueIT.Security
             return UrlEncodeHashString;
         }
 
-        [Obsolete("Please use MD5 hasing for future implementations")]
+        [Obsolete("Please use MD5 hashing for future implementations")]
         public static long VerifyHMACSHA256Hash(string PageRequestUrlOriginalString, string QueueId, string PlaceInQueueEncryptString, string ParsedHash, string Password)
         {
             if (string.IsNullOrEmpty(PlaceInQueueEncryptString)) return -2;
@@ -136,7 +136,7 @@ namespace QueueIT.Security
 
         #region SimpleHash
 
-        [Obsolete("Please use MD5 hasing for future implementations")]
+        [Obsolete("Please use MD5 hashing for future implementations")]
         public static long GenerateSimpleHash(string QueueId, string PlaceInQueueEncryptString, string SharedEventKey)
         {
             ValidateInput(QueueId, "QueueId");
@@ -149,7 +149,7 @@ namespace QueueIT.Security
         }
 
 
-        [Obsolete("Please use MD5 hasing for future implementations")]
+        [Obsolete("Please use MD5 hashing for future implementations")]
         public static long VerifySimpleHash(string QueueId, string PlaceInQueueEncryptString, string SharedEventKey, long ParsedCheckValue)
         {
             try
@@ -194,7 +194,7 @@ namespace QueueIT.Security
             return Date1970.AddSeconds(timestamp);
         }
 
-        [Obsolete("Please use MD5 hasing for future implementations")]
+        [Obsolete("Please use MD5 hashing for future implementations")]
         public static long GenerateSimpleHashWithTimestamp(string QueueId, string PlaceInQueueEncryptString, long Timestamp, string SharedEventKey)
         {
             ValidateInput(QueueId, "QueueId");
@@ -206,7 +206,7 @@ namespace QueueIT.Security
             return _GenerateSimpleHas(StringToHash, SharedEventKey);
         }
 
-        [Obsolete("Please use MD5 hasing for future implementations")]
+        [Obsolete("Please use MD5 hashing for future implementations")]
         public static long VerifySimpleHashWithTimestamp(string QueueId, string PlaceInQueueEncryptString, long Timestamp, string SharedEventKey, long ParsedCheckValue)
         {
             try
