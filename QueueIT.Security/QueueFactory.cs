@@ -161,6 +161,9 @@ namespace QueueIT.Security
 
             Dictionary<string, Queue> queues = _queues;
 
+            if (queues.ContainsKey(key))
+                return queues[key];
+
             lock (queues)
             {
                 if (queues.ContainsKey(key))
