@@ -161,29 +161,32 @@ namespace QueueIT.Security
 
             Dictionary<string, Queue> queues = _queues;
 
-            if (queues.ContainsKey(key))
-                return queues[key];
-
-            if (string.IsNullOrEmpty(domainAlias))
+            lock (queues)
             {
-                domainAlias = string.Format(
-                    "{0}.{1}",
+                if (queues.ContainsKey(key))
+                    return queues[key];
+
+                if (string.IsNullOrEmpty(domainAlias))
+                {
+                    domainAlias = string.Format(
+                        "{0}.{1}",
+                        customerId,
+                        _hostDomain);
+                }
+
+                Queue queue = new Queue(
                     customerId,
-                    _hostDomain);
+                    eventId,
+                    domainAlias,
+                    landingPage,
+                    sslEnabled,
+                    includeTargetUrl,
+                    culture,
+                    layoutName);
+                _queues.Add(key, queue);
+
+                return queue;
             }
-
-            Queue queue = new Queue(
-                customerId,
-                eventId,
-                domainAlias,
-                landingPage,
-                sslEnabled, 
-                includeTargetUrl,
-                culture, 
-                layoutName);
-            _queues.Add(key, queue);
-
-            return queue;
         }
 
         /// <summary>
